@@ -23,7 +23,7 @@ Obtain an API key, username, and password, from the RiSE Payment Platform,
 and configure the RPG class.
 
 ```js
-const RPG = require('@calistyle/rise-pg-node').RPG
+const RPG = require('@calistyle/rise-sdk-js').RPG
 const rpg = new RPG({
   apiKey: 'your-api-key',
   username: 'your-username',
@@ -62,11 +62,11 @@ rpg.customer.addCustomer({
 })
 ```
 
-[npm-image]: https://img.shields.io/npm/v/@calistyle/rise-pg-node.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/@calistyle/rise-pg-node
-[ci-image]: https://img.shields.io/circleci/project/github/CaliStyle/rise-pg-node/master.svg
-[ci-url]: https://circleci.com/gh/CaliStyle/rise-pg-node/tree/master
-[daviddm-image]: http://img.shields.io/david/CaliStyle/rise-pg-node.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/CaliStyle/rise-pg-node
-[coverage-image]: https://img.shields.io/codeclimate/coverage/github/CaliStyle/rise-pg-node.svg?style=flat-square
-[coverage-url]: https://codeclimate.com/github/CaliStyle/rise-pg-node/coverage
+[npm-image]: https://img.shields.io/npm/v/@calistyle/rise-sdk-js.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/@calistyle/rise-sdk-js
+[ci-image]: https://img.shields.io/circleci/project/github/CaliStyle/rise-sdk-js/master.svg
+[ci-url]: https://circleci.com/gh/CaliStyle/rise-sdk-js/tree/master
+[daviddm-image]: http://img.shields.io/david/CaliStyle/rise-sdk-js.svg?style=flat-square
+[daviddm-url]: https://david-dm.org/CaliStyle/rise-sdk-js
+[coverage-image]: https://img.shields.io/codeclimate/coverage/github/CaliStyle/rise-sdk-js.svg?style=flat-square
+[coverage-url]: https://codeclimate.com/github/CaliStyle/rise-sdk-js/coverage
