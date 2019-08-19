@@ -1,5 +1,5 @@
 {
-  "name": "@calistyle/rise-sdk-js",
+  "name": "@rise/rise-sdk-js",
   "version": "1.0.0-alpha.1",
   "description": "Node SDK for RiSE",
   "author": {

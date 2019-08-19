@@ -22,8 +22,8 @@ npm install @rise/rise-js-sdk --save
 # Notes
 
 
-[npm-image]: https://img.shields.io/npm/v/@rise-app/rise-sdk-js.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/@rise-app/rise-sdk-js
+[npm-image]: https://img.shields.io/npm/v/@rise/rise-sdk-js.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/@rise/rise-sdk-js
 [ci-image]: https://img.shields.io/circleci/project/github/rise-app/rise-sdk-js/master.svg
 [ci-url]: https://circleci.com/gh/rise-app/rise-sdk-js/tree/master
 [daviddm-image]: http://img.shields.io/david/rise-app/rise-sdk-js.svg?style=flat-square
