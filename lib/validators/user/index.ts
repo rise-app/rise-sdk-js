@@ -1,4 +1,4 @@
-import { Utils } from '../../utils'
+import { Utils } from '../../Utils'
 import { user as userSchema } from '../../schemas'
 
 export const user = {
