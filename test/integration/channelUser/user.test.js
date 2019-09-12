@@ -4,20 +4,26 @@ const public_key = process.env.RISE_PUBLIC
 const private_key = process.env.RISE_PRIVATE
 
 
-describe('RiSE Channel User API', () => {
-  let rise
+describe('# RiSE Channel User API', () => {
+
+  let rise, adminToken, userToken
+
   before(() => {
     rise = new RiSE({
-      sandbox: true
+      sandbox: true,
+      public_key: public_key,
+      private_key: private_key
     })
   })
-  it('should create a user', (done) => {
+
+  it('## should Register a user', (done) => {
 
     const username = `sdkjstest${Math.floor((Math.random() * 100) + 1)}`
 
-    rise.channelUser.create({
+    rise.channelUser.register({
       channel_uuid: channel_uuid,
-      username: username
+      username: username,
+      password: 'test1234567'
     })
       .then(_res => {
         console.log('brk user', _res)
@@ -27,4 +33,5 @@ describe('RiSE Channel User API', () => {
         done(err)
       })
   })
+
 })

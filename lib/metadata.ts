@@ -31,7 +31,7 @@ export function Endpoint({ method = 'GET', route = '', validator }: {method?: st
 
       args[1] = {
         ...args[1],
-        [method]: route
+        route: { [method]: route }
       }
       // return validator(args)
       //   .then(_validation => {

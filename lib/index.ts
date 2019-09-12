@@ -7,6 +7,12 @@ export interface RiSEConfig {
   beta: boolean
   production: boolean
   api_version: number
+  public_key?: string
+  private_key?: string
+  session?: string
+  token?: string
+  email?: string
+  password?: string
 }
 
 export class RiSE {
@@ -33,8 +39,6 @@ export class RiSE {
   public channelTransaction: api.ChannelTransaction
   public channelUser: api.ChannelUser
   public channelVendor: api.ChannelVendor
-
-  public defaultApiVersion = 1
   
   constructor(
     private config: RiSEConfig = {
@@ -44,7 +48,30 @@ export class RiSE {
       api_version: 1
     }
   ) {
+    // Set the default env
+    if (config.sandbox) {
+      this.config.beta = false
+      this.config.production = false
+    }
+    if (config.beta) {
+      this.config.sandbox = false
+      this.config.production = false
+    }
+    if (config.production) {
+      this.config.sandbox = false
+      this.config.beta = false
+    }
+
+    //
+    this.config.api_version = this.config.api_version || config.api_version || 1
+    this.config.public_key = this.config.public_key || config.public_key
+    this.config.private_key = this.config.private_key || config.private_key
+
+    this.config.session = this.config.session || config.session
+    this.config.token = this.config.token || config.token
+
     console.log('THE CONFIG', this.config)
+
     // Initialize the APIs
     this.channel = new api.Channel(this)
     this.channelApplication = new api.ChannelApplication(this)
@@ -73,6 +100,53 @@ export class RiSE {
 
 
   /**
+   * JWT TOKEN THAT IS CONFIGURED
+   */
+  get token() {
+    return this.config.token
+  }
+  set token(val) {
+    this.config.token = val
+  }
+
+  /**
+   * The KEYS to use
+   */
+  get public_key() {
+    return this.config.public_key
+  }
+  set public_key(val) {
+    this.config.public_key = val
+  }
+
+  get private_key() {
+    return this.config.private_key
+  }
+  set private_key(val) {
+    this.config.private_key = val
+  }
+
+  /**
+   * SESSION VARIABLE USED TO SEPERATE REQUESTS FOR A GIVEN USER TYPE
+   */
+  get session() {
+    return this.config.session
+  }
+  set session(val) {
+    this.config.session = val
+  }
+
+  /**
+   * API VERSION IS CONFIGURED
+   */
+  get api_version() {
+    return this.config.api_version
+  }
+  set api_version(val) {
+    this.config.api_version = val
+  }
+
+  /**
    * URL to RiSE API
    * Sandbox or live
    */
@@ -87,37 +161,62 @@ export class RiSE {
   /**
    *
    */
-  // login() {
-  //   return this.user.login({
-  //     userName: this.config.username,
-  //     password: this.config.password
-  //   })
-  // }
+  authenticateApiUser(identifier, password) {
+    return this.channelUser.login({
+      identifier: identifier || this.config.username || this.config.email,
+      password: password || this.config.password
+    })
+      .then(body => {
+        this.token = body.token
+        this.session = body.session
+        return body
+      })
+  }
 
-  // /**
-  //  * get API token
-  //  */
-  // getApiToken() {
-  //   return this.login()
+  /**
+   * get Application JWT token to be used for follow on request through this application
+   */
+  // authenticateApplication() {
+  //   return this.channelApplication.authenticate({
+  //     public_key: this.config.public_key,
+  //     private_key: this.config.private_key
+  //   })
   //     .then(body => {
-  //       this.config.apiKey = body.token
-  //       this.config.parentId = body.parentId
-  //       this.config.resellerId = body.resellerId
-  //       this.config.userType = body.userType
-  //       this.config.role = body.role
-  //       this.config.changePassword = body.changePassword
+  //       this.token = body.token
+  //       this.session = body.session
+  //       return body
   //     })
   // }
 
+  serializeQuery(obj, prefix?) {
+    let str = [], p
+
+    for (p in obj) {
+      if (obj.hasOwnProperty(p)) {
+        const k = prefix ? prefix + '[" + p + "]' : p,
+          v = obj[p]
+        str.push((v !== null && typeof v === "object") ?
+          this.serializeQuery(v, k) :
+          encodeURIComponent(k) + '=' + encodeURIComponent(v))
+      }
+    }
+    return str.join('&')
+  }
+
   /**
-   * Return Method and Url
-   * @param obj
+   * Return Request Method and URL for the request call
+   * @param route
+   * @param query
    */
-  composeUrl(obj: {[key: string]: any} = {}): {url: string, method: string} {
+  composeUrl(route: {[key: string]: any} = {}, query): {url: string, method: string} {
     // The Request method
-    const method = Object.keys(obj)[0]
+    const method = Object.keys(route)[0]
     // The composed URL
-    const url = `${this.requestUrl}/api/v${this.config.api_version || this.defaultApiVersion}/${obj[method]}`
+    let url = `${this.requestUrl}/api/v${this.api_version}/${route[method]}`
+    // Add a query if supplied
+    if (query) {
+      url = `${url}?${this.serializeQuery(query)}`
+    }
     // returns object
     return { url, method }
   }
@@ -125,14 +224,11 @@ export class RiSE {
   /**
    * Perform a request.
    * @name request
-   * @param reqUrl
+   * @param req
    * @param {*} body as json
    * @param validation
    */
-  request(reqUrl, body = {}, validation = null) {
-    // console.log('brk config', this.config)
-    // console.log('brk reqUrl', reqUrl)
-    // console.log('brk body', body)
+  request(req, body = {}, validation = null) {
     // console.log('brk validation', validation)
 
     // If this request didn't pass validation
@@ -144,12 +240,14 @@ export class RiSE {
       })
     }
 
+    // Abstract the route from the api method and use the rest (if any) in the request
+    const { route, query, ...__req } = req
+
     // Get the method and url from the request
-    const { method, url } = this.composeUrl(reqUrl)
+    const { method, url } = this.composeUrl(route, query)
 
-    console.log('composed', url, method)
-
-    const req: {
+    const _req: {
+      [key: string]: any,
       headers?: any,
       method: string,
       url: string,
@@ -157,22 +255,29 @@ export class RiSE {
       json?: boolean,
       body?: any
     } = {
-      headers: {
-        // Authorization: this.config.apiKey
-      },
+      headers: {},
       method: method,
       url: url,
       strictSSL: true,
       json: true,
       body: body,
+      ...__req
     }
 
-    if (this.config.apiKey) {
-      req.headers['Authorization'] = this.config.apiKey
+    if (this.config.public_key) {
+      _req.headers['X-APPLICATION-KEY'] = this.config.public_key
+    }
+
+    if (this.token) {
+      _req.headers['Authorization'] = `JWT ${this.token}`
+    }
+
+    if (this.session) {
+      _req.headers['Session'] = this.session
     }
 
     // make request promise
-    return request(req)
+    return request(_req)
       .then((res) => {
         console.log('brk res', res)
         // if(res.response.result && res.response.result !== 1) {
