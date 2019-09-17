@@ -3,6 +3,7 @@ import request from 'request-promise'
 
 export interface RiSEConfig {
   [key: string]: any
+  url?: string
   sandbox: boolean
   beta: boolean
   production: boolean
@@ -39,6 +40,9 @@ export class RiSE {
   public channelTransaction: api.ChannelTransaction
   public channelUser: api.ChannelUser
   public channelVendor: api.ChannelVendor
+
+  public _cart
+  public _user
   
   constructor(
     private config: RiSEConfig = {
@@ -49,15 +53,20 @@ export class RiSE {
     }
   ) {
     // Set the default env
-    if (config.sandbox) {
+    if (config.url) {
+      this.config.sandbox = false
       this.config.beta = false
       this.config.production = false
     }
-    if (config.beta) {
+    else if (config.sandbox) {
+      this.config.beta = false
+      this.config.production = false
+    }
+    else if (config.beta) {
       this.config.sandbox = false
       this.config.production = false
     }
-    if (config.production) {
+    else if (config.production) {
       this.config.sandbox = false
       this.config.beta = false
     }
@@ -69,8 +78,6 @@ export class RiSE {
 
     this.config.session = this.config.session || config.session
     this.config.token = this.config.token || config.token
-
-    console.log('THE CONFIG', this.config)
 
     // Initialize the APIs
     this.channel = new api.Channel(this)
@@ -147,11 +154,31 @@ export class RiSE {
   }
 
   /**
+   * API USER WHO LOGGED IN
+   */
+  get user() {
+    return this._user
+  }
+  set user(val) {
+    this._user = val
+  }
+
+  /**
+   * API USER WHO LOGGED IN, Cart
+   */
+  get cart() {
+    return this._cart
+  }
+  set cart(val) {
+    this._cart = val
+  }
+
+  /**
    * URL to RiSE API
    * Sandbox or live
    */
   get requestUrl() {
-    return this.config.beta
+    return this.config.url || this.config.beta
       ? 'https://api.beta.rise.store'
       : this.config.sandbox
           ? 'https://api.sandbox.rise.store'
@@ -161,12 +188,15 @@ export class RiSE {
   /**
    *
    */
-  authenticateApiUser(identifier, password) {
+  authenticateApiUser(channel_uuid, identifier, password) {
     return this.channelUser.login({
-      identifier: identifier || this.config.username || this.config.email,
+      channel_uuid: channel_uuid,
+      username: identifier || this.config.username || this.config.email,
       password: password || this.config.password
     })
       .then(body => {
+        this.user = body.data.ChannelUser
+        this.cart = body.data.ChannelCart
         this.token = body.token
         this.session = body.session
         return body
@@ -241,7 +271,7 @@ export class RiSE {
     }
 
     // Abstract the route from the api method and use the rest (if any) in the request
-    const { route, query, ...__req } = req
+    const { route, query, params, ...__req } = req
 
     // Get the method and url from the request
     const { method, url } = this.composeUrl(route, query)
@@ -261,33 +291,30 @@ export class RiSE {
       strictSSL: true,
       json: true,
       body: body,
-      ...__req
+      params: params,
+      // ...__req
     }
 
-    if (this.config.public_key) {
-      _req.headers['X-APPLICATION-KEY'] = this.config.public_key
+    if (__req.public_key || this.config.public_key) {
+      _req.headers['X-APPLICATION-KEY'] = __req.public_key || this.config.public_key
     }
 
-    if (this.token) {
-      _req.headers['Authorization'] = `JWT ${this.token}`
+    if (__req.token || this.token) {
+      _req.headers['Authorization'] = `JWT ${__req.token || this.token}`
     }
 
-    if (this.session) {
-      _req.headers['Session'] = this.session
+    if (__req.session || this.session) {
+      _req.headers['Session'] = __req.session || this.session
     }
 
     // make request promise
     return request(_req)
       .then((res) => {
         console.log('brk res', res)
-        // if(res.response.result && res.response.result !== 1) {
-        //   res.isRPG = true
-        //   throw res
-        // }
-        // else {
-        //   return res
-        // }
         return res
       })
+      // .catch(err => {
+      //   return Promise.reject(err)
+      // })
   }
 }

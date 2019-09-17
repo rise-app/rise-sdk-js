@@ -2,8 +2,9 @@
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][ci-image]][ci-url]
-[![Test Coverage][coverage-image]][coverage-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
+
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 Strongly typed Node SDK for RiSE. RiSE is a developer focused eCommerce Platform as a Service that gives teams the industry's finest control over the development process and integration into their existing or new applications.
 
@@ -22,8 +23,8 @@ npm install @rise/rise-js-sdk --save
 # Notes
 
 
-[npm-image]: https://img.shields.io/npm/v/@rise/rise-sdk-js.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/@rise/rise-sdk-js
+[npm-image]: https://img.shields.io/npm/v/@rise/sdk-js.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/@rise/sdk-js
 [ci-image]: https://img.shields.io/circleci/project/github/rise-app/rise-sdk-js/master.svg
 [ci-url]: https://circleci.com/gh/rise-app/rise-sdk-js/tree/master
 [daviddm-image]: http://img.shields.io/david/rise-app/rise-sdk-js.svg?style=flat-square
