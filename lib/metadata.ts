@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import { core } from './validators'
 
 export function Endpoint({ method = 'GET', route = '', validator }: {method?: string, route?: string, validator?: any}) {
   return function(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
@@ -7,17 +8,15 @@ export function Endpoint({ method = 'GET', route = '', validator }: {method?: st
     // The regex to find route parameter matches
     const reg = /\:(.*?)(\/|$)/gm
 
-    // const params = args.map(a => JSON.stringify(a)).join()
-    console.log('experimental endpoint', target, propertyKey, _method, route, method, validator)
-
+    //
     descriptor.value = function (...args: any[]) {
-      console.log('passed 1', args)
 
       // The data object passed to the method is always the first argument
       const data = args[0]
       const req = args[1] || {}
+      req.name = `${target}.${propertyKey}`
 
-      // Replaces the
+      // Replaces the variables in the route with properties from the body or params
       let currentMatch
       while((currentMatch = reg.exec(route)) !== null) {
 
@@ -32,37 +31,32 @@ export function Endpoint({ method = 'GET', route = '', validator }: {method?: st
         )
       }
 
-      console.log('Constructed route', route)
-
       args[1] = {
         ...req,
         route: { [method]: route }
       }
-      // return validator(args)
-      //   .then(_validation => {
-      //     console.log('passed 2', _validation)
-      //     return _method.apply(this, args)
-      //   })
-      return validator(data)
-        .then(valid => {
-          console.log('valid 1 ran', valid)
-          return _method.apply(this, args)
-        })
+
+      // If the validator was passed to the metadata, then use it to validate
+      if (validator) {
+        return core.query(req.query)
+          .then((valid) => {
+            args[2] = valid
+            return validator(data)
+          })
+          .then((valid) => {
+            args[2] = valid
+            return _method.apply(this, args)
+          })
+          .catch(err => {
+            args[2] = err
+            return _method.apply(this, args)
+          })
+      }
+      else {
+        _method.apply(this, args)
+      }
     }
-    // var timeout:any;
-    // var originalMethod = descriptor.value;
-    // descriptor.value = function() {
-    //   var context = this
-    //   var args = arguments;
-    //   var later = function() {
-    //     timeout = null;
-    //     if (!immediate) originalMethod.apply(context, args);
-    //   };
-    //   var callNow = immediate && !timeout;
-    //   clearTimeout(timeout);
-    //   timeout = setTimeout(later, wait);
-    //   if (callNow) originalMethod.apply(context, args);
-    // };
+
     return descriptor
   }
 }

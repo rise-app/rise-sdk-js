@@ -271,7 +271,7 @@ export class RiSE {
     }
 
     // Abstract the route from the api method and use the rest (if any) in the request
-    const { route, query, params, ...__req } = req
+    const { name, route, query, params, ...__req } = req
 
     // Get the method and url from the request
     const { method, url } = this.composeUrl(route, query)
@@ -307,10 +307,16 @@ export class RiSE {
       _req.headers['Session'] = __req.session || this.session
     }
 
+    if (this.config.sandbox) {
+      console.time(`RiSE req ${name}`)
+    }
+
     // make request promise
     return request(_req)
       .then((res) => {
-        console.log('brk res', res)
+        if (this.config.sandbox) {
+          console.timeEnd(`RiSE req ${name}`)
+        }
         return res
       })
       // .catch(err => {

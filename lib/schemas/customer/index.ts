@@ -14,3 +14,13 @@ export const update = joi.object().keys({
   name_first: joi.string().allow(null),
   name_last: joi.string().allow(null)
 }).unknown()
+
+
+export const get = joi.object().keys({
+  channel_uuid: uuid.required(),
+  customer_uuid: uuid.required()
+}).unknown()
+
+export const list = joi.object().keys({
+  channel_uuid: uuid.required()
+}).unknown()

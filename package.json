@@ -16,6 +16,8 @@
     "test": "npm run clean && npm run lint && npm run build && nyc mocha",
     "test:build:customer": "run-s pre-test test:customer",
     "test:customer": "NODE_ENV=testing nyc mocha --opts test/mocha-customer.opts --exit",
+    "test:build:user": "run-s pre-test test:user",
+    "test:user": "NODE_ENV=testing nyc mocha --opts test/mocha-user.opts --exit",
     "prepublishOnly": "npm run compile",
     "compile": "npm run clean && npm run build",
     "clean": "rm -rf dist",

@@ -1,4 +1,6 @@
 const RiSE = require('../../../dist').RiSE
+const adminIdentifier = process.env.RISE_ADMIN
+const adminPassword = process.env.RISE_PASSWORD
 const channel_uuid = process.env.RISE_CHANNEL
 const public_key = process.env.RISE_PUBLIC
 const private_key = process.env.RISE_PRIVATE
@@ -9,63 +11,164 @@ describe('# RiSE Channel User API', () => {
 
   let rise, adminToken, adminSession, userToken, userSession, user
 
-  before(() => {
-    rise = new RiSE({
-      sandbox: true,
-      public_key: public_key,
-      private_key: private_key
+  describe('## As admin user', () => {
+    before((done) => {
+      rise = new RiSE({
+        sandbox: true,
+        public_key: public_key,
+        private_key: private_key
+      })
+
+      rise.authenticateApiUser(
+        channel_uuid,
+        adminIdentifier,
+        adminPassword
+      )
+        .then(res => {
+          adminToken = res.token
+          adminSession = res.session
+          done()
+        })
+        .catch(err => done(err))
+    })
+
+    it('### Should Create a User', (done) => {
+
+      const username = `sdkjstest${Math.floor((Math.random() * 100) + 1)}`
+
+      rise.channelUser.create({
+        channel_uuid: channel_uuid,
+        username: username
+      })
+        .then(_res => {
+          user = _res.data
+          // console.log('brk user', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should Update a User', (done) => {
+
+      rise.channelUser.update({
+        channel_uuid: channel_uuid,
+        user_uuid: user.user_uuid,
+        name_first: 'Hello',
+        name_last: 'World'
+      })
+        .then(_res => {
+          user = _res.data
+          // assert.equal(user.name_first, 'Hello')
+          // assert.equal(user.name_last, 'World')
+
+          // console.log('brk user', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should Get a Channel User', (done) => {
+
+      rise.channelUser.get({
+        channel_uuid: channel_uuid,
+        user_uuid: user.user_uuid
+      })
+        .then(_res => {
+          user = _res.data
+          // assert.equal(user.name_first, 'Hello')
+          // assert.equal(user.name_last, 'World')
+
+          console.log('brk user', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should List Channel Users', (done) => {
+
+      rise.channelUser.list({
+        channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // assert.equal(user.name_first, 'Hello')
+          // assert.equal(user.name_last, 'World')
+
+          console.log('brk user', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
     })
   })
-
-  it('## Should Register a user', (done) => {
-
-    const username = `sdkjstest${Math.floor((Math.random() * 100) + 1)}`
-
-    rise.channelUser.register({
-      channel_uuid: channel_uuid,
-      username: username,
-      password: 'test1234567'
+  describe('## As registered user', () => {
+    before(() => {
+      rise = new RiSE({
+        sandbox: true,
+        public_key: public_key,
+        private_key: private_key
+      })
     })
-      .then(_res => {
-        userSession = _res.session
-        userToken = _res.token
-        user = _res.data.ChannelUser
 
-        assert.ok(userSession)
-        assert.ok(userToken)
+    it('### Should Register a user', (done) => {
 
-        // console.log('brk user', _res)
+      const username = `sdkjstest${Math.floor((Math.random() * 100) + 1)}`
 
-        done()
+      rise.channelUser.register({
+        channel_uuid: channel_uuid,
+        username: username,
+        password: 'test1234567'
       })
-      .catch(err => {
-        done(err)
-      })
-  })
+        .then(_res => {
+          userSession = _res.session
+          userToken = _res.token
+          user = _res.data.ChannelUser
 
-  it('## Should Update a user', (done) => {
+          assert.ok(userSession)
+          assert.ok(userToken)
 
-    rise.channelUser.update({
-      channel_uuid: channel_uuid,
-      user_uuid: user.user_uuid,
-      name_first: 'Hello',
-      name_last: 'World'
-    }, {
-      token: userToken,
-      session: userSession
+          // console.log('brk user', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
     })
-      .then(_res => {
-        user = _res.data
-        // assert.equal(user.name_first, 'Hello')
-        // assert.equal(user.name_last, 'World')
 
-        // console.log('brk user', _res)
+    it('### Should Update a user', (done) => {
 
-        done()
+      rise.channelUser.update({
+        channel_uuid: channel_uuid,
+        user_uuid: user.user_uuid,
+        name_first: 'Hello',
+        name_last: 'World'
+      }, {
+        token: userToken,
+        session: userSession
       })
-      .catch(err => {
-        done(err)
-      })
+        .then(_res => {
+          user = _res.data
+          // assert.equal(user.name_first, 'Hello')
+          // assert.equal(user.name_last, 'World')
+
+          // console.log('brk user', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
   })
-
 })

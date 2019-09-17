@@ -74,4 +74,46 @@ describe('# RiSE Channel Customer API', () => {
       })
   })
 
+  it('### Should Get a Channel Customer', (done) => {
+
+    rise.channelCustomer.get({
+      channel_uuid: channel_uuid,
+      customer_uuid: customer.customer_uuid
+    })
+      .then(_res => {
+        customer = _res.data
+        // assert.equal(customer.name_first, 'Hello')
+        // assert.equal(customer.name_last, 'World')
+
+        console.log('brk customer', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should List Channel Customers', (done) => {
+
+    rise.channelCustomer.list({
+      channel_uuid: channel_uuid
+    }, {
+      query: {
+        limit: 5
+      }
+    })
+      .then(_res => {
+        assert.equal(_res.limit, 5)
+        assert.equal(_res.offset, 0)
+        // assert.equal(customer.name_last, 'World')
+
+        console.log('brk customer', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
 })
