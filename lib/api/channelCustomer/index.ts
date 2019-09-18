@@ -22,4 +22,14 @@ export class ChannelCustomer extends ApiClass {
   list(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
+
+  @Endpoint({ method: 'GET', route: 'channels/:channel_uuid/customers/:customer_uuid/address_billing', validator: customer.get })
+  getAddressBilling(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
+  @Endpoint({ method: 'GET', route: 'channels/:channel_uuid/customers/:customer_uuid/address_shipping', validator: customer.get })
+  getAddressShipping(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
 }

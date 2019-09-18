@@ -14,6 +14,8 @@
     "watch": "tsc -w -p ./lib/tsconfig.release.json",
     "pre-test": "run-s clean lint build",
     "test": "npm run clean && npm run lint && npm run build && nyc mocha",
+    "test:build:cart": "run-s pre-test test:cart",
+    "test:cart": "NODE_ENV=testing nyc mocha --opts test/mocha-cart.opts --exit",
     "test:build:customer": "run-s pre-test test:customer",
     "test:customer": "NODE_ENV=testing nyc mocha --opts test/mocha-customer.opts --exit",
     "test:build:user": "run-s pre-test test:user",

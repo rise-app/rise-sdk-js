@@ -10,3 +10,7 @@ export const query = joi.object().keys({
   offset: joi.number(),
   sort: joi.array().items(joi.array())
 }).unknown()
+
+
+export const session = joi.string()
+export const token = joi.string()

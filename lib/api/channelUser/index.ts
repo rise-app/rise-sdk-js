@@ -3,6 +3,41 @@ import { Endpoint } from '../../metadata'
 import { user } from '../../validators'
 
 export class ChannelUser extends ApiClass {
+  @Endpoint({ method: 'GET', route: 'channels/:channel_uuid/auth/session', validator: user.session })
+  session(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
+  @Endpoint({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart', validator: user.session })
+  sessionCart(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
+  @Endpoint({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer', validator: user.session })
+  sessionCustomer(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
+  @Endpoint({ method: 'GET', route: 'channels/:channel_uuid/auth/session/channel', validator: user.session })
+  sessionChannel(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
+  @Endpoint({ method: 'GET', route: 'channels/:channel_uuid/auth/session/channels', validator: user.session })
+  sessionChannels(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
+  @Endpoint({ method: 'GET', route: 'channels/:channel_uuid/auth/session/roles', validator: user.session })
+  sessionRoles(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
+  @Endpoint({ method: 'GET', route: 'channels/:channel_uuid/auth/session/user', validator: user.session })
+  sessionUser(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
   @Endpoint({ method: 'POST', route: 'channels/:channel_uuid/auth/local/register', validator: user.register })
   register(data, req?, validated?) {
     return this.rise.request(req, data, validated)
@@ -10,6 +45,11 @@ export class ChannelUser extends ApiClass {
 
   @Endpoint({ method: 'POST', route: 'channels/:channel_uuid/auth/local', validator: user.login })
   login(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
+  @Endpoint({ method: 'POST', route: 'channels/:channel_uuid/auth/logout', validator: user.logout })
+  logout(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
 

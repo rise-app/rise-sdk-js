@@ -8,16 +8,14 @@ export const create = joi.object().keys({
 
 export const update = joi.object().keys({
   channel_uuid: uuid.required(),
-  customer_uuid: uuid.required(),
+  cart_uuid: uuid.required(),
   email: joi.string().allow(null),
-  name_first: joi.string().allow(null),
-  name_last: joi.string().allow(null)
 }).unknown()
 
 
 export const get = joi.object().keys({
   channel_uuid: uuid.required(),
-  customer_uuid: uuid.required()
+  cart_uuid: uuid.required()
 }).unknown()
 
 export const list = joi.object().keys({

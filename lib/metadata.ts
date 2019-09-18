@@ -14,14 +14,23 @@ export function Endpoint({ method = 'GET', route = '', validator }: {method?: st
       // The data object passed to the method is always the first argument
       const data = args[0]
       const req = args[1] || {}
-      req.name = `${target}.${propertyKey}`
+      req.name = `${target.constructor.name}.${propertyKey}`
 
       // Replaces the variables in the route with properties from the body or params
       let currentMatch
       while((currentMatch = reg.exec(route)) !== null) {
 
         // If no match value or the match value is not a property of the data argument, throw error
-        if (!currentMatch[1] && (!data[currentMatch[1]] || !req.params || !req.params[currentMatch[1]])) {
+        if (
+          !currentMatch[1]
+          && (
+            !data[currentMatch[1]]
+            || (
+              !req.params
+              && !req.params[currentMatch[1]]
+            )
+          )
+        ) {
           throw new Error('Parameters do not satisfy route conditions')
         }
         // continue building the route

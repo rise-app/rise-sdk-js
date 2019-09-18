@@ -1,12 +1,24 @@
 import joi from 'joi'
 const uuid = joi.string().guid()
 
+export const general = {
+  channel_uuid: uuid.required(),
+}
+
+export const session = joi.object().keys({
+  channel_uuid: uuid.required(),
+}).unknown()
+
 export const login = joi.object().keys({
   channel_uuid: uuid.required(),
   username: joi.string().min(3),
   email: joi.string(),
   password: joi.string().min(8),
 }).unknown().or('email', 'username')
+
+export const logout = joi.object().keys({
+  channel_uuid: uuid.required(),
+})
 
 export const register = joi.object().keys({
   channel_uuid: uuid.required(),
@@ -35,5 +47,5 @@ export const get = joi.object().keys({
 }).unknown()
 
 export const list = joi.object().keys({
-  channel_uuid: uuid.required()
+  channel_uuid: uuid.required(),
 }).unknown()

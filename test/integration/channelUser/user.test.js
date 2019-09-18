@@ -146,6 +146,103 @@ describe('# RiSE Channel User API', () => {
         })
     })
 
+    it('### Should get user session', (done) => {
+
+      rise.channelUser.session({
+        channel_uuid: channel_uuid
+      }, {
+        token: userToken,
+        session: userSession
+      })
+        .then(_res => {
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should get user session cart (Current)', (done) => {
+
+      rise.channelUser.sessionCart({
+        channel_uuid: channel_uuid
+      }, {
+        token: userToken,
+        session: userSession
+      })
+        .then(_res => {
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should get user session customer (Current)', (done) => {
+
+      rise.channelUser.sessionCustomer({
+        channel_uuid: channel_uuid
+      }, {
+        token: userToken,
+        session: userSession
+      })
+        .then(_res => {
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should get user session roles', (done) => {
+
+      rise.channelUser.sessionRoles({
+        channel_uuid: channel_uuid
+      }, {
+        token: userToken,
+        session: userSession
+      })
+        .then(_res => {
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should get user session channel (Current)', (done) => {
+
+      rise.channelUser.sessionChannel({
+        channel_uuid: channel_uuid
+      }, {
+        token: userToken,
+        session: userSession
+      })
+        .then(_res => {
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should get user session channels (All Channels)', (done) => {
+
+      // TODO test pagination
+      rise.channelUser.sessionChannels({
+        channel_uuid: channel_uuid
+      }, {
+        token: userToken,
+        session: userSession
+      })
+        .then(_res => {
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
     it('### Should Update a user', (done) => {
 
       rise.channelUser.update({
@@ -164,6 +261,22 @@ describe('# RiSE Channel User API', () => {
 
           // console.log('brk user', _res)
 
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should Logout a user', (done) => {
+
+      rise.channelUser.logout({
+        channel_uuid: channel_uuid
+      }, {
+        token: userToken,
+        session: userSession
+      })
+        .then(_res => {
           done()
         })
         .catch(err => {
