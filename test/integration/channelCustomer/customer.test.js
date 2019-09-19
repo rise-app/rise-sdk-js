@@ -1,9 +1,9 @@
 const RiSE = require('../../../dist').RiSE
-const adminIdentifier = process.env.RISE_ADMIN
-const adminPassword = process.env.RISE_PASSWORD
-const channel_uuid = process.env.RISE_CHANNEL
-const public_key = process.env.RISE_PUBLIC
-const private_key = process.env.RISE_PRIVATE
+const adminIdentifier = require('../../fixtures/constants').adminIdentifier
+const adminPassword = require('../../fixtures/constants').adminPassword
+const channel_uuid = require('../../fixtures/constants').channel_uuid
+const public_key = require('../../fixtures/constants').public_key
+const private_key = require('../../fixtures/constants').private_key
 
 const assert = require('assert')
 

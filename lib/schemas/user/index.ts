@@ -31,7 +31,7 @@ export const create = joi.object().keys({
   channel_uuid: uuid.required(),
   username: joi.string().allow(null).min(3),
   email: joi.string().allow(null)
-}).unknown()
+}).unknown().or('email', 'username')
 
 export const update = joi.object().keys({
   channel_uuid: uuid.required(),

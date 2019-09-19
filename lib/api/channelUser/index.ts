@@ -55,6 +55,7 @@ export class ChannelUser extends ApiClass {
 
   @Endpoint({ method: 'POST', route: 'channels/:channel_uuid/users', validator: user.create })
   create(data, req?, validated?) {
+    console.log('brk create', data, req)
     return this.rise.request(req, data, validated)
   }
 

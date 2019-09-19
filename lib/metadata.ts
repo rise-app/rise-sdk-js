@@ -5,44 +5,30 @@ export function Endpoint({ method = 'GET', route = '', validator }: {method?: st
   return function(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
     // Original Method
     const _method = descriptor.value
-    // The regex to find route parameter matches
-    const reg = /\:(.*?)(\/|$)/gm
+    const reg = new RegExp(/\:(.*?)(\/|$)/g)
 
-    //
     descriptor.value = function (...args: any[]) {
+
+      // Copy the string so that it can be modified
+      let _route = route.slice(0, route.length)
 
       // The data object passed to the method is always the first argument
       const data = args[0]
       const req = args[1] || {}
+
       req.name = `${target.constructor.name}.${propertyKey}`
+      req.params = req.params || {}
 
-      // Replaces the variables in the route with properties from the body or params
-      let currentMatch
-      while((currentMatch = reg.exec(route)) !== null) {
+      _route = _route.replace(reg, (match, $1, $2) => {
+        // console.log(match, $1, $2, data[$1], req.params[$1])
+        // Return the replacement leveraging the parameters.
+        return `${ data[$1] || req.params[$1] }${ $2 ? '/' : '' }`
+      })
 
-        // If no match value or the match value is not a property of the data argument, throw error
-        if (
-          !currentMatch[1]
-          && (
-            !data[currentMatch[1]]
-            || (
-              !req.params
-              && !req.params[currentMatch[1]]
-            )
-          )
-        ) {
-          throw new Error('Parameters do not satisfy route conditions')
-        }
-        // continue building the route
-        route = route.replace(
-          `:${currentMatch[1]}`,
-          data[currentMatch[1]] || req.params[currentMatch[1]]
-        )
-      }
-
+      // Extend the request argument
       args[1] = {
         ...req,
-        route: { [method]: route }
+        route: { [method]: _route }
       }
 
       // If the validator was passed to the metadata, then use it to validate

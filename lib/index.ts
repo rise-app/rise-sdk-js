@@ -188,7 +188,7 @@ export class RiSE {
   /**
    *
    */
-  authenticateApiUser(channel_uuid, identifier, password) {
+  authenticateApiUser(channel_uuid, identifier?, password?) {
     return this.channelUser.login({
       channel_uuid: channel_uuid,
       username: identifier || this.config.username || this.config.email,
@@ -263,11 +263,12 @@ export class RiSE {
 
     // If this request didn't pass validation
     if (validation instanceof Error) {
-      return Promise.reject({
-        'StatusCodeError': '000',
+      const err = {
+        'statusCode': '000',
         'isPreValidationError': true,
         ...validation
-      })
+      }
+      return Promise.reject(err)
     }
 
     // Abstract the route from the api method and use the rest (if any) in the request
