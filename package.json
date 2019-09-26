@@ -1,6 +1,6 @@
 {
   "name": "@rise/sdk-js",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "Node SDK for RiSE",
   "author": {
     "name": "scott-wyatt",
@@ -81,7 +81,8 @@
     "tslib": "~1.9.0",
     "tslint": "~5.10.0",
     "tslint-microsoft-contrib": "~5.0.3",
-    "tsutils": "~2.27.1",
-    "typescript": "~2.8.1"
+    "tsutils": "~3.9.1",
+    "typescript": "~3.3.4000",
+    "typescript-closure-compiler": "^1.8.11"
   }
 }

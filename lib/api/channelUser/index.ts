@@ -3,6 +3,11 @@ import { Endpoint } from '../../metadata'
 import { user } from '../../validators'
 
 export class ChannelUser extends ApiClass {
+  @Endpoint({ method: 'GET', route: 'channels/:channel_uuid/auth/session/token', validator: user.session })
+  validateToken(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
   @Endpoint({ method: 'GET', route: 'channels/:channel_uuid/auth/session', validator: user.session })
   session(data, req?, validated?) {
     return this.rise.request(req, data, validated)

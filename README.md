@@ -18,6 +18,31 @@ npm install @rise/rise-js-sdk --save
 
 # Usage
 
+### Getting started
+As an application
+```js
+// Create a new instance
+const rise = new RiSE({
+  sandbox: true,
+  public_key: <public_key>,
+  private_key: <private_key>
+})
+
+// Authenticate for later requests by the API
+rise.authenticateApiUser(
+  <channel_uuid>,
+  <adminIdentifier>,
+  <adminPassword>
+)
+  .then(res => {
+    <adminToken> = res.token
+    adminSession = res.session
+  })
+  .catch(err => console.log)
+})
+
+```
+
 ## Setup
 
 # Notes

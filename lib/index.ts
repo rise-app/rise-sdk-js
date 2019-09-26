@@ -4,10 +4,10 @@ import request from 'request-promise'
 export interface RiSEConfig {
   [key: string]: any
   url?: string
-  sandbox: boolean
-  beta: boolean
-  production: boolean
-  api_version: number
+  sandbox?: boolean
+  beta?: boolean
+  production?: boolean
+  api_version?: number
   public_key?: string
   private_key?: string
   session?: string
@@ -276,6 +276,38 @@ export class RiSE {
 
     // Get the method and url from the request
     const { method, url } = this.composeUrl(route, query)
+
+
+    // var request = require("request");
+    //
+    // var options = { method: 'GET',
+    //   url: 'https://api.sandbox.rise.store/api/v1/channels/592869be-c234-4fd4-93cf-125add89c4a7/applications/4ac463bc-5a9c-4d5e-8288-8badd1233f2b',
+    //   headers:
+    //     { 'cache-control': 'no-cache',
+    //       Connection: 'keep-alive',
+    //       Cookie: 'connect.sid=s%3ALB-c4AHbmzkqxj_ofvtSZg_rOTHhUMTd.znQTEYgPMa%2FnSBfQ52uDIrwHbhtNOCbEsc9ROb6WFR4',
+    //       'Content-Length': '100',
+    //       'Accept-Encoding': 'gzip, deflate',
+    //       Host: 'api.sandbox.rise.store',
+    //       'Postman-Token': '526d1ba3-55ab-4971-af10-d822c6f778d3,35ed507e-9077-4809-8ce8-f6bed59d6b4b',
+    //       'Cache-Control': 'no-cache',
+    //       'User-Agent': 'PostmanRuntime/7.16.3',
+    //       Session: '7d9fbb63-a62a-48ba-9f82-19dfd76f3238',
+    //       Authroization: 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjpudWxsLCJlbWFpbF9zaG9ydCI6bnVsbCwibmFtZV9maXJzdCI6bnVsbCwibmFtZV9taWRkbGUiOm51bGwsIm5hbWVfbGFzdCI6bnVsbCwibmFtZV9zdWZmaXgiOm51bGwsIm5hbWVfZnVsbCI6ImFkbWluIiwibmFtZV9kaXNwbGF5IjoiQWRtaW4iLCJwaG9uZSI6bnVsbCwicGhvbmVfc21zIjpudWxsLCJ0aW4iOm51bGwsInVzZXJfdXVpZCI6ImQ2MmU4MzhjLTJlNzEtNDZmOS1iMWM2LWQ5Zjk2OGJhNjgyYyIsImlzX2VuY3J5cHRlZCI6ZmFsc2UsInRva2VuIjoidXNlcl9kaUdwV3hBcyIsInB1Ymxpc2hlcl91dWlkIjpudWxsLCJhdmF0YXJfdXJsIjpudWxsLCJ1c2VybmFtZSI6ImFkbWluIiwicmVjb3ZlcnkiOm51bGwsInJlYXNvbiI6bnVsbCwiYWNjZXB0c19tYXJrZXRpbmciOnRydWUsImlzX2VtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZW1haWxfdmVyaWZpZWRfYXQiOm51bGwsImlzX3Ntc192ZXJpZmllZCI6ZmFsc2UsInNtc192ZXJpZmllZF9hdCI6bnVsbCwiaXNfMmZhX2VuYWJsZWQiOmZhbHNlLCIyZmFfZW5hYmxlZF9hdCI6bnVsbCwiaXNfYXBwbGljYXRpb24iOmZhbHNlLCJpc19ibGFja2xpc3RlZCI6ZmFsc2UsImJsYWNrbGlzdGVkX2F0IjpudWxsLCJyaXNrIjowLCJsaXZlX21vZGUiOmZhbHNlLCJjcmVhdGVkX2F0IjoiMjAxOS0wOS0yNlQxOTo1NToxOC42OTlaIiwidXBkYXRlZF9hdCI6IjIwMTktMDktMjZUMTk6NTU6MTguNjk5WiIsImRlbGV0ZWRfYXQiOm51bGx9LCJpYXQiOjE1Njk1Mjc3NjEsImV4cCI6MTU2OTYxNDE2MSwiYXVkIjoibG9jYWxob3N0IiwiaXNzIjoibG9jYWxob3N0In0.F5Dg60mfEMxhujmH5OpQRRixcyp8nrHPssmB_AGQCJ4',
+    //       Accept: 'application/json',
+    //       'X-APPLICATION-KEY': 'pk_00000000-0000-0000-0000-000000000000',
+    //       'Content-Type': 'application/json' },
+    //   body:
+    //     { handle: 'kobobids-engine',
+    //       title: 'KoboBids Engine',
+    //       description: 'KoboBids Engine App' },
+    //   json: true };
+    //
+    // request(options, function (error, response, body) {
+    //   if (error) throw new Error(error);
+    //
+    //   console.log(body);
+    // });
 
     const _req: {
       [key: string]: any,

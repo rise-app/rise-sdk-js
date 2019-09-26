@@ -32,6 +32,48 @@ describe('# RiSE Channel User API', () => {
         .catch(err => done(err))
     })
 
+    it('### Should validate token with req params', (done) => {
+
+      rise.channelUser.validateToken({
+        channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          assert.equal(_res.session, adminSession)
+          assert.ok(_res.token)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should validate token with current session', (done) => {
+
+      const rise2 = new RiSE({
+        sandbox: true,
+        public_key: public_key,
+        private_key: private_key
+      })
+
+      rise2.channelUser.validateToken({
+        channel_uuid: channel_uuid
+      }, {
+        session: adminSession,
+        token: adminToken
+      })
+        .then(_res => {
+          assert.equal(_res.session, adminSession)
+          assert.ok(_res.token)
+          console.log('brk user', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
     it('### Should Create a User', (done) => {
 
       const username = `sdkjstest${Math.floor((Math.random() * 100) + 1)}`
@@ -142,6 +184,25 @@ describe('# RiSE Channel User API', () => {
           assert.ok(userToken)
 
           // console.log('brk user', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should validate token', (done) => {
+
+      rise.channelUser.validateToken({
+        channel_uuid: channel_uuid
+      }, {
+        token: userToken,
+        session: userSession
+      })
+        .then(_res => {
+          assert.equal(_res.session, userSession)
+          assert.ok(_res.token)
 
           done()
         })

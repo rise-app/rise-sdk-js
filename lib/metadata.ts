@@ -16,11 +16,10 @@ export function Endpoint({ method = 'GET', route = '', validator }: {method?: st
       const data = args[0]
       const req = args[1] || {}
 
-      req.name = `${target.constructor.name}.${propertyKey}`
+      req.name = `${String(target.constructor.name)}.${String(propertyKey)}`
       req.params = req.params || {}
 
       _route = _route.replace(reg, (match, $1, $2) => {
-        // console.log(match, $1, $2, data[$1], req.params[$1])
         // Return the replacement leveraging the parameters.
         return `${ data[$1] || req.params[$1] }${ $2 ? '/' : '' }`
       })
