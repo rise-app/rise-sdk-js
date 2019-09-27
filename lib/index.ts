@@ -1,5 +1,5 @@
 import * as api from './api'
-import request from 'request-promise'
+import requestPromise from 'request-promise'
 
 export interface RiSEConfig {
   [key: string]: any
@@ -13,7 +13,8 @@ export interface RiSEConfig {
   session?: string
   token?: string
   email?: string
-  password?: string
+  password?: string,
+  request_middleware?: any
 }
 
 export class RiSE {
@@ -52,6 +53,9 @@ export class RiSE {
       api_version: 1
     }
   ) {
+    if (!config.request_middleware) {
+      config.request_middleware = requestPromise
+    }
     // Set the default env
     if (config.url) {
       this.config.sandbox = false
@@ -171,6 +175,17 @@ export class RiSE {
   }
   set cart(val) {
     this._cart = val
+  }
+
+
+  /**
+   * Request Middleware
+   */
+  get _request() {
+    return this.config.request_middleware
+  }
+  set _request(val) {
+    this.config.request_middleware = val
   }
 
   /**
@@ -345,7 +360,7 @@ export class RiSE {
     }
 
     // make request promise
-    return request(_req)
+    return this._request(_req)
       .then((res) => {
         if (this.config.sandbox) {
           console.timeEnd(`RiSE req ${name}`)

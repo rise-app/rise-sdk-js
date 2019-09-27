@@ -1,11 +1,11 @@
 {
   "name": "@rise/sdk-js",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "Node SDK for RiSE",
   "author": {
     "name": "scott-wyatt",
-    "email": "scottwyatt86@gmail.com",
-    "url": "https://cali-style.com"
+    "email": "scott@rise.store",
+    "url": "https://rise.store"
   },
   "scripts": {
     "release": "standard-version",
@@ -64,7 +64,6 @@
     "test"
   ],
   "dependencies": {
-    "change-case": "^3.1.0",
     "joi": "^14.3.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
