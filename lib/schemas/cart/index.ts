@@ -55,11 +55,13 @@ export const commands = {
   [COMMANDS.CREATE_CART_ITEM]: joi.object().keys({
     channel_uuid: uuid.required(),
     cart_uuid: uuid.required(),
+    offer_uuid: uuid.required(),
+    variant_uuid: uuid
   }).unknown(),
 
   [COMMANDS.CREATE_CART_ITEMS]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
+    offer_uuid: uuid.required(),
+    variant_uuid: uuid
   }).unknown(),
 
   [COMMANDS.UPDATE_CART_ITEM]: joi.object().keys({

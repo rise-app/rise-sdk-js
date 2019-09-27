@@ -12,7 +12,7 @@ const assert = require('assert')
 
 describe('# RiSE Channel Cart API', () => {
 
-  let rise, adminToken, adminSession, userToken, userSession, user, cart, item, customer
+  let rise, adminToken, adminSession, userToken, userSession, user, cart, item, customer, offer
 
   before((done) => {
     rise = new RiSE({
@@ -36,11 +36,70 @@ describe('# RiSE Channel Cart API', () => {
 
   describe('# RiSE Channel Cart API Dependencies', () => {
 
+    it('## Should Create a Customer for Cart Testing', (done) => {
+
+      rise.channelCustomer.create({
+        channel_uuid: channel_uuid,
+        accepts_marketing: true,
+        address_shipping: {
+          address_1: '1600 Pennsylvania Ave NW',
+          address_2: '',
+          address_3: '',
+          company: '',
+          city: 'Washington',
+          province_code: 'DC',
+          country_code: 'US',
+          postal_code: '20500',
+        },
+        address_billing: {
+          address_1: '1600 Pennsylvania Ave NW',
+          address_2: '',
+          address_3: '',
+          company: '',
+          city: 'Washington',
+          province_code: 'DC',
+          country_code: 'US',
+          postal_code: '20500',
+        }
+      })
+        .then(_res => {
+          assert.equal(_res.object, 'ChannelCustomer')
+          // assert.equal(_res.event_type, EVENTS.CUSTOMER_CREATED)
+          customer = _res.data
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('## Should Get an Offer for Cart Testing', (done) => {
+
+      rise.channelOffer.listPublic({
+        channel_uuid: channel_uuid
+      }, {
+        query: {
+          limit: 1
+        }
+      })
+        .then(_res => {
+          offer= _res.data[0]
+          assert.equal(_res.list, 'ChannelOffer')
+          assert.ok(offer)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
   })
 
-  describe('# RiSE Channel Cart API Methods', () => {
+  describe('## RiSE Channel Cart API Methods', () => {
 
-    it('## Should Create a Cart', (done) => {
+    it('### Should Create a Cart', (done) => {
 
       rise.channelCart.create({
         channel_uuid: channel_uuid
@@ -57,7 +116,7 @@ describe('# RiSE Channel Cart API', () => {
         })
     })
     //
-    it('## Should Update a Cart', (done) => {
+    it('### Should Update a Cart', (done) => {
 
       rise.channelCart.update({
         channel_uuid: channel_uuid,
@@ -78,7 +137,7 @@ describe('# RiSE Channel Cart API', () => {
     })
 
 
-    it('## Should set Billing Address on a Cart', (done) => {
+    it('### Should set Billing Address on a Cart', (done) => {
 
       rise.channelCart.setAddressBilling({
         channel_uuid: channel_uuid,
@@ -103,7 +162,7 @@ describe('# RiSE Channel Cart API', () => {
         })
     })
 
-    it('## Should get Billing Address of Cart', (done) => {
+    it('### Should get Billing Address of Cart', (done) => {
 
       rise.channelCart.getAddressBilling({
         channel_uuid: channel_uuid,
@@ -119,7 +178,7 @@ describe('# RiSE Channel Cart API', () => {
         })
     })
 
-    it('## Should set Shipping Address on a Cart', (done) => {
+    it('### Should set Shipping Address on a Cart', (done) => {
 
       rise.channelCart.setAddressShipping({
         channel_uuid: channel_uuid,
@@ -144,7 +203,7 @@ describe('# RiSE Channel Cart API', () => {
         })
     })
 
-    it('## Should get Shipping Address of Cart', (done) => {
+    it('### Should get Shipping Address of Cart', (done) => {
 
       rise.channelCart.getAddressShipping({
         channel_uuid: channel_uuid,
@@ -160,7 +219,7 @@ describe('# RiSE Channel Cart API', () => {
         })
     })
 
-    it.skip('## Should set Customer on a Cart', (done) => {
+    it('### Should set Customer on a Cart', (done) => {
 
       rise.channelCart.setCustomer({
         channel_uuid: channel_uuid,
@@ -169,6 +228,7 @@ describe('# RiSE Channel Cart API', () => {
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCart.customer')
+          // assert.equal(_res.event_type, EVENTS.CART_CUSTOMER_SET)
           done()
         })
         .catch(err => {
@@ -176,7 +236,7 @@ describe('# RiSE Channel Cart API', () => {
         })
     })
 
-    it.skip('## Should get Customer of a Cart', (done) => {
+    it('### Should get Customer of a Cart', (done) => {
 
       rise.channelCart.getCustomer({
         channel_uuid: channel_uuid,
@@ -185,6 +245,71 @@ describe('# RiSE Channel Cart API', () => {
         .then(_res => {
           assert.equal(_res.object, 'ChannelCart.customer')
           assert.equal(_res.action, ACTIONS.GET_CART_CUSTOMER)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+
+    it.skip('### Should set Fulfillment on a Cart', (done) => {
+
+      rise.channelCart.setFulfillmentDetails({
+        channel_uuid: channel_uuid,
+        cart_uuid: cart.cart_uuid,
+      })
+        .then(_res => {
+          assert.equal(_res.object, 'ChannelCart.fulfillment_details')
+          // assert.equal(_res.event_type, EVENTS.CART_FULFILLMENT_SET)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Should get Fulfillment of a Cart', (done) => {
+
+      rise.channelCart.getFulfillmentDetails({
+        channel_uuid: channel_uuid,
+        cart_uuid: cart.cart_uuid
+      })
+        .then(_res => {
+          assert.equal(_res.object, 'ChannelCart.fulfillment_details')
+          assert.equal(_res.action, ACTIONS.GET_CART_FULFILLMENT_DETAILS)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Should set Payment on a Cart', (done) => {
+
+      rise.channelCart.setPaymentDetails({
+        channel_uuid: channel_uuid,
+        cart_uuid: cart.cart_uuid,
+      })
+        .then(_res => {
+          assert.equal(_res.object, 'ChannelCart.payment_details')
+          // assert.equal(_res.event_type, EVENTS.CART_PAYMENT_SET)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Should get Payment of a Cart', (done) => {
+
+      rise.channelCart.getPaymentDetails({
+        channel_uuid: channel_uuid,
+        cart_uuid: cart.cart_uuid
+      })
+        .then(_res => {
+          assert.equal(_res.object, 'ChannelCart.payment_details')
+          assert.equal(_res.action, ACTIONS.GET_CART_PAYMENT_DETAILS)
           done()
         })
         .catch(err => {
@@ -239,21 +364,22 @@ describe('# RiSE Channel Cart API', () => {
     })
 
 
-    describe('## RiSE Channel Cart Item API Methods', () => {
+    describe('### RiSE Channel Cart Item API Methods', () => {
 
-      it.skip('#### Should create a Channel Cart\'s item', (done) => {
+      it('#### Should create a Channel Cart\'s item', (done) => {
         rise.channelCart.createItem({
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid,
           offer_uuid: offer.offer_uuid,
-          variant_uuid: offer.variant_uuid,
+          variant_uuid: offer.variant_default_uuid,
           quantity: 1,
           notes: 'Who you gonna call?'
         })
           .then(_res => {
-            assert.equal(_res.event_type, 'channel.cart.item.created')
-            assert.equal(_res.object, 'ChannelCartItem')
             item = _res.data
+            // assert.equal(_res.event_type, 'channel.cart.item.created')
+            assert.equal(_res.object, 'ChannelCartItem')
+            assert.ok(item)
 
             console.log('brk cart', _res)
 
@@ -264,23 +390,25 @@ describe('# RiSE Channel Cart API', () => {
           })
       })
 
-      it.skip('#### Should update a Channel Cart\'s item', (done) => {
+      it('#### Should update a Channel Cart\'s item', (done) => {
         rise.channelCart.updateItem({
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid,
           item_uuid: item.item_uuid,
-          quantity: 2,
+          // quantity: 2,
           notes: 'Looks like I live here now'
         })
           .then(_res => {
-            assert.equal(_res.object, 'ChannelCartItem')
             item = _res.data
+            assert.equal(_res.object, 'ChannelCartItem')
+            assert.ok(item)
 
             console.log('brk cart', _res)
 
             done()
           })
           .catch(err => {
+            console.log(err)
             done(err)
           })
       })
@@ -292,8 +420,9 @@ describe('# RiSE Channel Cart API', () => {
           item_uuid: item.item_uuid
         })
           .then(_res => {
-            assert.equal(_res.object, 'ChannelCartItem')
             item = _res.data
+            assert.equal(_res.object, 'ChannelCartItem')
+            assert.ok(item)
 
             console.log('brk cart', _res)
 
@@ -304,66 +433,88 @@ describe('# RiSE Channel Cart API', () => {
           })
       })
 
+      it('#### Should bulk create Channel Cart\'s items', (done) => {
+        rise.channelCart.createItems(
+          [{
+            offer_uuid: offer.offer_uuid,
+            variant_uuid: offer.variant_default_uuid,
+            quantity: 1,
+            notes: 'Who you gonna call?'
+          }], {
+            params: {
+              channel_uuid: channel_uuid,
+              cart_uuid: cart.cart_uuid,
+            }
+          })
+          .then(_res => {
+            item = _res.data[0]
+            // assert.equal(_res.event_type, 'channel.cart.item.list.created')
+            assert.equal(_res.list, 'ChannelCartItem')
+            assert.ok(item)
+
+            console.log('brk cart items', _res)
+
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it('#### Should list a Channel Cart\'s items', (done) => {
+        rise.channelCart.listItems({
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid
+        })
+          .then(_res => {
+            item = _res.data[0]
+            assert.equal(_res.list, 'ChannelCartItem')
+            assert.equal(_res.action, ACTIONS.LIST_CART_ITEMS)
+            assert.ok(item)
+
+            console.log('brk cart', _res)
+
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it.skip('#### Should get a Channel Cart\'s item', (done) => {
+        rise.channelCart.getItem({
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid,
+          item_uuid: item.item_uuid
+        })
+          .then(_res => {
+            item = _res.data
+            assert.equal(_res.object, 'ChannelCartItem')
+            assert.equal(_res.action, ACTIONS.GET_CART_ITEM)
+            assert.ok(item)
+
+            console.log('brk cart', _res)
+
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
     })
 
+    it.skip('## Should Checkout Cart', (done) => {
 
-    it.skip('#### Should create Channel Cart\'s items', (done) => {
-      rise.channelCart.createItems(
-        [{
-          offer_uuid: offer.offer_uuid,
-          variant_uuid: offer.variant_uuid,
-          quantity: 1,
-          notes: 'Who you gonna call?'
-        }], {
-          params: {
-            channel_uuid: channel_uuid,
-            cart_uuid: cart.cart_uuid,
-          }
-        })
-        .then(_res => {
-          assert.equal(_res.event_type, 'channel.cart.item.list.created')
-          assert.equal(_res.list, 'ChannelCartItem')
-
-          console.log('brk cart', _res)
-
-          done()
-        })
-        .catch(err => {
-          done(err)
-        })
-    })
-
-    it('#### Should list a Channel Cart\'s items', (done) => {
-      rise.channelCart.listItems({
+      rise.channelCustomer.checkout({
         channel_uuid: channel_uuid,
         cart_uuid: cart.cart_uuid
       })
         .then(_res => {
-          assert.equal(_res.list, 'ChannelCartItem')
-          assert.equal(_res.action, ACTIONS.LIST_CART_ITEMS)
-
-          console.log('brk cart', _res)
-
-          done()
-        })
-        .catch(err => {
-          done(err)
-        })
-    })
-
-    it.skip('#### Should get a Channel Cart\'s item', (done) => {
-      rise.channelCart.getItem({
-        channel_uuid: channel_uuid,
-        cart_uuid: cart.cart_uuid,
-        item_uuid: item.item_uuid
-      })
-        .then(_res => {
-          assert.equal(_res.object, 'ChannelCartItem')
-          assert.equal(_res.action, ACTIONS.GET_CART_ITEM)
-          item = _res.data
-
-          console.log('brk cart', _res)
-
+          assert.deepEqual(_res.includes, [
+            'ChannelCart',
+            'ChannelOrder'
+          ])
+          // assert.equal(_res.event_type, EVENTS.CUSTOMER_CREATED)
           done()
         })
         .catch(err => {

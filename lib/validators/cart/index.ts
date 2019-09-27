@@ -35,7 +35,7 @@ export const cart = {
 
   // Commands
   [COMMANDS.CREATE_CART_ITEM]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.CREATE_CART_ITEM]),
-  [COMMANDS.CREATE_CART_ITEMS]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.CREATE_CART_ITEMS]),
+  [COMMANDS.CREATE_CART_ITEMS]: (data) => Utils.joiPromiseMap(data, cartSchema.commands[COMMANDS.CREATE_CART_ITEMS]),
   [COMMANDS.UPDATE_CART_ITEM]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.UPDATE_CART_ITEM]),
   [COMMANDS.REMOVE_CART_ITEM]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.REMOVE_CART_ITEM]),
 
