@@ -1,6 +1,6 @@
 {
   "name": "@rise/sdk-js",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "Node SDK for RiSE",
   "author": {
     "name": "scott-wyatt",
@@ -67,7 +67,8 @@
     "change-case": "^3.1.0",
     "joi": "^14.3.1",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@types/node": "~10.3.4",
@@ -75,7 +76,6 @@
     "mocha": "^6",
     "npm-run-all": "^4.1.5",
     "nyc": "^14.1.1",
-    "reflect-metadata": "^0.1.13",
     "standard-version": "^7.0.0",
     "supertest": "^3.3.0",
     "tslib": "~1.9.0",
