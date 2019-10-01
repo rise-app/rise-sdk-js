@@ -87,11 +87,51 @@ describe('# RiSE Channel Offer API', () => {
       })
   })
 
+
+  it('### Should Search Channel Offers', (done) => {
+
+    rise.channelOffer.search({
+      channel_uuid: channel_uuid
+    }, {
+      query: {
+        term: 'testing',
+        limit: 5
+      }
+    })
+      .then(_res => {
+        assert.equal(_res.limit, 5)
+        assert.equal(_res.offset, 0)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
   it('### Should Get a Channel Offer', (done) => {
 
     rise.channelOffer.get({
       channel_uuid: channel_uuid,
       offer_uuid: offer.offer_uuid
+    })
+      .then(_res => {
+        offer = _res.data
+
+        console.log('brk offer', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should Get a Channel Offer By Handle', (done) => {
+
+    rise.channelOffer.getByHandle({
+      channel_uuid: channel_uuid,
+      handle: offer.handle
     })
       .then(_res => {
         offer = _res.data
@@ -168,11 +208,50 @@ describe('# RiSE Channel Offer API', () => {
       })
   })
 
+  it('### Should Search Public Channel Offers', (done) => {
+
+    rise.channelOffer.searchPublic({
+      channel_uuid: channel_uuid
+    }, {
+      query: {
+        term: 'testing',
+        limit: 5
+      }
+    })
+      .then(_res => {
+        assert.equal(_res.limit, 5)
+        assert.equal(_res.offset, 0)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
   it('### Should Get a Public Channel Offer', (done) => {
 
     rise.channelOffer.getPublic({
       channel_uuid: channel_uuid,
       offer_uuid: offer.offer_uuid
+    })
+      .then(_res => {
+        offer = _res.data
+
+        console.log('brk offer', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should Get a Public Channel Offer By Handle', (done) => {
+
+    rise.channelOffer.getPublicByHandle({
+      channel_uuid: channel_uuid,
+      handle: offer.handle
     })
       .then(_res => {
         offer = _res.data

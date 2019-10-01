@@ -1,3 +1,97 @@
-export const USER_COMMANDS = {}
-export const USER_ACTIONS = {}
-export const USER_EVENTS = {}
+export const USER_COMMANDS = {
+  'START_SESSION': 'start.channel.session',
+  'END_SESSION': 'end.channel.session',
+
+  'REGISTER_USER': 'register.channel.user',
+  'CREATE_USER': 'create.channel.user',
+  'UPDATE_USER': 'update.channel.user',
+
+  'UPLOAD_USERS': 'upload.channel.user',
+  'PROCESS_UPLOADED_USERS': 'process.upload.channel.user',
+
+  'LOGIN_USER': 'login.channel.user',
+  'LOGOUT_USER': 'logout.channel.user',
+  'ADD_USER': 'add.channel.user',
+  'ADD_USERS': 'add.channel.user.list',
+  'REMOVE_USER': 'remove.channel.user',
+  'INVITE_USER': 'invite.channel.user',
+  'CREATE_USER_INVITE': 'create.channel.invite.user',
+  'ACCEPT_USER_INVITE': 'accept.channel.user.invite',
+  'REJECT_USER_INVITE': 'reject.channel.user.invite',
+  'CANCEL_USER_INVITE': 'cancel.channel.user.invite',
+
+  'NOTIFY_USER': 'create.channel.notification.user',
+  'CREATE_USER_NOTIFICATION': 'create.channel.notification.user',
+  'READ_USER_NOTIFICATION': 'read.channel.user.notification',
+  'UNREAD_USER_NOTIFICATION': 'unread.channel.user.notification',
+
+  'ADD_USER_CUSTOMERS': 'add.channel.user.customer.list',
+  'SET_USER_CUSTOMER': 'set.channel.user.customer',
+  'SET_USER_CUSTOMER_PRIMARY': 'set.channel.user.customer_primary',
+  'ADD_USER_CARTS': 'add.channel.user.cart.list',
+  'SET_USER_CART': 'set.channel.user.cart',
+
+  'ADD_USER_CUSTOMER': 'add.channel.user.customer',
+  'UPDATE_USER_CUSTOMER': 'update.channel.user.customer',
+  'REMOVE_USER_CUSTOMER': 'remove.channel.user.customer',
+
+  'ADD_USER_PASSPORT': 'add.channel.user.passport',
+  'CREATE_USER_PASSPORT': 'create.channel.user.passport',
+  'RESET_USER_PASSPORT': 'reset.channel.user.passport',
+  'UPDATE_USER_PASSPORT': 'update.channel.user.passport',
+  'REMOVE_USER_PASSPORT': 'remove.channel.user.passport',
+}
+export const USER_ACTIONS = {
+  'GET_SESSION': 'channel.session.get',
+  'GET_SESSION_USER': 'channel.session.user.get',
+  'GET_SESSION_CART': 'channel.session.cart.get',
+  'GET_SESSION_CUSTOMER': 'channel.session.customer.get',
+  'GET_SESSION_CHANNEL': 'channel.session.channel.get',
+  'LIST_SESSION_CHANNELS': 'channel.session.channel.list',
+  'LIST_SESSION_ROLES': 'channel.session.role.list',
+  'GET_USER': 'channel.user.get',
+  'FIND_USER': 'channel.user.get', // ALIAS
+  'LIST_USERS': 'channel.user.list',
+  'FIND_USERS': 'channel.user.list', // ALIAS
+  'LIST_USER_EVENTS': 'channel.user.event.list',
+
+  'GET_USER_UPLOAD': 'channel.user.upload.get',
+  'LIST_USER_UPLOADS': 'channel.user.upload.list',
+  'GET_USER_UPLOAD_RESULT': 'channel.user.upload_result.get',
+  'LIST_USER_UPLOAD_RESULTS': 'channel.user.upload_result.list',
+}
+export const USER_EVENTS = {
+  'SESSION_STARTED': 'channel.session.started',
+  'SESSION_ENDED': 'channel.session.ended',
+  'USER_REGISTERED': 'channel.user.registered',
+  'USER_CREATED': 'channel.user.created',
+  'USER_UPDATED': 'channel.user.updated',
+  'USERS_UPLOADED': 'channel.user.uploaded.list',
+  'USERS_UPLOAD_PROCESSED': 'channel.user.upload.processed.list',
+  'USER_LOGGED_IN': 'channel.user.logged_in',
+  'USER_LOGGED_OUT': 'channel.user.logged_out',
+  'USER_ADDED': 'channel.user.added',
+  'USERS_ADDED': 'channel.user.added.list',
+  'USER_REMOVED': 'channel.user.removed',
+  'USER_INVITED': 'channel.user.invited',
+  'USER_INVITE_ACCEPTED': 'channel.user.invite.accepted',
+  'USER_INVITE_REJECTED': 'channel.user.invite.rejected',
+  'USER_INVITE_CANCELLED': 'channel.user.invite.cancelled',
+  'USER_CUSTOMER_ADDED': 'channel.user.customer.added',
+  'USER_CUSTOMERS_ADDED': 'channel.user.customer.added.list',
+  'USER_CUSTOMER_REMOVED': 'channel.user.customer.removed',
+  'USER_CUSTOMER_SET': 'channel.user.customer.set',
+  'USER_CUSTOMER_PRIMARY_SET': 'channel.user.customer_primary.set',
+  'USER_CARTS_ADDED': 'channel.user.cart.added.list',
+  'USER_CART_SET': 'channel.user.cart.set',
+
+  'USER_NOTIFIED': 'channel.user.notification.created',
+  'USER_NOTIFICATION_READ': 'channel.user.notification.read',
+  'USER_NOTIFICATION_UNREAD': 'channel.user.notification.unread',
+
+  'USER_PASSPORT_ADDED': 'channel.user.passport.added',
+  'USER_PASSPORT_CREATED': 'channel.user.passport.created',
+  'USER_PASSPORT_RESET': 'channel.user.passport.reset',
+  'USER_PASSPORTS_ADDED': 'channel.user.passport.added.list',
+  'USER_PASSPORT_REMOVED': 'channel.user.passport.removed',
+}

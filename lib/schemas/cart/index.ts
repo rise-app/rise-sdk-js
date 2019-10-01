@@ -15,12 +15,6 @@ export const commands = {
     email: joi.string().allow(null),
   }).unknown(),
 
-  [COMMANDS.UPDATE_CART]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-    email: joi.string().allow(null),
-  }).unknown(),
-
   [COMMANDS.CHECKOUT_CART]: joi.object().keys({
     channel_uuid: uuid.required(),
     cart_uuid: uuid.required()

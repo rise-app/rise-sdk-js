@@ -1,13 +1,19 @@
 import { Utils } from '../../Utils'
 import { user as userSchema } from '../../schemas'
+import { ACTIONS, COMMANDS } from '../../enums'
 
+// TODO refactor keys to match commands/actions
 export const user = {
-  'session': (data) => Utils.joiPromise(data, userSchema.session),
-  'register': (data) => Utils.joiPromise(data, userSchema.register),
-  'login': (data) => Utils.joiPromise(data, userSchema.login),
-  'logout': (data) => Utils.joiPromise(data, userSchema.logout),
-  'create': (data) => Utils.joiPromise(data, userSchema.create),
-  'update': (data) => Utils.joiPromise(data, userSchema.update),
-  'get': (data) => Utils.joiPromise(data, userSchema.get),
-  'list': (data) => Utils.joiPromise(data, userSchema.list)
+
+  // Commands
+  'register': (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.REGISTER_USER]),
+  'login': (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.LOGIN_USER]),
+  'logout': (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.LOGOUT_USER]),
+  'create': (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.CREATE_USER]),
+  'update': (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.UPDATE_USER]),
+
+  // Actions
+  'session': (data) => Utils.joiPromise(data, userSchema.actions[ACTIONS.GET_SESSION]),
+  'get': (data) => Utils.joiPromise(data, userSchema.actions[ACTIONS.GET_USER]),
+  'list': (data) => Utils.joiPromise(data, userSchema.actions[ACTIONS.LIST_USERS])
 }
