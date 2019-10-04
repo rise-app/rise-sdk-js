@@ -1,4 +1,3 @@
-import rp from 'request-promise'
 import joi from 'joi'
 
 export const Utils = {
