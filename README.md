@@ -11,12 +11,24 @@ Strongly typed Node SDK for RiSE. RiSE is a developer focused eCommerce Platform
 # Installation
 
 ```
-npm install @rise/rise-js-sdk --save
+npm install @rise/sdk-js --save
 ```
 
-# Documentation
-
 # Usage
+
+RiSE separates requests into 3 major categories:
+- Command
+- Event
+- Action
+
+### Commands
+Commands are any type of request that will result in something being modified eg. create a user
+
+### Event
+An Event is a request listener that something has been modified eg, a user was created
+
+### Action
+An Action is a request made that does not modify anything eg, retrieve a user.
 
 ### Getting started
 As an application
@@ -42,8 +54,49 @@ rise.authenticateApiUser(
 })
 
 ```
-
 ## Setup
+
+# Documentation
+A quick start documentation, see the full documentation here.
+
+## ChannelUser
+
+### Commands
+
+Create a User
+
+```js
+let user
+rise.channelUser.create({
+    channel_uuid: <channel_uuid>,
+    name_first: 'First',
+    name_last: 'Last',
+    username: 'uniqueusername',
+    email: 'unique_email@example.com'
+}, {})
+  .then((_res) => {
+     user = _res.data
+  })
+  .catch((err) => {
+    // Handle Error
+  })
+```
+
+### Actions
+
+Get a User by ID
+```js
+rise.channelUser.get({
+    channel_uuid: <channel_uuid>,
+    user_uuid: user.user_uuid
+}, {})
+.then((_res) => {
+  user = _res.data
+})
+.catch((err) => {
+  // Handle Error
+})
+```
 
 # Notes
 

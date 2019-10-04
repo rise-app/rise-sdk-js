@@ -367,7 +367,7 @@ describe('# RiSE Channel Cart API', () => {
     describe('### RiSE Channel Cart Item API Methods', () => {
 
       it('#### Should create a Channel Cart\'s item', (done) => {
-        rise.channelCart.createItem({
+        rise.channelCartItem.create({
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid,
           offer_uuid: offer.offer_uuid,
@@ -391,7 +391,7 @@ describe('# RiSE Channel Cart API', () => {
       })
 
       it('#### Should update a Channel Cart\'s item', (done) => {
-        rise.channelCart.updateItem({
+        rise.channelCartItem.update({
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid,
           item_uuid: item.item_uuid,
@@ -414,7 +414,7 @@ describe('# RiSE Channel Cart API', () => {
       })
 
       it.skip('#### Should remove a Channel Cart\'s item', (done) => {
-        rise.channelCart.removeItem({
+        rise.channelCartItem.remove({
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid,
           item_uuid: item.item_uuid
@@ -434,13 +434,15 @@ describe('# RiSE Channel Cart API', () => {
       })
 
       it('#### Should bulk create Channel Cart\'s items', (done) => {
-        rise.channelCart.createItems(
-          [{
-            offer_uuid: offer.offer_uuid,
-            variant_uuid: offer.variant_default_uuid,
-            quantity: 1,
-            notes: 'Who you gonna call?'
-          }], {
+        rise.channelCartItem.bulkCreate(
+          [
+            {
+              offer_uuid: offer.offer_uuid,
+              variant_uuid: offer.variant_default_uuid,
+              quantity: 1,
+              notes: 'Who you gonna call?'
+            }
+          ], {
             params: {
               channel_uuid: channel_uuid,
               cart_uuid: cart.cart_uuid,
@@ -462,7 +464,7 @@ describe('# RiSE Channel Cart API', () => {
       })
 
       it('#### Should list a Channel Cart\'s items', (done) => {
-        rise.channelCart.listItems({
+        rise.channelCartItem.list({
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid
         })
@@ -482,7 +484,7 @@ describe('# RiSE Channel Cart API', () => {
       })
 
       it.skip('#### Should get a Channel Cart\'s item', (done) => {
-        rise.channelCart.getItem({
+        rise.channelCartItem.get({
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid,
           item_uuid: item.item_uuid

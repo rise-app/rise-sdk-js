@@ -1,5 +1,5 @@
 import * as api from './api'
-import requestPromise from 'request-promise'
+import requestPromise from 'request-promise-native'
 
 export interface RiSEConfig {
   [key: string]: any
@@ -24,10 +24,12 @@ export class RiSE {
   public channelApplication: api.ChannelApplication
   public channelBillingModel: api.ChannelBillingModel
   public channelCart: api.ChannelCart
+  public channelCartItem: api.ChannelCartItem
   public channelCollection: api.ChannelCollection
   public channelCampaign: api.ChannelCampaign
   public channelCategory: api.ChannelCategory
   public channelCountry: api.ChannelCountry
+  public channelCountryProvince: api.ChannelCountryProvince
   public channelCustomer: api.ChannelCustomer
   public channelFeed: api.ChannelFeed
   public channelFulfillment: api.ChannelFulfillment
@@ -88,10 +90,12 @@ export class RiSE {
     this.channelApplication = new api.ChannelApplication(this)
     this.channelBillingModel = new api.ChannelBillingModel(this)
     this.channelCart = new api.ChannelCart(this)
+    this.channelCartItem = new api.ChannelCartItem(this)
     this.channelCollection = new api.ChannelCollection(this)
     this.channelCampaign = new api.ChannelCampaign(this)
     this.channelCategory = new api.ChannelCategory(this)
     this.channelCountry = new api.ChannelCountry(this)
+    this.channelCountryProvince = new api.ChannelCountryProvince(this)
     this.channelCustomer = new api.ChannelCustomer(this)
     this.channelFeed = new api.ChannelFeed(this)
     this.channelFulfillment = new api.ChannelFulfillment(this)
