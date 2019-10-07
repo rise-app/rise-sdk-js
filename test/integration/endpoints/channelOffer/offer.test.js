@@ -1,9 +1,5 @@
-const RiSE = require('../../../dist').RiSE
-const adminIdentifier = require('../../fixtures/constants').adminIdentifier
-const adminPassword = require('../../fixtures/constants').adminPassword
-const channel_uuid = require('../../fixtures/constants').channel_uuid
-const public_key = require('../../fixtures/constants').public_key
-const private_key = require('../../fixtures/constants').private_key
+const { RiSE, EVENTS, ACTIONS } = require('../../../../dist')
+const { url, adminPassword, adminIdentifier, channel_uuid, private_key, public_key } = require('../../../fixtures/constants')
 
 const assert = require('assert')
 
@@ -13,6 +9,7 @@ describe('# RiSE Channel Offer API', () => {
 
   before((done) => {
     rise = new RiSE({
+      url: url,
       sandbox: true,
       public_key: public_key,
       private_key: private_key

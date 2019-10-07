@@ -1,6 +1,6 @@
 {
   "name": "@rise/sdk-js",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.9",
   "description": "Node SDK for RiSE",
   "author": {
     "name": "scott-wyatt",
@@ -66,6 +66,9 @@
   ],
   "dependencies": {
     "joi": "^14.3.1",
+    "engine.io": "^3.4.0",
+    "engine.io-client": "^3.4.0",
+    "primus": "^7.3.3",
     "reflect-metadata": "^0.1.13",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"

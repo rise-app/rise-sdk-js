@@ -1,6 +1,15 @@
 import * as api from './api'
 import requestPromise from 'request-promise-native'
+import { EVENTS as _EVENTS, ACTIONS as _ACTIONS, COMMANDS as _COMMANDS } from './enums'
+import { ApplicationClass } from './ApplicationClass'
+import { ApiClass } from './ApiClass'
 
+// Export the Enums for developer use
+export const COMMANDS = _COMMANDS
+export const EVENTS = _EVENTS
+export const ACTIONS = _ACTIONS
+
+// Export the RiSEConfig for developer use
 export interface RiSEConfig {
   [key: string]: any
   url?: string
@@ -14,9 +23,11 @@ export interface RiSEConfig {
   token?: string
   email?: string
   password?: string,
-  request_middleware?: any
+  request_middleware?: any,
+  live_mode?: boolean
 }
 
+// Export the Core RiSE class
 export class RiSE {
 
   // APIs
@@ -44,6 +55,8 @@ export class RiSE {
   public channelUser: api.ChannelUser
   public channelVendor: api.ChannelVendor
 
+  public application: ApplicationClass
+
   public _cart
   public _user
   
@@ -55,34 +68,50 @@ export class RiSE {
       api_version: 1
     }
   ) {
+
+    // Set the request middleware to default to request-promise-native if not supplied
     if (!config.request_middleware) {
       config.request_middleware = requestPromise
     }
+
+    // Set the live mode parameter
+    if (config.live_mode === true || config.live_mode === false) {
+      this.config.live_mode = config.live_mode
+    }
+
     // Set the default env
     if (config.url) {
       this.config.sandbox = false
       this.config.beta = false
       this.config.production = false
+      this.config.live_mode = typeof config.live_mode !== 'undefined' ? config.live_mode : false
     }
     else if (config.sandbox) {
       this.config.beta = false
       this.config.production = false
+      this.config.live_mode = typeof config.live_mode !== 'undefined' ? config.live_mode : false
     }
     else if (config.beta) {
       this.config.sandbox = false
       this.config.production = false
+      this.config.live_mode = typeof config.live_mode !== 'undefined' ? config.live_mode : false
     }
     else if (config.production) {
       this.config.sandbox = false
       this.config.beta = false
+      this.config.live_mode = typeof config.live_mode !== 'undefined' ? config.live_mode : true
     }
 
-    //
+    // The API version to end, valid whole or float number eg. 1, 1.0, 1.1
     this.config.api_version = this.config.api_version || config.api_version || 1
+    // The public key to use for connecting to RiSE (from an application or this application)
     this.config.public_key = this.config.public_key || config.public_key
+    // Optional: The private key to use for connecting to RiSE (from an application or this application)
     this.config.private_key = this.config.private_key || config.private_key
 
+    // Optional: You can configure a session id that was given prior to creating the RiSE instance
     this.config.session = this.config.session || config.session
+    // Optional: You can configure a token that was given prior to creating the RiSE instance
     this.config.token = this.config.token || config.token
 
     // Initialize the APIs
@@ -109,6 +138,9 @@ export class RiSE {
     this.channelTransaction = new api.ChannelTransaction(this)
     this.channelUser = new api.ChannelUser(this)
     this.channelVendor = new api.ChannelVendor(this)
+
+    // Initialize the Application Connection
+    this.application = new ApplicationClass(this)
 
     return this
   }
@@ -197,11 +229,12 @@ export class RiSE {
    * Sandbox or live
    */
   get requestUrl() {
-    return this.config.url || this.config.beta
-      ? 'https://api.beta.rise.store'
-      : this.config.sandbox
-          ? 'https://api.sandbox.rise.store'
-          : 'https://api.rise.store'
+    return this.config.url
+      || this.config.beta
+        ? 'https://api.beta.rise.store'
+        : this.config.sandbox
+            ? 'https://api.sandbox.rise.store'
+            : 'https://api.rise.store'
   }
 
   /**

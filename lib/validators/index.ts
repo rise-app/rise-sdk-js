@@ -1,5 +1,6 @@
 export { core } from './core'
 
+export { application } from './application'
 export { cart } from './cart'
 export { collection } from './collection'
 export { channel } from './channel'

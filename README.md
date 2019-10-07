@@ -101,6 +101,15 @@ rise.channelUser.get({
 # Notes
 
 
+##### Subscribing to Commands/Events via webhooks
+RiSE commands/events have a lifecycle that mimics a SAGA pattern
+- dispatched
+- cancelled
+- committed
+
+When a command/event is dispatched, your subscription will receive data and be able to transform/act on that data. However, your application should not persist that information until the "committed" lifecycle event has been emitted.  At anytime after a command/event has been dispatched, you may also receive a "cancelled::<command|event>", in which case you should revert any changes you made as assumptions of the state of RiSE.  Once you've received a "committed::<event>" then it's safe to assume that RiSE will not attempt to cancel the command/event. If your application goes offline, or misses the "cancelled" or "committed" event, then your application should wait 1 minute and then retrieve the current state of what you were listening for.
+ 
+
 [npm-image]: https://img.shields.io/npm/v/@rise/sdk-js.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/@rise/sdk-js
 [ci-image]: https://img.shields.io/circleci/project/github/rise-app/rise-sdk-js/master.svg
