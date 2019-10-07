@@ -43,6 +43,10 @@ export class ApplicationClass {
     return this.client
   }
 
+  disconnect() {
+    return this.client.end()
+  }
+
   /**
    * Get the Socket Client
    */

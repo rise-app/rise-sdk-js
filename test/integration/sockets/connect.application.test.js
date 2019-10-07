@@ -38,5 +38,10 @@ describe('# RiSE Channel User API', () => {
         done()
       })
     })
+
+    after((done) => {
+      rise.application.disconnect()
+      done()
+    })
   })
 })
