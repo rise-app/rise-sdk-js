@@ -24,7 +24,8 @@ export interface RiSEConfig {
   email?: string
   password?: string,
   request_middleware?: any,
-  live_mode?: boolean
+  live_mode?: boolean,
+  logger?: any
 }
 
 // Export the Core RiSE class
@@ -55,7 +56,11 @@ export class RiSE {
   public channelUser: api.ChannelUser
   public channelVendor: api.ChannelVendor
 
+  // Applications
   public application: ApplicationClass
+
+  // Logger
+  public log: any
 
   public _cart
   public _user
@@ -113,6 +118,14 @@ export class RiSE {
     this.config.session = this.config.session || config.session
     // Optional: You can configure a token that was given prior to creating the RiSE instance
     this.config.token = this.config.token || config.token
+
+    // Configure the logger
+    if (config.logger) {
+      this.log = config.logger
+    }
+    else {
+      this.log = console.log
+    }
 
     // Initialize the APIs
     this.channel = new api.Channel(this)
@@ -270,16 +283,25 @@ export class RiSE {
   //     })
   // }
 
+  /**
+   * Serialize a Query String
+   * @param obj
+   * @param prefix
+   */
   serializeQuery(obj, prefix?) {
     let str = [], p
 
     for (p in obj) {
       if (obj.hasOwnProperty(p)) {
-        const k = prefix ? prefix + '[" + p + "]' : p,
-          v = obj[p]
-        str.push((v !== null && typeof v === "object") ?
-          this.serializeQuery(v, k) :
-          encodeURIComponent(k) + '=' + encodeURIComponent(v))
+
+        const k = prefix
+          ? prefix + '[' + p + ']'
+          : p
+        const v = obj[p]
+
+        str.push((v !== null && typeof v === 'object')
+          ? this.serializeQuery(v, k)
+          : encodeURIComponent(k) + '=' + encodeURIComponent(v))
       }
     }
     return str.join('&')
@@ -316,7 +338,7 @@ export class RiSE {
     // If this request didn't pass validation
     if (validation instanceof Error) {
       const err = {
-        'statusCode': '000',
+        'statusCode': '400',
         'isPreValidationError': true,
         ...validation
       }
@@ -380,14 +402,14 @@ export class RiSE {
       _req.headers['Session'] = __req.session || this.session
     }
 
-    if (this.config.sandbox) {
+    if (this.config.sandbox || this.config.beta) {
       console.time(`RiSE req ${name}`)
     }
 
     // make request promise
     return this._request(_req)
       .then((res) => {
-        if (this.config.sandbox) {
+        if (this.config.sandbox || this.config.beta) {
           console.timeEnd(`RiSE req ${name}`)
         }
         return res

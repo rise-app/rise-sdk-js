@@ -84,6 +84,30 @@ describe('# RiSE Channel Offer API', () => {
       })
   })
 
+  it('### Should List Channel Offers with nested where query', (done) => {
+
+    rise.channelOffer.list({
+      channel_uuid: channel_uuid
+    }, {
+      query: {
+        limit: 1,
+        where: {
+          type: 'application'
+        }
+      }
+    })
+      .then(_res => {
+        assert.equal(_res.limit, 1)
+        assert.equal(_res.offset, 0)
+
+        console.log('brk offer', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
 
   it('### Should Search Channel Offers', (done) => {
 
