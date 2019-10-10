@@ -7,6 +7,7 @@ import * as channel from './channel'
 import * as country from './country'
 import * as customer from './customer'
 import * as offer from './offer'
+import * as order from './order'
 import * as product from './product'
 import * as user from './user'
 
@@ -20,6 +21,7 @@ export {
   country,
   customer,
   offer,
+  order,
   product,
   user
 }

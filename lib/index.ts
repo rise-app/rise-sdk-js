@@ -48,6 +48,7 @@ export class RiSE {
   public channelGateway: api.ChannelGateway
   public channelOffer: api.ChannelOffer
   public channelOrder: api.ChannelOrder
+  public channelOrderItem: api.ChannelOrderItem
   public channelPermission: api.ChannelPermission
   public channelProduct: api.ChannelProduct
   public channelSubscription: api.ChannelSubscription
@@ -144,6 +145,7 @@ export class RiSE {
     this.channelGateway = new api.ChannelGateway(this)
     this.channelOffer = new api.ChannelOffer(this)
     this.channelOrder = new api.ChannelOrder(this)
+    this.channelOrderItem = new api.ChannelOrderItem(this)
     this.channelPermission = new api.ChannelPermission(this)
     this.channelProduct = new api.ChannelProduct(this)
     this.channelSubscription = new api.ChannelSubscription(this)

@@ -52,7 +52,7 @@ export class ChannelOffer extends ApiClass {
     return this.rise.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/handle/:handle', validator: offer.listByAttribute })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/handle/:handle', validator: offer.getByAttribute })
   getPublicByHandle(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
