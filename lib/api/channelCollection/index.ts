@@ -133,6 +133,10 @@ export class ChannelCampaign extends ApiClass {
   listOffers(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/handle/:handle/offers', validator: collection.list })
+  listOffersByHandle(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
 
   @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/:collection_uuid/customers/:customer_uuid', validator: collection.get })
   getCustomer(data, req?, validated?) {
@@ -148,28 +152,68 @@ export class ChannelCampaign extends ApiClass {
    * PUBLIC ENDPOINTS
    **********************************/
 
+  /**
+   * Get Public Campaign By UUID
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/:collection_uuid', validator: collection.get })
   getPublic(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
 
+  /**
+   * Get Public Campaign By Handle
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/handle/:handle', validator: collection.listByAttribute })
   getPublicByHandle(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
 
+  /**
+   * List Public Campaigns
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns', validator: collection.list })
   listPublic(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
 
+  /**
+   * Get Public Campaign Offer By UUID
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/:collection_uuid/offers/:offer_uuid', validator: collection.get })
   getPublicOffer(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
 
+  /**
+   * List Public Campaign's Public Offers
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/:collection_uuid/offers', validator: collection.list })
   listPublicOffers(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+  /**
+   * List Public Campaign's Public Offers By Campaign Handle
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/handle/:handle/offers', validator: collection.list })
+  listPublicOffersByHandle(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
 }

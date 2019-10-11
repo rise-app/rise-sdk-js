@@ -176,7 +176,25 @@ describe('# RiSE Channel Offer API', () => {
       .then(_res => {
         variant = _res.data[0]
 
-        console.log('brk offer', _res)
+        console.log('brk offer variants', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should List a Channel Offer\'s Variants by Offer Handle', (done) => {
+
+    rise.channelOffer.listVariantsByHandle({
+      channel_uuid: channel_uuid,
+      handle: offer.handle
+    })
+      .then(_res => {
+        // variant = _res.data[0]
+
+        console.log('brk offer variants', _res)
 
         done()
       })
@@ -292,6 +310,24 @@ describe('# RiSE Channel Offer API', () => {
     rise.channelOffer.listPublicVariants({
       channel_uuid: channel_uuid,
       offer_uuid: offer.offer_uuid
+    })
+      .then(_res => {
+        variant = _res.data[0]
+
+        console.log('brk offer', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should List a Public Channel Offer\'s Variants by Offer Handle', (done) => {
+
+    rise.channelOffer.listPublicVariantsByHandle({
+      channel_uuid: channel_uuid,
+      handle: offer.handle
     })
       .then(_res => {
         variant = _res.data[0]

@@ -121,6 +121,24 @@ describe('# RiSE Channel Campaign API', () => {
       })
   })
 
+  it('### Should List a Channel Campaign\'s Offers by Campaign Handle', (done) => {
+
+    rise.channelCampaign.listOffersByHandle({
+      channel_uuid: channel_uuid,
+      handle: campaign.collection_handle
+    })
+      .then(_res => {
+        // offer = _res.data[0]
+
+        console.log('brk campaign', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
   it.skip('### Should Get a Channel Campaign\'s Offer', (done) => {
 
     rise.channelCampaign.getOffer({

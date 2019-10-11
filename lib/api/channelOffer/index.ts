@@ -42,6 +42,10 @@ export class ChannelOffer extends ApiClass {
   listVariants(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/handle/:handle/variants', validator: offer.list })
+  listVariantsByHandle(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
 
   /**********************************
    * PUBLIC ENDPOINTS
@@ -74,6 +78,11 @@ export class ChannelOffer extends ApiClass {
 
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/:offer_uuid/variants', validator: offer.list })
   listPublicVariants(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/handle/:handle/variants', validator: offer.list })
+  listPublicVariantsByHandle(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
 
