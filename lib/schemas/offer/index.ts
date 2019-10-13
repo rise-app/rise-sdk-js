@@ -16,6 +16,11 @@ export const commands = {
     channel_uuid: uuid.required(),
     offer_uuid: uuid.required(),
   }).unknown(),
+
+  [COMMANDS.REMOVE_OFFER]: joi.object().keys({
+    channel_uuid: uuid.required(),
+    offer_uuid: uuid.required(),
+  }).unknown(),
 }
 
 export const actions = {
@@ -28,12 +33,27 @@ export const actions = {
     channel_uuid: uuid.required(),
   }).unknown(),
 
-
   [ACTIONS.LIST_OFFERS]: joi.object().keys({
     channel_uuid: uuid.required()
   }).unknown(),
 
   [ACTIONS.FIND_OFFERS]: joi.object().keys({
+    channel_uuid: uuid.required()
+  }).unknown(),
+
+
+  [ACTIONS.GET_OFFER_VARIANT]: joi.object().keys({
+    channel_uuid: uuid.required(),
+    offer_uuid: uuid.required(),
+    variant_uuid: uuid.required(),
+  }).unknown(),
+
+  [ACTIONS.LIST_OFFER_VARIANTS]: joi.object().keys({
+    channel_uuid: uuid.required(),
+    offer_uuid: uuid.required()
+  }).unknown(),
+
+  [ACTIONS.FIND_OFFER_VARIANTS]: joi.object().keys({
     channel_uuid: uuid.required()
   }).unknown(),
 }

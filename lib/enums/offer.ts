@@ -75,8 +75,10 @@ export const OFFER_ACTIONS = {
 
   'GET_OFFER_VARIANT': 'channel.offer.variant.get',
   'LIST_OFFER_VARIANTS': 'channel.offer.variant.list',
+  'FIND_OFFER_VARIANTS': 'channel.offer.variant.list', // ALIAS
   'GET_PUBLIC_OFFER_VARIANT': 'channel.public.offer.variant.get',
   'LIST_PUBLIC_OFFER_VARIANTS': 'channel.public.offer.variant.list',
+  'FIND_PUBLIC_OFFER_VARIANTS': 'channel.public.offer.variant.list', // ALIAS
 
   'GET_OFFER_UP_SELL': 'channel.offer.up_sell.get',
   'LIST_OFFER_UP_SELLS': 'channel.offer.up_sell.list',

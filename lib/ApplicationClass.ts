@@ -40,6 +40,9 @@ export class ApplicationClass {
    */
   connect() {
     this._client = new this.Socket(this.rise.requestUrl)
+    this._client.on('outgoing::url', (url) => {
+      url.query = 'token=' + (this.rise.token || '')
+    })
     return this.client
   }
 
