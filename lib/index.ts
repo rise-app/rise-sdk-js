@@ -52,6 +52,7 @@ export class RiSE {
   public channelOrderItem: api.ChannelOrderItem
   public channelPermission: api.ChannelPermission
   public channelProduct: api.ChannelProduct
+  public channelProductVariant: api.ChannelProductVariant
   public channelSubscription: api.ChannelSubscription
   public channelTask: api.ChannelTask
   public channelTransaction: api.ChannelTransaction
@@ -150,6 +151,7 @@ export class RiSE {
     this.channelOrderItem = new api.ChannelOrderItem(this)
     this.channelPermission = new api.ChannelPermission(this)
     this.channelProduct = new api.ChannelProduct(this)
+    this.channelProductVariant = new api.ChannelProductVariant(this)
     this.channelSubscription = new api.ChannelSubscription(this)
     this.channelTask = new api.ChannelTask(this)
     this.channelTransaction = new api.ChannelTransaction(this)

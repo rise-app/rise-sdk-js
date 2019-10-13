@@ -1,0 +1,255 @@
+export const PRODUCT_COMMANDS = {
+  'CREATE_PRODUCT': 'create.channel.product',
+  'MERGE_PRODUCTS': 'merge.channel.product.list',
+  'ADD_PRODUCT': 'add.channel.product',
+  'ADD_PRODUCTS': 'add.channel.product.list',
+  'UPDATE_PRODUCT': 'update.channel.product',
+  'DESTROY_PRODUCT': 'destroy.channel.product',
+  'REMOVE_PRODUCT': 'remove.channel.product',
+  'PUBLISH_PRODUCT': 'publish.channel.product',
+  'UNPUBLISH_PRODUCT': 'unpublish.channel.product',
+  'PUBLISH_PRODUCTS': 'publish.channel.product.list',
+  'UNPUBLISH_PRODUCTS': 'unpublish.channel.product.list',
+
+  'SET_PRODUCT_IMAGE_PRIMARY': 'set.channel.product.image_primary',
+  'SET_PRODUCT_VARIANT_DEFAULT': 'set.channel.product.variant_default',
+
+  'ADD_PRODUCT_CATEGORY': 'add.channel.product.category',
+  'REMOVE_PRODUCT_CATEGORY': 'remove.channel.product.category',
+
+  'UPLOAD_PRODUCTS': 'upload.channel.product',
+  'PROCESS_UPLOADED_PRODUCTS': 'process.upload.channel.product',
+  'UPLOAD_PRODUCT_METADATA': 'upload.channel.product.metadata.list',
+  'PROCESS_UPLOADED_PRODUCT_METADATA': 'process.upload.channel.product.metadata.list',
+  'UPLOAD_PRODUCT_VARIANTS': 'upload.channel.product.variant.list',
+  'PROCESS_UPLOADED_PRODUCT_VARIANTS': 'process.upload.channel.product.variant.list',
+
+  'ADD_PRODUCT_ASSOCIATION': 'add.channel.product.association',
+  'ADD_PRODUCT_ASSOCIATIONS': 'add.channel.product.association.list',
+  'CREATE_PRODUCT_ASSOCIATION': 'create.channel.product.association',
+  'CREATE_PRODUCT_ASSOCIATIONS': 'create.channel.product.association.list',
+  'UPDATE_PRODUCT_ASSOCIATION': 'update.channel.product.association',
+  'REMOVE_PRODUCT_ASSOCIATION': 'remove.channel.product.association',
+  'DESTROY_PRODUCT_ASSOCIATION': 'destroy.channel.product.association',
+  'PUBLISH_PRODUCT_ASSOCIATION': 'publish.channel.product.association',
+  'UNPUBLISH_PRODUCT_ASSOCIATION': 'unpublish.channel.product.association',
+
+  'ADD_PRODUCT_IMAGE': 'add.channel.product.image',
+  'ADD_PRODUCT_IMAGES': 'add.channel.product.image.list',
+  'CREATE_PRODUCT_IMAGE': 'create.channel.product.image',
+  'CREATE_PRODUCT_IMAGES': 'create.channel.product.image.list',
+  'UPDATE_PRODUCT_IMAGE': 'update.channel.product.image',
+  'REMOVE_PRODUCT_IMAGE': 'remove.channel.product.image',
+  'DESTROY_PRODUCT_IMAGE': 'destroy.channel.product.image',
+  'PUBLISH_PRODUCT_IMAGE': 'publish.channel.product.image',
+  'UNPUBLISH_PRODUCT_IMAGE': 'unpublish.channel.product.image',
+
+  'ADD_PRODUCT_VARIANT': 'add.channel.product.variant',
+  'ADD_PRODUCT_VARIANTS': 'add.channel.product.variant.list',
+  'CREATE_PRODUCT_VARIANT': 'create.channel.product.variant',
+  'CREATE_PRODUCT_VARIANTS': 'create.channel.product.variant.list',
+  'UPDATE_PRODUCT_VARIANT': 'update.channel.product.variant',
+  'REMOVE_PRODUCT_VARIANT': 'remove.channel.product.variant',
+  'DESTROY_PRODUCT_VARIANT': 'destroy.channel.product.variant',
+  'PUBLISH_PRODUCT_VARIANT': 'publish.channel.product.variant',
+  'UNPUBLISH_PRODUCT_VARIANT': 'unpublish.channel.product.variant',
+  'PUBLISH_PRODUCT_VARIANTS': 'publish.channel.product.variant.list',
+  'UNPUBLISH_PRODUCT_VARIANTS': 'unpublish.channel.product.variant.list',
+
+
+  'ADD_PRODUCT_VARIANT_ASSOCIATION': 'add.channel.product.variant.association',
+  'ADD_PRODUCT_VARIANT_ASSOCIATIONS': 'add.channel.product.variant.association.list',
+  'CREATE_PRODUCT_VARIANT_ASSOCIATION': 'create.channel.product.variant.association',
+  'CREATE_PRODUCT_VARIANT_ASSOCIATIONS': 'create.channel.product.variant.association.list',
+  'UPDATE_PRODUCT_VARIANT_ASSOCIATION': 'update.channel.product.variant.association',
+  'REMOVE_PRODUCT_VARIANT_ASSOCIATION': 'remove.channel.product.variant.association',
+  'DESTROY_PRODUCT_VARIANT_ASSOCIATION': 'destroy.channel.product.variant.association',
+  'PUBLISH_PRODUCT_VARIANT_ASSOCIATION': 'publish.channel.product.variant.association',
+  'UNPUBLISH_PRODUCT_VARIANT_ASSOCIATION': 'unpublish.channel.product.variant.association',
+
+  'ADD_PRODUCT_VARIANT_IMAGE': 'add.channel.product.variant.image',
+  'ADD_PRODUCT_VARIANT_IMAGES': 'add.channel.product.variant.image.list',
+  'CREATE_PRODUCT_VARIANT_IMAGE': 'create.channel.product.variant.image',
+  'CREATE_PRODUCT_VARIANT_IMAGES': 'create.channel.product.variant.image.list',
+  'UPDATE_PRODUCT_VARIANT_IMAGE': 'update.channel.product.variant.image',
+  'REMOVE_PRODUCT_VARIANT_IMAGE': 'remove.channel.product.variant.image',
+  'DESTROY_PRODUCT_VARIANT_IMAGE': 'destroy.channel.product.variant.image',
+  'PUBLISH_PRODUCT_VARIANT_IMAGE': 'publish.channel.product.variant.image',
+  'UNPUBLISH_PRODUCT_VARIANT_IMAGE': 'unpublish.channel.product.variant.image',
+
+
+  'ADD_PRODUCT_VENDOR': 'add.channel.product.vendor',
+  'ADD_PRODUCT_VENDORS': 'add.channel.product.vendor.list',
+  'CREATE_PRODUCT_VENDOR': 'create.channel.product.vendor',
+  'CREATE_PRODUCT_VENDORS': 'create.channel.product.vendor.list',
+  'UPDATE_PRODUCT_VENDOR': 'update.channel.product.vendor',
+  'REMOVE_PRODUCT_VENDOR': 'remove.channel.product.vendor',
+  'DESTROY_PRODUCT_VENDOR': 'destroy.channel.product.vendor',
+  'PUBLISH_PRODUCT_VENDOR': 'publish.channel.product.vendor',
+  'UNPUBLISH_PRODUCT_VENDOR': 'unpublish.channel.product.vendor',
+  'PUBLISH_PRODUCT_VENDORS': 'publish.channel.product.vendor.list',
+  'UNPUBLISH_PRODUCT_VENDORS': 'unpublish.channel.product.vendor.list',
+}
+export const PRODUCT_ACTIONS = {
+  'GET_PRODUCT': 'channel.product.get',
+  'FIND_PRODUCT': 'channel.product.get', // ALIAS
+  'LIST_PRODUCTS': 'channel.product.list',
+  'FIND_PRODUCTS': 'channel.product.list', // ALIAS
+  'LIST_PRODUCT_EVENTS': 'channel.product.event.list',
+
+  'GET_PRODUCT_CATEGORY': 'channel.product.category.get',
+  'LIST_PRODUCT_CATEGORIES': 'channel.product.category.list',
+
+  'GET_PUBLIC_PRODUCT_CATEGORY': 'channel.public.product.category.get',
+  'LIST_PUBLIC_PRODUCT_CATEGORIES': 'channel.public.product.category.list',
+
+  'GET_PRODUCT_UPLOAD_RESULT': 'channel.product.upload_result.get',
+  'LIST_PRODUCT_UPLOAD_RESULTS': 'channel.product.upload_result.list',
+  'GET_PRODUCT_UPLOAD': 'channel.product.upload.get',
+  'LIST_PRODUCT_UPLOADS': 'channel.product.upload.list',
+
+  'GET_PRODUCT_METADATA_UPLOAD_RESULT': 'channel.product.metadata.upload_result.get',
+  'LIST_PRODUCT_METADATA_UPLOAD_RESULTS': 'channel.product.metadata.upload_result.list',
+  'GET_PRODUCT_METADATA_UPLOAD': 'channel.product.metadata.upload.get',
+  'LIST_PRODUCT_METADATA_UPLOADS': 'channel.product.metadata.upload.list',
+
+  'GET_PUBLIC_PRODUCT': 'channel.public.product.get',
+  'FIND_PUBLIC_PRODUCT': 'channel.public.product.get', // ALIAS
+  'LIST_PUBLIC_PRODUCTS': 'channel.public.product.list',
+  'FIND_PUBLIC_PRODUCTS': 'channel.public.product.list', // ALIAS
+
+  'GET_PRODUCT_ASSOCIATION': 'channel.product.association.get',
+  'LIST_PRODUCT_ASSOCIATIONS': 'channel.product.association.list',
+
+  'GET_PUBLIC_PRODUCT_ASSOCIATION': 'channel.public.product.association.get',
+  'LIST_PUBLIC_PRODUCT_ASSOCIATIONS': 'channel.public.product.association.list',
+
+  'GET_PRODUCT_VARIANT_DEFAULT': 'channel.product.variant.default.get',
+  'GET_PRODUCT_VARIANT': 'channel.product.variant.get',
+  'LIST_PRODUCT_VARIANTS': 'channel.product.variant.list',
+  'FIND_PRODUCT_VARIANTS': 'channel.product.variant.list', // ALIAS
+
+  'GET_PUBLIC_PRODUCT_VARIANT': 'channel.public.product.variant.get',
+  'FIND_PUBLIC_PRODUCT_VARIANTS': 'channel.public.product.variant.list', // ALIAS
+  'LIST_PUBLIC_PRODUCT_VARIANTS': 'channel.public.product.variant.list',
+
+  'GET_PRODUCT_VARIANT_ASSOCIATION': 'channel.product.variant.association.get',
+  'LIST_PRODUCT_VARIANT_ASSOCIATIONS': 'channel.product.variant.association.list',
+
+  'GET_PUBLIC_PRODUCT_VARIANT_ASSOCIATION': 'channel.public.product.variant.association.get',
+  'LIST_PUBLIC_PRODUCT_VARIANT_ASSOCIATIONS': 'channel.public.product.variant.association.list',
+
+  'GET_PRODUCT_IMAGE_PRIMARY': 'channel.product.image.primary.get',
+  'GET_PRODUCT_IMAGE': 'channel.product.image.get',
+  'LIST_PRODUCT_IMAGES': 'channel.product.image.list',
+
+  'GET_PUBLIC_PRODUCT_IMAGE': 'channel.public.product.image.get',
+  'LIST_PUBLIC_PRODUCT_IMAGES': 'channel.public.product.image.list',
+
+  'GET_PRODUCT_VARIANT_IMAGE': 'channel.product.variant.image.get',
+  'LIST_PRODUCT_VARIANT_IMAGES': 'channel.product.variant.image.list',
+
+  'GET_PUBLIC_PRODUCT_VARIANT_IMAGE': 'channel.public.product.variant.image.get',
+  'LIST_PUBLIC_PRODUCT_VARIANT_IMAGES': 'channel.public.product.variant.image.list',
+
+  'GET_PRODUCT_OFFER': 'channel.product.offer.get',
+  'LIST_PRODUCT_OFFERS': 'channel.product.offer.list',
+
+  'GET_PRODUCT_VENDOR': 'channel.product.vendor.get',
+  'LIST_PRODUCT_VENDORS': 'channel.product.vendor.list',
+}
+export const PRODUCT_EVENTS = {
+  'PRODUCT_CREATED': 'channel.product.created',
+  'PRODUCTS_MERGED': 'channel.product.merged.list',
+  'PRODUCT_ADDED': 'channel.product.added',
+  'PRODUCTS_ADDED': 'channel.product.added.list',
+  'PRODUCT_UPDATED': 'channel.product.updated',
+  'PRODUCT_DESTROYED': 'channel.product.destroyed',
+  'PRODUCTS_UPLOADED': 'channel.product.uploaded.list',
+  'PRODUCTS_UPLOAD_PROCESSED': 'channel.product.upload.processed.list',
+  'PRODUCT_REMOVED': 'channel.product.removed',
+  'PRODUCT_PUBLISHED': 'channel.product.published',
+  'PRODUCT_UNPUBLISHED': 'channel.product.unpublished',
+  'PRODUCTS_PUBLISHED': 'channel.product.published.list',
+  'PRODUCTS_UNPUBLISHED': 'channel.product.unpublished.list',
+
+  'PRODUCT_IMAGE_PRIMARY_SET': 'channel.product.image_primary.set',
+  'PRODUCT_VARIANT_DEFAULT_SET': 'channel.product.variant_default.set',
+
+  'PRODUCT_ASSOCIATION_ADDED': 'channel.product.association.added',
+  'PRODUCT_ASSOCIATIONS_ADDED': 'channel.product.association.added.list',
+  'PRODUCT_ASSOCIATION_CREATED': 'channel.product.association.created',
+  'PRODUCT_ASSOCIATIONS_CREATED': 'channel.product.association.created.list',
+  'PRODUCT_ASSOCIATION_UPDATED': 'channel.product.association.updated',
+  'PRODUCT_ASSOCIATION_REMOVED': 'channel.product.association.removed',
+  'PRODUCT_ASSOCIATION_DESTROYED': 'channel.product.association.destroyed',
+  'PRODUCT_ASSOCIATIONS_UPLOADED': 'channel.product.association.uploaded.list',
+  'PRODUCT_ASSOCIATION_PUBLISHED': 'channel.product.association.published',
+  'PRODUCT_ASSOCIATION_UNPUBLISHED': 'channel.product.association.unpublished',
+
+  'PRODUCT_CATEGORY_ADDED': 'channel.product.category.added',
+  'PRODUCT_CATEGORY_REMOVED': 'channel.product.category.removed',
+
+  'PRODUCT_IMAGE_ADDED': 'channel.product.image.added',
+  'PRODUCT_IMAGES_ADDED': 'channel.product.image.added.list',
+  'PRODUCT_IMAGE_CREATED': 'channel.product.image.created',
+  'PRODUCT_IMAGES_CREATED': 'channel.product.image.created.list',
+  'PRODUCT_IMAGE_UPDATED': 'channel.product.image.updated',
+  'PRODUCT_IMAGE_REMOVED': 'channel.product.image.removed',
+  'PRODUCT_IMAGE_DESTROYED': 'channel.product.image.destroyed',
+  'PRODUCT_IMAGES_UPLOADED': 'channel.product.image.uploaded.list',
+  'PRODUCT_IMAGE_PUBLISHED': 'channel.product.image.published',
+  'PRODUCT_IMAGE_UNPUBLISHED': 'channel.product.image.unpublished',
+
+
+  'PRODUCTS_METADATA_UPLOADED': 'channel.product.metadata.uploaded.list',
+  'PRODUCTS_METADATA_UPLOAD_PROCESSED': 'channel.product.metadata.upload.processed.list',
+
+  'PRODUCT_VARIANT_ADDED': 'channel.product.variant.added',
+  'PRODUCT_VARIANTS_ADDED': 'channel.product.variant.added.list',
+  'PRODUCT_VARIANT_CREATED': 'channel.product.variant.created',
+  'PRODUCT_VARIANTS_CREATED': 'channel.product.variant.created.list',
+  'PRODUCT_VARIANT_UPDATED': 'channel.product.variant.updated',
+  'PRODUCT_VARIANT_REMOVED': 'channel.product.variant.removed',
+  'PRODUCT_VARIANT_DESTROYED': 'channel.product.variant.destroyed',
+  'PRODUCT_VARIANTS_UPLOADED': 'channel.product.variant.uploaded.list',
+  'PRODUCT_VARIANT_PUBLISHED': 'channel.product.variant.published',
+  'PRODUCT_VARIANT_UNPUBLISHED': 'channel.product.variant.unpublished',
+  'PRODUCT_VARIANTS_PUBLISHED': 'channel.product.variant.published.list',
+  'PRODUCT_VARIANTS_UNPUBLISHED': 'channel.product.variant.unpublished.list',
+
+  'PRODUCT_VARIANT_ASSOCIATION_ADDED': 'channel.product.variant.association.added',
+  'PRODUCT_VARIANT_ASSOCIATIONS_ADDED': 'channel.product.variant.association.added.list',
+  'PRODUCT_VARIANT_ASSOCIATION_CREATED': 'channel.product.variant.association.created',
+  'PRODUCT_VARIANT_ASSOCIATIONS_CREATED': 'channel.product.variant.association.created.list',
+  'PRODUCT_VARIANT_ASSOCIATION_UPDATED': 'channel.product.variant.association.updated',
+  'PRODUCT_VARIANT_ASSOCIATION_REMOVED': 'channel.product.variant.association.removed',
+  'PRODUCT_VARIANT_ASSOCIATION_DESTROYED': 'channel.product.variant.association.destroyed',
+  'PRODUCT_VARIANT_ASSOCIATIONS_UPLOADED': 'channel.product.variant.association.uploaded.list',
+  'PRODUCT_VARIANT_ASSOCIATION_PUBLISHED': 'channel.product.variant.association.published',
+  'PRODUCT_VARIANT_ASSOCIATION_UNPUBLISHED': 'channel.product.variant.association.unpublished',
+
+  'PRODUCT_VARIANT_IMAGE_ADDED': 'channel.product.variant.image.added',
+  'PRODUCT_VARIANT_IMAGES_ADDED': 'channel.product.variant.added.image.list',
+  'PRODUCT_VARIANT_IMAGE_CREATED': 'channel.product.variant.image.created',
+  'PRODUCT_VARIANT_IMAGES_CREATED': 'channel.product.variant.created.image.list',
+  'PRODUCT_VARIANT_IMAGE_UPDATED': 'channel.product.variant.image.updated',
+  'PRODUCT_VARIANT_IMAGE_REMOVED': 'channel.product.variant.image.removed',
+  'PRODUCT_VARIANT_IMAGE_DESTROYED': 'channel.product.variant.image.destroyed',
+  'PRODUCT_VARIANT_IMAGES_UPLOADED': 'channel.product.variant.uploaded.image.list',
+  'PRODUCT_VARIANT_IMAGE_PUBLISHED': 'channel.product.variant.image.published',
+  'PRODUCT_VARIANT_IMAGE_UNPUBLISHED': 'channel.product.variant.image.unpublished',
+
+  'PRODUCT_VENDOR_ADDED': 'channel.product.vendor.added',
+  'PRODUCT_VENDORS_ADDED': 'channel.product.vendor.added.list',
+  'PRODUCT_VENDOR_CREATED': 'channel.product.vendor.created',
+  'PRODUCT_VENDORS_CREATED': 'channel.product.vendor.created.list',
+  'PRODUCT_VENDOR_UPDATED': 'channel.product.vendor.updated',
+  'PRODUCT_VENDOR_REMOVED': 'channel.product.vendor.removed',
+  'PRODUCT_VENDOR_DESTROYED': 'channel.product.vendor.destroyed',
+  'PRODUCT_VENDORS_UPLOADED': 'channel.product.vendor.uploaded.list',
+  'PRODUCT_VENDOR_PUBLISHED': 'channel.product.vendor.published',
+  'PRODUCT_VENDOR_UNPUBLISHED': 'channel.product.vendor.unpublished',
+  'PRODUCT_VENDORS_PUBLISHED': 'channel.product.vendor.published.list',
+  'PRODUCT_VENDORS_UNPUBLISHED': 'channel.product.vendor.unpublished.list',
+}
