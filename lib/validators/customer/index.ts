@@ -1,14 +1,22 @@
 import { Utils } from '../../Utils'
-import {customer as customerSchema} from '../../schemas'
+import { customer as customerSchema } from '../../schemas'
 import {ACTIONS, COMMANDS} from '../../enums'
 
 // TODO, refactor the keys into Commands/Actions
 export const customer = {
-  // Commands
-  'create': (data) => Utils.joiPromise(data, customerSchema.commands[COMMANDS.CREATE_CUSTOMER]),
-  'update': (data) => Utils.joiPromise(data, customerSchema.commands[COMMANDS.UPDATE_CUSTOMER]),
+  // COMMANDS
+  [COMMANDS.CREATE_CUSTOMER]: (data) => Utils.joiPromise(data, customerSchema.commands[COMMANDS.CREATE_CUSTOMER]),
+  [COMMANDS.UPDATE_CUSTOMER]: (data) => Utils.joiPromise(data, customerSchema.commands[COMMANDS.UPDATE_CUSTOMER]),
+  [COMMANDS.SET_CUSTOMER_BILLING]: (data) => Utils.joiPromise(data, customerSchema.commands[COMMANDS.SET_CUSTOMER_BILLING]),
+  [COMMANDS.SET_CUSTOMER_SHIPPING]: (data) => Utils.joiPromise(data, customerSchema.commands[COMMANDS.SET_CUSTOMER_SHIPPING]),
+  
+  
+  // ACTIONS
+  [ACTIONS.GET_CUSTOMER]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.GET_CUSTOMER]),
+  [ACTIONS.FIND_CUSTOMER]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.FIND_CUSTOMER]),
+  [ACTIONS.LIST_CUSTOMERS]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.LIST_CUSTOMERS]),
+  [ACTIONS.FIND_CUSTOMERS]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.FIND_CUSTOMERS]),
 
-  // Actions
-  'get': (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.GET_CUSTOMER]),
-  'list': (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.LIST_CUSTOMERS])
+  [ACTIONS.GET_CUSTOMER_BILLING]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.GET_CUSTOMER_BILLING]),
+  [ACTIONS.GET_CUSTOMER_SHIPPING]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.GET_CUSTOMER_SHIPPING])
 }

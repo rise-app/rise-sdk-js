@@ -70,6 +70,88 @@ describe('# RiSE Channel Customer API', () => {
       })
   })
 
+  it('### Should set Billing Address on a Customer', (done) => {
+
+    rise.channelCustomer.setAddressBilling({
+      channel_uuid: channel_uuid,
+      customer_uuid: customer.customer_uuid,
+      address_1: '1600 Pennsylvania Ave NW',
+      address_2: '',
+      address_3: '',
+      company: '',
+      city: 'Washington',
+      province_code: 'DC',
+      country_code: 'US',
+      postal_code: '20500',
+    })
+      .then(_res => {
+        assert.equal(_res.object, 'ChannelCustomer.address_billing')
+        // assert.equal(_res.event_type, EVENTS.CUSTOMER_ADDRESS_BILLING_SET)
+        console.log('brk res address', _res)
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should get Billing Address of Customer', (done) => {
+
+    rise.channelCustomer.getAddressBilling({
+      channel_uuid: channel_uuid,
+      customer_uuid: customer.customer_uuid
+    })
+      .then(_res => {
+        assert.equal(_res.object, 'ChannelCustomer.address_billing')
+        assert.equal(_res.action, ACTIONS.GET_CUSTOMER_BILLING)
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should set Shipping Address on a Customer', (done) => {
+
+    rise.channelCustomer.setAddressShipping({
+      channel_uuid: channel_uuid,
+      customer_uuid: customer.customer_uuid,
+      address_1: '1600 Pennsylvania Ave NW',
+      address_2: '',
+      address_3: '',
+      company: '',
+      city: 'Washington',
+      province_code: 'DC',
+      country_code: 'US',
+      postal_code: '20500',
+    })
+      .then(_res => {
+        assert.equal(_res.object, 'ChannelCustomer.address_shipping')
+        // assert.equal(_res.event_type, EVENTS.CUSTOMER_ADDRESS_SHIPPING_SET)
+        console.log('brk res address', _res)
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should get Shipping Address of Customer', (done) => {
+
+    rise.channelCustomer.getAddressShipping({
+      channel_uuid: channel_uuid,
+      customer_uuid: customer.customer_uuid
+    })
+      .then(_res => {
+        assert.equal(_res.object, 'ChannelCustomer.address_shipping')
+        assert.equal(_res.action, ACTIONS.GET_CUSTOMER_SHIPPING)
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
   it('### Should Get a Channel Customer', (done) => {
 
     rise.channelCustomer.get({
