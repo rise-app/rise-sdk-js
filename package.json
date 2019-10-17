@@ -1,6 +1,6 @@
 {
   "name": "@rise/sdk-js",
-  "version": "1.0.0-alpha.13",
+  "version": "1.0.0-alpha.14",
   "description": "Node SDK for RiSE",
   "author": {
     "name": "scott-wyatt",
@@ -16,6 +16,8 @@
     "test": "npm run clean && npm run lint && npm run build && nyc mocha",
     "test:build:application": "run-s pre-test test:application",
     "test:application": "NODE_ENV=testing nyc mocha --opts test/mocha-application.opts --exit",
+    "test:build:auth": "run-s pre-test test:auth",
+    "test:auth": "NODE_ENV=testing nyc mocha --opts test/mocha-auth.opts --exit",
     "test:build:billing": "run-s pre-test test:billing",
     "test:billing": "NODE_ENV=testing nyc mocha --opts test/mocha-billing.opts --exit",
     "test:build:cart": "run-s pre-test test:cart",

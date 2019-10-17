@@ -172,6 +172,42 @@ describe('# RiSE Channel Customer API', () => {
       })
   })
 
+  it.skip('### Should Get Public Channel Customer', (done) => {
+
+    rise.channelCustomer.getPublic({
+      channel_uuid: channel_uuid,
+      customer_uuid: customer.customer_uuid
+    })
+      .then(_res => {
+        // customer = _res.data
+        // assert.equal(customer.name_first, 'Hello')
+        // assert.equal(customer.name_last, 'World')
+
+        console.log('brk customer', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it.skip('### Should Get Public Channel Customer by handle', (done) => {
+
+    rise.channelCustomer.getPublicByHandle({
+      channel_uuid: channel_uuid,
+      handle: customer.customer_handle
+    })
+      .then(_res => {
+        console.log('brk customer', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
   it('### Should List Channel Customers', (done) => {
 
     rise.channelCustomer.list({

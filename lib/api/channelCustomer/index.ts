@@ -4,6 +4,9 @@ import { customer } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
 export class ChannelCustomer extends ApiClass {
+  /**********************************
+   * PRIVATE
+   **********************************/
   @Command({ method: 'POST', route: 'channels/:channel_uuid/customers', validator: customer[COMMANDS.CREATE_CUSTOMER] })
   create(data, req?, validated?) {
     return this.rise.request(req, data, validated)
@@ -40,6 +43,33 @@ export class ChannelCustomer extends ApiClass {
 
   @Action({ method: 'GET', route: 'channels/:channel_uuid/customers/:customer_uuid/address_shipping', validator: customer[ACTIONS.GET_CUSTOMER_SHIPPING] })
   getAddressShipping(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
+
+  /**********************************
+   * PUBLIC
+   **********************************/
+
+  /**
+   * Get a Public Customer Details by ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/customers/:customer_uuid', validator: customer[ACTIONS.GET_PUBLIC_CUSTOMER] })
+  getPublic(data, req?, validated?) {
+    return this.rise.request(req, data, validated)
+  }
+
+  /**
+   * Get a Public Customer Details by Handle
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/customers/handle/:handle', validator: customer[ACTIONS.FIND_PUBLIC_CUSTOMER] })
+  getPublicByHandle(data, req?, validated?) {
     return this.rise.request(req, data, validated)
   }
 }

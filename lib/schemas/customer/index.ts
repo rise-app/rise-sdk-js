@@ -78,6 +78,19 @@ export const actions = {
     customer_uuid: uuid.required(),
   }).unknown(),
 
+  [ACTIONS.FIND_CUSTOMER]: joi.object().keys({
+    channel_uuid: uuid.required(),
+  }).unknown(),
+
+  [ACTIONS.GET_PUBLIC_CUSTOMER]: joi.object().keys({
+    channel_uuid: uuid.required(),
+    customer_uuid: uuid.required(),
+  }).unknown(),
+
+  [ACTIONS.FIND_PUBLIC_CUSTOMER]: joi.object().keys({
+    channel_uuid: uuid.required()
+  }).unknown(),
+
   [ACTIONS.GET_CUSTOMER_SHIPPING]: joi.object().keys({
     channel_uuid: uuid.required(),
     customer_uuid: uuid.required(),
@@ -86,10 +99,6 @@ export const actions = {
   [ACTIONS.GET_CUSTOMER_BILLING]: joi.object().keys({
     channel_uuid: uuid.required(),
     customer_uuid: uuid.required(),
-  }).unknown(),
-
-  [ACTIONS.FIND_CUSTOMER]: joi.object().keys({
-    channel_uuid: uuid.required(),
   }).unknown(),
 
 

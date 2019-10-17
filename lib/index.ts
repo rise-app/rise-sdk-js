@@ -386,14 +386,16 @@ export class RiSE {
       json?: boolean,
       body?: any
     } = {
-      headers: {},
+      // ...__req,
+      headers: {
+        ...__req.headers
+      },
       method: method,
       url: url,
       strictSSL: true,
       json: true,
       body: body,
-      params: params,
-      // ...__req
+      params: params
     }
 
     if (__req.public_key || this.config.public_key) {

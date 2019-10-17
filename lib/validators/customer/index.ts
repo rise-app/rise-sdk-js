@@ -13,7 +13,9 @@ export const customer = {
   
   // ACTIONS
   [ACTIONS.GET_CUSTOMER]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.GET_CUSTOMER]),
+  [ACTIONS.GET_PUBLIC_CUSTOMER]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.GET_PUBLIC_CUSTOMER]),
   [ACTIONS.FIND_CUSTOMER]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.FIND_CUSTOMER]),
+  [ACTIONS.FIND_PUBLIC_CUSTOMER]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.FIND_PUBLIC_CUSTOMER]),
   [ACTIONS.LIST_CUSTOMERS]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.LIST_CUSTOMERS]),
   [ACTIONS.FIND_CUSTOMERS]: (data) => Utils.joiPromise(data, customerSchema.actions[ACTIONS.FIND_CUSTOMERS]),
 
