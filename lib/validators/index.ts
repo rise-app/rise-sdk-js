@@ -1,4 +1,5 @@
 export { core } from './core'
+export { auth } from './auth'
 
 export { application } from './application'
 export { cart } from './cart'

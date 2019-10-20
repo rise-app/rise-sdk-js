@@ -172,6 +172,29 @@ describe('# RiSE Channel Customer API', () => {
       })
   })
 
+  it('### Should List Channel Customers', (done) => {
+
+    rise.channelCustomer.list({
+      channel_uuid: channel_uuid
+    }, {
+      query: {
+        limit: 5
+      }
+    })
+      .then(_res => {
+        assert.equal(_res.limit, 5)
+        assert.equal(_res.offset, 0)
+        // assert.equal(customer.name_last, 'World')
+
+        console.log('brk customer', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
   it('### Should Get Public Channel Customer', (done) => {
 
     rise.channelCustomer.getPublic({
@@ -208,9 +231,12 @@ describe('# RiSE Channel Customer API', () => {
       })
   })
 
-  it('### Should List Channel Customers', (done) => {
+  // This may never be implemented, this is because it's likely a poor idea
+  // to list public customers and instead let the developer decide what
+  // customers to actually list in their app and not let it be crawled.
+  it.skip('### Should List Public Channel Customers', (done) => {
 
-    rise.channelCustomer.list({
+    rise.channelCustomer.listPublic({
       channel_uuid: channel_uuid
     }, {
       query: {

@@ -1,4 +1,5 @@
 import * as core from './core'
+import * as auth from './auth'
 
 import * as application from './application'
 import * as cart from './cart'
@@ -13,6 +14,7 @@ import * as user from './user'
 
 export {
   core,
+  auth,
 
   application,
   cart,

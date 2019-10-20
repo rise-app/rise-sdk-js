@@ -33,6 +33,7 @@ export class RiSE {
 
   // APIs
   public channel: api.Channel
+  public channelAuth: api.ChannelAuth
   public channelApplication: api.ChannelApplication
   public channelBillingModel: api.ChannelBillingModel
   public channelCart: api.ChannelCart
@@ -132,6 +133,7 @@ export class RiSE {
 
     // Initialize the APIs
     this.channel = new api.Channel(this)
+    this.channelAuth = new api.ChannelAuth(this)
     this.channelApplication = new api.ChannelApplication(this)
     this.channelBillingModel = new api.ChannelBillingModel(this)
     this.channelCart = new api.ChannelCart(this)
@@ -260,7 +262,7 @@ export class RiSE {
    *
    */
   authenticateApiUser(channel_uuid, identifier?, password?) {
-    return this.channelUser.login({
+    return this.channelAuth.login({
       channel_uuid: channel_uuid,
       username: identifier || this.config.username || this.config.email,
       password: password || this.config.password

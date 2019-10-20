@@ -1,4 +1,5 @@
 export { Channel } from './channel'
+export { ChannelAuth } from './channelAuth'
 export { ChannelApplication } from './channelApplication'
 export { ChannelBillingModel } from './channelBillingModel'
 export { ChannelCart, ChannelCartItem } from './channelCart'
