@@ -44,6 +44,13 @@ export class RiSE {
   public channelCountry: api.ChannelCountry
   public channelCountryProvince: api.ChannelCountryProvince
   public channelCustomer: api.ChannelCustomer
+  public channelCustomerCampaign: api.ChannelCustomerCampaign
+  public channelCustomerCart: api.ChannelCustomerCart
+  public channelCustomerFeed: api.ChannelCustomerFeed
+  public channelCustomerOrder: api.ChannelCustomerOrder
+  public channelCustomerGatewayAccount: api.ChannelCustomerGatewayAccount
+  public channelCustomerGatewayAccountSource: api.ChannelCustomerGatewayAccountSource
+  public channelCustomerUser: api.ChannelCustomerUser
   public channelFeed: api.ChannelFeed
   public channelFulfillment: api.ChannelFulfillment
   public channelGateway: api.ChannelGateway
@@ -144,6 +151,13 @@ export class RiSE {
     this.channelCountry = new api.ChannelCountry(this)
     this.channelCountryProvince = new api.ChannelCountryProvince(this)
     this.channelCustomer = new api.ChannelCustomer(this)
+    this.channelCustomerCampaign = new api.ChannelCustomerCampaign(this)
+    this.channelCustomerCart = new api.ChannelCustomerCart(this)
+    this.channelCustomerFeed = new api.ChannelCustomerFeed(this)
+    this.channelCustomerOrder = new api.ChannelCustomerOrder(this)
+    this.channelCustomerGatewayAccount = new api.ChannelCustomerGatewayAccount(this)
+    this.channelCustomerGatewayAccountSource = new api.ChannelCustomerGatewayAccountSource(this)
+    this.channelCustomerUser = new api.ChannelCustomerUser(this)
     this.channelFeed = new api.ChannelFeed(this)
     this.channelFulfillment = new api.ChannelFulfillment(this)
     this.channelGateway = new api.ChannelGateway(this)

@@ -73,3 +73,17 @@ export class ChannelCustomer extends ApiClass {
     return this.rise.request(req, data, validated)
   }
 }
+
+export class ChannelCustomerCampaign extends ApiClass {}
+
+export class ChannelCustomerCart extends ApiClass {}
+
+export class ChannelCustomerFeed extends ApiClass {}
+
+export class ChannelCustomerOrder extends ApiClass {}
+
+export class ChannelCustomerGatewayAccount extends ApiClass {}
+
+export class ChannelCustomerGatewayAccountSource extends ApiClass {}
+
+export class ChannelCustomerUser extends ApiClass {}
