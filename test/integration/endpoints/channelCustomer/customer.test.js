@@ -172,7 +172,7 @@ describe('# RiSE Channel Customer API', () => {
       })
   })
 
-  it.skip('### Should Get Public Channel Customer', (done) => {
+  it('### Should Get Public Channel Customer', (done) => {
 
     rise.channelCustomer.getPublic({
       channel_uuid: channel_uuid,
@@ -192,7 +192,7 @@ describe('# RiSE Channel Customer API', () => {
       })
   })
 
-  it.skip('### Should Get Public Channel Customer by handle', (done) => {
+  it('### Should Get Public Channel Customer by handle', (done) => {
 
     rise.channelCustomer.getPublicByHandle({
       channel_uuid: channel_uuid,
