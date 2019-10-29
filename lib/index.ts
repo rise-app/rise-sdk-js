@@ -9,6 +9,23 @@ export const COMMANDS = _COMMANDS
 export const EVENTS = _EVENTS
 export const ACTIONS = _ACTIONS
 
+export interface RiSEResponse {
+  // The dot notation of the event created
+  event_type?: string
+  // The dot notation of the action run
+  action?: string
+  includes?: any
+  list?: string
+  object?: string
+  data?: {[key: string]: any} | any[]
+  url?: string
+  urls?: {[key: string]: any} | any[]
+  offset?: number
+  limit?:  number
+  total?: number
+  sort?: any
+}
+
 // Export the RiSEConfig for developer use
 export interface RiSEConfig {
   [key: string]: any
@@ -281,7 +298,7 @@ export class RiSE {
       username: identifier || this.config.username || this.config.email,
       password: password || this.config.password
     })
-      .then(body => {
+      .then((body: {[key: string]: any} = {}) => {
         this.user = body.data.ChannelUser
         this.cart = body.data.ChannelCart
         this.token = body.token
@@ -354,7 +371,7 @@ export class RiSE {
    * @param {*} body as json
    * @param validation
    */
-  request(req, body = {}, validation = null) {
+  request(req, body: {[key: string]: any} = {}, validation: any = null): Promise<RiSEResponse> {
     // console.log('brk validation', validation)
 
     // If this request didn't pass validation

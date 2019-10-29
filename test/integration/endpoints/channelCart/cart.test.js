@@ -371,7 +371,6 @@ describe('# RiSE Channel Cart API', () => {
         })
           .then(_res => {
             item = _res.data
-            // assert.equal(_res.event_type, 'channel.cart.item.created')
             assert.equal(_res.object, 'ChannelCartItem')
             assert.ok(item)
 
@@ -444,7 +443,7 @@ describe('# RiSE Channel Cart API', () => {
           })
           .then(_res => {
             item = _res.data[0]
-            // assert.equal(_res.event_type, 'channel.cart.item.list.created')
+
             assert.equal(_res.list, 'ChannelCartItem')
             assert.ok(item)
 

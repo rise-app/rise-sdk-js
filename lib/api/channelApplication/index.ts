@@ -12,7 +12,7 @@ export class ChannelApplication extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/applications/subscribe', validator: application[ACTIONS.SUBSCRIBE_APPLICATION] })
   subscribe(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
 
@@ -28,7 +28,7 @@ export class ChannelApplication extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/applications/:application_uuid', validator: application[ACTIONS.GET_APPLICATION] })
   get(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -39,7 +39,7 @@ export class ChannelApplication extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/applications', validator: application[ACTIONS.LIST_APPLICATIONS] })
   list(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
 
@@ -51,7 +51,7 @@ export class ChannelApplication extends ApiClass {
    */
   @Command({ method: 'POST', route: 'channels/:channel_uuid/applications', validator: application[COMMANDS.CREATE_APPLICATION] })
   create(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -62,6 +62,6 @@ export class ChannelApplication extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/applications/:application_uuid', validator: application[COMMANDS.UPDATE_APPLICATION] })
   update(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 }

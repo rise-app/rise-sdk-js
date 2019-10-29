@@ -16,7 +16,7 @@ export class ChannelCart extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid', validator: cart[ACTIONS.GET_CART] })
   get(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -27,7 +27,7 @@ export class ChannelCart extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts', validator: cart[ACTIONS.LIST_CARTS] })
   list(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -38,7 +38,7 @@ export class ChannelCart extends ApiClass {
    */
   @Command({ method: 'POST', route: 'channels/:channel_uuid/carts', validator: cart[COMMANDS.CREATE_CART] })
   create(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -49,7 +49,7 @@ export class ChannelCart extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid', validator: cart[COMMANDS.UPDATE_CART] })
   update(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -60,7 +60,7 @@ export class ChannelCart extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/address_billing', validator: cart[COMMANDS.SET_CART_BILLING] })
   setAddressBilling(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -71,7 +71,7 @@ export class ChannelCart extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/address_billing', validator: cart[ACTIONS.GET_CART_BILLING] })
   getAddressBilling(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -82,7 +82,7 @@ export class ChannelCart extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/address_shipping', validator: cart[COMMANDS.SET_CART_SHIPPING] })
   setAddressShipping(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -93,7 +93,7 @@ export class ChannelCart extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/address_shipping', validator: cart[ACTIONS.GET_CART_SHIPPING] })
   getAddressShipping(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -104,7 +104,7 @@ export class ChannelCart extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/customer', validator: cart[COMMANDS.SET_CART_CUSTOMER]})
   setCustomer(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -115,7 +115,7 @@ export class ChannelCart extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/customer', validator: cart[ACTIONS.GET_CART_CUSTOMER] })
   getCustomer(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -126,7 +126,7 @@ export class ChannelCart extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/payment_details', validator: cart[COMMANDS.SET_CART_PAYMENT] })
   setPaymentDetails(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -137,7 +137,7 @@ export class ChannelCart extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/payment_details', validator: cart[ACTIONS.GET_CART_PAYMENT_DETAILS] })
   getPaymentDetails(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -148,7 +148,7 @@ export class ChannelCart extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/payment_details', validator: cart[COMMANDS.SET_CART_FULFILLMENT] })
   setFulfillmentDetails(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -159,7 +159,7 @@ export class ChannelCart extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/fulfillment_details', validator: cart[ACTIONS.GET_CART_FULFILLMENT_DETAILS] })
   getFulfillmentDetails(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
 
@@ -171,7 +171,7 @@ export class ChannelCart extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/checkout', validator: cart[COMMANDS.CHECKOUT_CART] })
   checkout(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -182,7 +182,7 @@ export class ChannelCart extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/close', validator: cart[COMMANDS.CLOSE_CART] })
   close(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 }
 
@@ -201,7 +201,7 @@ export class ChannelCartItem extends ApiClass {
    */
   @Command({ method: 'POST', route: 'channels/:channel_uuid/carts/:cart_uuid/items', validator: cart[COMMANDS.CREATE_CART_ITEM] })
   create(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -212,7 +212,7 @@ export class ChannelCartItem extends ApiClass {
    */
   @Command({ method: 'POST', route: 'channels/:channel_uuid/carts/:cart_uuid/items', validator: cart[COMMANDS.CREATE_CART_ITEMS]})
   bulkCreate(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -223,7 +223,7 @@ export class ChannelCartItem extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid', validator: cart[COMMANDS.UPDATE_CART_ITEM] })
   update(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -234,7 +234,7 @@ export class ChannelCartItem extends ApiClass {
    */
   @Command({ method: 'DELETE', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid', validator: cart[COMMANDS.REMOVE_CART_ITEM] })
   remove(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
 
@@ -247,7 +247,7 @@ export class ChannelCartItem extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/payment_details', validator: cart[COMMANDS.SET_CART_ITEM_PAYMENT] })
   setPaymentDetails(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -258,7 +258,7 @@ export class ChannelCartItem extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/payment_details', validator: cart[ACTIONS.GET_CART_ITEM_PAYMENT_DETAILS] })
   getPaymentDetails(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -269,7 +269,7 @@ export class ChannelCartItem extends ApiClass {
    */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/payment_details', validator: cart[COMMANDS.SET_CART_ITEM_FULFILLMENT] })
   setFulfillmentDetails(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -280,7 +280,7 @@ export class ChannelCartItem extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/fulfillment_details', validator: cart[ACTIONS.GET_CART_ITEM_FULFILLMENT_DETAILS] })
   getFulfillmentDetails(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -291,7 +291,7 @@ export class ChannelCartItem extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid', validator: cart[ACTIONS.GET_CART_ITEM] })
   get(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 
   /**
@@ -302,6 +302,6 @@ export class ChannelCartItem extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/items', validator: cart[ACTIONS.LIST_CART_ITEMS] })
   list(data, req?, validated?) {
-    return this.rise.request(req, data, validated)
+    return this.request(req, data, validated)
   }
 }

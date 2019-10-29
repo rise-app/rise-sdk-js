@@ -29,31 +29,31 @@ export const commands = {
     country_code: joi.string().required(),
   }).unknown(),
 
-  [COMMANDS.ADD_COUNTRY_PROVINCE]: joi.object().keys({
+  [COMMANDS.ADD_PROVINCE]: joi.object().keys({
     channel_uuid: uuid.required(),
     country_code: joi.string().required(),
     province_code: joi.string().required(),
   }).unknown(),
 
-  [COMMANDS.UPDATE_COUNTRY_PROVINCE]: joi.object().keys({
+  [COMMANDS.UPDATE_PROVINCE]: joi.object().keys({
     channel_uuid: uuid.required(),
     country_code: joi.string().required(),
     province_code: joi.string().required(),
   }).unknown(),
 
-  [COMMANDS.REMOVE_COUNTRY_PROVINCE]: joi.object().keys({
+  [COMMANDS.REMOVE_PROVINCE]: joi.object().keys({
     channel_uuid: uuid.required(),
     country_code: joi.string().required(),
     province_code: joi.string().required(),
   }).unknown(),
 
-  [COMMANDS.PUBLISH_COUNTRY_PROVINCE]: joi.object().keys({
+  [COMMANDS.PUBLISH_PROVINCE]: joi.object().keys({
     channel_uuid: uuid.required(),
     country_code: joi.string().required(),
     province_code: joi.string().required(),
   }).unknown(),
 
-  [COMMANDS.UNPUBLISH_COUNTRY_PROVINCE]: joi.object().keys({
+  [COMMANDS.UNPUBLISH_PROVINCE]: joi.object().keys({
     channel_uuid: uuid.required(),
     country_code: joi.string().required(),
     province_code: joi.string().required(),
