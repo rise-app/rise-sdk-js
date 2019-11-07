@@ -1,4 +1,7 @@
+// Browsers do not have the event emitter class, so this is installed
+import EventEmitter from 'events'
 import { RiSE } from './index'
+import { regexdot } from '@fabrix/regexdot'
 
 import Primus from 'primus'
   // , Socket
@@ -7,13 +10,20 @@ import Primus from 'primus'
 /**
  * Applications on RiSE are anything that accesses the API
  */
-export class ApplicationClass {
+export class ApplicationClass extends EventEmitter {
 
   private Socket
 
   private _client
 
+  private _subscriptions
+
+  private _handlers = new Map()
+  private _patterns = new Set(['connected', 'disconnected', 'error'])
+
   constructor(public rise: RiSE) {
+    super()
+
     // Reference to the core class
     this.rise = rise
 
@@ -40,14 +50,63 @@ export class ApplicationClass {
    */
   connect() {
     this._client = new this.Socket(this.rise.requestUrl)
+
     this._client.on('outgoing::url', (url) => {
       url.query = 'token=' + (this.rise.token || '')
     })
+
+    this._client.on('data', (msg) => {
+      if (msg && msg.subscribed) {
+        this._subscriptions = msg.subscribed
+      }
+      else if (msg && msg.unsubscribed) {
+        this._subscriptions = msg.subscribed
+      }
+      else if (msg && msg.event_type) {
+        this.handler(msg)
+      }
+    })
+
+    this._client.on('open', (msg) => {
+      this.handler({ pattern: 'connected' })
+    })
+
+    this._client.on('close', (msg) => {
+      this.handler({ pattern: 'disconnected' } )
+    })
+
+    this._client.on('error', (msg) => {
+      this.handler({ pattern: 'error', msg })
+    })
+
     return this.client
   }
 
   disconnect() {
     return this.client.end()
+  }
+
+  subscribe(broadcast, subscriptions = []) {
+    subscriptions.forEach(s => {
+      this._patterns.add(s)
+    })
+
+    this._client.write({
+      channel: broadcast,
+      subscribe: subscriptions
+    })
+  }
+
+  unsubscribe(broadcast, subscriptions = []) {
+
+    subscriptions.forEach(s => {
+      this._patterns.delete(s)
+    })
+
+    this._client.write({
+      channel: broadcast,
+      unsubscribe: subscriptions
+    })
   }
 
   /**
@@ -68,8 +127,27 @@ export class ApplicationClass {
   /**
    * Alias to the Client event emitter
    */
-  get on() {
-    return this._client.on
+  // get on() {
+  //   return this._client.on
+  // }
+
+  /**
+   * Get the Socket Client
+   */
+  get subscriptions() {
+    return this._subscriptions || []
   }
 
+  /**
+   * Should not allow setting the client
+   * @param val
+   */
+  set subscriptions(val) {
+    throw new Error('subscriptions cannot be set outside of the ApplicationClass')
+  }
+
+  handler(event) {
+    console.log('brk handler', event)
+    this.emit(event.pattern, event)
+  }
 }

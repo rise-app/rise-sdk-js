@@ -201,6 +201,107 @@ describe('# RiSE Channel Campaign API', () => {
       })
   })
 
+  it('### Should Get a Public Channel Campaign By Handle', (done) => {
+
+    rise.channelCampaign.getPublicByHandle({
+      channel_uuid: channel_uuid,
+      handle: campaign.collection_handle
+    })
+      .then(_res => {
+
+        console.log('brk campaign', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should Get a Public Channel Campaign Parent By Handle', (done) => {
+
+    rise.channelCampaign.getPublicParentByHandle({
+      channel_uuid: channel_uuid,
+      handle: campaign.collection_handle
+    })
+      .then(_res => {
+
+        console.log('brk campaign', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should List Public Channel Campaign Ancestors By Handle', (done) => {
+
+    rise.channelCampaign.listPublicAncestorsByHandle({
+      channel_uuid: channel_uuid,
+      handle: campaign.collection_handle
+    })
+      .then(_res => {
+
+        console.log('brk campaign', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+  it('### Should List Public Channel Campaign Siblings By Handle', (done) => {
+
+    rise.channelCampaign.listPublicSiblingsByHandle({
+      channel_uuid: channel_uuid,
+      handle: campaign.collection_handle
+    })
+      .then(_res => {
+
+        console.log('brk campaign', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should List Public Channel Campaign Children By Handle', (done) => {
+
+    rise.channelCampaign.listPublicChildrenByHandle({
+      channel_uuid: channel_uuid,
+      handle: campaign.collection_handle
+    })
+      .then(_res => {
+
+        console.log('brk campaign', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('### Should List Public Channel Campaign Descendants By Handle', (done) => {
+
+    rise.channelCampaign.listPublicDescendantsByHandle({
+      channel_uuid: channel_uuid,
+      handle: campaign.collection_handle
+    })
+      .then(_res => {
+
+        console.log('brk campaign', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
 
   it('### Should List a Public Channel Campaign\'s Offers', (done) => {
 

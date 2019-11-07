@@ -119,6 +119,31 @@ export class ChannelCampaign extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/handle/:handle/parent', validator: collection.getByAttribute })
+  getParentByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/handle/:handle/ancestors', validator: collection.listByAttribute })
+  listAncestorsByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/handle/:handle/children', validator: collection.listByAttribute })
+  listChildrenByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/handle/:handle/descendants', validator: collection.listByAttribute })
+  listDescendantsByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/handle/:handle/siblings', validator: collection.listByAttribute })
+  listSiblingsByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
   @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns', validator: collection.list })
   list(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -171,6 +196,28 @@ export class ChannelCampaign extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/handle/:handle', validator: collection.listByAttribute })
   getPublicByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/handle/:handle/parent', validator: collection.getByAttribute })
+  getPublicParentByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/handle/:handle/ancestors', validator: collection.listByAttribute })
+  listPublicAncestorsByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/handle/:handle/children', validator: collection.listByAttribute })
+  listPublicChildrenByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/handle/:handle/descendants', validator: collection.listByAttribute })
+  listPublicDescendantsByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/handle/:handle/siblings', validator: collection.listByAttribute })
+  listPublicSiblingsByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

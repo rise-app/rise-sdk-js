@@ -8,15 +8,15 @@ export const COLLECTION_COMMANDS = {
   'REMOVE_COLLECTION': 'remove.channel.:channel_uuid.collection.:collection_uuid',
   'DESTROY_COLLECTION': 'destroy.channel.:channel_uuid.collection.:collection_uuid',
 
-  'UPLOAD_COLLECTIONS': 'upload.channel.:channel_uuid.collection.:collection_uuid',
-  'PROCESS_UPLOADED_COLLECTIONS': 'process.upload.channel.:channel_uuid.collection',
+  'UPLOAD_COLLECTIONS': 'upload.channel.:channel_uuid.list.collection',
+  'PROCESS_UPLOADED_COLLECTIONS': 'process.channel.:channel_uuid.upload.:upload_uuid.list.collection',
   'UPLOAD_COLLECTION_METADATA': 'upload.channel.:channel_uuid.collection.list.metadata',
-  'PROCESS_UPLOADED_COLLECTION_METADATA': 'process.upload.channel.:channel_uuid.collection.list.metadata',
+  'PROCESS_UPLOADED_COLLECTION_METADATA': 'process.channel.:channel_uuid.collection.upload.:upload_uuid.list.metadata',
 
   // Alias
-  'ADD_COLLECTION_CHILD': 'add.channel.:channel_uuid.collection.:collection_uuid',
-  'MOVE_COLLECTION_CHILD': 'move.channel.:channel_uuid.collection.:collection_uuid',
-  'REMOVE_COLLECTION_CHILD': 'remove.channel.:channel_uuid.collection.:collection_uuid',
+  'ADD_COLLECTION_CHILD': 'add.channel.:channel_uuid.collection.:parent_uuid.child.:collection_uuid',
+  'MOVE_COLLECTION_CHILD': 'move.channel.:channel_uuid.collection.:parent_uuid.child.:collection_uuid',
+  'REMOVE_COLLECTION_CHILD': 'remove.channel.:channel_uuid.collection.:parent_uuid.child.:collection_uuid',
 
   'ADD_COLLECTION_PRODUCT': 'add.channel.:channel_uuid.collection.:collection_uuid.product.:product_uuid',
   'ADD_COLLECTION_PRODUCTS': 'add.channel.:channel_uuid.collection.:collection_uuid.list.product',
@@ -174,9 +174,9 @@ export const COLLECTION_EVENTS = {
   'COLLECTIONS_METADATA_UPLOADED': 'channel.:channel_uuid.collection.metadata.uploaded.list',
   'COLLECTIONS_METADATA_UPLOAD_PROCESSED': 'channel.:channel_uuid.collection.metadata.upload.processed.list',
 
-  'COLLECTION_CHILD_ADDED': 'channel.:channel_uuid.collection.:collection_uuid.child.:collection_uuid.added',
-  'COLLECTION_CHILD_MOVED': 'channel.:channel_uuid.collection.:collection_uuid.child.:collection_uuid.moved',
-  'COLLECTION_CHILD_REMOVED': 'channel.:channel_uuid.collection.:collection_uuid.child.:collection_uuid.removed',
+  'COLLECTION_CHILD_ADDED': 'channel.:channel_uuid.collection.:parent_uuid.child.:collection_uuid.added',
+  'COLLECTION_CHILD_MOVED': 'channel.:channel_uuid.collection.:parent_uuid.child.:collection_uuid.moved',
+  'COLLECTION_CHILD_REMOVED': 'channel.:channel_uuid.collection.:parent_uuid.child.:collection_uuid.removed',
 
   'COLLECTION_PRODUCT_ADDED': 'channel.:channel_uuid.collection.:collection_uuid.product.:product_uuid.added',
   'COLLECTION_PRODUCTS_ADDED': 'channel.:channel_uuid.collection.:collection_uuid.product.added.list',
