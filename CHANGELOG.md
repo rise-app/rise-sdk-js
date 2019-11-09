@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.20](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.19...v1.0.0-alpha.20) (2019-11-09)
+
+
+### Features
+
+* adds type validators and globals ([abc660b](https://github.com/rise-app/rise-sdk-js/commit/abc660b))
+* initializes the gateway API ([5d5834f](https://github.com/rise-app/rise-sdk-js/commit/5d5834f))
+
 ## [1.0.0-alpha.19](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.18...v1.0.0-alpha.19) (2019-11-07)
 
 
