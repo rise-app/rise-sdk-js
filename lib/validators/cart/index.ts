@@ -9,24 +9,62 @@ export const cart = {
    ***********************************/
 
   // Commands
-  [COMMANDS.CREATE_CART]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.CREATE_CART]),
-  [COMMANDS.UPDATE_CART]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.UPDATE_CART]),
-  [COMMANDS.SET_CART_BILLING]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_BILLING]),
-  [COMMANDS.SET_CART_SHIPPING]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_SHIPPING]),
-  [COMMANDS.SET_CART_CUSTOMER]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_CUSTOMER]),
-  [COMMANDS.SET_CART_BILLING]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_PAYMENT]),
-  [COMMANDS.SET_CART_FULFILLMENT]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_FULFILLMENT]),
-  [COMMANDS.CHECKOUT_CART]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.CHECKOUT_CART]),
+  [COMMANDS.CREATE_CART]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.CREATE_CART].params),
+    body: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.CREATE_CART].body),
+  },
+  [COMMANDS.UPDATE_CART]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.UPDATE_CART].params),
+    body: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.UPDATE_CART].body)
+  },
+  [COMMANDS.SET_CART_BILLING]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_BILLING].params),
+    body: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_BILLING].body),
+  },
+  [COMMANDS.SET_CART_SHIPPING]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_SHIPPING].params),
+    body: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_SHIPPING].body),
+  },
+  [COMMANDS.SET_CART_CUSTOMER]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_CUSTOMER].params),
+    body: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_CUSTOMER].body),
+  },
+  [COMMANDS.SET_CART_FULFILLMENT]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_FULFILLMENT].params),
+    body: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.SET_CART_FULFILLMENT].body),
+  },
+  [COMMANDS.CHECKOUT_CART]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.CHECKOUT_CART].params)
+  },
 
   // Actions
-  [ACTIONS.GET_CART]: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART]),
-  [ACTIONS.LIST_CARTS]: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.LIST_CARTS]),
+  [ACTIONS.GET_CART]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART].params)
+  },
 
-  [ACTIONS.GET_CART_CUSTOMER]: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_CUSTOMER]),
-  [ACTIONS.GET_CART_BILLING]: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_BILLING]),
-  [ACTIONS.GET_CART_SHIPPING]: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_SHIPPING]),
-  [ACTIONS.GET_CART_FULFILLMENT_DETAILS]: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_FULFILLMENT_DETAILS]),
-  [ACTIONS.GET_CART_PAYMENT_DETAILS]: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_PAYMENT_DETAILS]),
+  [ACTIONS.LIST_CARTS]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.LIST_CARTS].params)
+  },
+
+  [ACTIONS.GET_CART_CUSTOMER]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_CUSTOMER].params)
+  },
+
+  [ACTIONS.GET_CART_BILLING]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_BILLING].params)
+  },
+
+  [ACTIONS.GET_CART_SHIPPING]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_SHIPPING].params)
+  },
+
+  [ACTIONS.GET_CART_FULFILLMENT_DETAILS]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_FULFILLMENT_DETAILS].params)
+  },
+
+  [ACTIONS.GET_CART_PAYMENT_DETAILS]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_PAYMENT_DETAILS].params)
+  },
 
 
   /***********************************
@@ -34,16 +72,35 @@ export const cart = {
    ***********************************/
 
   // Commands
-  [COMMANDS.CREATE_CART_ITEM]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.CREATE_CART_ITEM]),
-  [COMMANDS.CREATE_CART_ITEMS]: (data) => Utils.joiPromiseMap(data, cartSchema.commands[COMMANDS.CREATE_CART_ITEMS]),
-  [COMMANDS.UPDATE_CART_ITEM]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.UPDATE_CART_ITEM]),
-  [COMMANDS.REMOVE_CART_ITEM]: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.REMOVE_CART_ITEM]),
+  [COMMANDS.CREATE_CART_ITEM]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.CREATE_CART_ITEM].params),
+    body: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.CREATE_CART_ITEM].body)
+  },
+  [COMMANDS.CREATE_CART_ITEMS]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.CREATE_CART_ITEM].params),
+    body: (data) => Utils.joiPromiseMap(data, cartSchema.commands[COMMANDS.CREATE_CART_ITEM].body)
+  },
+  [COMMANDS.UPDATE_CART_ITEM]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.UPDATE_CART_ITEM].params),
+    body: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.UPDATE_CART_ITEM].body),
+  },
+  [COMMANDS.REMOVE_CART_ITEM]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.commands[COMMANDS.REMOVE_CART_ITEM].params)
+  },
 
   // Actions
-  [ACTIONS.GET_CART_ITEM]: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_ITEM]),
-  [ACTIONS.LIST_CART_ITEMS]: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.LIST_CART_ITEMS]),
+  [ACTIONS.GET_CART_ITEM]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_ITEM].params)
+  },
+  [ACTIONS.LIST_CART_ITEMS]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.LIST_CART_ITEMS].params)
+  },
 
-  [ACTIONS.GET_CART_ITEM_FULFILLMENT_DETAILS]: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_ITEM_FULFILLMENT_DETAILS]),
-  [ACTIONS.GET_CART_ITEM_PAYMENT_DETAILS]: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_ITEM_PAYMENT_DETAILS]),
+  [ACTIONS.GET_CART_ITEM_FULFILLMENT_DETAILS]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_ITEM_FULFILLMENT_DETAILS].params)
+  },
+  [ACTIONS.GET_CART_ITEM_PAYMENT_DETAILS]: {
+    params: (data) => Utils.joiPromise(data, cartSchema.actions[ACTIONS.GET_CART_ITEM_PAYMENT_DETAILS].params)
+  },
 
 }

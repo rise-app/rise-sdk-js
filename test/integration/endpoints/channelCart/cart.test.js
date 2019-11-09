@@ -12,7 +12,12 @@ describe('# RiSE Channel Cart API', () => {
       url: url,
       sandbox: true,
       public_key: public_key,
-      private_key: private_key
+      private_key: private_key,
+      globals: {
+        params: {
+          channel_uuid
+        }
+      }
     })
 
     rise.authenticateApiUser(
@@ -33,7 +38,7 @@ describe('# RiSE Channel Cart API', () => {
     it('## Should Create a Customer for Cart Testing', (done) => {
 
       rise.channelCustomer.create({
-        channel_uuid: channel_uuid,
+        // channel_uuid: channel_uuid,
         accepts_marketing: true,
         address_shipping: {
           address_1: '1600 Pennsylvania Ave NW',
@@ -71,7 +76,7 @@ describe('# RiSE Channel Cart API', () => {
     it('## Should Get an Offer for Cart Testing', (done) => {
 
       rise.channelOffer.listPublic({
-        channel_uuid: channel_uuid
+        // channel_uuid: channel_uuid
       }, {
         query: {
           limit: 1
@@ -96,7 +101,7 @@ describe('# RiSE Channel Cart API', () => {
     it('### Should Create a Cart', (done) => {
 
       rise.channelCart.create({
-        channel_uuid: channel_uuid
+        // channel_uuid: channel_uuid
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCart')
@@ -113,7 +118,7 @@ describe('# RiSE Channel Cart API', () => {
     it('### Should Update a Cart', (done) => {
 
       rise.channelCart.update({
-        channel_uuid: channel_uuid,
+        // channel_uuid: channel_uuid,
         cart_uuid: cart.cart_uuid,
         notes: 'Well what do we have here?',
       })
