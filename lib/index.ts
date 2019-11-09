@@ -42,7 +42,15 @@ export interface RiSEConfig {
   password?: string,
   request_middleware?: any,
   live_mode?: boolean,
-  logger?: any
+  logger?: any,
+  globals?: {
+    params?: {
+      [key: string]: any
+    },
+    query?: {
+      [key: string]: any
+    }
+  }
 }
 
 // Export the Core RiSE class
@@ -89,6 +97,8 @@ export class RiSE {
 
   // Logger
   public log: any
+
+  public globals: RiSEConfig['globals'] = { params: { hello: 'world'} }
 
   public _cart
   public _user
@@ -155,44 +165,49 @@ export class RiSE {
       this.log = console.log
     }
 
-    // Initialize the APIs
-    this.channel = new api.Channel(this)
-    this.channelAuth = new api.ChannelAuth(this)
-    this.channelApplication = new api.ChannelApplication(this)
-    this.channelBillingModel = new api.ChannelBillingModel(this)
-    this.channelCart = new api.ChannelCart(this)
-    this.channelCartItem = new api.ChannelCartItem(this)
-    this.channelCollection = new api.ChannelCollection(this)
-    this.channelCampaign = new api.ChannelCampaign(this)
-    this.channelCategory = new api.ChannelCategory(this)
-    this.channelCountry = new api.ChannelCountry(this)
-    this.channelCountryProvince = new api.ChannelCountryProvince(this)
-    this.channelCustomer = new api.ChannelCustomer(this)
-    this.channelCustomerCampaign = new api.ChannelCustomerCampaign(this)
-    this.channelCustomerCart = new api.ChannelCustomerCart(this)
-    this.channelCustomerFeed = new api.ChannelCustomerFeed(this)
-    this.channelCustomerOrder = new api.ChannelCustomerOrder(this)
-    this.channelCustomerGatewayAccount = new api.ChannelCustomerGatewayAccount(this)
-    this.channelCustomerGatewayAccountSource = new api.ChannelCustomerGatewayAccountSource(this)
-    this.channelCustomerUser = new api.ChannelCustomerUser(this)
-    this.channelFeed = new api.ChannelFeed(this)
-    this.channelFulfillment = new api.ChannelFulfillment(this)
-    this.channelGateway = new api.ChannelGateway(this)
-    this.channelOffer = new api.ChannelOffer(this)
-    this.channelOfferVariant = new api.ChannelOfferVariant(this)
-    this.channelOrder = new api.ChannelOrder(this)
-    this.channelOrderItem = new api.ChannelOrderItem(this)
-    this.channelPermission = new api.ChannelPermission(this)
-    this.channelProduct = new api.ChannelProduct(this)
-    this.channelProductVariant = new api.ChannelProductVariant(this)
-    this.channelSubscription = new api.ChannelSubscription(this)
-    this.channelTask = new api.ChannelTask(this)
-    this.channelTransaction = new api.ChannelTransaction(this)
-    this.channelUser = new api.ChannelUser(this)
-    this.channelVendor = new api.ChannelVendor(this)
+    // Configure the global Params / Query values
+    if (config.globals) {
+      this.globals = config.globals
+    }
+
+    // // Initialize the APIs
+    this.channel = new api.Channel(this, this.globals)
+    this.channelAuth = new api.ChannelAuth(this, this.globals)
+    this.channelApplication = new api.ChannelApplication(this, this.globals)
+    this.channelBillingModel = new api.ChannelBillingModel(this, this.globals)
+    this.channelCart = new api.ChannelCart(this, this.globals)
+    this.channelCartItem = new api.ChannelCartItem(this, this.globals)
+    this.channelCollection = new api.ChannelCollection(this, this.globals)
+    this.channelCampaign = new api.ChannelCampaign(this, this.globals)
+    this.channelCategory = new api.ChannelCategory(this, this.globals)
+    this.channelCountry = new api.ChannelCountry(this, this.globals)
+    this.channelCountryProvince = new api.ChannelCountryProvince(this, this.globals)
+    this.channelCustomer = new api.ChannelCustomer(this, this.globals)
+    this.channelCustomerCampaign = new api.ChannelCustomerCampaign(this, this.globals)
+    this.channelCustomerCart = new api.ChannelCustomerCart(this, this.globals)
+    this.channelCustomerFeed = new api.ChannelCustomerFeed(this, this.globals)
+    this.channelCustomerOrder = new api.ChannelCustomerOrder(this, this.globals)
+    this.channelCustomerGatewayAccount = new api.ChannelCustomerGatewayAccount(this, this.globals)
+    this.channelCustomerGatewayAccountSource = new api.ChannelCustomerGatewayAccountSource(this, this.globals)
+    this.channelCustomerUser = new api.ChannelCustomerUser(this, this.globals)
+    this.channelFeed = new api.ChannelFeed(this, this.globals)
+    this.channelFulfillment = new api.ChannelFulfillment(this, this.globals)
+    this.channelGateway = new api.ChannelGateway(this, this.globals)
+    this.channelOffer = new api.ChannelOffer(this, this.globals)
+    this.channelOfferVariant = new api.ChannelOfferVariant(this, this.globals)
+    this.channelOrder = new api.ChannelOrder(this, this.globals)
+    this.channelOrderItem = new api.ChannelOrderItem(this, this.globals)
+    this.channelPermission = new api.ChannelPermission(this, this.globals)
+    this.channelProduct = new api.ChannelProduct(this, this.globals)
+    this.channelProductVariant = new api.ChannelProductVariant(this, this.globals)
+    this.channelSubscription = new api.ChannelSubscription(this, this.globals)
+    this.channelTask = new api.ChannelTask(this, this.globals)
+    this.channelTransaction = new api.ChannelTransaction(this, this.globals)
+    this.channelUser = new api.ChannelUser(this, this.globals)
+    this.channelVendor = new api.ChannelVendor(this, this.globals)
 
     // Initialize the Application Connection
-    this.application = new ApplicationClass(this)
+    this.application = new ApplicationClass(this, this.globals)
 
     return this
   }

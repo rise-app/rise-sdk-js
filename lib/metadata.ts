@@ -1,5 +1,7 @@
 import 'reflect-metadata'
+import { isArray } from 'lodash'
 import { core } from './validators'
+import { RiSEConfig } from './index'
 
 /**
  * Command Metadata
@@ -9,13 +11,18 @@ import { core } from './validators'
  * @param validator
  * @constructor
  */
-export function Command({ method = 'POST', route = '', validator }: {method?: string, route?: string, validator?: any}) {
+export function Command({ method = 'POST', route = '', validator, globals }: {method?: string, route?: string, validator?: any, globals?: RiSEConfig['globals']}) {
   return function(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
+
+
     // Original Method
     const _method = descriptor.value
     const reg = new RegExp(/\:(.*?)(\/|$)/g)
 
     descriptor.value = function (...args: any[]) {
+
+      const name = target.constructor.name
+      const { params, query } = Object.getPrototypeOf(target).globals
 
       // Copy the string so that it can be modified
       let _route = route.slice(0, route.length)
@@ -23,13 +30,21 @@ export function Command({ method = 'POST', route = '', validator }: {method?: st
       // The data object passed to the method is always the first argument
       const data = args[0]
       const req = args[1] || {}
+      const globals = args[3] = { globals: { params, query }}
 
-      req.name = `${String(target.constructor.name)}.${String(propertyKey)}`
-      req.params = req.params || {}
+      req.name = `${String(name)}.${String(propertyKey)}`
+      req.params = {...(params || {}), ...(req.params || {})}
+      req.query = {...(query || {}), ...(req.query || {})}
+      req.body = data
 
       _route = _route.replace(reg, (match, $1, $2) => {
+        const replace = req.params[$1] || req.body[$1]
+
+        // If the body was used, add as a param
+        req.params[$1] = replace
+
         // Return the replacement leveraging the parameters.
-        return `${ data[$1] || req.params[$1] }${ $2 ? '/' : '' }`
+        return `${ replace }${ $2 ? '/' : '' }`
       })
 
       // Extend the request argument
@@ -40,10 +55,36 @@ export function Command({ method = 'POST', route = '', validator }: {method?: st
 
       // If the validator was passed to the metadata, then use it to validate
       if (validator) {
-        return core.query(req.query)
+        return Promise.resolve()
+          .then(() => {
+            // Always Validate a query string
+            if (validator && validator.query && typeof validator.query === 'function') {
+              return validator.query(req.query)
+            }
+            return core.query(req.query)
+          })
           .then((valid) => {
-            args[2] = valid
-            return validator(data)
+            if (validator && validator.params && typeof validator.params === 'function') {
+              return validator.params(req.params)
+            }
+            return valid
+          })
+          .then((valid) => {
+            if (validator && validator.body && typeof validator.body === 'function') {
+              return validator.body(req.body)
+            }
+            // If it's just a plain function
+            else if (typeof validator === 'function') {
+              const body = isArray(req.body) ? req.body.map( b => {
+                return {
+                  ...req.params,
+                  ...req.query,
+                  ...b
+                }
+              }) : { ...req.body, ...req.params, ...req.query }
+              return validator(body)
+            }
+            return valid
           })
           .then((valid) => {
             args[2] = valid
@@ -72,13 +113,18 @@ export function Command({ method = 'POST', route = '', validator }: {method?: st
  * @param validator
  * @constructor
  */
-export function Action({ method = 'GET', route = '', validator }: {method?: string, route?: string, validator?: any}) {
+export function Action({ method = 'GET', route = '', validator, globals }: {method?: string, route?: string, validator?: any, globals?: RiSEConfig['globals']}) {
   return function(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
+
+
     // Original Method
     const _method = descriptor.value
     const reg = new RegExp(/\:(.*?)(\/|$)/g)
 
     descriptor.value = function (...args: any[]) {
+
+      const name = target.constructor.name
+      const { params, query } = Object.getPrototypeOf(target).globals
 
       // Copy the string so that it can be modified
       let _route = route.slice(0, route.length)
@@ -86,13 +132,21 @@ export function Action({ method = 'GET', route = '', validator }: {method?: stri
       // The data object passed to the method is always the first argument
       const data = args[0]
       const req = args[1] || {}
+      const globals = args[3] = { globals: { params, query }}
 
-      req.name = `${String(target.constructor.name)}.${String(propertyKey)}`
-      req.params = req.params || {}
+      req.name = `${String(name)}.${String(propertyKey)}`
+      req.params = {...(params || {}), ...(req.params || {})}
+      req.query = {...(query || {}), ...(req.query || {})}
+      req.body = data
 
       _route = _route.replace(reg, (match, $1, $2) => {
+        const replace = req.params[$1] || req.body[$1]
+
+        // If the body was used, add as a param
+        req.params[$1] = replace
+
         // Return the replacement leveraging the parameters.
-        return `${ data[$1] || req.params[$1] }${ $2 ? '/' : '' }`
+        return `${ replace }${ $2 ? '/' : '' }`
       })
 
       // Extend the request argument
@@ -103,10 +157,36 @@ export function Action({ method = 'GET', route = '', validator }: {method?: stri
 
       // If the validator was passed to the metadata, then use it to validate
       if (validator) {
-        return core.query(req.query)
+        return Promise.resolve()
+          .then(() => {
+            // Always Validate a query string
+            if (validator && validator.query && typeof validator.query === 'function') {
+              return validator.query(req.query)
+            }
+            return core.query(req.query)
+          })
           .then((valid) => {
-            args[2] = valid
-            return validator(data)
+            if (validator && validator.params && typeof validator.params === 'function') {
+              return validator.params(req.params)
+            }
+            return valid
+          })
+          .then((valid) => {
+            if (validator && validator.body && typeof validator.body === 'function') {
+              return validator.body(req.body)
+            }
+            // If it's just a plain function
+            else if (typeof validator === 'function') {
+              const body = isArray(req.body) ? req.body.map( b => {
+                return {
+                  ...req.params,
+                  ...req.query,
+                  ...b
+                }
+              }) : { ...req.body, ...req.params, ...req.query }
+              return validator(body)
+            }
+            return valid
           })
           .then((valid) => {
             args[2] = valid

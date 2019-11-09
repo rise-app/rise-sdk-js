@@ -79,7 +79,6 @@ export class ChannelUser extends ApiClass {
   // TODO Validator
   @Command({ method: 'POST', route: 'channels/:channel_uuid/users', validator: user.create })
   create(data, req?, validated?) {
-    console.log('brk create', data, req)
     return this.request(req, data, validated)
   }
 

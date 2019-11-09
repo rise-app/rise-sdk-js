@@ -15,5 +15,5 @@ export const get = joi.object().keys({
 }).unknown()
 
 export const list = joi.object().keys({
-  channel_uuid: uuid.required()
+  // channel_uuid: uuid
 }).unknown()

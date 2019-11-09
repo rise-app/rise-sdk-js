@@ -52,46 +52,73 @@ export const cart = {
 }
 
 export const commands = {
-  [COMMANDS.CREATE_CART]: joi.object().keys({
-    ...cart,
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.CREATE_CART]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...cart,
+    }).unknown()
+  },
 
-  [COMMANDS.UPDATE_CART]: joi.object().keys({
-    ...cart,
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-    email: joi.string().allow(null),
-  }).unknown(),
+  [COMMANDS.UPDATE_CART]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...cart,
+      email: joi.string().allow(null),
+    }).unknown()
+  },
 
-  [COMMANDS.CHECKOUT_CART]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required()
-  }).unknown(),
+  [COMMANDS.CHECKOUT_CART]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required()
+    }).unknown()
+  },
 
-  [COMMANDS.SET_CART_BILLING]: joi.object().keys({
-    ...address,
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.SET_CART_BILLING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+      ...address,
+    }).unknown()
+  },
 
-  [COMMANDS.SET_CART_SHIPPING]: joi.object().keys({
-    ...address,
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.SET_CART_SHIPPING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+      ...address,
+    }).unknown()
+  },
 
-  [COMMANDS.SET_CART_CUSTOMER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-    customer_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.SET_CART_CUSTOMER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+      customer_uuid: uuid.required(),
+    }).unknown(),
+  },
 
-  [COMMANDS.SET_CART_FULFILLMENT]: joi.object().keys({
-    ...fulfillment_details,
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.SET_CART_FULFILLMENT]: {
+    params: joi.object().keys({
+      ...fulfillment_details,
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+      ...fulfillment_details
+    }).unknown()
+  },
 
   [COMMANDS.SET_CART_PAYMENT]: joi.object().keys({
     ...payment_details,
@@ -99,87 +126,114 @@ export const commands = {
     cart_uuid: uuid.required(),
   }).unknown(),
 
-  [COMMANDS.CREATE_CART_ITEM]: joi.object().keys({
-    ...item,
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-    offer_uuid: uuid.required(),
-    variant_uuid: uuid
-  }).unknown(),
+  [COMMANDS.CREATE_CART_ITEM]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required()
+    }).unknown(),
+    body: joi.object().keys({
+      ...item,
+      offer_uuid: uuid.required(),
+      variant_uuid: uuid
+    }).unknown()
+  },
 
-  [COMMANDS.CREATE_CART_ITEMS]: joi.object().keys({
-    ...item,
-    offer_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.UPDATE_CART_ITEM]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+      ...item,
+    }).unknown(),
+  },
 
-  [COMMANDS.UPDATE_CART_ITEM]: joi.object().keys({
-    ...item,
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-  }).unknown(),
-
-  [COMMANDS.REMOVE_CART_ITEM]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-    item_uuid: uuid.required()
-  }).unknown()
+  [COMMANDS.REMOVE_CART_ITEM]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+      item_uuid: uuid.required()
+    }).unknown()
+  }
 }
 
 export const actions = {
-  [ACTIONS.GET_CART]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CART]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.LIST_CARTS]: joi.object().keys({
-    channel_uuid: uuid.required()
-  }).unknown(),
+  [ACTIONS.LIST_CARTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
 
-  [ACTIONS.GET_CART_CUSTOMER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CART_CUSTOMER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_CART_BILLING]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CART_BILLING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_CART_SHIPPING]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CART_SHIPPING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_CART_PAYMENT_DETAILS]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CART_PAYMENT_DETAILS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_CART_FULFILLMENT_DETAILS]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CART_FULFILLMENT_DETAILS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_CART_ITEM]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-    item_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CART_ITEM]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+      item_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.LIST_CART_ITEMS]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.LIST_CART_ITEMS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_CART_ITEM_PAYMENT_DETAILS]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-    item_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CART_ITEM_PAYMENT_DETAILS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+      item_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_CART_ITEM_FULFILLMENT_DETAILS]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    cart_uuid: uuid.required(),
-    item_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CART_ITEM_FULFILLMENT_DETAILS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      cart_uuid: uuid.required(),
+      item_uuid: uuid.required(),
+    }).unknown()
+  },
 }

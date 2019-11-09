@@ -1,6 +1,6 @@
 // Browsers do not have the event emitter class, so this is installed
 import EventEmitter from 'events'
-import { RiSE } from './index'
+import { RiSE, RiSEConfig } from './index'
 import { regexdot } from '@fabrix/regexdot'
 
 import Primus from 'primus'
@@ -21,11 +21,12 @@ export class ApplicationClass extends EventEmitter {
   private _handlers = new Map()
   private _patterns = new Set(['connected', 'disconnected', 'error'])
 
-  constructor(public rise: RiSE) {
+  constructor(public rise: RiSE, public globals: RiSEConfig['globals']) {
     super()
 
     // Reference to the core class
     this.rise = rise
+    this.globals = globals
 
     // Create a Primus Socket
     this.configureConnection()

@@ -9,24 +9,62 @@ export const order = {
    ***********************************/
 
   // Commands
-  [COMMANDS.CREATE_ORDER]: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.CREATE_ORDER]),
-  [COMMANDS.UPDATE_ORDER]: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.UPDATE_ORDER]),
-  [COMMANDS.SET_ORDER_BILLING]: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_BILLING]),
-  [COMMANDS.SET_ORDER_SHIPPING]: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_SHIPPING]),
-  [COMMANDS.SET_ORDER_CUSTOMER]: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_CUSTOMER]),
-  [COMMANDS.SET_ORDER_BILLING]: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_PAYMENT]),
-  [COMMANDS.SET_ORDER_FULFILLMENT]: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_FULFILLMENT]),
-  [COMMANDS.CLOSE_ORDER]: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.CLOSE_ORDER]),
+  [COMMANDS.CREATE_ORDER]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.CREATE_ORDER].params),
+    body: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.CREATE_ORDER].body),
+  },
+  [COMMANDS.UPDATE_ORDER]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.UPDATE_ORDER].params),
+    body: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.UPDATE_ORDER].body)
+  },
+  [COMMANDS.SET_ORDER_BILLING]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_BILLING].params),
+    body: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_BILLING].body),
+  },
+  [COMMANDS.SET_ORDER_SHIPPING]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_SHIPPING].params),
+    body: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_SHIPPING].body),
+  },
+  [COMMANDS.SET_ORDER_CUSTOMER]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_CUSTOMER].params),
+    body: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_CUSTOMER].body),
+  },
+  [COMMANDS.SET_ORDER_FULFILLMENT]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_FULFILLMENT].params),
+    body: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.SET_ORDER_FULFILLMENT].body),
+  },
+  [COMMANDS.CLOSE_ORDER]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.CLOSE_ORDER].params)
+  },
 
   // Actions
-  [ACTIONS.GET_ORDER]: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER]),
-  [ACTIONS.LIST_ORDERS]: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.LIST_ORDERS]),
+  [ACTIONS.GET_ORDER]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER].params)
+  },
 
-  [ACTIONS.GET_ORDER_CUSTOMER]: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_CUSTOMER]),
-  [ACTIONS.GET_ORDER_BILLING]: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_BILLING]),
-  [ACTIONS.GET_ORDER_SHIPPING]: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_SHIPPING]),
-  [ACTIONS.GET_ORDER_FULFILLMENT_DETAILS]: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_FULFILLMENT_DETAILS]),
-  [ACTIONS.GET_ORDER_PAYMENT_DETAILS]: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_PAYMENT_DETAILS]),
+  [ACTIONS.LIST_ORDERS]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.LIST_ORDERS].params)
+  },
+
+  [ACTIONS.GET_ORDER_CUSTOMER]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_CUSTOMER].params)
+  },
+
+  [ACTIONS.GET_ORDER_BILLING]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_BILLING].params)
+  },
+
+  [ACTIONS.GET_ORDER_SHIPPING]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_SHIPPING].params)
+  },
+
+  [ACTIONS.GET_ORDER_FULFILLMENT_DETAILS]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_FULFILLMENT_DETAILS].params)
+  },
+
+  [ACTIONS.GET_ORDER_PAYMENT_DETAILS]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_PAYMENT_DETAILS].params)
+  },
 
 
   /***********************************
@@ -34,16 +72,35 @@ export const order = {
    ***********************************/
 
   // Commands
-  [COMMANDS.CREATE_ORDER_ITEM]: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.CREATE_ORDER_ITEM]),
-  [COMMANDS.CREATE_ORDER_ITEMS]: (data) => Utils.joiPromiseMap(data, orderSchema.commands[COMMANDS.CREATE_ORDER_ITEMS]),
-  [COMMANDS.UPDATE_ORDER_ITEM]: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.UPDATE_ORDER_ITEM]),
-  [COMMANDS.REMOVE_ORDER_ITEM]: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.REMOVE_ORDER_ITEM]),
+  [COMMANDS.CREATE_ORDER_ITEM]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.CREATE_ORDER_ITEM].params),
+    body: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.CREATE_ORDER_ITEM].body)
+  },
+  [COMMANDS.CREATE_ORDER_ITEMS]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.CREATE_ORDER_ITEM].params),
+    body: (data) => Utils.joiPromiseMap(data, orderSchema.commands[COMMANDS.CREATE_ORDER_ITEM].body)
+  },
+  [COMMANDS.UPDATE_ORDER_ITEM]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.UPDATE_ORDER_ITEM].params),
+    body: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.UPDATE_ORDER_ITEM].body),
+  },
+  [COMMANDS.REMOVE_ORDER_ITEM]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.commands[COMMANDS.REMOVE_ORDER_ITEM].params)
+  },
 
   // Actions
-  [ACTIONS.GET_ORDER_ITEM]: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_ITEM]),
-  [ACTIONS.LIST_ORDER_ITEMS]: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.LIST_ORDER_ITEMS]),
+  [ACTIONS.GET_ORDER_ITEM]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_ITEM].params)
+  },
+  [ACTIONS.LIST_ORDER_ITEMS]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.LIST_ORDER_ITEMS].params)
+  },
 
-  [ACTIONS.GET_ORDER_ITEM_FULFILLMENT_DETAILS]: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_ITEM_FULFILLMENT_DETAILS]),
-  [ACTIONS.GET_ORDER_ITEM_PAYMENT_DETAILS]: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_ITEM_PAYMENT_DETAILS]),
+  [ACTIONS.GET_ORDER_ITEM_FULFILLMENT_DETAILS]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_ITEM_FULFILLMENT_DETAILS].params)
+  },
+  [ACTIONS.GET_ORDER_ITEM_PAYMENT_DETAILS]: {
+    params: (data) => Utils.joiPromise(data, orderSchema.actions[ACTIONS.GET_ORDER_ITEM_PAYMENT_DETAILS].params)
+  },
 
 }
