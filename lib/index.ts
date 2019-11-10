@@ -98,7 +98,7 @@ export class RiSE {
   // Logger
   public log: any
 
-  public globals: RiSEConfig['globals'] = { params: { hello: 'world'} }
+  public globals: RiSEConfig['globals'] = {}
 
   public _cart
   public _user

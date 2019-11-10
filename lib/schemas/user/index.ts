@@ -9,76 +9,123 @@ export const general = {
 
 export const commands = {
 
-  [COMMANDS.LOGIN_USER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    user_uuid: uuid,
-    username: joi.string().min(3),
-    email: joi.string(),
-    password: joi.string().min(8),
-  }).unknown().or('email', 'username'),
+  [COMMANDS.LOGIN_USER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+      user_uuid: uuid,
+      username: joi.string().min(3),
+      email: joi.string(),
+      password: joi.string().min(8),
+    }).unknown().or('email', 'username')
+  },
 
-  [COMMANDS.LOGOUT_USER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.LOGOUT_USER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [COMMANDS.REGISTER_USER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    username: joi.string().min(3),
-    email: joi.string(),
-    password: joi.string().min(8),
-  }).unknown().or('email', 'username'),
+  [COMMANDS.REGISTER_USER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown(),
+    body: joi.object().keys({
+      username: joi.string().min(3),
+      email: joi.string(),
+      password: joi.string().min(8),
+    }).unknown().or('email', 'username'),
+  },
 
-  [COMMANDS.CREATE_USER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    email: joi.string().allow(null)
-  }).unknown(),
+  [COMMANDS.CREATE_USER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown(),
+    body: joi.object().keys({
+      username: joi.string().min(3),
+      email: joi.string(),
+      name_prefix: joi.string().allow(null),
+      name_first: joi.string().allow(null),
+      name_last: joi.string().allow(null),
+      name_suffix: joi.string().allow(null),
+      phone: joi.string().allow(null),
+      phone_sms: joi.string().allow(null),
+    }).unknown().or('email', 'username')
+  },
 
-  [COMMANDS.UPDATE_USER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    user_uuid: uuid.required(),
-    email: joi.string().allow(null),
-    name_first: joi.string().allow(null),
-    name_last: joi.string().allow(null)
-  }).unknown(),
+  [COMMANDS.UPDATE_USER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      user_uuid: uuid.required()
+    }).unknown(),
+    body: joi.object().keys({
+      email: joi.string().allow(null),
+      name_prefix: joi.string().allow(null),
+      name_first: joi.string().allow(null),
+      name_last: joi.string().allow(null),
+      name_suffix: joi.string().allow(null),
+      phone: joi.string().allow(null),
+      phone_sms: joi.string().allow(null),
+    }).unknown(),
+  },
 
 }
 
 export const actions = {
-  [ACTIONS.GET_SESSION]: joi.object().keys({
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_SESSION]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_SESSION_CART]: joi.object().keys({
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_SESSION_CART]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_SESSION_CUSTOMER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_SESSION_CUSTOMER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_SESSION_CHANNEL]: joi.object().keys({
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_SESSION_CHANNEL]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_SESSION_USER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_SESSION_USER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_USER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    user_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_USER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      user_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.FIND_USER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.FIND_USER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
 
 
-  [ACTIONS.LIST_USERS]: joi.object().keys({
-    channel_uuid: uuid.required()
-  }).unknown(),
+  [ACTIONS.LIST_USERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
 
-  [ACTIONS.FIND_USERS]: joi.object().keys({
-    channel_uuid: uuid.required()
-  }).unknown(),
+  [ACTIONS.FIND_USERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
 }

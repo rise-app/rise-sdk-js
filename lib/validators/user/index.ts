@@ -6,14 +6,34 @@ import { ACTIONS, COMMANDS } from '../../enums'
 export const user = {
 
   // Commands
-  'register': (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.REGISTER_USER]),
-  'login': (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.LOGIN_USER]),
-  'logout': (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.LOGOUT_USER]),
-  'create': (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.CREATE_USER]),
-  'update': (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.UPDATE_USER]),
+  [COMMANDS.REGISTER_USER]: {
+    params: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.REGISTER_USER].params),
+    body: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.REGISTER_USER].body),
+  },
+  [COMMANDS.LOGIN_USER]: {
+    params: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.LOGIN_USER].params),
+    body: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.LOGIN_USER].body),
+  },
+  [COMMANDS.LOGOUT_USER]: {
+    params: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.LOGOUT_USER].params),
+  },
+  [COMMANDS.CREATE_USER]: {
+    params: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.CREATE_USER].params),
+    body: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.CREATE_USER].body),
+  },
+  [COMMANDS.UPDATE_USER]: {
+    params: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.UPDATE_USER].params),
+    body: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.UPDATE_USER].body),
+  },
 
   // Actions
-  'session': (data) => Utils.joiPromise(data, userSchema.actions[ACTIONS.GET_SESSION]),
-  'get': (data) => Utils.joiPromise(data, userSchema.actions[ACTIONS.GET_USER]),
-  'list': (data) => Utils.joiPromise(data, userSchema.actions[ACTIONS.LIST_USERS])
+  [ACTIONS.GET_SESSION]: {
+    params: (data) => Utils.joiPromise(data, userSchema.actions[ACTIONS.GET_SESSION].params)
+  },
+  [ACTIONS.GET_USER]: {
+    params: (data) => Utils.joiPromise(data, userSchema.actions[ACTIONS.GET_USER].params)
+  },
+  [ACTIONS.LIST_USERS]: {
+    params: (data) => Utils.joiPromise(data, userSchema.actions[ACTIONS.LIST_USERS].params)
+  }
 }

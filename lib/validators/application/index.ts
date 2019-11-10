@@ -9,13 +9,25 @@ export const application = {
    ***********************************/
 
   // Commands
-  [COMMANDS.CREATE_APPLICATION]: (data) => Utils.joiPromise(data, applicationSchema.commands[COMMANDS.CREATE_APPLICATION]),
-  [COMMANDS.UPDATE_APPLICATION]: (data) => Utils.joiPromise(data, applicationSchema.commands[COMMANDS.UPDATE_APPLICATION]),
+  [COMMANDS.CREATE_APPLICATION]: {
+    params: (data) => Utils.joiPromise(data, applicationSchema.commands[COMMANDS.CREATE_APPLICATION].params),
+    body: (data) => Utils.joiPromise(data, applicationSchema.commands[COMMANDS.CREATE_APPLICATION].body)
+  },
+  [COMMANDS.UPDATE_APPLICATION]: {
+    params: (data) => Utils.joiPromise(data, applicationSchema.commands[COMMANDS.UPDATE_APPLICATION].params),
+    body: (data) => Utils.joiPromise(data, applicationSchema.commands[COMMANDS.UPDATE_APPLICATION].body)
+  },
 
   // Actions
-  [ACTIONS.GET_APPLICATION]: (data) => Utils.joiPromise(data, applicationSchema.actions[ACTIONS.GET_APPLICATION]),
-  [ACTIONS.LIST_APPLICATIONS]: (data) => Utils.joiPromise(data, applicationSchema.actions[ACTIONS.LIST_APPLICATIONS]),
+  [ACTIONS.GET_APPLICATION]: {
+    params: (data) => Utils.joiPromise(data, applicationSchema.actions[ACTIONS.GET_APPLICATION].params)
+  },
+  [ACTIONS.LIST_APPLICATIONS]: {
+    params: (data) => Utils.joiPromise(data, applicationSchema.actions[ACTIONS.LIST_APPLICATIONS].params)
+  },
 
-  [ACTIONS.SUBSCRIBE_APPLICATION]: (data) => Utils.joiPromise(data, applicationSchema.actions[ACTIONS.SUBSCRIBE_APPLICATION]),
+  [ACTIONS.SUBSCRIBE_APPLICATION]: {
+    params: (data) => Utils.joiPromise(data, applicationSchema.actions[ACTIONS.SUBSCRIBE_APPLICATION].params)
+  },
 
 }

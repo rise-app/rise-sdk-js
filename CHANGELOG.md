@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* disconnects applicaton after test ([7ac0863](https://github.com/rise-app/rise-sdk-js/commit/7ac0863))
+* disconnects application after test ([7ac0863](https://github.com/rise-app/rise-sdk-js/commit/7ac0863))
 * fixes issue where old route was continiously used in event of failure ([4b3f116](https://github.com/rise-app/rise-sdk-js/commit/4b3f116))
 * fixes linux's strict directory naming ([49dcfce](https://github.com/rise-app/rise-sdk-js/commit/49dcfce))
 * fixes query strings ([49565b2](https://github.com/rise-app/rise-sdk-js/commit/49565b2))

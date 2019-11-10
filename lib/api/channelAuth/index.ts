@@ -1,7 +1,7 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action } from '../../metadata'
 import { user, auth } from '../../validators'
-import { COMMANDS } from '../../enums'
+import { COMMANDS, ACTIONS } from '../../enums'
 
 export class ChannelAuth extends ApiClass {
   /**
@@ -10,7 +10,7 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/token', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/token', validator: user[ACTIONS.GET_USER] })
   validateToken(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -21,7 +21,7 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session', validator: user[ACTIONS.GET_USER] })
   session(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -32,7 +32,7 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart', validator: user[ACTIONS.GET_USER] })
   sessionCart(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -43,7 +43,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart', validator: user.session })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart', validator: user[ACTIONS.GET_USER] })
   updateSessionCart(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -54,7 +54,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/items', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/items', validator: user[ACTIONS.GET_USER] })
   sessionCartItems(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -66,7 +66,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/session/cart/items', validator: user.session })
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/session/cart/items', validator: user[ACTIONS.GET_USER] })
   createSessionCartItems(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -78,7 +78,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/address_shipping', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/address_shipping', validator: user[ACTIONS.GET_USER] })
   sessionCartShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -90,7 +90,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/address_shipping', validator: user.session })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/address_shipping', validator: user[ACTIONS.GET_USER] })
   setSessionCartShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -102,7 +102,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/address_billing', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/address_billing', validator: user[ACTIONS.GET_USER] })
   sessionCartBilling(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -114,7 +114,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/address_billing', validator: user.session })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/address_billing', validator: user[ACTIONS.GET_USER] })
   setSessionCartBilling(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -126,7 +126,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/payment_details', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/payment_details', validator: user[ACTIONS.GET_USER] })
   sessionCartPayment(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -137,7 +137,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/payment_details', validator: user.session })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/payment_details', validator: user[ACTIONS.GET_USER] })
   setSessionCartPayment(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -149,7 +149,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer', validator: user[ACTIONS.GET_USER] })
   sessionCustomer(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -161,7 +161,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/customer', validator: user.session })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/customer', validator: user[ACTIONS.GET_USER] })
   updateSessionCustomer(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -173,7 +173,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/address_shipping', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/address_shipping', validator: user[ACTIONS.GET_USER] })
   sessionCustomerShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -184,7 +184,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/customer/address_shipping', validator: user.session })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/customer/address_shipping', validator: user[ACTIONS.GET_USER] })
   setSessionCustomerShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -195,7 +195,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/address_billing', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/address_billing', validator: user[ACTIONS.GET_USER] })
   sessionCustomerBilling(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -206,7 +206,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/customer/address_billing', validator: user.session })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/customer/address_billing', validator: user[ACTIONS.GET_USER] })
   setSessionCustomerBilling(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -216,7 +216,7 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/carts', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/carts', validator: user[ACTIONS.GET_USER] })
   sessionCustomerCarts(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -227,7 +227,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/feeds', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/feeds', validator: user[ACTIONS.GET_USER] })
   sessionCustomerFeeds(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -238,7 +238,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/accounts', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/accounts', validator: user[ACTIONS.GET_USER] })
   sessionCustomerGatewayAccounts(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -249,7 +249,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/sources', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/sources', validator: user[ACTIONS.GET_USER] })
   sessionCustomerGatewaySources(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -260,7 +260,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/orders', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/orders', validator: user[ACTIONS.GET_USER] })
   sessionCustomerOrders(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -272,7 +272,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/users', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/users', validator: user[ACTIONS.GET_USER] })
   sessionCustomerUsers(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -284,7 +284,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/channel', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/channel', validator: user[ACTIONS.GET_USER] })
   sessionChannel(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -296,7 +296,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/channels', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/channels', validator: user[ACTIONS.GET_USER] })
   sessionChannels(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -308,7 +308,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/roles', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/roles', validator: user[ACTIONS.GET_USER] })
   sessionRoles(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -320,7 +320,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/user', validator: user.session })
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/user', validator: user[ACTIONS.GET_USER] })
   sessionUser(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -332,7 +332,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/local/register', validator: user.register })
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/local/register', validator: [COMMANDS.REGISTER_USER] })
   register(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -344,7 +344,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/local', validator: user.login })
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/local', validator: user[COMMANDS.LOGIN_USER] })
   login(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -356,7 +356,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/logout', validator: user.logout })
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/logout', validator: user[COMMANDS.LOGOUT_USER] })
   logout(data, req?, validated?) {
     return this.request(req, data, validated)
   }
