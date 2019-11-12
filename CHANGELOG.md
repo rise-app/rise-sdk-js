@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.22](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.21...v1.0.0-alpha.22) (2019-11-12)
+
+
+### Features
+
+* adds utility routes with validators ([276198a](https://github.com/rise-app/rise-sdk-js/commit/276198a))
+
 ## [1.0.0-alpha.21](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.20...v1.0.0-alpha.21) (2019-11-10)
 
 
