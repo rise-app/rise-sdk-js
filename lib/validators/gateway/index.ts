@@ -27,4 +27,8 @@ export const gateway = {
     params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAYS].params),
     body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAYS].body),
   },
+  [ACTIONS.GET_GATEWAY_PRIMARY]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY_PRIMARY].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY_PRIMARY].body),
+  },
 }

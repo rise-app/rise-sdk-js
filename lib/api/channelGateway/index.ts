@@ -22,6 +22,17 @@ export class ChannelGateway extends ApiClass {
   }
 
   /**
+* GET a Gateway Primary
+* @param data
+* @param req
+* @param validated
+*/
+  @Action({ method: 'GET', route: '/channels/:channel_uuid/gateway_primary', validator: gateway[ACTIONS.GET_GATEWAY_PRIMARY] })
+  primary(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
  * List gateways
  * @param data
  * @param req
@@ -53,9 +64,7 @@ export class ChannelGateway extends ApiClass {
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
-  /**
- * SET_CHANNEL_GATEWAY_PRIMARY
- * 
-*/
+
+
 
 }

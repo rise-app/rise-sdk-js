@@ -28,6 +28,11 @@ export const actions = {
     gateway_uuid: uuid.required(),
   }).unknown(),
 
+  [ACTIONS.GET_GATEWAY_PRIMARY]: joi.object().keys({
+    channel_uuid: uuid.required(),
+    gateway_uuid: uuid.required(),
+  }).unknown(),
+
   [ACTIONS.LIST_GATEWAYS]: joi.object().keys({
     channel_uuid: uuid.required()
   }).unknown(),
