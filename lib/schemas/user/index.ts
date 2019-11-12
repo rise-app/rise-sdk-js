@@ -16,14 +16,17 @@ export const commands = {
     body: joi.object().keys({
       user_uuid: uuid,
       username: joi.string().min(3),
+      identifier: joi.string().min(3),
       email: joi.string(),
       password: joi.string().min(8),
-    }).unknown().or('email', 'username')
+    }).unknown().or('email', 'username', 'identifier')
   },
 
   [COMMANDS.LOGOUT_USER]: {
     params: joi.object().keys({
       channel_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
     }).unknown()
   },
 

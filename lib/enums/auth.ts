@@ -1,15 +1,47 @@
 export const AUTH_ACTIONS = {
-
+  'GET_SESSION': 'channel.session.get',
+  'GET_SESSION_USER': 'channel.session.user.get',
+  'GET_SESSION_CART': 'channel.session.cart.get',
+  'GET_SESSION_CART_BILLING': 'channel.session.cart.address_billing.get',
+  'GET_SESSION_CART_SHIPPING': 'channel.session.cart.address_shipping.get',
+  'GET_SESSION_CART_PAYMENT': 'channel.session.cart.payment_details.get',
+  'LIST_SESSION_CART_ITEMS': 'channel.session.cart.item.list',
+  'GET_SESSION_CHANNEL': 'channel.session.channel.get',
+  'LIST_SESSION_CHANNELS': 'channel.session.channel.list',
+  'LIST_SESSION_ROLES': 'channel.session.role.list',
+  'GET_SESSION_CUSTOMER': 'channel.session.customer.get',
+  'GET_SESSION_CUSTOMER_BILLING': 'channel.session.customer.address_billing.get',
+  'GET_SESSION_CUSTOMER_SHIPPING': 'channel.session.customer.address_shipping.get',
+  'LIST_SESSION_CUSTOMER_ACCOUNTS': 'channel.session.customer.account.list',
+  'LIST_SESSION_CUSTOMER_CARTS': 'channel.session.customer.cart.list',
+  'LIST_SESSION_CUSTOMER_FEEDS': 'channel.session.customer.feed.list',
+  'GET_SESSION_CUSTOMER_ORDER': 'channel.session.customer.order.get',
+  'LIST_SESSION_CUSTOMER_ORDERS': 'channel.session.customer.order.list',
+  'LIST_SESSION_CUSTOMER_SOURCES': 'channel.session.customer.source.list',
+  'LIST_SESSION_CUSTOMER_USERS': 'channel.session.customer.user.list',
 }
 
 export const AUTH_COMMANDS = {
+  'CHECKOUT_SESSION_CART': 'checkout.channel.session.cart',
+  'UPDATE_SESSION_CART': 'update.channel.session.cart',
+  'SET_SESSION_CART_BILLING': 'set.channel.session.cart.address_billing',
+  'SET_SESSION_CART_SHIPPING': 'set.channel.session.cart.address_shipping',
+  'SET_SESSION_CART_PAYMENT': 'set.channel.session.cart.payment_details',
+  'CREATE_SESSION_CART_ITEM': 'create.channel.session.cart.item',
+  'UPDATE_SESSION_CART_ITEM': 'update.channel.session.cart.item',
+  'REMOVE_SESSION_CART_ITEM': 'remove.channel.session.cart.item',
+
+  'UPDATE_SESSION_CUSTOMER': 'update.channel.session.customer',
+  'SET_SESSION_CUSTOMER_BILLING': 'srt.channel.session.customer.address_billing',
+  'SET_SESSION_CUSTOMER_SHIPPING': 'srt.channel.session.customer.address_shipping',
+
   'SET_RECOVERY': 'set.recovery.user',
   'RECOVER': 'recover.user',
   // 'START_SESSION': 'start.channel.session',
   // 'END_SESSION': 'end.channel.session',
-  // 'REGISTER_USER': 'register.channel.user',
-  // 'LOGIN_USER': 'login.channel.user',
-  // 'LOGOUT_USER': 'logout.channel.user',
+  'REGISTER_USER': 'register.channel.user',
+  'LOGIN_USER': 'login.channel.user',
+  'LOGOUT_USER': 'logout.channel.user',
 }
 
 export const AUTH_EVENTS = {
