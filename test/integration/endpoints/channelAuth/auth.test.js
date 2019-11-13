@@ -304,7 +304,7 @@ describe('# RiSE Channel Auth API', () => {
           })
       })
 
-      it.skip('### Should get user session cart\'s item (Current)', (done) => {
+      it('### Should get user session cart\'s item (Current)', (done) => {
 
         rise.channelAuth.getSessionCartItem({
           // channel_uuid: channel_uuid
@@ -316,6 +316,7 @@ describe('# RiSE Channel Auth API', () => {
           }
         })
           .then(_res => {
+            console.log('brk _res', _res)
             done()
           })
           .catch(err => {
