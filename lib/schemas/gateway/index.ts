@@ -10,64 +10,112 @@ export const gateway = {
 }
 
 export const commands = {
-  [COMMANDS.CREATE_GATEWAY]: joi.object().keys({
-    ...gateway,
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.CREATE_GATEWAY]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...gateway,
+    }).unknown()
+  },
 
-  [COMMANDS.UPDATE_GATEWAY]: joi.object().keys({
-    ...gateway,
-    channel_uuid: uuid.required(),
-    gateway_uuid: uuid.required()
-  }).unknown(),
+  [COMMANDS.UPDATE_GATEWAY]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      gateway_uuid: uuid.required()
+    }),
+    body: joi.object().keys({
+      ...gateway,
+    }).unknown()
+  },
 
-  [COMMANDS.PUBLISH_GATEWAY]: joi.object().keys({
-    ...gateway,
-    channel_uuid: uuid.required(),
-    gateway_uuid: uuid.required()
-  }).unknown(),
+  [COMMANDS.PUBLISH_GATEWAY]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      gateway_uuid: uuid.required()
+    }),
+    body: joi.object().keys({
+      ...gateway,
+    }).unknown()
+  },
 
-  [COMMANDS.UNPUBLISH_GATEWAY]: joi.object().keys({
-    ...gateway,
-    channel_uuid: uuid.required(),
-    gateway_uuid: uuid.required()
-  }).unknown(),
+  [COMMANDS.UNPUBLISH_GATEWAY]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      gateway_uuid: uuid.required()
+    }),
+    body: joi.object().keys({
+      ...gateway,
+    }).unknown()
+  },
 
-  [COMMANDS.UPLOAD_GATEWAYS]: joi.object().keys({
-    ...gateway,
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.UPLOAD_GATEWAYS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...gateway,
+    }).unknown()
+  },
 
-  [COMMANDS.PROCESS_UPLOADED_GATEWAYS]: joi.object().keys({
-    ...gateway,
-    channel_uuid: uuid.required(),
-    upload_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.PROCESS_UPLOADED_GATEWAYS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...gateway,
+    }).unknown()
+  },
 }
 
 export const actions = {
-  [ACTIONS.GET_GATEWAY]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    gateway_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_GATEWAY]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      gateway_uuid: uuid.required()
+    }),
+    body: joi.object().keys({
+      ...gateway,
+    }).unknown()
+  },
 
-  [ACTIONS.GET_GATEWAY_PRIMARY]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    gateway_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_GATEWAY_PRIMARY]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...gateway,
+    }).unknown()
+  },
 
-  [ACTIONS.LIST_GATEWAYS]: joi.object().keys({
-    channel_uuid: uuid.required()
-  }).unknown(),
+  [ACTIONS.LIST_GATEWAYS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...gateway,
+    }).unknown()
+  },
 
-  [ACTIONS.LIST_GATEWAY_EVENTS]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    gateway_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.LIST_GATEWAY_EVENTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      gateway_uuid: uuid.required()
+    }),
+    body: joi.object().keys({
+      ...gateway,
+    }).unknown()
+  },
 
-  [ACTIONS.LIST_GATEWAY_UPLOADS]: joi.object().keys({
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.LIST_GATEWAY_UPLOADS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }),
+    body: joi.object().keys({
+      ...gateway,
+    }).unknown()
+  },
 
 
 }
