@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.23](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.22...v1.0.0-alpha.23) (2019-11-13)
+
+
+### Features
+
+* **auth:** adds getSessionCartItem action and validators, tests session cart ([fa825b3](https://github.com/rise-app/rise-sdk-js/commit/fa825b3))
+
 ## [1.0.0-alpha.22](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.21...v1.0.0-alpha.22) (2019-11-12)
 
 
