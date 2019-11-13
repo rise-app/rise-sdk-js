@@ -20,6 +20,29 @@ export const commands = {
     channel_uuid: uuid.required(),
     gateway_uuid: uuid.required()
   }).unknown(),
+
+  [COMMANDS.PUBLISH_GATEWAY]: joi.object().keys({
+    ...gateway,
+    channel_uuid: uuid.required(),
+    gateway_uuid: uuid.required()
+  }).unknown(),
+
+  [COMMANDS.UNPUBLISH_GATEWAY]: joi.object().keys({
+    ...gateway,
+    channel_uuid: uuid.required(),
+    gateway_uuid: uuid.required()
+  }).unknown(),
+
+  [COMMANDS.UPLOAD_GATEWAYS]: joi.object().keys({
+    ...gateway,
+    channel_uuid: uuid.required(),
+  }).unknown(),
+
+  [COMMANDS.PROCESS_UPLOADED_GATEWAYS]: joi.object().keys({
+    ...gateway,
+    channel_uuid: uuid.required(),
+    upload_uuid: uuid.required(),
+  }).unknown(),
 }
 
 export const actions = {
@@ -36,4 +59,15 @@ export const actions = {
   [ACTIONS.LIST_GATEWAYS]: joi.object().keys({
     channel_uuid: uuid.required()
   }).unknown(),
+
+  [ACTIONS.LIST_GATEWAY_EVENTS]: joi.object().keys({
+    channel_uuid: uuid.required(),
+    gateway_uuid: uuid.required(),
+  }).unknown(),
+
+  [ACTIONS.LIST_GATEWAY_UPLOADS]: joi.object().keys({
+    channel_uuid: uuid.required(),
+  }).unknown(),
+
+
 }
