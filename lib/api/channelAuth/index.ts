@@ -71,12 +71,23 @@ export class ChannelAuth extends ApiClass {
   }
 
   /**
+   * Create a Current Session's Cart Item(s)
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/items/:item_uuid', validator: auth[ACTIONS.GET_SESSION_CART_ITEM] })
+  getSessionCartItem(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
    * Update a Current Session's Cart Item
    * @param data
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/session/cart/items/:item_uuid', validator: auth[COMMANDS.UPDATE_SESSION_CART_ITEM] })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/items/:item_uuid', validator: auth[COMMANDS.UPDATE_SESSION_CART_ITEM] })
   updateSessionCartItem(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -87,7 +98,7 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/session/cart/items/:item_uuid', validator: auth[COMMANDS.REMOVE_SESSION_CART_ITEM] })
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/auth/session/cart/items/:item_uuid', validator: auth[COMMANDS.REMOVE_SESSION_CART_ITEM] })
   removeSessionCartItem(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -291,7 +302,7 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/orders/:order_uuid', validator: auth[ACTIONS.GET_SESSION_CUSTOMER_ORDER] })
-  getSessionCustomerOrders(data, req?, validated?) {
+  getSessionCustomerOrder(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

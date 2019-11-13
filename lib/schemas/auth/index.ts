@@ -158,6 +158,11 @@ export const actions = {
       channel_uuid: uuid.required(),
     }).unknown()
   },
+  [ACTIONS.GET_SESSION_CART_ITEM]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
   [ACTIONS.LIST_SESSION_CART_ITEMS]: {
     params: joi.object().keys({
       channel_uuid: uuid.required(),

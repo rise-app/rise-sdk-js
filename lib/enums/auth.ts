@@ -5,6 +5,7 @@ export const AUTH_ACTIONS = {
   'GET_SESSION_CART_BILLING': 'channel.session.cart.address_billing.get',
   'GET_SESSION_CART_SHIPPING': 'channel.session.cart.address_shipping.get',
   'GET_SESSION_CART_PAYMENT': 'channel.session.cart.payment_details.get',
+  'GET_SESSION_CART_ITEM': 'channel.session.cart.item.get',
   'LIST_SESSION_CART_ITEMS': 'channel.session.cart.item.list',
   'GET_SESSION_CHANNEL': 'channel.session.channel.get',
   'LIST_SESSION_CHANNELS': 'channel.session.channel.list',

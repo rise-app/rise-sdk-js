@@ -5,7 +5,8 @@ const assert = require('assert')
 
 describe('# RiSE Channel Auth API', () => {
 
-  let rise, adminToken, adminSession, userToken, userSession, user, recovery, username, password
+  let rise, adminToken, adminSession, userToken, userSession, user, recovery, username, password,
+    offer, item_uuid
 
   describe('## As admin/manager user', () => {
     before((done) => {
@@ -33,6 +34,29 @@ describe('# RiSE Channel Auth API', () => {
       //     done()
       //   })
       //   .catch(err => done(err))
+    })
+
+    describe('# RiSE Channel Auth API Dependencies', () => {
+      it('## Should Get an Offer for Cart Testing', (done) => {
+
+        rise.channelOffer.listPublic({
+          // channel_uuid: channel_uuid
+        }, {
+          query: {
+            limit: 1
+          }
+        })
+          .then(_res => {
+            offer= _res.data[0]
+            assert.equal(_res.list, 'ChannelOffer')
+            assert.ok(offer)
+
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
     })
 
     describe('## Session', () => {
@@ -114,6 +138,45 @@ describe('# RiSE Channel Auth API', () => {
           })
       })
 
+      it('### Should update user session cart (Current)', (done) => {
+
+        rise.channelAuth.updateSessionCart({
+          // channel_uuid: channel_uuid
+          title: 'My Special Session Cart'
+        }, {
+          token: userToken,
+          session: userSession
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it('### Should set user session cart billing address (Current)', (done) => {
+
+        rise.channelAuth.setSessionCartBilling({
+          address_1: '1600 Pennsylvania Ave NW',
+          address_2: '',
+          address_3: '',
+          company: '',
+          city: 'Washington',
+          province_code: 'DC',
+          country_code: 'US',
+          postal_code: '20500',
+        }, {
+          token: userToken,
+          session: userSession
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
 
       it('### Should get user session cart billing address (Current)', (done) => {
 
@@ -131,9 +194,48 @@ describe('# RiSE Channel Auth API', () => {
           })
       })
 
+      it('### Should set user session cart shipping address (Current)', (done) => {
+
+        rise.channelAuth.setSessionCartShipping({
+          address_1: '1600 Pennsylvania Ave NW',
+          address_2: '',
+          address_3: '',
+          company: '',
+          city: 'Washington',
+          province_code: 'DC',
+          country_code: 'US',
+          postal_code: '20500',
+        }, {
+          token: userToken,
+          session: userSession
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
       it('### Should get user session cart shipping address (Current)', (done) => {
 
         rise.channelAuth.sessionCartShipping({
+          // channel_uuid: channel_uuid
+        }, {
+          token: userToken,
+          session: userSession
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it.skip('### Should set user session cart payment details (Current)', (done) => {
+
+        rise.channelAuth.setSessionCartPayment({
           // channel_uuid: channel_uuid
         }, {
           token: userToken,
@@ -163,57 +265,86 @@ describe('# RiSE Channel Auth API', () => {
           })
       })
 
+      it('### Should create user session cart\'s item(s) (Current)', (done) => {
+
+        rise.channelAuth.createSessionCartItems({
+          offer_uuid: offer.offer_uuid,
+          variant_uuid: offer.variant_default_uuid,
+          quantity: 1,
+          notes: 'Who you gonna call?'
+        }, {
+          token: userToken,
+          session: userSession
+        })
+          .then(_res => {
+            item_uuid = _res.data.item_uuid
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it('### Should update user session cart\'s item (Current)', (done) => {
+
+        rise.channelAuth.updateSessionCartItem({
+          notes: 'Who you not gonna call?'
+        }, {
+          token: userToken,
+          session: userSession,
+          params: {
+            item_uuid: item_uuid
+          }
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it.skip('### Should get user session cart\'s item (Current)', (done) => {
+
+        rise.channelAuth.getSessionCartItem({
+          // channel_uuid: channel_uuid
+        }, {
+          token: userToken,
+          session: userSession,
+          params: {
+            item_uuid: item_uuid
+          }
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it('### Should remove user session cart\'s item (Current)', (done) => {
+
+        rise.channelAuth.removeSessionCartItem({
+          // channel_uuid: channel_uuid
+        }, {
+          token: userToken,
+          session: userSession,
+          params: {
+            item_uuid: item_uuid
+          }
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
       it('### Should list user session cart\'s items (Current)', (done) => {
 
         rise.channelAuth.sessionCartItems({
-          // channel_uuid: channel_uuid
-        }, {
-          token: userToken,
-          session: userSession
-        })
-          .then(_res => {
-            done()
-          })
-          .catch(err => {
-            done(err)
-          })
-      })
-
-      it.skip('### Should create user session cart\'s item(s) (Current)', (done) => {
-
-        rise.channelAuth.createSessionCartItems({
-          // channel_uuid: channel_uuid
-        }, {
-          token: userToken,
-          session: userSession
-        })
-          .then(_res => {
-            done()
-          })
-          .catch(err => {
-            done(err)
-          })
-      })
-
-      it.skip('### Should update user session cart\'s item (Current)', (done) => {
-
-        rise.channelAuth.updateSessionCartItem({
-          // channel_uuid: channel_uuid
-        }, {
-          token: userToken,
-          session: userSession
-        })
-          .then(_res => {
-            done()
-          })
-          .catch(err => {
-            done(err)
-          })
-      })
-
-      it.skip('### Should remove user session cart\'s item (Current)', (done) => {
-
-        rise.channelAuth.removeSessionCartItem({
           // channel_uuid: channel_uuid
         }, {
           token: userToken,
@@ -260,6 +391,46 @@ describe('# RiSE Channel Auth API', () => {
           })
       })
 
+      it('### Should update user session customer (Current)', (done) => {
+
+        rise.channelAuth.updateSessionCustomer({
+          // channel_uuid: channel_uuid
+          name_display: 'Lookie Loo'
+        }, {
+          token: userToken,
+          session: userSession
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it('### Should set user session customer billing address (Current)', (done) => {
+
+        rise.channelAuth.setSessionCustomerBilling({
+          address_1: '1600 Pennsylvania Ave NW',
+          address_2: '',
+          address_3: '',
+          company: '',
+          city: 'Washington',
+          province_code: 'DC',
+          country_code: 'US',
+          postal_code: '20500',
+        }, {
+          token: userToken,
+          session: userSession
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
       it('### Should get user session customer billing address (Current)', (done) => {
 
         rise.channelAuth.sessionCustomerBilling({
@@ -276,10 +447,17 @@ describe('# RiSE Channel Auth API', () => {
           })
       })
 
-      it.skip('### Should set user session customer billing address (Current)', (done) => {
+      it('### Should set user session customer shipping address (Current)', (done) => {
 
-        rise.channelAuth.setSessionCustomerBilling({
-          // channel_uuid: channel_uuid
+        rise.channelAuth.setSessionCustomerShipping({
+          address_1: '1600 Pennsylvania Ave NW',
+          address_2: '',
+          address_3: '',
+          company: '',
+          city: 'Washington',
+          province_code: 'DC',
+          country_code: 'US',
+          postal_code: '20500',
         }, {
           token: userToken,
           session: userSession
@@ -295,22 +473,6 @@ describe('# RiSE Channel Auth API', () => {
       it('### Should get user session customer shipping address (Current)', (done) => {
 
         rise.channelAuth.sessionCustomerShipping({
-          // channel_uuid: channel_uuid
-        }, {
-          token: userToken,
-          session: userSession
-        })
-          .then(_res => {
-            done()
-          })
-          .catch(err => {
-            done(err)
-          })
-      })
-
-      it.skip('### Should set user session customer shipping address (Current)', (done) => {
-
-        rise.channelAuth.setSessionCustomerShipping({
           // channel_uuid: channel_uuid
         }, {
           token: userToken,
@@ -350,6 +512,38 @@ describe('# RiSE Channel Auth API', () => {
           params: {
             order_uuid: order_uuid
           }
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it('### Should get user session customer\'s users (Current)', (done) => {
+
+        rise.channelAuth.sessionCustomerUsers({
+          // channel_uuid: channel_uuid
+        }, {
+          token: userToken,
+          session: userSession
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it.skip('### Should get user session customer\'s carts (Current)', (done) => {
+
+        rise.channelAuth.sessionCustomerCarts({
+          // channel_uuid: channel_uuid
+        }, {
+          token: userToken,
+          session: userSession
         })
           .then(_res => {
             done()

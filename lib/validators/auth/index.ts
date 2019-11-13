@@ -88,6 +88,9 @@ export const auth = {
     params: (data) => Utils.joiPromise(data, authSchema.actions[ACTIONS.GET_SESSION_CART_PAYMENT].params)
   },
 
+  [ACTIONS.GET_SESSION_CART_ITEM]: {
+    params: (data) => Utils.joiPromise(data, authSchema.actions[ACTIONS.GET_SESSION_CART_ITEM].params)
+  },
   [ACTIONS.LIST_SESSION_CART_ITEMS]: {
     params: (data) => Utils.joiPromise(data, authSchema.actions[ACTIONS.LIST_SESSION_CART_ITEMS].params)
   },
