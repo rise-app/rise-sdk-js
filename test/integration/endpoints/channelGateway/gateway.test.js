@@ -12,7 +12,12 @@ describe('# RiSE Channel Gateway API', () => {
       url: url,
       sandbox: true,
       public_key: public_key,
-      private_key: private_key
+      private_key: private_key,
+      globals: {
+        params: {
+          channel_uuid
+        }
+      }
     })
 
     rise.authenticateApiUser(
@@ -92,6 +97,26 @@ describe('# RiSE Channel Gateway API', () => {
         })
     })
 
+    it.skip('### Should Get channel Gateway Primary', (done) => {
+
+      rise.channelGateway.get({
+        channel_uuid: channel_uuid,
+      })
+        .then(_res => {
+          assert.equal(_res.object, 'ChannelGateway')
+          assert.equal(_res.action, ACTIONS.GET_GATEWAY_PRIMARY)
+
+          gateway = _res.data
+
+          console.log('brk gateway', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
     it.skip('### Should List Channel Gateways', (done) => {
 
       rise.channelGateway.list({
@@ -107,6 +132,158 @@ describe('# RiSE Channel Gateway API', () => {
 
           assert.equal(_res.limit, 5)
           assert.equal(_res.offset, 0)
+
+          console.log('brk gateway', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Should Publish a Gateway', (done) => {
+
+      rise.channelGateway.list({
+        channel_uuid: channel_uuid,
+        gateway_uuid: gateway_uuid
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelGateway')
+          assert.equal(_res.action, COMMANDS.PUBLISH_GATEWAY)
+
+          console.log('brk gateway', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Should Unpublish a Gateway', (done) => {
+
+      rise.channelGateway.list({
+        channel_uuid: channel_uuid,
+        gateway_uuid: gateway_uuid
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelGateway')
+          assert.equal(_res.action, COMMANDS.UNPUBLISH_GATEWAY)
+
+          console.log('brk gateway', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Should List Gateway Events', (done) => {
+
+      rise.channelGateway.list({
+        channel_uuid: channel_uuid,
+        gateway_uuid: gateway_uuid
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelEvent')
+          assert.equal(_res.action, ACTIONS.LIST_GATEWAY_EVENTS)
+
+          console.log('brk gateway', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Should Create a Gateway Event', (done) => {
+
+      rise.channelGateway.list({
+        channel_uuid: channel_uuid,
+        gateway_uuid: gateway_uuid
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelEvent')
+          assert.equal(_res.action, COMMANDS.CREATE_GATEWAY_EVENT)
+
+          console.log('brk gateway', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Should Upload Gateways', (done) => {
+
+      rise.channelGateway.list({
+        channel_uuid: channel_uuid,
+        gateway_uuid: gateway_uuid
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelGateway')
+          assert.equal(_res.action, COMMANDS.UPLOAD_GATEWAYS)
+
+          console.log('brk gateway', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Should Get Upload Results', (done) => {
+
+      rise.channelGateway.list({
+        channel_uuid: channel_uuid,
+        gateway_uuid: gateway_uuid
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelGateway')
+          assert.equal(_res.action, ACTIONS.GET_GATEWAY_UPLOAD)
+
+          console.log('brk gateway', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Should Process Uploaded Gateways', (done) => {
+
+      rise.channelGateway.list({
+        channel_uuid: channel_uuid,
+        upload_uuid: upload_uuid,
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelGateway')
+          assert.equal(_res.action, COMMANDS.PROCESS_UPLOADED_GATEWAYS)
+
+          console.log('brk gateway', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Should Get Gateway Upload', (done) => {
+
+      rise.channelGateway.list({
+        channel_uuid: channel_uuid,
+        upload_uuid: upload_uuid,
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelGateway')
+          assert.equal(_res.action, COMMANDS.GET_GATEWAY_UPLOAD)
 
           console.log('brk gateway', _res)
 
