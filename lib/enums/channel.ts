@@ -1,4 +1,4 @@
-export const CHANNEL_CHANNEL_COMMANDS = {
+export const CHANNEL_COMMANDS = {
     'CREATE': 'create.channel',
     'UPDATE': 'update.channel.:channel_uuid',
     'PUBLISH': 'publish.channel.:channel_uuid',
@@ -32,7 +32,7 @@ export const CHANNEL_CHANNEL_COMMANDS = {
     'UPDATE_RULES_TAXES': 'update.channel.:channel_uuid.rules_taxes',
     'REMOVE_RULES_TAXES': 'remove.channel.:channel_uuid.rules_taxes'
 }
-export const CHANNEL_CHANNEL_EVENTS = {
+export const CHANNEL_EVENTS = {
     'CREATED': 'channel.:channel_uuid.created',
     'UPDATED': 'channel.:channel_uuid.updated',
 
@@ -70,7 +70,7 @@ export const CHANNEL_CHANNEL_EVENTS = {
     'RULES_SHIPPING_REMOVED': 'channel.:channel_uuid.rules_shipping.removed'
 
 }
-export const CHANNEL_CHANNEL_ACTIONS = {
+export const CHANNEL_ACTIONS = {
 
     'GET': 'channel.get',
     'GET_PARENT': 'channel.parent.get',
