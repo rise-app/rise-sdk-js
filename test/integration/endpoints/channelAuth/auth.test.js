@@ -1,3 +1,5 @@
+const { regexdot } = require('@fabrix/regexdot')
+
 const { RiSE, EVENTS, ACTIONS } = require('../../../../dist')
 const { url, adminPassword, adminIdentifier, channel_uuid, private_key, public_key } = require('../../../fixtures/constants')
 
@@ -297,6 +299,11 @@ describe('# RiSE Channel Auth API', () => {
           }
         })
           .then(_res => {
+            assert.ok(_res.data)
+            assert.equal(_res.object, 'ChannelCartItem')
+            const {pattern} = regexdot(EVENTS.CART_ITEM_UPDATED)
+            assert.ok(pattern.test(`.${_res.event_type}`))
+
             done()
           })
           .catch(err => {
@@ -317,6 +324,9 @@ describe('# RiSE Channel Auth API', () => {
         })
           .then(_res => {
             console.log('brk _res', _res)
+            assert.ok(_res.data)
+            assert.equal(_res.object, 'ChannelCartItem')
+            assert.ok(_res.action)
             done()
           })
           .catch(err => {
@@ -352,6 +362,11 @@ describe('# RiSE Channel Auth API', () => {
           session: userSession
         })
           .then(_res => {
+
+            assert.ok(_res.data)
+            assert.equal(_res.list, 'ChannelCartItem')
+            assert.ok(_res.action)
+
             done()
           })
           .catch(err => {
