@@ -78,7 +78,7 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Get a Channel Gateway', (done) => {
 
-      rise.channelGateway.get({
+      rise.channelGateway.getGateway({
         channel_uuid: channel_uuid,
         gateway_uuid: gateway.gateway_uuid
       })
@@ -99,7 +99,7 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Get channel Gateway Primary', (done) => {
 
-      rise.channelGateway.get({
+      rise.channelGateway.getGatewayPrimary({
         channel_uuid: channel_uuid,
       })
         .then(_res => {
@@ -119,7 +119,7 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should List Channel Gateways', (done) => {
 
-      rise.channelGateway.list({
+      rise.channelGateway.listGateways({
         channel_uuid: channel_uuid
       }, {
         query: {
@@ -144,7 +144,7 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Publish a Gateway', (done) => {
 
-      rise.channelGateway.list({
+      rise.channelGateway.publishGateway({
         channel_uuid: channel_uuid,
         gateway_uuid: gateway_uuid
       })
@@ -163,7 +163,7 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Unpublish a Gateway', (done) => {
 
-      rise.channelGateway.list({
+      rise.channelGateway.unpublishGateway({
         channel_uuid: channel_uuid,
         gateway_uuid: gateway_uuid
       })
@@ -182,7 +182,7 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should List Gateway Events', (done) => {
 
-      rise.channelGateway.list({
+      rise.channelGateway.listGatewayEvents({
         channel_uuid: channel_uuid,
         gateway_uuid: gateway_uuid
       })
@@ -201,7 +201,7 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Create a Gateway Event', (done) => {
 
-      rise.channelGateway.list({
+      rise.channelGateway.createGatewayEvent({
         channel_uuid: channel_uuid,
         gateway_uuid: gateway_uuid
       })
@@ -220,7 +220,7 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Upload Gateways', (done) => {
 
-      rise.channelGateway.list({
+      rise.channelGateway.uploadGateways({
         channel_uuid: channel_uuid,
         gateway_uuid: gateway_uuid
       })
@@ -239,7 +239,7 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Get Upload Results', (done) => {
 
-      rise.channelGateway.list({
+      rise.channelGateway.uploadResults({
         channel_uuid: channel_uuid,
         gateway_uuid: gateway_uuid
       })
@@ -258,7 +258,7 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Process Uploaded Gateways', (done) => {
 
-      rise.channelGateway.list({
+      rise.channelGateway.processUpload({
         channel_uuid: channel_uuid,
         upload_uuid: upload_uuid,
       })
@@ -277,13 +277,31 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Get Gateway Upload', (done) => {
 
-      rise.channelGateway.list({
+      rise.channelGateway.getGatewayUpload({
         channel_uuid: channel_uuid,
         upload_uuid: upload_uuid,
       })
         .then(_res => {
           assert.equal(_res.list, 'ChannelGateway')
           assert.equal(_res.action, COMMANDS.GET_GATEWAY_UPLOAD)
+
+          console.log('brk gateway', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+    it.skip('### Should Search Gateways', (done) => {
+
+      rise.channelGateway.searchGateways({
+        channel_uuid: channel_uuid,
+        gateway_uuid: gateway_uuid
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelGateway')
+          assert.equal(_res.action, ACTIONS.LIST_GATEWAYS)
 
           console.log('brk gateway', _res)
 
