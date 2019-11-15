@@ -299,7 +299,6 @@ describe('# RiSE Channel Auth API', () => {
           }
         })
           .then(_res => {
-            assert.ok(_res.data)
             assert.equal(_res.object, 'ChannelCartItem')
             const {pattern} = regexdot(EVENTS.CART_ITEM_UPDATED)
             assert.ok(pattern.test(`.${_res.event_type}`))
@@ -326,7 +325,7 @@ describe('# RiSE Channel Auth API', () => {
             console.log('brk _res', _res)
             assert.ok(_res.data)
             assert.equal(_res.object, 'ChannelCartItem')
-            assert.ok(_res.action)
+            assert.equal(_res.action, ACTIONS.GET_SESSION_CART_ITEM)
             done()
           })
           .catch(err => {
