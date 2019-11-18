@@ -230,6 +230,13 @@ export const actions = {
     }).unknown()
   },
 
+  [ACTIONS.LIST_SESSION_CUSTOMER_ORDER_ITEMS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      order_uuid: uuid.required()
+    }).unknown()
+  },
+
   [ACTIONS.LIST_SESSION_CUSTOMER_USERS]: {
     params: joi.object().keys({
       channel_uuid: uuid.required()

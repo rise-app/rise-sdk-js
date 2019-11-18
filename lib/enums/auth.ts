@@ -18,6 +18,7 @@ export const AUTH_ACTIONS = {
   'LIST_SESSION_CUSTOMER_FEEDS': 'channel.session.customer.feed.list',
   'GET_SESSION_CUSTOMER_ORDER': 'channel.session.customer.order.get',
   'LIST_SESSION_CUSTOMER_ORDERS': 'channel.session.customer.order.list',
+  'LIST_SESSION_CUSTOMER_ORDER_ITEMS': 'channel.session.customer.order.item.list',
   'LIST_SESSION_CUSTOMER_SOURCES': 'channel.session.customer.source.list',
   'LIST_SESSION_CUSTOMER_USERS': 'channel.session.customer.user.list',
 }

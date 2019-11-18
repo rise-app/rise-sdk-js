@@ -536,6 +536,25 @@ describe('# RiSE Channel Auth API', () => {
           })
       })
 
+      it.skip('### Should list user session customer\'s order\'s items (Current)', (done) => {
+
+        rise.channelAuth.listSessionCustomerOrderItems({
+          // channel_uuid: channel_uuid
+        }, {
+          token: userToken,
+          session: userSession,
+          params: {
+            order_uuid: order_uuid
+          }
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
       it('### Should get user session customer\'s users (Current)', (done) => {
 
         rise.channelAuth.sessionCustomerUsers({

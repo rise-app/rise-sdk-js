@@ -307,6 +307,17 @@ export class ChannelAuth extends ApiClass {
   }
 
   /**
+   * List Current Session's Customer's Previous Orders
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/orders/:order_uuid/items', validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_ORDER_ITEMS] })
+  listSessionCustomerOrderItems(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
    * List the other Users who have access to the Session Customer
    * @param data
    * @param req

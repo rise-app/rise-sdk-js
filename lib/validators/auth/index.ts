@@ -125,6 +125,9 @@ export const auth = {
   [ACTIONS.LIST_SESSION_CUSTOMER_ORDERS]: {
     params: (data) => Utils.joiPromise(data, authSchema.actions[ACTIONS.LIST_SESSION_CUSTOMER_ORDERS].params)
   },
+  [ACTIONS.LIST_SESSION_CUSTOMER_ORDER_ITEMS]: {
+    params: (data) => Utils.joiPromise(data, authSchema.actions[ACTIONS.LIST_SESSION_CUSTOMER_ORDER_ITEMS].params)
+  },
   [ACTIONS.LIST_SESSION_CUSTOMER_USERS]: {
     params: (data) => Utils.joiPromise(data, authSchema.actions[ACTIONS.LIST_SESSION_CUSTOMER_USERS].params)
   },

@@ -46,6 +46,28 @@ export class ChannelCustomer extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Get the Customer's Current Cart
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/customers/:customer_uuid/cart_current', validator: customer[ACTIONS.GET_CUSTOMER] })
+  getCurrentCart(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get the Customer's Current Cart
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/customers/:customer_uuid/user_primary', validator: customer[ACTIONS.GET_CUSTOMER] })
+  getPrimaryUser(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
 
   /**********************************
    * PUBLIC
