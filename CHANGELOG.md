@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.24](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2019-11-18)
+
+
+### Features
+
+* adds user currents and primaries ([b0c28e7](https://github.com/rise-app/rise-sdk-js/commit/b0c28e7))
+
 ## [1.0.0-alpha.23](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.22...v1.0.0-alpha.23) (2019-11-13)
 
 
