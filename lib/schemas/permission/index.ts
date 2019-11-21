@@ -5,8 +5,8 @@ import { COMMANDS, ACTIONS } from '../../enums'
 
 export const permission = {
     channel_uuid: uuid,
-    user_uuid: uuid,
-    role_name: uuid,
+    // user_uuid: uuid,
+    // role_name: uuid,
 }
 
 export const actions = {
