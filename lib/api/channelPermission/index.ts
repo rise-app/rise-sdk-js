@@ -1,7 +1,7 @@
 import { ApiClass } from '../../ApiClass'
 import { Action, Command } from '../../metadata'
 import { permission } from '../../validators/permission'
-import { ACTIONS } from 'enums'
+import { ACTIONS } from '../../enums'
 export class ChannelPermission extends ApiClass {
 
     @Command({ method: 'GET', route: '/channels/:channel_uuid/users/:user_uuid/permissions', validator: permission[ACTIONS.LIST_USER_PERMISSIONS] })
