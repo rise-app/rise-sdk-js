@@ -9,7 +9,7 @@ export const FEED_COMMANDS = {
     'MARK_FEED_ITEM': 'mark.channel.:channel_uuid.feed.:feed_uuid.item.:item_uuid',
     'DESTROY_FEED_ITEM': 'destroy.channel.:channel_uuid.feed.:feed_uuid.item.:item_uuid',
 
-    'SET_FEED_PRIMARY': 'update.channel.feed.primary'
+    'SET_CHANNEL_FEED_PRIMARY': 'update.channel.feed.primary'
 
 }
 

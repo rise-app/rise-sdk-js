@@ -63,9 +63,9 @@ export const feed = {
      * @param req
      * @param validated
      */
-    [COMMANDS.SET_FEED_PRIMARY]: {
-        params: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.SET_FEED_PRIMARY].params),
-        body: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.SET_FEED_PRIMARY].body),
+    [COMMANDS.SET_CHANNEL_FEED_PRIMARY]: {
+        params: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.SET_CHANNEL_FEED_PRIMARY].params),
+        body: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.SET_CHANNEL_FEED_PRIMARY].body),
     },
 
 

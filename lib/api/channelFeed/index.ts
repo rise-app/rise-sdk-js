@@ -91,7 +91,7 @@ export class ChannelFeed extends ApiClass {
      * @param req
      * @param validated
      */
-    @Action({ method: 'GET', route: '/channels/:channel_uuid/feeds/:feed_uuid', validator: feed[COMMANDS.GET_FEED] })
+    @Action({ method: 'GET', route: '/channels/:channel_uuid/feeds/:feed_uuid', validator: feed[ACTIONS.GET_FEED] })
     getFeed(data, req?, validated?) {
         return this.request(req, data, validated)
     }
