@@ -1,5 +1,5 @@
 import { Utils } from '../../Utils'
-import { cart as cartSchema } from '../../schemas'
+import { actions } from '../../schemas/permission'
 import { COMMANDS, ACTIONS } from '../../enums'
 
 export const permission = {
@@ -11,12 +11,12 @@ export const permission = {
     // Actions
 
     [ACTIONS.LIST_USER_PERMISSIONS]: {
-        params: (data) => Utils.joiPromise(data, cartSchema.commands[ACTIONS.LIST_USER_PERMISSIONS].params),
-        body: (data) => Utils.joiPromise(data, cartSchema.commands[ACTIONS.LIST_USER_PERMISSIONS].body),
+        params: (data) => Utils.joiPromise(data, actions[ACTIONS.LIST_USER_PERMISSIONS].params),
+        body: (data) => Utils.joiPromise(data, actions[ACTIONS.LIST_USER_PERMISSIONS].body),
     },
     [ACTIONS.LIST_ROLE_PERMISSIONS]: {
-        params: (data) => Utils.joiPromise(data, cartSchema.commands[ACTIONS.LIST_ROLE_PERMISSIONS].params),
-        body: (data) => Utils.joiPromise(data, cartSchema.commands[ACTIONS.LIST_ROLE_PERMISSIONS].body)
+        params: (data) => Utils.joiPromise(data, actions[ACTIONS.LIST_ROLE_PERMISSIONS].params),
+        body: (data) => Utils.joiPromise(data, actions[ACTIONS.LIST_ROLE_PERMISSIONS].body)
     },
 
 }
