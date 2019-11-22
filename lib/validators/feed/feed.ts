@@ -1,5 +1,5 @@
 import { Utils } from '../../Utils'
-import { feed as feedSchema } from '../../schemas'
+import { feed as feedSchema } from '../../schemas/feed'
 import { COMMANDS, ACTIONS } from '../../enums'
 
 export const feed = {
@@ -33,11 +33,11 @@ export const feed = {
     },
 
     /**
- * Get Feed
- * @param data
- * @param req
- * @param validated
- */
+     * Get Feed
+     * @param data
+     * @param req
+     * @param validated
+     */
     [ACTIONS.GET_FEED]: {
         params: (data) => Utils.joiPromise(data, feedSchema.commands[ACTIONS.GET_FEED].params),
         body: (data) => Utils.joiPromise(data, feedSchema.commands[ACTIONS.GET_FEED].body),
