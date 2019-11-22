@@ -1,5 +1,5 @@
 
-export const CHANNEL_FEED_COMMANDS = {
+export const FEED_COMMANDS = {
     'CREATE_FEED': 'create.channel.:channel_uuid.feed',
     'UPDATE_FEED': 'update.channel.:channel_uuid.feed.:feed_uuid',
     'DESTROY_FEED': 'destroy.channel.:channel_uuid.feed.:feed_uuid',
@@ -9,9 +9,11 @@ export const CHANNEL_FEED_COMMANDS = {
     'MARK_FEED_ITEM': 'mark.channel.:channel_uuid.feed.:feed_uuid.item.:item_uuid',
     'DESTROY_FEED_ITEM': 'destroy.channel.:channel_uuid.feed.:feed_uuid.item.:item_uuid',
 
+    'SET_FEED_PRIMARY': 'update.channel.feed.primary'
+
 }
 
-export const CHANNEL_FEED_EVENTS = {
+export const FEED_EVENTS = {
     'FEED_CREATED': 'channel.:channel_uuid.feed.:feed_uuid.created',
     'FEED_UPDATED': 'channel.:channel_uuid.feed.:feed_uuid.updated',
     'FEED_DESTROYED': 'channel.:channel_uuid.feed.:feed_uuid.destroyed',
@@ -23,12 +25,14 @@ export const CHANNEL_FEED_EVENTS = {
 
 }
 
-export const CHANNEL_FEED_ACTIONS = {
+export const FEED_ACTIONS = {
     'GET_FEED': 'channel.feed.get',
     'LIST_FEEDS': 'channel.feed.list',
     'GET_FEED_ITEM': 'channel.feed.item.get',
     'LIST_FEED_ITEMS': 'channel.feed.item.list',
-    'LIST_FEED_EVENTS': 'channel.feed.event.list'
+    'LIST_FEED_EVENTS': 'channel.feed.event.list',
+
+    'GET_FEED_PRIMARY': 'channel.feed.primary',
 
 }
 

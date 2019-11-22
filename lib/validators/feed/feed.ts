@@ -10,18 +10,6 @@ export const feed = {
 
     // Actions
 
-
-    /**
-     * List all Feeds
-     * @param data
-     * @param req
-     * @param validated
-     */
-    [ACTIONS.LIST_FEEDS]: {
-        params: (data) => Utils.joiPromise(data, feedSchema.commands[ACTIONS.LIST_FEEDS].params),
-        body: (data) => Utils.joiPromise(data, feedSchema.commands[ACTIONS.LIST_FEEDS].body),
-    },
-
     /**
      * List all Feeds
      * @param data
