@@ -253,4 +253,27 @@ export class Channel extends ApiClass {
   getTaxRule(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
+
+  // /**
+  //  * Get Feed Primary
+  //  * @param data
+  //  * @param req
+  //  * @param validated
+  //  */
+  // @Action({ method: 'GET', route: '/channels/:channel_uuid/feed_primary', validator: feed[ACTIONS.GET_FEED_PRIMARY] })
+  // getFeedPrimary(data, req?, validated?) {
+  //     return this.request(req, data, validated)
+  // }
+  //
+  // /**
+  //  * Set Channel Feed Primary
+  //  * @param data
+  //  * @param req
+  //  * @param validated
+  //  */
+  // @Command({ method: 'PUT', route: '/channels/:channel_uuid/feed_primary', validator: feed[COMMANDS.SET_CHANNEL_FEED_PRIMARY] })
+  // setFeedPrimary(data, req?, validated?) {
+  //     return this.request(req, data, validated)
+  // }
 }
