@@ -13,7 +13,12 @@ describe('# RiSE Channel User API', () => {
         url: url,
         sandbox: true,
         public_key: public_key,
-        private_key: private_key
+        private_key: private_key,
+        globals: {
+          params: {
+            channel_uuid
+          }
+        }
       })
 
       rise.authenticateApiUser(
@@ -32,7 +37,7 @@ describe('# RiSE Channel User API', () => {
     it('### Should validate token with req params', (done) => {
 
       rise.channelUser.validateToken({
-        channel_uuid: channel_uuid
+        // channel_uuid: channel_uuid
       })
         .then(_res => {
           assert.equal(_res.session, adminSession)
@@ -50,7 +55,12 @@ describe('# RiSE Channel User API', () => {
       const rise2 = new RiSE({
         sandbox: true,
         public_key: public_key,
-        private_key: private_key
+        private_key: private_key,
+        globals: {
+          params: {
+            channel_uuid
+          }
+        }
       })
 
       rise2.channelUser.validateToken({
@@ -76,7 +86,7 @@ describe('# RiSE Channel User API', () => {
       const username = `sdkjstest${Math.floor((Math.random() * 100) + 1)}`
 
       rise.channelUser.create({
-        channel_uuid: channel_uuid,
+        // channel_uuid: channel_uuid,
         username: username
       })
         .then(_res => {
@@ -93,7 +103,7 @@ describe('# RiSE Channel User API', () => {
     it('### Should Update a User', (done) => {
 
       rise.channelUser.update({
-        channel_uuid: channel_uuid,
+        // channel_uuid: channel_uuid,
         user_uuid: user.user_uuid,
         name_first: 'Hello',
         name_last: 'World'
@@ -115,7 +125,7 @@ describe('# RiSE Channel User API', () => {
     it('### Should Get a Channel User', (done) => {
 
       rise.channelUser.get({
-        channel_uuid: channel_uuid,
+        // channel_uuid: channel_uuid,
         user_uuid: user.user_uuid
       })
         .then(_res => {
@@ -135,7 +145,7 @@ describe('# RiSE Channel User API', () => {
     it('### Should List Channel Users', (done) => {
 
       rise.channelUser.list({
-        channel_uuid: channel_uuid
+        // channel_uuid: channel_uuid
       }, {
         query: {
           limit: 1
@@ -155,22 +165,29 @@ describe('# RiSE Channel User API', () => {
     })
   })
   describe('## As registered user', () => {
+    let username, password = 'test1234567'
+
     before(() => {
       rise = new RiSE({
         sandbox: true,
         public_key: public_key,
-        private_key: private_key
+        private_key: private_key,
+        globals: {
+          params: {
+            channel_uuid
+          }
+        }
       })
     })
 
     it('### Should Register a user', (done) => {
 
-      const username = `sdkjstest${Math.floor((Math.random() * 100) + 1)}`
+      username = `sdkjstest${Math.floor((Math.random() * 100) + 1)}`
 
       rise.channelUser.register({
         channel_uuid: channel_uuid,
         username: username,
-        password: 'test1234567'
+        password: password
       })
         .then(_res => {
           userSession = _res.session
@@ -333,9 +350,27 @@ describe('# RiSE Channel User API', () => {
     it('### Should Logout a user', (done) => {
 
       rise.channelUser.logout({
-        channel_uuid: channel_uuid
+        // channel_uuid: channel_uuid
       }, {
         token: userToken,
+        session: userSession
+      })
+        .then(_res => {
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should Login a user', (done) => {
+
+      rise.channelUser.login({
+        // channel_uuid: channel_uuid,
+        identifier: username,
+        password: password
+      }, {
+        // token: userToken,
         session: userSession
       })
         .then(_res => {

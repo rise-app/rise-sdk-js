@@ -1,4 +1,7 @@
-# RiSE JS SDK
+
+![RiSE Logo][logo]
+
+# RiSE JavaScript/TypeScript SDK
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][ci-image]][ci-url]
@@ -127,7 +130,7 @@ You can also test the release by running
 npm run release -- --dry-run --release-as patch
 ``` 
  
-
+[logo]: https://rise.store/wp-content/uploads/2019/06/rise_sized_75x150_blk-01-01-01.png "RiSE"
 [npm-image]: https://img.shields.io/npm/v/@rise/sdk-js.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/@rise/sdk-js
 [ci-image]: https://img.shields.io/circleci/project/github/rise-app/rise-sdk-js/master.svg

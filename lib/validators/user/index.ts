@@ -6,17 +6,6 @@ import { ACTIONS, COMMANDS } from '../../enums'
 export const user = {
 
   // Commands
-  [COMMANDS.REGISTER_USER]: {
-    params: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.REGISTER_USER].params),
-    body: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.REGISTER_USER].body),
-  },
-  [COMMANDS.LOGIN_USER]: {
-    params: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.LOGIN_USER].params),
-    body: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.LOGIN_USER].body),
-  },
-  [COMMANDS.LOGOUT_USER]: {
-    params: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.LOGOUT_USER].params),
-  },
   [COMMANDS.CREATE_USER]: {
     params: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.CREATE_USER].params),
     body: (data) => Utils.joiPromise(data, userSchema.commands[COMMANDS.CREATE_USER].body),
@@ -27,9 +16,6 @@ export const user = {
   },
 
   // Actions
-  [ACTIONS.GET_SESSION]: {
-    params: (data) => Utils.joiPromise(data, userSchema.actions[ACTIONS.GET_SESSION].params)
-  },
   [ACTIONS.GET_USER]: {
     params: (data) => Utils.joiPromise(data, userSchema.actions[ACTIONS.GET_USER].params)
   },

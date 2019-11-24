@@ -42,13 +42,6 @@ export const USER_COMMANDS = {
   'REMOVE_USER_PASSPORT': 'remove.channel.user.passport',
 }
 export const USER_ACTIONS = {
-  'GET_SESSION': 'channel.session.get',
-  'GET_SESSION_USER': 'channel.session.user.get',
-  'GET_SESSION_CART': 'channel.session.cart.get',
-  'GET_SESSION_CUSTOMER': 'channel.session.customer.get',
-  'GET_SESSION_CHANNEL': 'channel.session.channel.get',
-  'LIST_SESSION_CHANNELS': 'channel.session.channel.list',
-  'LIST_SESSION_ROLES': 'channel.session.role.list',
   'GET_USER': 'channel.user.get',
   'FIND_USER': 'channel.user.get', // ALIAS
   'LIST_USERS': 'channel.user.list',
