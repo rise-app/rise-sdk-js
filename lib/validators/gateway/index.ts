@@ -9,10 +9,54 @@ export const gateway = {
    ***********************************/
 
   // Commands
-  // [COMMANDS.CREATE_GATEWAY]: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.CREATE_GATEWAY]),
-  // [COMMANDS.UPDATE_GATEWAY]: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.UPDATE_GATEWAY]),
+  [COMMANDS.CREATE_GATEWAY]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.CREATE_GATEWAY].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.CREATE_GATEWAY].body),
+  },
+  [COMMANDS.UPDATE_GATEWAY]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.UPDATE_GATEWAY].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.UPDATE_GATEWAY].body),
+  },
+  [COMMANDS.PUBLISH_GATEWAY]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.PUBLISH_GATEWAY].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.PUBLISH_GATEWAY].body),
+  },
+  [COMMANDS.UNPUBLISH_GATEWAY]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.PUBLISH_GATEWAY].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.PUBLISH_GATEWAY].body),
+  },
+  [COMMANDS.UPLOAD_GATEWAYS]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.UPLOAD_GATEWAYS].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.UPLOAD_GATEWAYS].body),
+  },
+  [COMMANDS.PROCESS_UPLOADED_GATEWAYS]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.PROCESS_UPLOADED_GATEWAYS].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[COMMANDS.PROCESS_UPLOADED_GATEWAYS].body),
+  },
 
   // Actions
-  [ACTIONS.GET_GATEWAY]: (data) => Utils.joiPromise(data, gatewaySchema.actions[ACTIONS.GET_GATEWAY]),
-  // [ACTIONS.LIST_GATEWAYS]: (data) => Utils.joiPromise(data, gatewaySchema.actions[ACTIONS.LIST_GATEWAYS]),
+  [ACTIONS.GET_GATEWAY]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY].body),
+  },
+  [ACTIONS.GET_GATEWAY_UPLOAD]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY_UPLOAD].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY_UPLOAD].body),
+  },
+  [ACTIONS.LIST_GATEWAYS]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAYS].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAYS].body),
+  },
+  [ACTIONS.LIST_GATEWAY_EVENTS]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAY_EVENTS].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAY_EVENTS].body),
+  },
+  [ACTIONS.LIST_GATEWAY_UPLOADS]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAY_UPLOADS].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAY_UPLOADS].body),
+  },
+  [ACTIONS.GET_GATEWAY_PRIMARY]: {
+    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY_PRIMARY].params),
+    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY_PRIMARY].body),
+  },
 }
