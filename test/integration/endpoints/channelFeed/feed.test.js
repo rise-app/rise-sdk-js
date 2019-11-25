@@ -65,7 +65,7 @@ describe('# RiSE Channel Feed API', () => {
             })
                 .then(_res => {
                     assert.equal(_res.object, 'ChannelFeed')
-                    // assert.equal(_res.event_type, EVENTS.Feed_UPDATED)
+
 
                     feed = _res.data
 
@@ -85,7 +85,7 @@ describe('# RiSE Channel Feed API', () => {
             })
                 .then(_res => {
                     assert.equal(_res.object, 'ChannelFeed')
-                    // assert.equal(_res.event_type, EVENTS.Feed_UPDATED)
+
 
                     feed = _res.data
 
@@ -104,7 +104,7 @@ describe('# RiSE Channel Feed API', () => {
             })
                 .then(_res => {
                     assert.equal(_res.object, 'ChannelFeed')
-                    // assert.equal(_res.event_type, EVENTS.Feed_UPDATED)
+
 
                     feed = _res.data
 
