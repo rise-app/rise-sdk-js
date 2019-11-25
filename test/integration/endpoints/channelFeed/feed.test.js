@@ -1,234 +1,225 @@
-'use strict'
-/* global describe, it */
-const assert = require('assert')
-const supertest = require('supertest')
-const qs = require('qs')
-const _ = require('lodash')
-const regexdot = require('@fabrix/regexdot').regexdot
-const { CHANNEL_EVENTS, CHANNEL_COMMANDS, CHANNEL_ACTIONS } = require('../../../../dist/enums'
-)
+const { RiSE, EVENTS, ACTIONS } = require('../../../../dist')
+const { url, adminPassword, adminIdentifier, channel_uuid, private_key, public_key } = require('../../../fixtures/constants')
 
-describe('Admin User ChannelFeedController', () => {
-    let adminUser, admin, session, token, testChannel, testFeed
+const assert = require('assert')
+
+describe('# RiSE Channel Feed API', () => {
+
+    let rise, adminToken, adminSession, userToken, userSession, user, feed, item, customer, offer
 
     before((done) => {
-
-        testChannel = {
-            //
-            handle: 'test-feeds',
-            title: 'Test Feeds'
-        }
-
-        adminUser = supertest.agent(global.app.spools.express.server)
-        // Login as Admin
-        adminUser
-            .post(`${global.app.config.get('platform.prefix')}/auth/local`)
-            .set({
-                'X-APPLICATION-KEY': global.app.config.get('platform.default_ui_application_public'),
-                Accept: 'application/json'
-            }) //set header for this test
-            .send({
-                username: global.app.config.get('platform.default_user_username'),
-                password: global.app.config.get('platform.default_user_password')
-            })
-            .expect(200)
-            .end((err, res) => {
-                admin = res.body.data.User
-                session = res.body.session
-
-
-                if (err) {
-                    console.log('UserController before err', err)
-                    return done(err)
+        rise = new RiSE({
+            url: url,
+            sandbox: true,
+            public_key: public_key,
+            private_key: private_key,
+            globals: {
+                params: {
+                    channel_uuid
                 }
+            }
+        })
 
+        rise.authenticateApiUser(
+            channel_uuid,
+            adminIdentifier,
+            adminPassword
+        )
+            .then(res => {
+                adminToken = res.token
+                adminSession = res.session
                 done()
             })
+            .catch(err => done(err))
     })
 
-    it.skip('should exist', () => {
-        assert(global.app.api.controllers['ChannelFeedController'])
-        assert(global.app.controllers['ChannelFeedController'])
+    describe('# RiSE Channel Feed API Dependencies', () => {
+
     })
 
-    it.skip('should create a channel with feeds', (done) => {
-        adminUser
-            .post(`${global.app.config.get('platform.prefix')}/channels`)
-            .set({
-                'X-APPLICATION-KEY': global.app.config.get('platform.default_ui_application_public'),
-                Accept: 'application/json',
-                Session: session
+    describe('## RiSE Channel Feed API Methods', () => {
+
+        it.skip('### Should Create a Feed', (done) => {
+
+            rise.channelFeed.create({
+                channel_uuid: channel_uuid
             })
-            .send(testChannel)
-            .expect(200)
-            .end((err, res) => {
-                testChannel = res.body.data
+                .then(_res => {
+                    assert.equal(_res.object, 'ChannelFeed')
+                    // assert.equal(_res.event_type, EVENTS.Feed_CREATED)
+                    Feed = _res.data
 
-                // assert.equal(res.body.event_type, 'channel.created')
-                const { pattern } = regexdot(CHANNEL_EVENTS.CREATED)
-                assert.ok(pattern.test(`.${res.body.event_type}`))
-                assert.equal(res.body.object, 'Channel')
-                assert.equal(res.body.url, `/api/v1/channels/${testChannel.channel_uuid}`)
+                    done()
+                })
+                .catch(err => {
+                    done(err)
+                })
+        })
+        //
+        it.skip('### Should Update a Feed', (done) => {
 
-                assert.ok(testChannel.handle.includes('test-feeds'))
-                assert.equal(testChannel.title, 'Test Feeds')
-                done(err)
+            rise.channelFeed.update({
+                channel_uuid: channel_uuid,
+                feed_uuid: feed_uuid,
+                notes: 'Well what do we have here?',
             })
-    })
-    describe('Channel Feed Interactions', () => {
-        // Give the Feeds a half second to propagate
-        before(function (done) {
-            setTimeout(function () {
-                done()
-            }, 500)
-        })
+                .then(_res => {
+                    assert.equal(_res.object, 'ChannelFeed')
+                    // assert.equal(_res.event_type, EVENTS.Feed_UPDATED)
 
-        it.skip('should get channel\'s feeds', (done) => {
-            adminUser
-                .get(`${global.app.config.get('platform.prefix')}/channels/${testChannel.channel_uuid}/feeds`)
-                .set({
-                    'X-APPLICATION-KEY': global.app.config.get('platform.default_ui_application_public'),
-                    Accept: 'application/json',
-                    Session: session
+                    feed = _res.data
+
+                    done()
                 })
-                .expect(200)
-                .end((err, res) => {
-                    if (err) {
-                        console.log('err', err)
-                    }
-
-                    testFeed = res.body.data[0]
-                    assert.equal(res.body.action, 'channel.feed.list')
-                    assert.equal(res.body.list, 'ChannelFeed')
-                    assert.equal(res.body.url, `/api/v1/channels/${testChannel.channel_uuid}/feeds`)
-
-                    assert.ok(res.body.total >= 1)
-                    assert.equal(res.body.offset, 0)
-                    assert.equal(res.body.limit, 10)
-
-                    assert.ok(res.body.data.find(n => n.channel_uuid === testChannel.channel_uuid))
+                .catch(err => {
                     done(err)
                 })
         })
 
-        it.skip('should get channel\'s descendants feeds', (done) => {
-            adminUser
-                .get(`${global.app.config.get('platform.prefix')}/channels/${testChannel.channel_uuid}/descendants/feeds`)
-                .set({
-                    'X-APPLICATION-KEY': global.app.config.get('platform.default_ui_application_public'),
-                    Accept: 'application/json',
-                    Session: session
+        it.skip('### Should Set Feed Primary', (done) => {
+
+            rise.channelFeed.setFeedPrimary({
+                channel_uuid: channel_uuid,
+                feed_uuid: feed.feed_uuid,
+                notes: 'Well what do we have here?',
+            })
+                .then(_res => {
+                    assert.equal(_res.object, 'ChannelFeed')
+                    // assert.equal(_res.event_type, EVENTS.Feed_UPDATED)
+
+                    feed = _res.data
+
+                    done()
                 })
-                .expect(200)
-                .end((err, res) => {
-                    if (err) {
-                        console.log('err', err)
-                    }
-
-                    testFeed = res.body.data[0]
-                    assert.equal(res.body.action, 'channel.feed.list')
-                    assert.equal(res.body.list, 'ChannelFeed')
-                    assert.equal(res.body.url, `/api/v1/channels/${testChannel.channel_uuid}/descendants/feeds`)
-
-                    assert.ok(res.body.total >= 1)
-                    assert.equal(res.body.offset, 0)
-                    assert.equal(res.body.limit, 10)
-
+                .catch(err => {
                     done(err)
                 })
         })
 
-        it.skip('should get channel\'s feed', (done) => {
-            adminUser
-                .get(`${global.app.config.get('platform.prefix')}/channels/${testChannel.channel_uuid}/feeds/${testFeed.feed_uuid}`)
-                .set({
-                    'X-APPLICATION-KEY': global.app.config.get('platform.default_ui_application_public'),
-                    Accept: 'application/json',
-                    Session: session
-                })
-                .expect(200)
-                .end((err, res) => {
-                    if (err) {
-                        console.log('err', err)
-                    }
+        it.skip('### Should Set Channel Feed Primary', (done) => {
 
+            rise.channelFeed.setFeedPrimary({
+                channel_uuid: channel_uuid,
+                feed_uuid: feed.feed_uuid,
+            })
+                .then(_res => {
+                    assert.equal(_res.object, 'ChannelFeed')
+                    // assert.equal(_res.event_type, EVENTS.Feed_UPDATED)
+
+                    feed = _res.data
+
+                    done()
+                })
+                .catch(err => {
                     done(err)
                 })
         })
 
-        it.skip('should update channel\'s feed', (done) => {
-            adminUser
-                .get(`${global.app.config.get('platform.prefix')}/channels/${testChannel.channel_uuid}/feeds/${testFeed.feed_uuid}`)
-                .set({
-                    'X-APPLICATION-KEY': global.app.config.get('platform.default_ui_application_public'),
-                    Accept: 'application/json',
-                    Session: session
+        it.skip('### Should Get a Channel Feed', (done) => {
+
+            rise.channelFeed.get({
+                channel_uuid: channel_uuid,
+                Feed_uuid: Feed.Feed_uuid
+            })
+                .then(_res => {
+                    assert.equal(_res.object, 'ChannelFeed')
+                    assert.equal(_res.action, ACTIONS.GET_FEED)
+
+                    feed = _res.data
+
+                    console.log('brk Feed', _res)
+
+                    done()
                 })
-                .expect(200)
-                .end((err, res) => {
-                    if (err) {
-                        console.log('err', err)
-                    }
-
-                    testFeed = res.body.data[0]
-                    assert.equal(res.body.action, 'channel.feed.update')
-                    assert.equal(res.body.list, 'ChannelFeed')
-                    assert.equal(res.body.url, `/api/v1/channels/${testChannel.channel_uuid}/feeds/${testFeed.feed_uuid}`)
-
-
+                .catch(err => {
                     done(err)
                 })
         })
 
-        it.skip('should get channel\'s feed items', (done) => {
-            adminUser
-                .get(`${global.app.config.get('platform.prefix')}/channels/${testChannel.channel_uuid}/feeds/${testFeed.feed_uuid}/items`)
-                .set({
-                    'X-APPLICATION-KEY': global.app.config.get('platform.default_ui_application_public'),
-                    Accept: 'application/json',
-                    Session: session
-                })
-                .expect(200)
-                .end((err, res) => {
-                    if (err) {
-                        console.log('err', err)
-                    }
+        it.skip('### Should Get Channel Feed Primary', (done) => {
 
+            rise.channelFeed.getFeedPrimary({
+                channel_uuid: channel_uuid,
+            })
+                .then(_res => {
+                    assert.equal(_res.object, 'ChannelFeed')
+                    assert.equal(_res.action, ACTIONS.GET_FEED_PRIMARY)
+
+                    feed = _res.data
+
+                    console.log('brk Feed', _res)
+
+                    done()
+                })
+                .catch(err => {
                     done(err)
                 })
         })
 
-        it.skip('should get root channel\'s feeds which should include descendant channel\'s feeds', (done) => {
-            adminUser
-                .get(`${global.app.config.get('platform.prefix')}/channels/${global.app.config.get('platform.root_uuid')}/descendants/feeds`)
-                .set({
-                    'X-APPLICATION-KEY': global.app.config.get('platform.default_ui_application_public'),
-                    Accept: 'application/json',
-                    Session: session
+        it.skip('### Should List Channel Feeds', (done) => {
+
+            rise.channelFeed.list({
+                channel_uuid: channel_uuid
+            }, {
+                query: {
+                    limit: 5
+                }
+            })
+                .then(_res => {
+                    assert.equal(_res.list, 'ChannelFeed')
+                    assert.equal(_res.action, ACTIONS.LIST_FEEDS)
+
+                    assert.equal(_res.limit, 5)
+                    assert.equal(_res.offset, 0)
+
+                    console.log('brk Feed', _res)
+
+                    done()
                 })
-                .query({
-                    limit: 150,
-                })
-                .expect(200)
-                .end((err, res) => {
-                    if (err) {
-                        console.log('err', err)
-                    }
-
-                    console.log('BRK res.body', res.body)
-
-                    assert.equal(res.body.action, 'channel.feed.list')
-                    assert.equal(res.body.list, 'ChannelFeed')
-                    assert.equal(res.body.url, `/api/v1/channels/${global.app.config.get('platform.root_uuid')}/descendants/feeds`)
-
-                    assert.ok(res.body.total >= 1)
-                    assert.equal(res.body.offset, 0)
-                    assert.equal(res.body.limit, 150)
-
-                    assert.ok(res.body.data.find(n => n.channel_uuid === testChannel.channel_uuid))
-                    assert.ok(res.body.data.find(n => n.channel_uuid === global.app.config.get('platform.root_uuid')))
+                .catch(err => {
                     done(err)
                 })
         })
+
+        it.skip('### Should List Feed Events', (done) => {
+
+            rise.channelFeed.listEvents({
+                channel_uuid: channel_uuid,
+                Feed_uuid: Feed_uuid
+            })
+                .then(_res => {
+                    assert.equal(_res.list, 'ChannelEvent')
+                    assert.equal(_res.action, ACTIONS.LIST_Feed_EVENTS)
+
+                    console.log('brk Feed', _res)
+
+                    done()
+                })
+                .catch(err => {
+                    done(err)
+                })
+        })
+
+        it.skip('### Should Create a Feed Event', (done) => {
+
+            rise.channelFeed.createEvent({
+                channel_uuid: channel_uuid,
+                Feed_uuid: Feed_uuid
+            })
+                .then(_res => {
+                    assert.equal(_res.list, 'ChannelEvent')
+                    assert.equal(_res.action, COMMANDS.CREATE_Feed_EVENT)
+
+                    console.log('brk Feed', _res)
+
+                    done()
+                })
+                .catch(err => {
+                    done(err)
+                })
+        })
+
+
+
     })
 })
