@@ -183,7 +183,7 @@ describe('# RiSE Channel Feed API', () => {
             rise.channelFeed.updateFeedItem({
                 channel_uuid: channel_uuid,
                 feed_uuid: feed.feed_uuid,
-                feedItem_uuid: feedItem.feedItem_uuid
+                feedItem_uuid: item.feedItem_uuid
             })
                 .then(_res => {
                     assert.equal(_res.list, 'ChannelFeed')
@@ -203,7 +203,7 @@ describe('# RiSE Channel Feed API', () => {
             rise.channelFeed.deleteFeedItem({
                 channel_uuid: channel_uuid,
                 feed_uuid: feed_uuid,
-                feedItem_uuid: feedItem.feedItem_uuid
+                feedItem_uuid: item.feedItem_uuid
             })
                 .then(_res => {
                     assert.equal(_res.list, 'ChannelFeed')
@@ -223,7 +223,7 @@ describe('# RiSE Channel Feed API', () => {
             rise.channelFeed.deleteFeedItem({
                 channel_uuid: channel_uuid,
                 feed_uuid: feed_uuid,
-                feedItem_uuid: feedItem.feedItem_uuid
+                feedItem_uuid: item.feedItem_uuid
             })
                 .then(_res => {
                     assert.equal(_res.list, 'ChannelFeed')
@@ -244,7 +244,7 @@ describe('# RiSE Channel Feed API', () => {
             rise.channelFeed.deleteFeedItem({
                 channel_uuid: channel_uuid,
                 feed_uuid: feed_uuid,
-                feedItem_uuid: feedItem.feedItem_uuid
+                feedItem_uuid: item.feedItem_uuid
             })
                 .then(_res => {
                     assert.equal(_res.list, 'ChannelFeed')
