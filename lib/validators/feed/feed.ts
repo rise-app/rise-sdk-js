@@ -45,7 +45,8 @@ export const feed = {
 
 
 
-    //commands
+    // Commands
+
     /**
      * Create Feed
      * @param data
@@ -80,6 +81,83 @@ export const feed = {
         body: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.UPDATE_FEED].body),
     },
 
+
+
+
+    /***********************************
+     * Feed Item
+     ***********************************/
+
+    // Commands
+
+    /**
+     * Create Feed Item
+     * @param data
+     * @param req
+     * @param validated
+     */
+    [COMMANDS.UPDATE_FEED_ITEM]: {
+        params: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.UPDATE_FEED_ITEM].params),
+        body: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.UPDATE_FEED_ITEM].body),
+    },
+
+    /**
+     * Update Feed Item
+     * @param data
+     * @param req
+     * @param validated
+     */
+    [COMMANDS.UPDATE_FEED_ITEM]: {
+        params: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.UPDATE_FEED_ITEM].params),
+        body: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.UPDATE_FEED_ITEM].body),
+    },
+
+
+    /**
+     * Destroy Feed Item
+     * @param data
+     * @param req
+     * @param validated
+     */
+    [COMMANDS.DESTROY_FEED_ITEM]: {
+        params: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.DESTROY_FEED_ITEM].params),
+        body: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.DESTROY_FEED_ITEM].body),
+    },
+
+    /**
+     * Mark Feed Item
+     * @param data
+     * @param req
+     * @param validated
+     */
+    [COMMANDS.MARK_FEED_ITEM]: {
+        params: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.DESTROY_FEED_ITEM].params),
+        body: (data) => Utils.joiPromise(data, feedSchema.commands[COMMANDS.DESTROY_FEED_ITEM].body),
+    },
+
+    // Actions
+
+    /**
+     * Get Feed Item
+     * @param data
+     * @param req
+     * @param validated
+     */
+    [ACTIONS.GET_FEED_ITEM]: {
+        params: (data) => Utils.joiPromise(data, feedSchema.actions[ACTIONS.GET_FEED_ITEM].params),
+        body: (data) => Utils.joiPromise(data, feedSchema.commands[ACTIONS.GET_FEED_ITEM].body),
+    },
+
+    /**
+     * List Feed Items
+     * @param data
+     * @param req
+     * @param validated
+     */
+    [ACTIONS.LIST_FEED_ITEMS]: {
+        params: (data) => Utils.joiPromise(data, feedSchema.actions[ACTIONS.LIST_FEED_ITEMS].params),
+        body: (data) => Utils.joiPromise(data, feedSchema.actions[ACTIONS.LIST_FEED_ITEMS].body),
+    },
 
 
 
