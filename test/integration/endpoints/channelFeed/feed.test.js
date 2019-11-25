@@ -5,7 +5,7 @@ const assert = require('assert')
 
 describe('# RiSE Channel Feed API', () => {
 
-    let rise, adminToken, adminSession, userToken, userSession, user, feed, item, customer, offer
+    let rise, adminToken, adminSession, userToken, userSession, user, feed, feedItem, customer, offer
 
     before((done) => {
         rise = new RiSE({
@@ -60,8 +60,7 @@ describe('# RiSE Channel Feed API', () => {
 
             rise.channelFeed.update({
                 channel_uuid: channel_uuid,
-                feed_uuid: feed_uuid,
-                notes: 'Well what do we have here?',
+                feed_uuid: feed.feed_uuid,
             })
                 .then(_res => {
                     assert.equal(_res.object, 'ChannelFeed')
@@ -81,7 +80,6 @@ describe('# RiSE Channel Feed API', () => {
             rise.channelFeed.setFeedPrimary({
                 channel_uuid: channel_uuid,
                 feed_uuid: feed.feed_uuid,
-                notes: 'Well what do we have here?',
             })
                 .then(_res => {
                     assert.equal(_res.object, 'ChannelFeed')
@@ -96,9 +94,9 @@ describe('# RiSE Channel Feed API', () => {
                 })
         })
 
-        it.skip('### Should Set Channel Feed Primary', (done) => {
+        it.skip('### Should Get Channel Feed Primary', (done) => {
 
-            rise.channelFeed.setFeedPrimary({
+            rise.channelFeed.getFeedPrimary({
                 channel_uuid: channel_uuid,
                 feed_uuid: feed.feed_uuid,
             })
@@ -119,31 +117,11 @@ describe('# RiSE Channel Feed API', () => {
 
             rise.channelFeed.get({
                 channel_uuid: channel_uuid,
-                Feed_uuid: Feed.Feed_uuid
+                feed_uuid: feed.feed_uuid
             })
                 .then(_res => {
                     assert.equal(_res.object, 'ChannelFeed')
                     assert.equal(_res.action, ACTIONS.GET_FEED)
-
-                    feed = _res.data
-
-                    console.log('brk Feed', _res)
-
-                    done()
-                })
-                .catch(err => {
-                    done(err)
-                })
-        })
-
-        it.skip('### Should Get Channel Feed Primary', (done) => {
-
-            rise.channelFeed.getFeedPrimary({
-                channel_uuid: channel_uuid,
-            })
-                .then(_res => {
-                    assert.equal(_res.object, 'ChannelFeed')
-                    assert.equal(_res.action, ACTIONS.GET_FEED_PRIMARY)
 
                     feed = _res.data
 
@@ -181,15 +159,15 @@ describe('# RiSE Channel Feed API', () => {
                 })
         })
 
-        it.skip('### Should List Feed Events', (done) => {
+        it.skip('### Should Create a Feed Item', (done) => {
 
-            rise.channelFeed.listEvents({
+            rise.channelFeed.createFeedItem({
                 channel_uuid: channel_uuid,
-                Feed_uuid: Feed_uuid
+                feed_uuid: feed.feed_uuid
             })
                 .then(_res => {
-                    assert.equal(_res.list, 'ChannelEvent')
-                    assert.equal(_res.action, ACTIONS.LIST_Feed_EVENTS)
+                    assert.equal(_res.list, 'ChannelFeed')
+                    assert.equal(_res.action, COMMANDS.CREATE_FEED_ITEM)
 
                     console.log('brk Feed', _res)
 
@@ -200,15 +178,96 @@ describe('# RiSE Channel Feed API', () => {
                 })
         })
 
-        it.skip('### Should Create a Feed Event', (done) => {
+        it.skip('### Should Update a Feed Item', (done) => {
 
-            rise.channelFeed.createEvent({
+            rise.channelFeed.updateFeedItem({
                 channel_uuid: channel_uuid,
-                Feed_uuid: Feed_uuid
+                feed_uuid: feed.feed_uuid,
+                feedItem_uuid: feedItem.feedItem_uuid
             })
                 .then(_res => {
-                    assert.equal(_res.list, 'ChannelEvent')
-                    assert.equal(_res.action, COMMANDS.CREATE_Feed_EVENT)
+                    assert.equal(_res.list, 'ChannelFeed')
+                    assert.equal(_res.action, COMMANDS.UPDATE_FEED_ITEM)
+
+                    console.log('brk Feed', _res)
+
+                    done()
+                })
+                .catch(err => {
+                    done(err)
+                })
+        })
+
+        it.skip('### Should Destroy a Feed Item', (done) => {
+
+            rise.channelFeed.deleteFeedItem({
+                channel_uuid: channel_uuid,
+                feed_uuid: feed_uuid,
+                feedItem_uuid: feedItem.feedItem_uuid
+            })
+                .then(_res => {
+                    assert.equal(_res.list, 'ChannelFeed')
+                    assert.equal(_res.action, COMMANDS.DESTROY_FEED_ITEM)
+
+                    console.log('brk Feed', _res)
+
+                    done()
+                })
+                .catch(err => {
+                    done(err)
+                })
+        })
+
+        it.skip('### Should Mark a Feed Item', (done) => {
+
+            rise.channelFeed.deleteFeedItem({
+                channel_uuid: channel_uuid,
+                feed_uuid: feed_uuid,
+                feedItem_uuid: feedItem.feedItem_uuid
+            })
+                .then(_res => {
+                    assert.equal(_res.list, 'ChannelFeed')
+                    assert.equal(_res.action, COMMANDS.MARK_FEED_ITEM)
+
+                    console.log('brk Feed', _res)
+
+                    done()
+                })
+                .catch(err => {
+                    done(err)
+                })
+        })
+
+
+        it.skip('### Should Get a Feed Item', (done) => {
+
+            rise.channelFeed.deleteFeedItem({
+                channel_uuid: channel_uuid,
+                feed_uuid: feed_uuid,
+                feedItem_uuid: feedItem.feedItem_uuid
+            })
+                .then(_res => {
+                    assert.equal(_res.list, 'ChannelFeed')
+                    assert.equal(_res.action, ACTIONS.GET_FEED_ITEM)
+
+                    console.log('brk Feed', _res)
+
+                    done()
+                })
+                .catch(err => {
+                    done(err)
+                })
+        })
+
+        it.skip('### Should List Feed Items', (done) => {
+
+            rise.channelFeed.deleteFeedItem({
+                channel_uuid: channel_uuid,
+                feed_uuid: feed.feed_uuid,
+            })
+                .then(_res => {
+                    assert.equal(_res.list, 'ChannelFeed')
+                    assert.equal(_res.action, ACTIONS.LIST_FEED_ITEMS)
 
                     console.log('brk Feed', _res)
 
