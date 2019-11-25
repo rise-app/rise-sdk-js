@@ -145,7 +145,7 @@ export const feed = {
      */
     [ACTIONS.GET_FEED_ITEM]: {
         params: (data) => Utils.joiPromise(data, feedSchema.actions[ACTIONS.GET_FEED_ITEM].params),
-        body: (data) => Utils.joiPromise(data, feedSchema.commands[ACTIONS.GET_FEED_ITEM].body),
+        body: (data) => Utils.joiPromise(data, feedSchema.actions[ACTIONS.GET_FEED_ITEM].body),
     },
 
     /**
