@@ -5,7 +5,8 @@ const supertest = require('supertest')
 const qs = require('qs')
 const _ = require('lodash')
 const regexdot = require('@fabrix/regexdot').regexdot
-const { CHANNEL_EVENTS, CHANNEL_COMMANDS, CHANNEL_ACTIONS } = require('../../../../../../../dist/spools/spool-channel/lib/enums')
+const { CHANNEL_EVENTS, CHANNEL_COMMANDS, CHANNEL_ACTIONS } = require('../../../../dist/enums'
+)
 
 describe('Admin User ChannelFeedController', () => {
     let adminUser, admin, session, token, testChannel, testFeed
