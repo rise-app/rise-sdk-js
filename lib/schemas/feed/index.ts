@@ -24,12 +24,19 @@ export const commands = {
         feed_uuid: feed_uuid.required(),
     }).unknown(),
 
-
 }
 
 export const actions = {
 
     [FEED_ACTIONS.LIST_FEEDS]: joi.object().keys({
+        channel_uuid: channel_uuid,
+        feed_uuid: feed_uuid.required(),
+    }).unknown(),
+    [FEED_ACTIONS.GET_FEED_PRIMARY]: joi.object().keys({
+        channel_uuid: channel_uuid,
+        feed_uuid: feed_uuid.required(),
+    }).unknown(),
+    [FEED_ACTIONS.GET_FEED]: joi.object().keys({
         channel_uuid: channel_uuid,
         feed_uuid: feed_uuid.required(),
     }).unknown(),
