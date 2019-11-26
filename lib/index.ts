@@ -77,6 +77,7 @@ export class RiSE {
   public channelCustomerGatewayAccountSource: api.ChannelCustomerGatewayAccountSource
   public channelCustomerUser: api.ChannelCustomerUser
   public channelFeed: api.ChannelFeed
+  public channelFeedItem: api.ChannelFeedItem
   public channelFulfillment: api.ChannelFulfillment
   public channelGateway: api.ChannelGateway
   public channelOffer: api.ChannelOffer
@@ -191,6 +192,7 @@ export class RiSE {
     this.channelCustomerGatewayAccountSource = new api.ChannelCustomerGatewayAccountSource(this, this.globals)
     this.channelCustomerUser = new api.ChannelCustomerUser(this, this.globals)
     this.channelFeed = new api.ChannelFeed(this, this.globals)
+    this.channelFeedItem = new api.ChannelFeedItem(this, this.globals)
     this.channelFulfillment = new api.ChannelFulfillment(this, this.globals)
     this.channelGateway = new api.ChannelGateway(this, this.globals)
     this.channelOffer = new api.ChannelOffer(this, this.globals)
