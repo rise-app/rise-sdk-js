@@ -25,8 +25,14 @@ export {
   ChannelCustomerGatewayAccountSource,
   ChannelCustomerUser
 } from './channelCustomer'
-export { ChannelFeed, ChannelFeedItem } from './channelFeed'
-export { ChannelFulfillment } from './channelFulfillment'
+export {
+  ChannelFeed,
+  ChannelFeedItem
+} from './channelFeed'
+export {
+  ChannelFulfillment,
+  ChannelFulfillmentItem
+} from './channelFulfillment'
 export { ChannelGateway } from './channelGateway'
 export {
   ChannelOffer,

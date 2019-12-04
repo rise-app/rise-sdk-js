@@ -1,4 +1,4 @@
-const {RiSE, EVENTS, ACTIONS} = require('../../../../dist')
+const { RiSE, EVENTS, ACTIONS } = require('../../../../dist')
 const {url, adminPassword, adminIdentifier, channel_uuid, private_key, public_key} = require('../../../fixtures/constants')
 
 const assert = require('assert')
