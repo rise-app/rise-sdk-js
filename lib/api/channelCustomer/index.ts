@@ -1,5 +1,5 @@
 import { ApiClass } from '../../ApiClass'
-import { Command, Action } from '../../metadata'
+import { Command, Action, Paginate } from '../../metadata'
 import { customer } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
@@ -23,6 +23,7 @@ export class ChannelCustomer extends ApiClass {
   }
 
   @Action({ method: 'GET', route: 'channels/:channel_uuid/customers', validator: customer[ACTIONS.LIST_CUSTOMERS] })
+  @Paginate()
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }

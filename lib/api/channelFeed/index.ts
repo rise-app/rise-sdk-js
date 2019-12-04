@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action } from '../../metadata'
-import { feed } from '../../validators/feed/feed'
+import { feed } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
 export class ChannelFeed extends ApiClass {

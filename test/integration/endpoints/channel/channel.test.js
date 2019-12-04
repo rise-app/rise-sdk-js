@@ -56,7 +56,7 @@ describe('# RiSE Channel Channel API', () => {
         })
     })
 
-    it('### Should Get Supplied Global Channel', (done) => {
+    it('### Should List Supplied Channels', (done) => {
 
       rise.channel.list({
         // channel_uuid: channel_uuid
@@ -107,6 +107,171 @@ describe('# RiSE Channel Channel API', () => {
     it('### Should list Supplied Global Channel Descendants', (done) => {
 
       rise.channel.listDescendants({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+
+
+    it.skip('### Set Primary Nexus', (done) => {
+
+      rise.channel.setNexusAddress({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Get Primary Nexus', (done) => {
+
+      rise.channel.getNexusAddress({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+
+    it.skip('### Set Primary Vendor', (done) => {
+
+      rise.channel.setPrimaryVendor({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Get Primary Vendor', (done) => {
+
+      rise.channel.getPrimaryVendor({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+
+    it.skip('### Set Primary Customer', (done) => {
+
+      rise.channel.setPrimaryCustomer({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Get Primary Customer', (done) => {
+
+      rise.channel.getPrimaryCustomer({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+
+    it.skip('### Set Primary Gateway', (done) => {
+
+      rise.channel.setPrimaryGateway({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Get Primary Gateway', (done) => {
+
+      rise.channel.getPrimaryGateway({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Set Primary Fulfillment Service', (done) => {
+
+      rise.channel.setPrimaryFulfillmentService({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it.skip('### Get Primary Fulfillment Service', (done) => {
+
+      rise.channel.getPrimaryFulfillmentService({
         // channel_uuid: channel_uuid
       })
         .then(_res => {

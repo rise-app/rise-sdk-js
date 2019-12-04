@@ -79,6 +79,7 @@ export class RiSE {
   public channelFeed: api.ChannelFeed
   public channelFeedItem: api.ChannelFeedItem
   public channelFulfillment: api.ChannelFulfillment
+  public channelFulfillmentItem: api.ChannelFulfillmentItem
   public channelGateway: api.ChannelGateway
   public channelOffer: api.ChannelOffer
   public channelOfferVariant: api.ChannelOfferVariant
@@ -194,6 +195,7 @@ export class RiSE {
     this.channelFeed = new api.ChannelFeed(this, this.globals)
     this.channelFeedItem = new api.ChannelFeedItem(this, this.globals)
     this.channelFulfillment = new api.ChannelFulfillment(this, this.globals)
+    this.channelFulfillmentItem = new api.ChannelFulfillmentItem(this, this.globals)
     this.channelGateway = new api.ChannelGateway(this, this.globals)
     this.channelOffer = new api.ChannelOffer(this, this.globals)
     this.channelOfferVariant = new api.ChannelOfferVariant(this, this.globals)

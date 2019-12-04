@@ -47,66 +47,98 @@ export const customer = {
 }
 
 export const commands = {
-  [COMMANDS.CREATE_CUSTOMER]: joi.object().keys({
-    ...customer,
-    channel_uuid: uuid.required()
-  }).unknown(),
+  [COMMANDS.CREATE_CUSTOMER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...customer,
+    }).unknown()
+  },
 
-  [COMMANDS.UPDATE_CUSTOMER]: joi.object().keys({
-    ...customer,
-    channel_uuid: uuid.required(),
-    customer_uuid: uuid.required()
-  }).unknown(),
+  [COMMANDS.UPDATE_CUSTOMER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      customer_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...customer
+    }).unknown()
+  },
 
-  [COMMANDS.SET_CUSTOMER_BILLING]: joi.object().keys({
-    ...address,
-    channel_uuid: uuid.required(),
-    customer_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.SET_CUSTOMER_BILLING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      customer_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...address,
+    }).unknown()
+  },
 
-  [COMMANDS.SET_CUSTOMER_SHIPPING]: joi.object().keys({
-    ...address,
-    channel_uuid: uuid.required(),
-    customer_uuid: uuid.required(),
-  }).unknown(),
+  [COMMANDS.SET_CUSTOMER_SHIPPING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      customer_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...address
+    }).unknown()
+  },
 }
 
 export const actions = {
 
-  [ACTIONS.GET_CUSTOMER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    customer_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CUSTOMER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      customer_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.FIND_CUSTOMER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.FIND_CUSTOMER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_PUBLIC_CUSTOMER]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    customer_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_PUBLIC_CUSTOMER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      customer_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.FIND_PUBLIC_CUSTOMER]: joi.object().keys({
-    channel_uuid: uuid.required()
-  }).unknown(),
+  [ACTIONS.FIND_PUBLIC_CUSTOMER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
 
-  [ACTIONS.GET_CUSTOMER_SHIPPING]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    customer_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CUSTOMER_SHIPPING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      customer_uuid: uuid.required(),
+    }).unknown()
+  },
 
-  [ACTIONS.GET_CUSTOMER_BILLING]: joi.object().keys({
-    channel_uuid: uuid.required(),
-    customer_uuid: uuid.required(),
-  }).unknown(),
+  [ACTIONS.GET_CUSTOMER_BILLING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      customer_uuid: uuid.required(),
+    }).unknown()
+  },
 
 
-  [ACTIONS.LIST_CUSTOMERS]: joi.object().keys({
-    channel_uuid: uuid.required()
-  }).unknown(),
+  [ACTIONS.LIST_CUSTOMERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
 
-  [ACTIONS.FIND_CUSTOMERS]: joi.object().keys({
-    channel_uuid: uuid.required()
-  }).unknown(),
+  [ACTIONS.FIND_CUSTOMERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
 }

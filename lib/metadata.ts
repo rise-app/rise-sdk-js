@@ -113,7 +113,7 @@ export function Command({ method = 'POST', route = '', validator, globals }: {me
  * @param validator
  * @constructor
  */
-export function Action({ method = 'GET', route = '', validator, globals }: {method?: string, route?: string, validator?: any, globals?: RiSEConfig['globals']}) {
+export function Action({method = 'GET', route = '', validator, globals }: {method?: string, route?: string, validator?: any, globals?: RiSEConfig['globals']}) {
   return function(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
 
 
@@ -198,7 +198,7 @@ export function Action({ method = 'GET', route = '', validator, globals }: {meth
           })
       }
       else {
-        _method.apply(this, args)
+        return _method.apply(this, args)
       }
     }
 
@@ -215,6 +215,45 @@ export function Action({ method = 'GET', route = '', validator, globals }: {meth
 export function Event() {
   return function(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
 
+    return descriptor
+  }
+}
+
+
+/**
+ * Paginate
+ * @description Adds .previous() and .next() to list responses
+ * @constructor
+ */
+export function Paginate() {
+  return function(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
+
+    // Original Method
+    const _method = descriptor.value
+
+    descriptor.value = function (...args: any[]) {
+
+      // Abstract out the current limit and offset and calculate the previous/next
+      const { query } = args[1]
+      const limit = query ? query.limit || 10 : 10
+      const offset = query ? query.offset || 0 : 0
+
+      const prevOffset = Math.max(Math.floor(offset - limit), 0)
+      const nextOffset = offset + limit
+
+      // Set the pagination on the request argument
+      args[1].paginate = {
+        next: {
+          limit: limit,
+          offset: nextOffset
+        },
+        previous: {
+          limit: limit,
+          offset: prevOffset
+        }
+      }
+      return _method.apply(this, args)
+    }
     return descriptor
   }
 }
