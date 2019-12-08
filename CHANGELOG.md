@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.25](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2019-12-08)
+
+
+### Bug Fixes
+
+* fixes typo ([98b2e01](https://github.com/rise-app/rise-sdk-js/commit/98b2e01))
+* **gateway:** adjusts names of api ([184c20d](https://github.com/rise-app/rise-sdk-js/commit/184c20d))
+
+
+### Features
+
+* continues public namespaces ([cf1f062](https://github.com/rise-app/rise-sdk-js/commit/cf1f062))
+* starts pagination for responses ([25c2f25](https://github.com/rise-app/rise-sdk-js/commit/25c2f25))
+* starts pagination requests ([1b1bbf6](https://github.com/rise-app/rise-sdk-js/commit/1b1bbf6))
+* tests sessionUser endpoints ([fbaf077](https://github.com/rise-app/rise-sdk-js/commit/fbaf077))
+* **channelFeed:** move feedItems to seperarte API class ([baa3cd9](https://github.com/rise-app/rise-sdk-js/commit/baa3cd9))
+* **feed:** adjusts api endpoints ([d481198](https://github.com/rise-app/rise-sdk-js/commit/d481198))
+
 ## [1.0.0-alpha.24](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2019-11-18)
 
 
