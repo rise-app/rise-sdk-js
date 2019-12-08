@@ -10,6 +10,7 @@
   "scripts": {
     "release": "standard-version",
     "build": "tsc -p ./lib/tsconfig.release.json",
+    "build:browser": "tsc -p ./lib/tsconfig.browser.json",
     "lint": "tslint -p ./lib",
     "watch": "tsc -w -p ./lib/tsconfig.release.json",
     "pre-test": "run-s clean lint build",
@@ -55,7 +56,9 @@
     "prepublishOnly": "npm run compile",
     "compile": "npm run clean && npm run build",
     "clean": "rm -rf dist",
-    "docgen": "documentation build dist/index.js --config documentation.yml -f md > docs.md"
+    "docgen": "documentation build dist/index.js --config documentation.yml -f md > docs.md",
+    "test:browser": "node_modules/.bin/webpack --config ./test-browser/webpack.config.js",
+    "test:build:browser": "run-s build:browser test:browser"
   },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -89,7 +92,10 @@
     "tslint-microsoft-contrib": "~5.0.3",
     "tsutils": "~3.9.1",
     "typescript": "~3.3.4000",
-    "typescript-closure-compiler": "^1.8.11"
+    "typescript-closure-compiler": "^1.8.11",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.3",
+    "webpack-node-externals": "^1.7.2"
   },
   "engines": {
     "node": ">= 7.6.0",

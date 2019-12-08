@@ -13,6 +13,7 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "declaration": false,
+    "types": ["reflect-metadata"],
     "typeRoots": [
       "node_modules/@types"
     ],

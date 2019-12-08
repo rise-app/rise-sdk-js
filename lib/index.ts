@@ -3,6 +3,7 @@ import requestPromise from 'request-promise-native'
 import { EVENTS as _EVENTS, ACTIONS as _ACTIONS, COMMANDS as _COMMANDS } from './enums'
 import { ApplicationClass } from './ApplicationClass'
 import { ApplicationBrowserClass } from './ApplicationBrowserClass'
+import { isEmpty } from 'lodash'
 import { ApiClass } from './ApiClass'
 
 // Export the Enums for developer use
@@ -42,6 +43,7 @@ export interface RiSEConfig {
   email?: string
   password?: string,
   request_middleware?: any,
+  request_timeout?: number,
   live_mode?: boolean,
   logger?: any,
   globals?: {
@@ -123,6 +125,11 @@ export class RiSE {
       config.request_middleware = requestPromise
     }
 
+    // Set the request middleware to default to request-promise-native if not supplied
+    if (!config.request_timeout) {
+      config.request_timeout = 5000
+    }
+
     // Set the live mode parameter
     if (config.live_mode === true || config.live_mode === false) {
       this.config.live_mode = config.live_mode
@@ -150,6 +157,9 @@ export class RiSE {
       this.config.beta = false
       this.config.live_mode = typeof config.live_mode !== 'undefined' ? config.live_mode : true
     }
+
+    this.config.request_middleware = this.config.request_middleware || config.request_middleware
+    this.config.request_timeout = this.config.request_timeout || config.request_timeout
 
     // The API version to end, valid whole or float number eg. 1, 1.0, 1.1
     this.config.api_version = this.config.api_version || config.api_version || 1
@@ -309,6 +319,10 @@ export class RiSE {
     this.config.request_middleware = val
   }
 
+  get _request_timeout() {
+    return this.config.request_timeout
+  }
+
   /**
    * URL to RiSE API
    * Sandbox or live
@@ -383,8 +397,9 @@ export class RiSE {
    * Return Request Method and URL for the request call
    * @param route
    * @param query
+   * @param paginate
    */
-  composeUrl(route: {[key: string]: any} = {}, query, paginate?): {url: string, method: string} {
+  composeUrl(route: {[key: string]: any} = {}, query = null, paginate?): {url: string, method: string} {
 
     if (paginate && paginate.current) {
       // TODO, add limit and offset automatically to query
@@ -398,7 +413,6 @@ export class RiSE {
     if (query) {
       url = `${url}?${this.serializeQuery(query)}`
     }
-
     // returns object
     return { url, method }
   }
@@ -415,6 +429,20 @@ export class RiSE {
       //
     }
     return response
+  }
+
+  /**
+   * If this request is being made by a browser, then we should grab the agent if not set
+   * @param req
+   */
+  ifBrowserSetAgent(req) {
+    const agent: {[key: string]: any} = {}
+    if (typeof window !== 'undefined') {
+      if (window.navigator && !req.headers['User-Agent']) {
+        req.headers['User-Agent'] = window.navigator.userAgent
+      }
+    }
+    return req
   }
 
   /**
@@ -466,10 +494,19 @@ export class RiSE {
       [key: string]: any,
       headers?: any,
       method: string,
-      url: string,
+      uri?: string,
+      url?: any,
       strictSSL: boolean,
       json?: boolean,
-      body?: any
+      timeout?: number,
+      body?: any,
+      qs?: any,
+      params?: any,
+
+      href?: string,
+      pathname?: string,
+      preambleCRLF?: boolean,
+      postambleCRLF?: boolean
     } = {
       // ...__req,
       headers: {
@@ -477,11 +514,17 @@ export class RiSE {
       },
       method: method,
       url: url,
-      strictSSL: true,
+      strictSSL: false,
       json: true,
+      timeout: this._request_timeout,
       body: body,
       params: params
     }
+
+    // // If the Query is set, then add it to the request
+    // if (query && !isEmpty(query)) {
+    //   _req.qs = query
+    // }
 
     // Set the Application Public key if on the request or included in the class
     if (__req.public_key || this.config.public_key) {
@@ -497,6 +540,9 @@ export class RiSE {
     if (__req.session || this.session) {
       _req.headers['Session'] = __req.session || this.session
     }
+
+    // If this is a browser based request, let's set the headers
+    this.ifBrowserSetAgent(_req)
 
     // If this is test request, start a timer for the request
     if ((this.config.sandbox || this.config.beta) && (this.log && this.log.time)) {

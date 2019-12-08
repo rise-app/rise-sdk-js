@@ -149,6 +149,6 @@ export class ApplicationClass extends EventEmitter {
 
   handler(event) {
     console.log('brk handler', event)
-    this.emit(event.pattern, event)
+    // this.emit(event.pattern, event)
   }
 }
