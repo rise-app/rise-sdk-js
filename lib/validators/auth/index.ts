@@ -16,6 +16,11 @@ export const auth = {
     params: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.LOGOUT_USER].params),
   },
 
+  [COMMANDS.UPDATE_SESSION_USER]: {
+    params: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.UPDATE_SESSION_USER].params),
+    body: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.UPDATE_SESSION_USER].body)
+  },
+
   [COMMANDS.UPDATE_SESSION_CART]: {
     params: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.UPDATE_SESSION_CART].params),
     body: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.UPDATE_SESSION_CART].body)
