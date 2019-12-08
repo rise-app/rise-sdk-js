@@ -403,7 +403,9 @@ export class RiSE {
    */
   // TODO
   addPaginationToResponse(response, paginate = null) {
-    if (paginate)
+    if (paginate) {
+      //
+    }
     return response
   }
 
