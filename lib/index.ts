@@ -70,6 +70,7 @@ export class RiSE {
   public channelCountry: api.ChannelCountry
   public channelCountryProvince: api.ChannelCountryProvince
   public channelCustomer: api.ChannelCustomer
+  public channelPublicCustomer: api.ChannelPublicCustomer
   public channelCustomerCampaign: api.ChannelCustomerCampaign
   public channelCustomerCart: api.ChannelCustomerCart
   public channelCustomerFeed: api.ChannelCustomerFeed
@@ -84,6 +85,8 @@ export class RiSE {
   public channelGateway: api.ChannelGateway
   public channelOffer: api.ChannelOffer
   public channelOfferVariant: api.ChannelOfferVariant
+  public channelPublicOffer: api.ChannelPublicOffer
+  public channelPublicOfferVariant: api.ChannelPublicOfferVariant
   public channelOrder: api.ChannelOrder
   public channelOrderItem: api.ChannelOrderItem
   public channelPermission: api.ChannelPermission
@@ -210,6 +213,11 @@ export class RiSE {
     this.channelTransaction = new api.ChannelTransaction(this, this.globals)
     this.channelUser = new api.ChannelUser(this, this.globals)
     this.channelVendor = new api.ChannelVendor(this, this.globals)
+
+    // Public endpoints
+    this.channelPublicCustomer = new api.ChannelPublicCustomer(this, this.globals)
+    this.channelPublicOffer = new api.ChannelPublicOffer(this, this.globals)
+    this.channelPublicOfferVariant = new api.ChannelPublicOfferVariant(this, this.globals)
 
     // Initialize the Application Connection
     if (typeof window === 'undefined') {

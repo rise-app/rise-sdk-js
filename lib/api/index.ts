@@ -17,6 +17,7 @@ export {
 } from './channelCountry'
 export {
   ChannelCustomer,
+  ChannelPublicCustomer,
   ChannelCustomerCampaign,
   ChannelCustomerCart,
   ChannelCustomerFeed,
@@ -36,7 +37,10 @@ export {
 export { ChannelGateway } from './channelGateway'
 export {
   ChannelOffer,
-  ChannelOfferVariant
+  ChannelOfferVariant,
+
+  ChannelPublicOffer,
+  ChannelPublicOfferVariant
 } from './channelOffer'
 export {
   ChannelOrder,

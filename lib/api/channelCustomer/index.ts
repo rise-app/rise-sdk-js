@@ -2,6 +2,7 @@ import { ApiClass } from '../../ApiClass'
 import { Command, Action, Paginate } from '../../metadata'
 import { customer } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
+import { ChannelAuth } from '../channelAuth'
 
 export class ChannelCustomer extends ApiClass {
   /**********************************
@@ -95,6 +96,12 @@ export class ChannelCustomer extends ApiClass {
   getPublicByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+}
+
+export class ChannelPublicCustomer extends ApiClass {
+  get = ChannelCustomer.prototype.getPublic
+  getByHandle = ChannelCustomer.prototype.getPublicByHandle
+  // list = ChannelCustomer.prototype.listPublic
 }
 
 export class ChannelCustomerCampaign extends ApiClass {}
