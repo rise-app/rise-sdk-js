@@ -36,6 +36,14 @@ export const commands = {
     }).unknown().or('email', 'username'),
   },
 
+  [COMMANDS.UPDATE_SESSION_USER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+    }).unknown()
+  },
+
   [COMMANDS.UPDATE_SESSION_CART]: {
     params: joi.object().keys({
       channel_uuid: uuid.required(),

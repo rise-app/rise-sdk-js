@@ -41,6 +41,9 @@ export const AUTH_COMMANDS = {
   'RECOVER': 'recover.user',
   // 'START_SESSION': 'start.channel.session',
   // 'END_SESSION': 'end.channel.session',
+
+  'UPDATE_SESSION_USER': 'update.channel.session.user',
+
   'REGISTER_USER': 'register.channel.user',
   'LOGIN_USER': 'login.channel.user',
   'LOGOUT_USER': 'logout.channel.user',
@@ -48,7 +51,9 @@ export const AUTH_COMMANDS = {
 
 export const AUTH_EVENTS = {
   'RECOVERY_SET': 'user.recovery.set',
-  'RECOVERED': 'user.recovered'
+  'RECOVERED': 'user.recovered',
+
+  'SESSION_USER_UPDATED': 'channel.session.user.updated'
 
   // 'SESSION_STARTED': 'channel.session.started',
   // 'SESSION_ENDED': 'channel.session.ended',

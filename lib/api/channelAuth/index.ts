@@ -102,6 +102,7 @@ export class ChannelAuth extends ApiClass {
   removeSessionCartItem(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * Get Current Session's Cart's Shipping Address
    * (If Customer in Session, defaults to Customer Shipping Address if not set)
@@ -109,11 +110,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  // TODO VALIDATOR
   @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/address_shipping', validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING] })
   sessionCartShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * Set Current Session's Cart's Shipping Address
    * (If Customer in Session, defaults to Customer Shipping Address if not set)
@@ -126,6 +127,7 @@ export class ChannelAuth extends ApiClass {
   setSessionCartShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * Get Current Session's Cart's Billing Address
    * (If Customer in Session, defaults to Customer Billing Address if not set)
@@ -137,6 +139,7 @@ export class ChannelAuth extends ApiClass {
   sessionCartBilling(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * Set Current Session's Cart's Billing Address
    * (If Customer in Session, defaults to Customer Billing Address if not set)
@@ -214,6 +217,7 @@ export class ChannelAuth extends ApiClass {
   sessionCustomerShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * Update Current Session's Customer's Shipping Address
    * @param data
@@ -224,6 +228,7 @@ export class ChannelAuth extends ApiClass {
   setSessionCustomerShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * Get Current Session's Customer's Billing Address
    * @param data
@@ -234,6 +239,7 @@ export class ChannelAuth extends ApiClass {
   sessionCustomerBilling(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * Set Current Session's Customer's Billing Address
    * @param data
@@ -244,6 +250,7 @@ export class ChannelAuth extends ApiClass {
   setSessionCustomerBilling(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * List Current Session's Customer's Open Carts
    * @param data
@@ -254,6 +261,7 @@ export class ChannelAuth extends ApiClass {
   sessionCustomerCarts(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * List Current Session's Customer's Feeds
    * @param data
@@ -264,6 +272,7 @@ export class ChannelAuth extends ApiClass {
   sessionCustomerFeeds(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * List Current Session's Customer's Gateway Accounts
    * @param data
@@ -274,6 +283,7 @@ export class ChannelAuth extends ApiClass {
   sessionCustomerGatewayAccounts(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * List Current Session's Customer's Gateway Account Sources
    * @param data
@@ -428,6 +438,17 @@ export class ChannelAuth extends ApiClass {
    */
   @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/local/recover', validator: auth[COMMANDS.RECOVER] })
   recover(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Update Current User in Session
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/user', validator: auth[COMMANDS.UPDATE_SESSION_USER] })
+  updateSessionUser(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }

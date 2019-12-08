@@ -171,3 +171,16 @@ export class ChannelOfferVariant extends ApiClass {
     return this.request(req, data, validated)
   }
 }
+
+export class ChannelPublicOffer extends ApiClass {
+  get = ChannelOffer.prototype.getPublic
+  getByHandle = ChannelOffer.prototype.getPublicByHandle
+  list = ChannelOffer.prototype.listPublic
+  search = ChannelOffer.prototype.searchPublic
+}
+
+export class ChannelPublicOfferVariant extends ApiClass {
+  getVariant = ChannelOfferVariant.prototype.getPublicVariant
+  listVariants = ChannelOfferVariant.prototype.listPublicVariants
+  listVariantsByHandle = ChannelOfferVariant.prototype.listPublicVariantsByHandle
+}

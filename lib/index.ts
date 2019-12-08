@@ -2,6 +2,7 @@ import * as api from './api'
 import requestPromise from 'request-promise-native'
 import { EVENTS as _EVENTS, ACTIONS as _ACTIONS, COMMANDS as _COMMANDS } from './enums'
 import { ApplicationClass } from './ApplicationClass'
+import { ApplicationBrowserClass } from './ApplicationBrowserClass'
 import { ApiClass } from './ApiClass'
 
 // Export the Enums for developer use
@@ -69,6 +70,7 @@ export class RiSE {
   public channelCountry: api.ChannelCountry
   public channelCountryProvince: api.ChannelCountryProvince
   public channelCustomer: api.ChannelCustomer
+  public channelPublicCustomer: api.ChannelPublicCustomer
   public channelCustomerCampaign: api.ChannelCustomerCampaign
   public channelCustomerCart: api.ChannelCustomerCart
   public channelCustomerFeed: api.ChannelCustomerFeed
@@ -83,6 +85,8 @@ export class RiSE {
   public channelGateway: api.ChannelGateway
   public channelOffer: api.ChannelOffer
   public channelOfferVariant: api.ChannelOfferVariant
+  public channelPublicOffer: api.ChannelPublicOffer
+  public channelPublicOfferVariant: api.ChannelPublicOfferVariant
   public channelOrder: api.ChannelOrder
   public channelOrderItem: api.ChannelOrderItem
   public channelPermission: api.ChannelPermission
@@ -95,7 +99,7 @@ export class RiSE {
   public channelVendor: api.ChannelVendor
 
   // Applications
-  public application: ApplicationClass
+  public application: ApplicationClass | ApplicationBrowserClass
 
   // Logger
   public log: any
@@ -104,7 +108,7 @@ export class RiSE {
 
   public _cart
   public _user
-  
+
   constructor(
     private config: RiSEConfig = {
       sandbox: true,
@@ -164,7 +168,7 @@ export class RiSE {
       this.log = config.logger
     }
     else {
-      this.log = console.log
+      this.log = console
     }
 
     // Configure the global Params / Query values
@@ -210,8 +214,18 @@ export class RiSE {
     this.channelUser = new api.ChannelUser(this, this.globals)
     this.channelVendor = new api.ChannelVendor(this, this.globals)
 
+    // Public endpoints
+    this.channelPublicCustomer = new api.ChannelPublicCustomer(this, this.globals)
+    this.channelPublicOffer = new api.ChannelPublicOffer(this, this.globals)
+    this.channelPublicOfferVariant = new api.ChannelPublicOfferVariant(this, this.globals)
+
     // Initialize the Application Connection
-    this.application = new ApplicationClass(this, this.globals)
+    if (typeof window === 'undefined') {
+      this.application = new ApplicationClass(this, this.globals)
+    }
+    else {
+      this.application = new ApplicationBrowserClass(this, this.globals)
+    }
 
     return this
   }
@@ -370,7 +384,12 @@ export class RiSE {
    * @param route
    * @param query
    */
-  composeUrl(route: {[key: string]: any} = {}, query): {url: string, method: string} {
+  composeUrl(route: {[key: string]: any} = {}, query, paginate?): {url: string, method: string} {
+
+    if (paginate && paginate.current) {
+      // TODO, add limit and offset automatically to query
+    }
+
     // The Request method
     const method = Object.keys(route)[0]
     // The composed URL
@@ -379,8 +398,23 @@ export class RiSE {
     if (query) {
       url = `${url}?${this.serializeQuery(query)}`
     }
+
     // returns object
     return { url, method }
+  }
+
+  /**
+   * If paginate is available on the Action, then add pagination utility functions to the response
+   * @param response
+   * @param paginate
+   * @returns response
+   */
+  // TODO
+  addPaginationToResponse(response, paginate = null) {
+    if (paginate) {
+      //
+    }
+    return response
   }
 
   /**
@@ -391,9 +425,8 @@ export class RiSE {
    * @param validation
    */
   request(req, body: {[key: string]: any} = {}, validation: any = null): Promise<RiSEResponse> {
-    // console.log('brk validation', validation)
 
-    // If this request didn't pass validation
+    // If this request didn't pass pre validation
     if (validation instanceof Error) {
       const err = {
         'statusCode': '400',
@@ -404,10 +437,10 @@ export class RiSE {
     }
 
     // Abstract the route from the api method and use the rest (if any) in the request
-    const { name, route, query, params, ...__req } = req
+    const { name, route, query, params, paginate, ...__req } = req
 
     // Get the method and url from the request
-    const { method, url } = this.composeUrl(route, query)
+    const { method, url } = this.composeUrl(route, query, paginate)
 
     //
     // var options = { method: 'GET',
@@ -450,32 +483,39 @@ export class RiSE {
       params: params
     }
 
+    // Set the Application Public key if on the request or included in the class
     if (__req.public_key || this.config.public_key) {
       _req.headers['X-APPLICATION-KEY'] = __req.public_key || this.config.public_key
     }
 
+    // Set the JWT token if in the request or persisted to the class
     if (__req.token || this.token) {
       _req.headers['Authorization'] = `JWT ${__req.token || this.token}`
     }
 
+    // Set the Session UUID if in the request or persisted to the class
     if (__req.session || this.session) {
       _req.headers['Session'] = __req.session || this.session
     }
 
-    if (this.config.sandbox || this.config.beta) {
-      console.time(`RiSE req ${name}`)
+    // If this is test request, start a timer for the request
+    if ((this.config.sandbox || this.config.beta) && (this.log && this.log.time)) {
+      this.log.time(`RiSE req ${name}`)
     }
 
-    // make request promise
+    // Make the request and return a Promise
     return this._request(_req)
       .then((res) => {
-        if (this.config.sandbox || this.config.beta) {
-          console.timeEnd(`RiSE req ${name}`)
+        // End the console logger
+        if ((this.config.sandbox || this.config.beta) && (this.log && this.log.timeEnd)) {
+          this.log.timeEnd(`RiSE req ${name}`)
         }
-        return res
+        // Add the pagination to response if appropriate for request
+        return res = this.addPaginationToResponse(res, paginate)
       })
-      // .catch(err => {
-      //   return Promise.reject(err)
-      // })
+      .catch(err => {
+        // TODO uniform errors into an array
+        return Promise.reject(err)
+      })
   }
 }
