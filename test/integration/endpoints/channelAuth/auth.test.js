@@ -123,6 +123,40 @@ describe('# RiSE Channel Auth API', () => {
           })
       })
 
+      it('### Should get user session user', (done) => {
+
+        rise.channelAuth.sessionUser({
+          // channel_uuid: channel_uuid
+        }, {
+          token: userToken,
+          session: userSession
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it.skip('### Should update user session user', (done) => {
+
+        rise.channelAuth.updateSessionUser({
+          // channel_uuid: channel_uuid
+          name_first: 'testFirst',
+          name_last: 'testLast'
+        }, {
+          token: userToken,
+          session: userSession
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
 
       it('### Should get user session cart (Current)', (done) => {
 
@@ -675,6 +709,28 @@ describe('# RiSE Channel Auth API', () => {
         }, {
           token: userToken,
           session: userSession
+        })
+          .then(_res => {
+            done()
+          })
+          .catch(err => {
+            done(err)
+          })
+      })
+
+      it('### Should get user session channels (Admin/Manager Channels)', (done) => {
+
+        // TODO test pagination
+        rise.channelAuth.sessionChannels({
+          // channel_uuid: channel_uuid
+        }, {
+          token: userToken,
+          session: userSession,
+          query: {
+            where: {
+              roles: ['admin', 'manager']
+            }
+          }
         })
           .then(_res => {
             done()
