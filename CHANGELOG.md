@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.26](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.25...v1.0.0-alpha.26) (2019-12-08)
+
+
+### Features
+
+* starts browser testing ([a7b073e](https://github.com/rise-app/rise-sdk-js/commit/a7b073e))
+
 ## [1.0.0-alpha.25](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2019-12-08)
 
 
