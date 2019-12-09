@@ -13,6 +13,19 @@ export const collection = {
     body: (data) => Utils.joiPromise(data, collectionSchema.commands[COMMANDS.UPDATE_COLLECTION].body)
   },
 
+  [COMMANDS.UPLOAD_COLLECTIONS]: {
+    params: (data) => Utils.joiPromise(data, collectionSchema.commands[COMMANDS.UPLOAD_COLLECTIONS].params)
+  },
+  [COMMANDS.PROCESS_UPLOADED_COLLECTIONS]: {
+    params: (data) => Utils.joiPromise(data, collectionSchema.commands[COMMANDS.PROCESS_UPLOADED_COLLECTIONS].params)
+  },
+  [COMMANDS.UPLOAD_COLLECTION_METADATA]: {
+    params: (data) => Utils.joiPromise(data, collectionSchema.commands[COMMANDS.UPLOAD_COLLECTION_METADATA].params)
+  },
+  [COMMANDS.PROCESS_UPLOADED_COLLECTION_METADATA]: {
+    params: (data) => Utils.joiPromise(data, collectionSchema.commands[COMMANDS.PROCESS_UPLOADED_COLLECTION_METADATA].params)
+  },
+
 
   // ACTIONS
   [ACTIONS.GET_COLLECTION]: {
@@ -26,6 +39,19 @@ export const collection = {
   },
   [ACTIONS.FIND_COLLECTIONS]: {
     params: (data) => Utils.joiPromise(data, collectionSchema.actions[ACTIONS.FIND_COLLECTIONS].params)
+  },
+
+  [ACTIONS.GET_COLLECTION_UPLOAD_RESULT]: {
+    params: (data) => Utils.joiPromise(data, collectionSchema.actions[ACTIONS.GET_COLLECTION_UPLOAD_RESULT].params)
+  },
+  [ACTIONS.LIST_COLLECTION_UPLOAD_RESULTS]: {
+    params: (data) => Utils.joiPromise(data, collectionSchema.actions[ACTIONS.LIST_COLLECTION_UPLOAD_RESULTS].params)
+  },
+  [ACTIONS.GET_COLLECTION_METADATA_UPLOAD_RESULT]: {
+    params: (data) => Utils.joiPromise(data, collectionSchema.actions[ACTIONS.GET_COLLECTION_METADATA_UPLOAD_RESULT].params)
+  },
+  [ACTIONS.LIST_COLLECTION_UPLOAD_RESULTS]: {
+    params: (data) => Utils.joiPromise(data, collectionSchema.actions[ACTIONS.LIST_COLLECTION_METADATA_UPLOAD_RESULTS].params)
   },
 
 

@@ -29,6 +29,30 @@ export const commands = {
     body: joi.object().keys({
     }).unknown()
   },
+
+
+  [COMMANDS.UPLOAD_COLLECTIONS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.PROCESS_UPLOADED_COLLECTIONS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.UPLOAD_COLLECTION_METADATA]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.PROCESS_UPLOADED_COLLECTION_METADATA]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
 }
 
 export const actions = {
@@ -53,6 +77,30 @@ export const actions = {
   },
 
   [ACTIONS.FIND_COLLECTIONS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
+
+  [ACTIONS.GET_COLLECTION_UPLOAD_RESULT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.LIST_COLLECTION_UPLOAD_RESULTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
+
+  [ACTIONS.GET_COLLECTION_METADATA_UPLOAD_RESULT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.LIST_COLLECTION_METADATA_UPLOAD_RESULTS]: {
     params: joi.object().keys({
       channel_uuid: uuid.required()
     }).unknown()

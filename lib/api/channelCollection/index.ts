@@ -1,5 +1,5 @@
 import { ApiClass } from '../../ApiClass'
-import { Command, Action } from '../../metadata'
+import { Command, Action, Upload } from '../../metadata'
 import { collection } from '../../validators/collection'
 import { COMMANDS, ACTIONS } from '../../enums'
 
@@ -11,6 +11,72 @@ export class ChannelCollection extends ApiClass {
 
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/collections/:collection_uuid', validator: collection[COMMANDS.UPDATE_COLLECTION] })
   update(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/collections', validator: collection[COMMANDS.UPLOAD_COLLECTIONS] })
+  @Upload()
+  upload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/collections/:upload_uuid', validator: collection[COMMANDS.PROCESS_UPLOADED_COLLECTIONS] })
+  processUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/collections/metadata', validator: collection[COMMANDS.UPLOAD_COLLECTION_METADATA] })
+  @Upload()
+  uploadMetadata(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/collections/metadata/:upload_uuid', validator: collection[COMMANDS.PROCESS_UPLOADED_COLLECTION_METADATA] })
+  processMetadataUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel Collection
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/collections/:upload_uuid', validator: collection[ACTIONS.GET_COLLECTION_UPLOAD_RESULT] })
+  getUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel Collection
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/collections', validator: collection[ACTIONS.LIST_COLLECTION_UPLOAD_RESULTS] })
+  listUploads(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel Collection
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/collections/metadata/:upload_uuid', validator: collection[ACTIONS.GET_COLLECTION_METADATA_UPLOAD_RESULT] })
+  getMetadataUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel Collection
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/collections/metadata', validator: collection[ACTIONS.LIST_COLLECTION_METADATA_UPLOAD_RESULTS] })
+  listMetadataUploads(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

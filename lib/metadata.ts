@@ -257,3 +257,16 @@ export function Paginate() {
     return descriptor
   }
 }
+
+/**
+ * Upload
+ * @description Uploads a file
+ * @constructor
+ */
+export function Upload() {
+  return function(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
+
+    return descriptor
+  }
+}
+

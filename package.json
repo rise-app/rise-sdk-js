@@ -57,7 +57,7 @@
     "compile": "npm run clean && npm run build",
     "clean": "rm -rf dist",
     "docgen": "documentation build dist/index.js --config documentation.yml -f md > docs.md",
-    "test:browser": "node_modules/.bin/webpack --config ./test-browser/webpack.config.js",
+    "test:browser": "node_modules/.bin/webpack --config ./webpack.config.js",
     "test:build:browser": "run-s build:browser test:browser"
   },
   "main": "dist/index.js",
