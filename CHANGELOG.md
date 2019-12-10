@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.28](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.27...v1.0.0-alpha.28) (2019-12-10)
+
+
+### Features
+
+* **collection:** adds searching endpoints ([f420b76](https://github.com/rise-app/rise-sdk-js/commit/f420b76))
+
 ## [1.0.0-alpha.27](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.26...v1.0.0-alpha.27) (2019-12-09)
 
 
