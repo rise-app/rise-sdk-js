@@ -1,4 +1,5 @@
 import * as api from './api'
+import qs from 'qs'
 import requestPromise from 'request-promise-native'
 import { EVENTS as _EVENTS, ACTIONS as _ACTIONS, COMMANDS as _COMMANDS } from './enums'
 import { ApplicationClass } from './ApplicationClass'
@@ -375,22 +376,23 @@ export class RiSE {
    * @param prefix
    */
   serializeQuery(obj, prefix?) {
-    let str = [], p
-
-    for (p in obj) {
-      if (obj.hasOwnProperty(p)) {
-
-        const k = prefix
-          ? prefix + '[' + p + ']'
-          : p
-        const v = obj[p]
-
-        str.push((v !== null && typeof v === 'object')
-          ? this.serializeQuery(v, k)
-          : encodeURIComponent(k) + '=' + encodeURIComponent(v))
-      }
-    }
-    return str.join('&')
+    return qs.stringify(obj)
+    // let str = [], p
+    //
+    // for (p in obj) {
+    //   if (obj.hasOwnProperty(p)) {
+    //
+    //     const k = prefix
+    //       ? prefix + '[' + p + ']'
+    //       : p
+    //     const v = obj[p]
+    //
+    //     str.push((v !== null && typeof v === 'object')
+    //       ? this.serializeQuery(v, k)
+    //       : encodeURIComponent(k) + '=' + encodeURIComponent(v))
+    //   }
+    // }
+    // return str.join('&')
   }
 
   /**

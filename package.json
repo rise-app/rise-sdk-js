@@ -75,6 +75,7 @@
     "engine.io-client": "^3.4.0",
     "joi": "^14.3.1",
     "primus": "^7.3.3",
+    "qs": "^6.9.1",
     "reflect-metadata": "^0.1.13",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
