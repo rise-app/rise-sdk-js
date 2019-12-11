@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.30](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.29...v1.0.0-alpha.30) (2019-12-11)
+
+
+### Features
+
+* **collection:** adds collection utility endpoints ([7d87c92](https://github.com/rise-app/rise-sdk-js/commit/7d87c92))
+
 ## [1.0.0-alpha.29](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.28...v1.0.0-alpha.29) (2019-12-11)
 
 
