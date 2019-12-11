@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.29](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.28...v1.0.0-alpha.29) (2019-12-11)
+
+
+### Features
+
+* use qs library for request queries ([40905b5](https://github.com/rise-app/rise-sdk-js/commit/40905b5))
+
 ## [1.0.0-alpha.28](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.27...v1.0.0-alpha.28) (2019-12-10)
 
 
