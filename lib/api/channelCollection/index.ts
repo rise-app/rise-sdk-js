@@ -14,30 +14,180 @@ export class ChannelCollection extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Get a Given Channel's Collection
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/collections/:collection_uuid', validator: collection[ACTIONS.GET_COLLECTION] })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Channel's Collection by Collection Handle
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/collections/handle/:handle', validator: collection[ACTIONS.FIND_COLLECTION] })
+  getByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List All Collections of a Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/collections', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search Collections for a Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/search/collections', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List All Collections from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/collections', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search All Collections from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/search/collections', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  searchChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel's Collection's Parent
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/collections/:collection_uuid/parent', validator: collection[ACTIONS.GET_COLLECTION] })
+  getParent(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Collection's Ancestor Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/collections/:collection_uuid/ancestors', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listAncestors(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * List a Given Channel's Collection's Children Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/collections/:collection_uuid/children', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listChildren(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * List a Given Channel's Collection's Descendant Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/collections/:collection_uuid/descendants', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * List a Given Channel's Collection's Siblings Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/collections/:collection_uuid/siblings', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listSiblings(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Upload a Collection CSV to Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/collections', validator: collection[COMMANDS.UPLOAD_COLLECTIONS] })
   @Upload()
   upload(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Process a Given Channel's Collections Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/collections/:upload_uuid', validator: collection[COMMANDS.PROCESS_UPLOADED_COLLECTIONS] })
   processUpload(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Upload a Collection Metadata CSV to Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/collections/metadata', validator: collection[COMMANDS.UPLOAD_COLLECTION_METADATA] })
   @Upload()
   uploadMetadata(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Process a Given Channel's Collection Metadata Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/collections/metadata/:upload_uuid', validator: collection[COMMANDS.PROCESS_UPLOADED_COLLECTION_METADATA] })
   processMetadataUpload(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
   /**
-   * Get a Given Channel Collection
+   * Get a Given Channel's Collection Upload Result
    * @param data
    * @param req
    * @param validated
@@ -48,7 +198,7 @@ export class ChannelCollection extends ApiClass {
   }
 
   /**
-   * Get a Given Channel Collection
+   * List a Given Channel's Collection Upload Results
    * @param data
    * @param req
    * @param validated
@@ -60,7 +210,7 @@ export class ChannelCollection extends ApiClass {
   }
 
   /**
-   * Get a Given Channel Collection
+   * Get a Given Channel Collection Metadata Upload Result
    * @param data
    * @param req
    * @param validated
@@ -72,7 +222,7 @@ export class ChannelCollection extends ApiClass {
   }
 
   /**
-   * Get a Given Channel Collection
+   * List a Given Channel's Collection Metadata Upload Results
    * @param data
    * @param req
    * @param validated
@@ -80,34 +230,6 @@ export class ChannelCollection extends ApiClass {
   @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/collections/metadata', validator: collection[ACTIONS.LIST_COLLECTION_METADATA_UPLOAD_RESULTS] })
   @Paginate()
   listMetadataUploads(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  /**
-   * Get a Given Channel Collection
-   * @param data
-   * @param req
-   * @param validated
-   */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/collections/:collection_uuid', validator: collection[ACTIONS.GET_COLLECTION] })
-  get(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/collections/handle/:handle', validator: collection[ACTIONS.FIND_COLLECTION] })
-  getByHandle(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/collections', validator: collection[ACTIONS.LIST_COLLECTIONS] })
-  @Paginate()
-  list(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/search/collections', validator: collection[ACTIONS.LIST_COLLECTIONS] })
-  @Paginate()
-  search(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }
@@ -143,6 +265,65 @@ export class ChannelCategory extends ApiClass {
   @Action({ method: 'GET', route: 'channels/:channel_uuid/search/categories', validator: collection[ACTIONS.LIST_COLLECTIONS] })
   @Paginate()
   search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel's Collection's Parent
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/categories/:collection_uuid/parent', validator: collection[ACTIONS.GET_COLLECTION] })
+  getParent(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Collection's Ancestor Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/categories/:collection_uuid/ancestors', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listAncestors(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Collection's Children Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/categories/:collection_uuid/children', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listChildren(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Collection's Descendant Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/categories/:collection_uuid/descendants', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Collection's Siblings Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/categories/:collection_uuid/siblings', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listSiblings(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -225,6 +406,65 @@ export class ChannelCampaign extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Get a Given Channel's Collection's Parent
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/:collection_uuid/parent', validator: collection[ACTIONS.GET_COLLECTION] })
+  getParent(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Collection's Ancestor Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/:collection_uuid/ancestors', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listAncestors(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Collection's Children Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/:collection_uuid/children', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listChildren(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Collection's Descendant Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/:collection_uuid/descendants', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Collection's Siblings Collections
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/:collection_uuid/siblings', validator: collection[ACTIONS.LIST_COLLECTIONS] })
+  @Paginate()
+  listSiblings(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
   @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/handle/:handle/parent', validator: collection[ACTIONS.FIND_COLLECTION] })
   getParentByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -259,6 +499,7 @@ export class ChannelCampaign extends ApiClass {
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   @Action({ method: 'GET', route: 'channels/:channel_uuid/search/campaigns', validator: collection[ACTIONS.LIST_COLLECTIONS] })
   @Paginate()
   search(data, req?, validated?) {
@@ -275,6 +516,7 @@ export class ChannelCampaign extends ApiClass {
   listOffers(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/handle/:handle/offers', validator: collection[ACTIONS.FIND_COLLECTIONS] })
   @Paginate()
   listOffersByHandle(data, req?, validated?) {
