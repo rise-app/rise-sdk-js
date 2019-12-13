@@ -12,6 +12,7 @@ import * as gateway from './gateway'
 import * as offer from './offer'
 import * as order from './order'
 import * as product from './product'
+import * as task from './task'
 import * as user from './user'
 import * as vendor from './vendor'
 
@@ -30,6 +31,7 @@ export {
   offer,
   order,
   product,
+  task,
   user,
   vendor
 }

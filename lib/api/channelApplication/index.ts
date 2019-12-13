@@ -42,6 +42,17 @@ export class ChannelApplication extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Search Applications
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/search/applications', validator: application[ACTIONS.LIST_APPLICATIONS] })
+  search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
 
   /**
    * Create a Application
