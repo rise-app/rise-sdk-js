@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
-import { Command, Action } from '../../metadata'
-import { product } from '../../validators'
+import { Command, Action, Upload, Paginate } from '../../metadata'
+import { collection, product } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
 export class ChannelProduct extends ApiClass {
@@ -66,6 +66,100 @@ export class ChannelProduct extends ApiClass {
   //   return this.request(req, data, validated)
   // }
   listVariantsByHandle = ChannelProductVariant.prototype.listVariantsByHandle
+
+
+  /**
+   * Upload a Product CSV to Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/products', validator: product[COMMANDS.UPLOAD_PRODUCTS] })
+  @Upload()
+  upload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Process a Given Channel's Products Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/products/:upload_uuid', validator: product[COMMANDS.PROCESS_UPLOADED_PRODUCTS] })
+  processUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Upload a Product Metadata CSV to Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/products/metadata', validator: product[COMMANDS.UPLOAD_PRODUCT_METADATA] })
+  @Upload()
+  uploadMetadata(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Process a Given Channel's Product Metadata Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/products/metadata/:upload_uuid', validator: product[COMMANDS.PROCESS_UPLOADED_PRODUCT_METADATA] })
+  processMetadataUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel's Product Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/products/:upload_uuid', validator: product[ACTIONS.GET_PRODUCT_UPLOAD_RESULT] })
+  getUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Product Upload Results
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/products', validator: product[ACTIONS.LIST_PRODUCT_UPLOAD_RESULTS] })
+  @Paginate()
+  listUploads(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel Product Metadata Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/products/metadata/:upload_uuid', validator: product[ACTIONS.GET_PRODUCT_METADATA_UPLOAD_RESULT] })
+  @Paginate()
+  getMetadataUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Product Metadata Upload Results
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/products/metadata', validator: product[ACTIONS.LIST_PRODUCT_METADATA_UPLOAD_RESULTS] })
+  @Paginate()
+  listMetadataUploads(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
 
   /**********************************
    * PUBLIC ENDPOINTS

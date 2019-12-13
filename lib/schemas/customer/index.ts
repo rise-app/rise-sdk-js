@@ -85,6 +85,30 @@ export const commands = {
       ...address
     }).unknown()
   },
+
+
+  [COMMANDS.UPLOAD_CUSTOMERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.PROCESS_UPLOADED_CUSTOMERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.UPLOAD_CUSTOMER_METADATA]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.PROCESS_UPLOADED_CUSTOMER_METADATA]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
 }
 
 export const actions = {
@@ -137,6 +161,31 @@ export const actions = {
   },
 
   [ACTIONS.FIND_CUSTOMERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
+
+
+  [ACTIONS.GET_CUSTOMER_UPLOAD_RESULT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.LIST_CUSTOMER_UPLOAD_RESULTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
+
+  [ACTIONS.GET_CUSTOMER_METADATA_UPLOAD_RESULT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.LIST_CUSTOMER_METADATA_UPLOAD_RESULTS]: {
     params: joi.object().keys({
       channel_uuid: uuid.required()
     }).unknown()

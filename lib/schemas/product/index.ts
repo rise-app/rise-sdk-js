@@ -67,6 +67,29 @@ export const commands = {
     body: joi.object().keys({
     }).unknown()
   },
+
+  [COMMANDS.UPLOAD_PRODUCTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.PROCESS_UPLOADED_PRODUCTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.UPLOAD_PRODUCT_METADATA]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.PROCESS_UPLOADED_PRODUCT_METADATA]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
 }
 
 export const actions = {
@@ -112,6 +135,31 @@ export const actions = {
   },
 
   [ACTIONS.FIND_PRODUCT_VARIANTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
+
+
+  [ACTIONS.GET_PRODUCT_UPLOAD_RESULT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.LIST_PRODUCT_UPLOAD_RESULTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
+
+  [ACTIONS.GET_PRODUCT_METADATA_UPLOAD_RESULT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.LIST_PRODUCT_METADATA_UPLOAD_RESULTS]: {
     params: joi.object().keys({
       channel_uuid: uuid.required()
     }).unknown()

@@ -218,7 +218,7 @@ describe('# RiSE Channel Collection API', () => {
       })
   })
 
-  it.skip('### Should Search Channel\'s Descendants\' Collections', (done) => {
+  it('### Should Search Channel\'s Descendants\' Collections', (done) => {
 
     rise.channelCollection.searchChannelDescendants({
 
@@ -241,7 +241,7 @@ describe('# RiSE Channel Collection API', () => {
       })
   })
 
-  it.skip('### Should Search Channel\'s Descendants\' Collections by purpose', (done) => {
+  it('### Should Search Channel\'s Descendants\' Collections by purpose', (done) => {
 
     rise.channelCollection.searchChannelDescendants({
 
@@ -275,6 +275,51 @@ describe('# RiSE Channel Collection API', () => {
     })
       .then(_res => {
         collection = _res.data
+
+        console.log('brk collection', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+
+  it('### Should List Channel Collection Upload Results', (done) => {
+
+    rise.channelCollection.listUploads({
+
+    }, {
+      query: {
+        limit: 5
+      }
+    })
+      .then(_res => {
+        assert.equal(_res.limit, 5)
+        assert.equal(_res.offset, 0)
+
+        console.log('brk collection', _res)
+
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it.skip('### Should List Channel Collection Metadata Upload Results', (done) => {
+
+    rise.channelCollection.listMetadataUploads({
+
+    }, {
+      query: {
+        limit: 5
+      }
+    })
+      .then(_res => {
+        assert.equal(_res.limit, 5)
+        assert.equal(_res.offset, 0)
 
         console.log('brk collection', _res)
 

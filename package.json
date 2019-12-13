@@ -53,6 +53,8 @@
     "test:transaction": "NODE_ENV=testing nyc mocha --opts test/mocha-transaction.opts --exit",
     "test:build:user": "run-s pre-test test:user",
     "test:user": "NODE_ENV=testing nyc mocha --opts test/mocha-user.opts --exit",
+    "test:build:vendor": "run-s pre-test test:vendor",
+    "test:vendor": "NODE_ENV=testing nyc mocha --opts test/mocha-vendor.opts --exit",
     "prepublishOnly": "npm run compile",
     "compile": "npm run clean && npm run build",
     "clean": "rm -rf dist",

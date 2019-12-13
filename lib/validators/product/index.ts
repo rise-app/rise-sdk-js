@@ -41,6 +41,19 @@ export const product = {
   // [COMMANDS.PUBLISH_PRODUCT_VARIANT]: (data) => Utils.joiPromise(data, productSchema.commands[COMMANDS.PUBLISH_PRODUCT_VARIANT]),
   // [COMMANDS.UNPUBLISH_PRODUCT_VARIANT]: (data) => Utils.joiPromise(data, productSchema.commands[COMMANDS.UNPUBLISH_PRODUCT_VARIANT]),
 
+  [COMMANDS.UPLOAD_PRODUCTS]: {
+    params: (data) => Utils.joiPromise(data, productSchema.commands[COMMANDS.UPLOAD_PRODUCTS].params)
+  },
+  [COMMANDS.PROCESS_UPLOADED_PRODUCTS]: {
+    params: (data) => Utils.joiPromise(data, productSchema.commands[COMMANDS.PROCESS_UPLOADED_PRODUCTS].params)
+  },
+  [COMMANDS.UPLOAD_PRODUCT_METADATA]: {
+    params: (data) => Utils.joiPromise(data, productSchema.commands[COMMANDS.UPLOAD_PRODUCT_METADATA].params)
+  },
+  [COMMANDS.PROCESS_UPLOADED_PRODUCT_METADATA]: {
+    params: (data) => Utils.joiPromise(data, productSchema.commands[COMMANDS.PROCESS_UPLOADED_PRODUCT_METADATA].params)
+  },
+
   // Actions
   [ACTIONS.GET_PRODUCT]: {
     params: (data) => Utils.joiPromise(data, productSchema.actions[ACTIONS.GET_PRODUCT].params)
@@ -82,6 +95,19 @@ export const product = {
   },
   [ACTIONS.FIND_PUBLIC_PRODUCT_VARIANTS]: {
     params: (data) => Utils.joiPromise(data, productSchema.actions[ACTIONS.FIND_PRODUCT_VARIANTS].params)
+  },
+
+  [ACTIONS.GET_PRODUCT_UPLOAD_RESULT]: {
+    params: (data) => Utils.joiPromise(data, productSchema.actions[ACTIONS.GET_PRODUCT_UPLOAD_RESULT].params)
+  },
+  [ACTIONS.LIST_PRODUCT_UPLOAD_RESULTS]: {
+    params: (data) => Utils.joiPromise(data, productSchema.actions[ACTIONS.LIST_PRODUCT_UPLOAD_RESULTS].params)
+  },
+  [ACTIONS.GET_PRODUCT_METADATA_UPLOAD_RESULT]: {
+    params: (data) => Utils.joiPromise(data, productSchema.actions[ACTIONS.GET_PRODUCT_METADATA_UPLOAD_RESULT].params)
+  },
+  [ACTIONS.LIST_PRODUCT_UPLOAD_RESULTS]: {
+    params: (data) => Utils.joiPromise(data, productSchema.actions[ACTIONS.LIST_PRODUCT_METADATA_UPLOAD_RESULTS].params)
   },
 
 }

@@ -67,6 +67,30 @@ export const commands = {
     body: joi.object().keys({
     }).unknown()
   },
+
+
+  [COMMANDS.UPLOAD_OFFERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.PROCESS_UPLOADED_OFFERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.UPLOAD_OFFER_METADATA]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.PROCESS_UPLOADED_OFFER_METADATA]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
 }
 
 export const actions = {
@@ -112,6 +136,30 @@ export const actions = {
   },
 
   [ACTIONS.FIND_OFFER_VARIANTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
+
+  [ACTIONS.GET_OFFER_UPLOAD_RESULT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.LIST_OFFER_UPLOAD_RESULTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
+
+  [ACTIONS.GET_OFFER_METADATA_UPLOAD_RESULT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.LIST_OFFER_METADATA_UPLOAD_RESULTS]: {
     params: joi.object().keys({
       channel_uuid: uuid.required()
     }).unknown()

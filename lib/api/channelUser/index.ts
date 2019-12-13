@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
-import { Command, Action } from '../../metadata'
-import { cart, user } from '../../validators'
+import { Command, Action, Upload, Paginate } from '../../metadata'
+import { cart, collection, user } from '../../validators'
 import { ChannelAuth } from '../channelAuth'
 import { ACTIONS, COMMANDS } from '../../enums'
 
@@ -169,5 +169,98 @@ export class ChannelUser extends ApiClass {
     return this.request(req, data, validated)
   }
 
+
+  /**
+   * Upload a User CSV to Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/users', validator: user[COMMANDS.UPLOAD_USERS] })
+  @Upload()
+  upload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Process a Given Channel's Users Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/users/:upload_uuid', validator: user[COMMANDS.PROCESS_UPLOADED_USERS] })
+  processUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Upload a User Metadata CSV to Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/users/metadata', validator: user[COMMANDS.UPLOAD_USER_METADATA] })
+  @Upload()
+  uploadMetadata(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Process a Given Channel's User Metadata Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/users/metadata/:upload_uuid', validator: user[COMMANDS.PROCESS_UPLOADED_USER_METADATA] })
+  processMetadataUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel's User Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/users/:upload_uuid', validator: user[ACTIONS.GET_USER_UPLOAD_RESULT] })
+  getUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's User Upload Results
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/users', validator: user[ACTIONS.LIST_USER_UPLOAD_RESULTS] })
+  @Paginate()
+  listUploads(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel User Metadata Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/users/metadata/:upload_uuid', validator: user[ACTIONS.GET_USER_METADATA_UPLOAD_RESULT] })
+  @Paginate()
+  getMetadataUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's User Metadata Upload Results
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/users/metadata', validator: user[ACTIONS.LIST_USER_METADATA_UPLOAD_RESULTS] })
+  @Paginate()
+  listMetadataUploads(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
 
 }

@@ -17,6 +17,8 @@ export const CUSTOMER_COMMANDS = {
 
   'UPLOAD_CUSTOMERS': 'upload.channel.:channel_uuid.list.customer',
   'PROCESS_UPLOADED_CUSTOMERS': 'process.channel.:channel_uuid.upload.:upload_uuid.list.customer',
+  'UPLOAD_CUSTOMER_METADATA': 'upload.channel.:channel_uuid.customer.list.metadata',
+  'PROCESS_UPLOADED_CUSTOMER_METADATA': 'process.channel.:channel_uuid.customer.upload.:upload_uuid.list.metadata',
 
   'ADD_CUSTOMER_CART': 'add.channel.:channel_uuid.customer.:customer_uuid.cart',
   'REMOVE_CUSTOMER_CART': 'remove.channel.:channel_uuid.customer.:customer_uuid.cart',
@@ -98,9 +100,13 @@ export const CUSTOMER_ACTIONS = {
 
   'GET_CUSTOMER_UPLOAD': 'channel.customer.upload.get',
   'LIST_CUSTOMER_UPLOADS': 'channel.customer.upload.list',
-
   'GET_CUSTOMER_UPLOAD_RESULT': 'channel.customer.upload_result.get',
   'LIST_CUSTOMER_UPLOAD_RESULTS': 'channel.customer.upload_result.list',
+
+  'GET_CUSTOMER_METADATA_UPLOAD_RESULT': 'channel.customer.metadata.upload_result.get',
+  'LIST_CUSTOMER_METADATA_UPLOAD_RESULTS': 'channel.customer.metadata.upload_result.list',
+  'GET_CUSTOMER_METADATA_UPLOAD': 'channel.customer.metadata.upload.get',
+  'LIST_CUSTOMER_METADATA_UPLOADS': 'channel.customer.metadata.upload.list',
 }
 export const CUSTOMER_EVENTS = {
   'CUSTOMER_CREATED': 'channel.:channel_uuid.customer.:customer_uuid.created',

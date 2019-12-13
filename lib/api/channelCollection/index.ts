@@ -236,32 +236,68 @@ export class ChannelCollection extends ApiClass {
 
 export class ChannelCategory extends ApiClass {
 
+  /**
+   * Create a Category (Collection)
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({ method: 'POST', route: 'channels/:channel_uuid/categories', validator: collection[COMMANDS.CREATE_COLLECTION] })
   create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Update a Category (Collection)
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/categories/:collection_uuid', validator: collection[COMMANDS.UPDATE_COLLECTION] })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Get a Category (Collection)
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/categories/:collection_uuid', validator: collection[ACTIONS.GET_COLLECTION] })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Get a Category (Collection) by Handle
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/categories/handle/:handle', validator: collection[ACTIONS.FIND_COLLECTION] })
   getByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * List all Categories (Collections)
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/categories', validator: collection[ACTIONS.LIST_COLLECTIONS ] })
   @Paginate()
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Search Categories (Collections)
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/search/categories', validator: collection[ACTIONS.LIST_COLLECTIONS] })
   @Paginate()
   search(data, req?, validated?) {
@@ -342,35 +378,65 @@ export class ChannelCategory extends ApiClass {
    * PUBLIC ENDPOINTS
    **********************************/
 
+  /**
+   * Get a Public Category (Collection) (Marketplace)
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/categories/:collection_uuid', validator: collection[ACTIONS.GET_COLLECTION] })
   getPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Get a Public Category (Collection) (Marketplace) By Handle
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/categories/handle/:handle', validator: collection[ACTIONS.FIND_COLLECTION] })
   getPublicByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * List Public Categories (Collections) (Marketplace)
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/categories', validator: collection[ACTIONS.LIST_COLLECTIONS] })
   @Paginate()
   listPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Search Public Categories (Collection) (Marketplace)
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/search/categories', validator: collection[ACTIONS.LIST_COLLECTIONS] })
   @Paginate()
   searchPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Get a Public Category (Collection) (Marketplace) Product
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/categories/:collection_uuid/products/:product_uuid', validator: collection[ACTIONS.GET_COLLECTION_PRODUCT] })
   getPublicProduct(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
   /**
-   * List Public Products in the Given Public Category
+   * List Public Products in the Given Public Category (Collection) (Marketplace)
    * @param data
    * @param req
    * @param validated
@@ -386,21 +452,45 @@ export class ChannelCategory extends ApiClass {
  * Channel Campaigns
  */
 export class ChannelCampaign extends ApiClass {
+  /**
+   * Create a Campaign (Collection)
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({ method: 'POST', route: 'channels/:channel_uuid/campaigns', validator: collection[COMMANDS.CREATE_COLLECTION] })
   create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Update a Campaign (Collection)
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({ method: 'PUT', route: 'channels/:channel_uuid/campaigns/:collection_uuid', validator: collection[COMMANDS.UPDATE_COLLECTION] })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Get a Campaign (Collection)
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/:collection_uuid', validator: collection[ACTIONS.GET_COLLECTION] })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Get a Campaign (Collection) by handle
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/campaigns/handle/:handle', validator: collection[ACTIONS.FIND_COLLECTION] })
   getByHandle(data, req?, validated?) {
     return this.request(req, data, validated)

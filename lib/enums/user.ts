@@ -8,6 +8,8 @@ export const USER_COMMANDS = {
 
   'UPLOAD_USERS': 'upload.channel.user',
   'PROCESS_UPLOADED_USERS': 'process.upload.channel.user',
+  'UPLOAD_USER_METADATA': 'upload.channel.:channel_uuid.user.list.metadata',
+  'PROCESS_UPLOADED_USER_METADATA': 'process.channel.:channel_uuid.user.upload.:upload_uuid.list.metadata',
 
   'LOGIN_USER': 'login.channel.user',
   'LOGOUT_USER': 'logout.channel.user',
@@ -52,6 +54,11 @@ export const USER_ACTIONS = {
   'LIST_USER_UPLOADS': 'channel.user.upload.list',
   'GET_USER_UPLOAD_RESULT': 'channel.user.upload_result.get',
   'LIST_USER_UPLOAD_RESULTS': 'channel.user.upload_result.list',
+
+  'GET_USER_METADATA_UPLOAD_RESULT': 'channel.user.metadata.upload_result.get',
+  'LIST_USER_METADATA_UPLOAD_RESULTS': 'channel.user.metadata.upload_result.list',
+  'GET_USER_METADATA_UPLOAD': 'channel.user.metadata.upload.get',
+  'LIST_USER_METADATA_UPLOADS': 'channel.user.metadata.upload.list',
 }
 export const USER_EVENTS = {
   'SESSION_STARTED': 'channel.:channel_uuid.session.started',

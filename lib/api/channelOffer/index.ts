@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
-import { Command, Action } from '../../metadata'
-import { offer } from '../../validators'
+import { Command, Action, Upload, Paginate } from '../../metadata'
+import { collection, offer } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
 export class ChannelOffer extends ApiClass {
@@ -168,6 +168,101 @@ export class ChannelOfferVariant extends ApiClass {
 
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/handle/:handle/variants', validator: offer[ACTIONS.FIND_PUBLIC_OFFER_VARIANTS] })
   listPublicVariantsByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+
+  /**
+   * Upload a Offer CSV to Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/offers', validator: offer[COMMANDS.UPLOAD_OFFERS] })
+  @Upload()
+  upload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Process a Given Channel's Offers Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/offers/:upload_uuid', validator: offer[COMMANDS.PROCESS_UPLOADED_OFFERS] })
+  processUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Upload a Offer Metadata CSV to Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/offers/metadata', validator: offer[COMMANDS.UPLOAD_OFFER_METADATA] })
+  @Upload()
+  uploadMetadata(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Process a Given Channel's Offer Metadata Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/offers/metadata/:upload_uuid', validator: offer[COMMANDS.PROCESS_UPLOADED_OFFER_METADATA] })
+  processMetadataUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel's Offer Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/offers/:upload_uuid', validator: offer[ACTIONS.GET_OFFER_UPLOAD_RESULT] })
+  getUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Offer Upload Results
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/offers', validator: offer[ACTIONS.LIST_OFFER_UPLOAD_RESULTS] })
+  @Paginate()
+  listUploads(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel Offer Metadata Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/offers/metadata/:upload_uuid', validator: offer[ACTIONS.GET_OFFER_METADATA_UPLOAD_RESULT] })
+  @Paginate()
+  getMetadataUpload(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List a Given Channel's Offer Metadata Upload Results
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/offers/metadata', validator: offer[ACTIONS.LIST_OFFER_METADATA_UPLOAD_RESULTS] })
+  @Paginate()
+  listMetadataUploads(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }

@@ -197,10 +197,4 @@ export class ChannelGateway extends ApiClass {
     return this.request(req, data, validated)
   }
 
-
-
-
-
-
-
 }

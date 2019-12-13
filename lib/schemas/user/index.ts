@@ -73,6 +73,30 @@ export const commands = {
     }).unknown(),
   },
 
+
+  [COMMANDS.UPLOAD_USERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.PROCESS_UPLOADED_USERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.UPLOAD_USER_METADATA]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
+  [COMMANDS.PROCESS_UPLOADED_USER_METADATA]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+
 }
 
 export const actions = {
@@ -127,6 +151,31 @@ export const actions = {
   },
 
   [ACTIONS.FIND_USERS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
+
+
+  [ACTIONS.GET_USER_UPLOAD_RESULT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.LIST_USER_UPLOAD_RESULTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
+
+  [ACTIONS.GET_USER_METADATA_UPLOAD_RESULT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      upload_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.LIST_USER_METADATA_UPLOAD_RESULTS]: {
     params: joi.object().keys({
       channel_uuid: uuid.required()
     }).unknown()

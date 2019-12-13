@@ -13,6 +13,7 @@ import * as offer from './offer'
 import * as order from './order'
 import * as product from './product'
 import * as user from './user'
+import * as vendor from './vendor'
 
 export {
   core,
@@ -29,5 +30,6 @@ export {
   offer,
   order,
   product,
-  user
+  user,
+  vendor
 }
