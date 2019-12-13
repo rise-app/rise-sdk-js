@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.32](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.31...v1.0.0-alpha.32) (2019-12-13)
+
+
+### Features
+
+* **task:** starts tasks ([37ae05e](https://github.com/rise-app/rise-sdk-js/commit/37ae05e))
+
 ## [1.0.0-alpha.31](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.30...v1.0.0-alpha.31) (2019-12-13)
 
 
