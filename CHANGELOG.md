@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.33](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.32...v1.0.0-alpha.33) (2019-12-15)
+
+
+### Features
+
+* **order:** adds order events/fulfillments/transactions ([33b27d7](https://github.com/rise-app/rise-sdk-js/commit/33b27d7))
+
 ## [1.0.0-alpha.32](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.31...v1.0.0-alpha.32) (2019-12-13)
 
 
