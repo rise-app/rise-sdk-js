@@ -210,6 +210,29 @@ export class Channel extends ApiClass {
     return this.request(req, data, validated)
   }
 
+
+  /**
+   * Get a Given Channel's Default Feed
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/feed_primary', validator: channel.get })
+  getPrimaryFeed(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Set a Given Channel's Default Feed
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/feed_primary', validator: channel.update })
+  setPrimaryFeed(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
   /**
    * List a Given Channel's Shipping Rules
    * @param data
@@ -276,4 +299,33 @@ export class Channel extends ApiClass {
   // setFeedPrimary(data, req?, validated?) {
   //     return this.request(req, data, validated)
   // }
+
+  getEvent = ChannelEvent.prototype.get
+
+  listEvents = ChannelEvent.prototype.list
+}
+
+
+export class ChannelEvent extends ApiClass {
+  /**
+   * Get Channel Event By UUID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/events/:event_uuid', validator: channel.get})
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List Channel Events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/events', validator: channel.list})
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
 }

@@ -1,4 +1,7 @@
-export { Channel } from './channel'
+export {
+  Channel,
+  ChannelEvent
+} from './channel'
 export { ChannelAuth } from './channelAuth'
 export { ChannelApplication } from './channelApplication'
 export { ChannelBillingModel } from './channelBillingModel'
@@ -44,8 +47,12 @@ export {
 } from './channelOffer'
 export {
   ChannelOrder,
-  ChannelOrderItem
+  ChannelOrderEvent,
+  ChannelOrderItem,
+  ChannelOrderFulfillment,
+  ChannelOrderTransaction,
 } from './channelOrder'
+
 export { ChannelPermission } from './channelPermission'
 export {
   ChannelProduct,

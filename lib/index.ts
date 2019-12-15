@@ -62,6 +62,7 @@ export class RiSE {
 
   // APIs
   public channel: api.Channel
+  public channelEvent: api.ChannelEvent
   public channelAuth: api.ChannelAuth
   public channelApplication: api.ChannelApplication
   public channelBillingModel: api.ChannelBillingModel
@@ -73,7 +74,6 @@ export class RiSE {
   public channelCountry: api.ChannelCountry
   public channelCountryProvince: api.ChannelCountryProvince
   public channelCustomer: api.ChannelCustomer
-  public channelPublicCustomer: api.ChannelPublicCustomer
   public channelCustomerCampaign: api.ChannelCustomerCampaign
   public channelCustomerCart: api.ChannelCustomerCart
   public channelCustomerFeed: api.ChannelCustomerFeed
@@ -88,10 +88,12 @@ export class RiSE {
   public channelGateway: api.ChannelGateway
   public channelOffer: api.ChannelOffer
   public channelOfferVariant: api.ChannelOfferVariant
-  public channelPublicOffer: api.ChannelPublicOffer
-  public channelPublicOfferVariant: api.ChannelPublicOfferVariant
+
   public channelOrder: api.ChannelOrder
+  public channelOrderEvent: api.ChannelOrderEvent
   public channelOrderItem: api.ChannelOrderItem
+  public channelOrderFulfillment: api.ChannelOrderFulfillment
+  public channelOrderTransaction: api.ChannelOrderTransaction
   public channelPermission: api.ChannelPermission
   public channelProduct: api.ChannelProduct
   public channelProductVariant: api.ChannelProductVariant
@@ -100,6 +102,11 @@ export class RiSE {
   public channelTransaction: api.ChannelTransaction
   public channelUser: api.ChannelUser
   public channelVendor: api.ChannelVendor
+
+  // Public
+  public channelPublicCustomer: api.ChannelPublicCustomer
+  public channelPublicOffer: api.ChannelPublicOffer
+  public channelPublicOfferVariant: api.ChannelPublicOfferVariant
 
   // Applications
   public application: ApplicationClass | ApplicationBrowserClass
@@ -189,16 +196,24 @@ export class RiSE {
 
     // // Initialize the APIs
     this.channel = new api.Channel(this, this.globals)
+    this.channelEvent = new api.ChannelEvent(this, this.globals)
+
     this.channelAuth = new api.ChannelAuth(this, this.globals)
+
     this.channelApplication = new api.ChannelApplication(this, this.globals)
+
     this.channelBillingModel = new api.ChannelBillingModel(this, this.globals)
+
     this.channelCart = new api.ChannelCart(this, this.globals)
     this.channelCartItem = new api.ChannelCartItem(this, this.globals)
+
     this.channelCollection = new api.ChannelCollection(this, this.globals)
     this.channelCampaign = new api.ChannelCampaign(this, this.globals)
     this.channelCategory = new api.ChannelCategory(this, this.globals)
+
     this.channelCountry = new api.ChannelCountry(this, this.globals)
     this.channelCountryProvince = new api.ChannelCountryProvince(this, this.globals)
+
     this.channelCustomer = new api.ChannelCustomer(this, this.globals)
     this.channelCustomerCampaign = new api.ChannelCustomerCampaign(this, this.globals)
     this.channelCustomerCart = new api.ChannelCustomerCart(this, this.globals)
@@ -207,15 +222,23 @@ export class RiSE {
     this.channelCustomerGatewayAccount = new api.ChannelCustomerGatewayAccount(this, this.globals)
     this.channelCustomerGatewayAccountSource = new api.ChannelCustomerGatewayAccountSource(this, this.globals)
     this.channelCustomerUser = new api.ChannelCustomerUser(this, this.globals)
+
     this.channelFeed = new api.ChannelFeed(this, this.globals)
     this.channelFeedItem = new api.ChannelFeedItem(this, this.globals)
+
     this.channelFulfillment = new api.ChannelFulfillment(this, this.globals)
     this.channelFulfillmentItem = new api.ChannelFulfillmentItem(this, this.globals)
     this.channelGateway = new api.ChannelGateway(this, this.globals)
+
     this.channelOffer = new api.ChannelOffer(this, this.globals)
     this.channelOfferVariant = new api.ChannelOfferVariant(this, this.globals)
+
     this.channelOrder = new api.ChannelOrder(this, this.globals)
+    this.channelOrderEvent = new api.ChannelOrderEvent(this, this.globals)
     this.channelOrderItem = new api.ChannelOrderItem(this, this.globals)
+    this.channelOrderFulfillment = new api.ChannelOrderFulfillment(this, this.globals)
+    this.channelOrderTransaction = new api.ChannelOrderTransaction(this, this.globals)
+
     this.channelPermission = new api.ChannelPermission(this, this.globals)
     this.channelProduct = new api.ChannelProduct(this, this.globals)
     this.channelProductVariant = new api.ChannelProductVariant(this, this.globals)

@@ -53,19 +53,19 @@ export class ChannelOffer extends ApiClass {
   // getVariant(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
-  getVariant = ChannelOfferVariant.prototype.getVariant
+  getVariant = ChannelOfferVariant.prototype.get
 
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/:offer_uuid/variants', validator: offer.list })
   // listVariants(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
-  listVariants = ChannelOfferVariant.prototype.listVariants
+  listVariants = ChannelOfferVariant.prototype.list
 
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/handle/:handle/variants', validator: offer.list })
   // listVariantsByHandle(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
-  listVariantsByHandle = ChannelOfferVariant.prototype.listVariantsByHandle
+  listVariantsByHandle = ChannelOfferVariant.prototype.listByHandle
 
   /**
    * Upload an Offer CSV to Given Channel
@@ -188,20 +188,20 @@ export class ChannelOffer extends ApiClass {
   // getPublicVariant(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
-  getPublicVariant = ChannelOfferVariant.prototype.getPublicVariant
+  getPublicVariant = ChannelOfferVariant.prototype.getPublic
 
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/:offer_uuid/variants', validator: offer.list })
   // listPublicVariants(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
-  listPublicVariants = ChannelOfferVariant.prototype.listPublicVariants
+  listPublicVariants = ChannelOfferVariant.prototype.listPublic
 
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/handle/:handle/variants', validator: offer.list })
   // listPublicVariantsByHandle(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
 
-  listPublicVariantsByHandle = ChannelOfferVariant.prototype.listPublicVariantsByHandle
+  listPublicVariantsByHandle = ChannelOfferVariant.prototype.listPublicByHandle
 
 }
 
@@ -232,16 +232,16 @@ export class ChannelOfferVariant extends ApiClass {
   }
 
   @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/:offer_uuid/variants/:variant_uuid', validator: offer[ACTIONS.GET_OFFER_VARIANT] })
-  getVariant(data, req?, validated?) {
+  get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
   @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/:offer_uuid/variants', validator: offer[ACTIONS.LIST_OFFER_VARIANTS] })
-  listVariants(data, req?, validated?) {
+  list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
   @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/handle/:handle/variants', validator: offer[ACTIONS.FIND_OFFER_VARIANTS] })
-  listVariantsByHandle(data, req?, validated?) {
+  listByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -250,17 +250,17 @@ export class ChannelOfferVariant extends ApiClass {
    **********************************/
 
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/:offer_uuid/variants/:variant_uuid', validator: offer[ACTIONS.GET_PUBLIC_OFFER_VARIANT] })
-  getPublicVariant(data, req?, validated?) {
+  getPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/:offer_uuid/variants', validator: offer[ACTIONS.LIST_PUBLIC_OFFER_VARIANTS] })
-  listPublicVariants(data, req?, validated?) {
+  listPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/handle/:handle/variants', validator: offer[ACTIONS.FIND_PUBLIC_OFFER_VARIANTS] })
-  listPublicVariantsByHandle(data, req?, validated?) {
+  listPublicByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }
@@ -273,7 +273,7 @@ export class ChannelPublicOffer extends ApiClass {
 }
 
 export class ChannelPublicOfferVariant extends ApiClass {
-  getVariant = ChannelOfferVariant.prototype.getPublicVariant
-  listVariants = ChannelOfferVariant.prototype.listPublicVariants
-  listVariantsByHandle = ChannelOfferVariant.prototype.listPublicVariantsByHandle
+  getVariant = ChannelOfferVariant.prototype.getPublic
+  listVariants = ChannelOfferVariant.prototype.listPublic
+  listVariantsByHandle = ChannelOfferVariant.prototype.listPublicByHandle
 }

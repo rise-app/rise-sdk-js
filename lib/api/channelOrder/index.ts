@@ -284,3 +284,120 @@ export class ChannelOrderItem extends ApiClass {
     return this.request(req, data, validated)
   }
 }
+
+
+/***********************************
+ * Order Transaction
+ ***********************************/
+
+export class ChannelOrderTransaction extends ApiClass {
+  /**
+   * Get an Order's Transaction by ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/orders/:order_uuid/transactions/:transaction_uuid',
+    validator: order[ACTIONS.GET_ORDER]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List an Order's Transactions
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO validator
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/orders/:order_uuid/transactions/:transaction_uuid',
+    validator: order[ACTIONS.LIST_ORDERS]
+  })
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+
+
+/***********************************
+ * Order Fulfillments
+ ***********************************/
+
+export class ChannelOrderFulfillment extends ApiClass {
+  /**
+   * Get an Order's Fulfillment by ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/orders/:order_uuid/fulfillments/:fulfillment_uuid',
+    validator: order[ACTIONS.GET_ORDER]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List an Order's Fulfillments
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO validator
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/orders/:order_uuid/fulfillments/:fulfillment_uuid',
+    validator: order[ACTIONS.LIST_ORDERS]
+  })
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+
+
+/***********************************
+ * Order Events
+ ***********************************/
+
+export class ChannelOrderEvent extends ApiClass {
+  /**
+   * Get an Order's Event by ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/orders/:order_uuid/events/:event_uuid',
+    validator: order[ACTIONS.GET_ORDER]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List an Order's Events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO validator
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/orders/:order_uuid/events/:event_uuid',
+    validator: order[ACTIONS.LIST_ORDERS]
+  })
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}

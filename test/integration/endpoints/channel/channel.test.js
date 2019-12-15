@@ -124,7 +124,7 @@ describe('# RiSE Channel Channel API', () => {
 
     it.skip('### Set Primary Nexus', (done) => {
 
-      rise.channel.setNexusAddress({
+      rise.channel.setAddressNexus({
         // channel_uuid: channel_uuid
       })
         .then(_res => {
@@ -138,9 +138,9 @@ describe('# RiSE Channel Channel API', () => {
         })
     })
 
-    it.skip('### Get Primary Nexus', (done) => {
+    it('### Get Primary Nexus', (done) => {
 
-      rise.channel.getNexusAddress({
+      rise.channel.getAddressNexus({
         // channel_uuid: channel_uuid
       })
         .then(_res => {
@@ -171,7 +171,7 @@ describe('# RiSE Channel Channel API', () => {
         })
     })
 
-    it.skip('### Get Primary Vendor', (done) => {
+    it('### Get Primary Vendor', (done) => {
 
       rise.channel.getPrimaryVendor({
         // channel_uuid: channel_uuid
@@ -204,9 +204,42 @@ describe('# RiSE Channel Channel API', () => {
         })
     })
 
-    it.skip('### Get Primary Customer', (done) => {
+    it('### Get Primary Customer', (done) => {
 
       rise.channel.getPrimaryCustomer({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+
+    it.skip('### Set Primary Feed', (done) => {
+
+      rise.channel.setPrimaryFeed({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
+          // console.log('BRK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Get Primary Feed', (done) => {
+
+      rise.channel.getPrimaryFeed({
         // channel_uuid: channel_uuid
       })
         .then(_res => {
@@ -237,7 +270,7 @@ describe('# RiSE Channel Channel API', () => {
         })
     })
 
-    it.skip('### Get Primary Gateway', (done) => {
+    it('### Get Primary Gateway', (done) => {
 
       rise.channel.getPrimaryGateway({
         // channel_uuid: channel_uuid
@@ -269,7 +302,7 @@ describe('# RiSE Channel Channel API', () => {
         })
     })
 
-    it.skip('### Get Primary Fulfillment Service', (done) => {
+    it('### Get Primary Fulfillment Service', (done) => {
 
       rise.channel.getPrimaryFulfillmentService({
         // channel_uuid: channel_uuid
