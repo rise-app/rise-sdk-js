@@ -97,7 +97,7 @@ export class ChannelCart extends ApiClass {
   }
 
   /**
-   * Set a Cart's Shipping Address
+   * Set a Cart's Customer
    * @param data
    * @param req
    * @param validated
@@ -146,7 +146,7 @@ export class ChannelCart extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/payment_details', validator: cart[COMMANDS.SET_CART_FULFILLMENT] })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/fulfillment_details', validator: cart[COMMANDS.SET_CART_FULFILLMENT] })
   setFulfillmentDetails(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -159,6 +159,107 @@ export class ChannelCart extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/fulfillment_details', validator: cart[ACTIONS.GET_CART_FULFILLMENT_DETAILS] })
   getFulfillmentDetails(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * Add a Cart's Shipping Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/lines_shipping', validator: cart[COMMANDS.ADD_CART_SHIPPING_LINE] })
+  addShippingLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Cart's Shipping Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/carts/:cart_uuid/lines_shipping', validator: cart[COMMANDS.REMOVE_CART_SHIPPING_LINE] })
+  removeShippingLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Cart's Shipping Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/lines_shipping', validator: cart[ACTIONS.LIST_CART_SHIPPING_LINES] })
+  listShippingLines(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * Add a Cart's Tax Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/lines_taxes', validator: cart[COMMANDS.ADD_CART_TAX_LINE] })
+  addTaxLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Cart's Tax Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/carts/:cart_uuid/lines_taxes', validator: cart[COMMANDS.REMOVE_CART_TAX_LINE] })
+  removeTaxLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Cart's Tax Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/lines_taxes', validator: cart[ACTIONS.LIST_CART_TAX_LINES] })
+  listTaxLines(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add a Cart's Override Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/lines_pricing_overrides', validator: cart[COMMANDS.ADD_CART_OVERRIDE_LINE] })
+  addOverrideLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Cart's Override Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/carts/:cart_uuid/lines_pricing_overrides', validator: cart[COMMANDS.REMOVE_CART_OVERRIDE_LINE] })
+  removeOverrideLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Cart's Override Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/lines_pricing_overrides', validator: cart[ACTIONS.LIST_CART_OVERRIDE_LINES] })
+  listOverrideLines(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -267,7 +368,7 @@ export class ChannelCartItem extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/payment_details', validator: cart[COMMANDS.SET_CART_ITEM_FULFILLMENT] })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/fulfillment_details', validator: cart[COMMANDS.SET_CART_ITEM_FULFILLMENT] })
   setFulfillmentDetails(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -280,6 +381,110 @@ export class ChannelCartItem extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/fulfillment_details', validator: cart[ACTIONS.GET_CART_ITEM_FULFILLMENT_DETAILS] })
   getFulfillmentDetails(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add a Cart's Item's Shipping Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/lines_shipping', validator: cart[COMMANDS.ADD_CART_SHIPPING_LINE] })
+  addShippingLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Cart's Item's Shipping Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/lines_shipping', validator: cart[COMMANDS.REMOVE_CART_SHIPPING_LINE] })
+  removeShippingLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Cart's Item's Shipping Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/lines_shipping', validator: cart[ACTIONS.LIST_CART_SHIPPING_LINES] })
+  listShippingLines(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * Add a Cart's Item's Tax Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/lines_taxes', validator: cart[COMMANDS.ADD_CART_TAX_LINE] })
+  addTaxLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Cart's Item's Tax Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/lines_taxes', validator: cart[COMMANDS.REMOVE_CART_TAX_LINE] })
+  removeTaxLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Cart's Item's Tax Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/lines_taxes', validator: cart[ACTIONS.LIST_CART_TAX_LINES] })
+  listTaxLines(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add a Cart's Item's Override Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/lines_pricing_overrides', validator: cart[COMMANDS.ADD_CART_OVERRIDE_LINE] })
+  addOverrideLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Cart's Item's Override Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/lines_pricing_overrides', validator: cart[COMMANDS.REMOVE_CART_OVERRIDE_LINE] })
+  removeOverrideLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Cart's Item's Override Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/carts/:cart_uuid/items/:item_uuid/lines_pricing_overrides',
+    validator: cart[ACTIONS.LIST_CART_OVERRIDE_LINES]
+  })
+  listOverrideLines(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

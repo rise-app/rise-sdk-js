@@ -303,6 +303,8 @@ describe('# RiSE Channel Cart API', () => {
     it.skip('### Should get Payment of a Cart', (done) => {
 
       rise.channelCart.getPaymentDetails({
+
+      }, {
         channel_uuid: channel_uuid,
         cart_uuid: cart.cart_uuid
       })
@@ -316,11 +318,200 @@ describe('# RiSE Channel Cart API', () => {
         })
     })
 
+    it.skip('### Should add Shipping Line on a Cart', (done) => {
+
+      rise.channelCart.addShippingLine({
+        name: 'test',
+        price: 100
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid
+        }
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelCart.lines_shipping')
+          // assert.equal(_res.event_type, EVENTS.CART_CUSTOMER_SET)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+    it.skip('### Should remove Shipping Line on a Cart', (done) => {
+
+      rise.channelCart.removeShippingLine({
+        name: 'test',
+        price: 100
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid
+        }
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelCart.lines_shipping')
+          // assert.equal(_res.event_type, EVENTS.CART_CUSTOMER_SET)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should list Shipping Lines on a Cart', (done) => {
+
+      rise.channelCart.listShippingLines({
+
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid
+        }
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelCart.lines_shipping')
+          // assert.equal(_res.event_type, EVENTS.CART_CUSTOMER_SET)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+
+    it.skip('### Should add Tax Line on a Cart', (done) => {
+
+      rise.channelCart.addTaxLine({
+        name: 'test',
+        price: 100
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid
+        }
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelCart.lines_taxes')
+          // assert.equal(_res.event_type, EVENTS.CART_CUSTOMER_SET)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+    it.skip('### Should remove Tax Line on a Cart', (done) => {
+
+      rise.channelCart.removeTaxLine({
+        name: 'test',
+        price: 100
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid
+        }
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelCart.lines_taxes')
+          // assert.equal(_res.event_type, EVENTS.CART_CUSTOMER_SET)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should list Tax Lines on a Cart', (done) => {
+
+      rise.channelCart.listTaxLines({
+
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid
+        }
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelCart.lines_taxes')
+          // assert.equal(_res.event_type, EVENTS.CART_CUSTOMER_SET)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+
+    it.skip('### Should add Override Line on a Cart', (done) => {
+
+      rise.channelCart.addOverrideLine({
+        name: 'test',
+        price: 100
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid
+        }
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelCart.lines_pricing_overrides')
+          // assert.equal(_res.event_type, EVENTS.CART_CUSTOMER_SET)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+    it.skip('### Should remove Override Line on a Cart', (done) => {
+
+      rise.channelCart.removeOverrideLine({
+        name: 'test',
+        price: 100
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid
+        }
+      })
+        .then(_res => {
+          assert.equal(_res.list, 'ChannelCart.lines_pricing_overrides')
+          // assert.equal(_res.event_type, EVENTS.CART_CUSTOMER_SET)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
+    it('### Should list Override Lines on a Cart', (done) => {
+
+      rise.channelCart.listOverrideLines({
+
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid
+        }
+      })
+        .then(_res => {
+
+          console.log('brk cart', _res)
+          assert.equal(_res.list, 'ChannelCart.lines_pricing_overrides')
+          // assert.equal(_res.event_type, EVENTS.CART_CUSTOMER_SET)
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+
     it('### Should Get a Channel Cart', (done) => {
 
-      rise.channelCart.get({
-        channel_uuid: channel_uuid,
-        cart_uuid: cart.cart_uuid
+      rise.channelCart.get({}, {
+        params: {
+          channel_uuid: channel_uuid,
+          cart_uuid: cart.cart_uuid
+        }
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCart')

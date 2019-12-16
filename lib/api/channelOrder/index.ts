@@ -147,7 +147,7 @@ export class ChannelOrder extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/orders/:order_uuid/payment_details', validator: order[COMMANDS.SET_ORDER_FULFILLMENT] })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/orders/:order_uuid/fulfillment_details', validator: order[COMMANDS.SET_ORDER_FULFILLMENT] })
   setFulfillmentDetails(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -162,6 +162,118 @@ export class ChannelOrder extends ApiClass {
   getFulfillmentDetails(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
+
+
+  /**
+   * Add a Order's Shipping Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/orders/:order_uuid/lines_shipping', validator: order[COMMANDS.ADD_ORDER_SHIPPING_LINE] })
+  addShippingLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Order's Shipping Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/orders/:order_uuid/lines_shipping', validator: order[COMMANDS.REMOVE_ORDER_SHIPPING_LINE] })
+  removeShippingLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Order's Shipping Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/orders/:order_uuid/lines_shipping', validator: order[ACTIONS.LIST_ORDER_SHIPPING_LINES] })
+  listShippingLines(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * Add a Order's Tax Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/orders/:order_uuid/lines_taxes', validator: order[COMMANDS.ADD_ORDER_TAX_LINE] })
+  addTaxLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Order's Tax Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/orders/:order_uuid/lines_taxes', validator: order[COMMANDS.REMOVE_ORDER_TAX_LINE] })
+  removeTaxLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Order's Tax Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/orders/:order_uuid/lines_taxes', validator: order[ACTIONS.LIST_ORDER_TAX_LINES] })
+  listTaxLines(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add a Order's Override Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/orders/:order_uuid/lines_pricing_overrides', validator: order[COMMANDS.ADD_ORDER_OVERRIDE_LINE] })
+  addOverrideLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Order's Override Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/orders/:order_uuid/lines_pricing_overrides', validator: order[COMMANDS.REMOVE_ORDER_OVERRIDE_LINE] })
+  removeOverrideLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Order's Override Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/orders/:order_uuid/lines_pricing_overrides', validator: order[ACTIONS.LIST_ORDER_OVERRIDE_LINES] })
+  listOverrideLines(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  getItem = ChannelOrderItem.prototype.get
+  listItems = ChannelOrderItem.prototype.list
+
+  getFulfillment = ChannelOrderFulfillment.prototype.get
+  listFulfillments = ChannelOrderFulfillment.prototype.list
+
+  getTransaction = ChannelOrderTransaction.prototype.get
+  listTransactions = ChannelOrderTransaction.prototype.list
 }
 
 
@@ -246,7 +358,7 @@ export class ChannelOrderItem extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/payment_details', validator: order[COMMANDS.SET_ORDER_ITEM_FULFILLMENT] })
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/fulfillment_details', validator: order[COMMANDS.SET_ORDER_ITEM_FULFILLMENT] })
   setFulfillmentDetails(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -281,6 +393,113 @@ export class ChannelOrderItem extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/orders/:order_uuid/items', validator: order[ACTIONS.LIST_ORDER_ITEMS] })
   list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+
+
+  /**
+   * Add a Order's Item's Shipping Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/lines_shipping', validator: order[COMMANDS.ADD_ORDER_SHIPPING_LINE] })
+  addShippingLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Order's Item's Shipping Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/lines_shipping', validator: order[COMMANDS.REMOVE_ORDER_SHIPPING_LINE] })
+  removeShippingLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Order's Item's Shipping Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/lines_shipping', validator: order[ACTIONS.LIST_ORDER_SHIPPING_LINES] })
+  listShippingLines(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * Add a Order's Item's Tax Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/lines_taxes', validator: order[COMMANDS.ADD_ORDER_TAX_LINE] })
+  addTaxLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Order's Item's Tax Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/lines_taxes', validator: order[COMMANDS.REMOVE_ORDER_TAX_LINE] })
+  removeTaxLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Order's Item's Tax Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/lines_taxes', validator: order[ACTIONS.LIST_ORDER_TAX_LINES] })
+  listTaxLines(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add a Order's Item's Override Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'PUT', route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/lines_pricing_overrides', validator: order[COMMANDS.ADD_ORDER_OVERRIDE_LINE] })
+  addOverrideLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Remove a Order's Item's Override Line
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/lines_pricing_overrides', validator: order[COMMANDS.REMOVE_ORDER_OVERRIDE_LINE] })
+  removeOverrideLine(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List a Order's Item's Override Lines
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/lines_pricing_overrides',
+    validator: order[ACTIONS.LIST_ORDER_OVERRIDE_LINES]
+  })
+  listOverrideLines(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }
