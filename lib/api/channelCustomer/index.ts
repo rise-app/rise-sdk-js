@@ -1,7 +1,7 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Paginate, Upload } from '../../metadata'
-import { collection, customer } from '../../validators'
-import { ACTIONS, COMMANDS } from '../../enums'
+import { collection, customer, gateway } from '../../validators'
+import { ACTIONS, COMMANDS, EVENTS } from '../../enums'
 import { ChannelAuth } from '../channelAuth'
 
 export class ChannelCustomer extends ApiClass {
@@ -344,6 +344,58 @@ export class ChannelPublicCustomer extends ApiClass {
 export class ChannelCustomerCampaign extends ApiClass {}
 
 export class ChannelCustomerCart extends ApiClass {}
+
+export class ChannelCustomerEvent extends ApiClass {
+  /**
+   * List Customer's events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: '/channels/:channel_uuid/customers/:customer_uuid/events',
+    validator: customer[ACTIONS.LIST_CUSTOMER_EVENTS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List Customer's events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: '/channels/:channel_uuid/customers/:customer_uuid/events/:event_uuid',
+    // validator: customer[ACTIONS.GET_CUSTOMER_EVENT]
+  })
+  @Paginate()
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Create Customer's event
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'POST',
+    route: '/channels/:channel_uuid/customers/:customer_uuid/events',
+    // validator: customer[COMMANDS.CREATE_EVENT]
+  })
+  create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
 
 export class ChannelCustomerFeed extends ApiClass {}
 

@@ -13,6 +13,4 @@ export class ChannelPermission extends ApiClass {
     listRolePermissions(data, req?, validated?) {
         return this.request(req, data, validated)
     }
-
-
 }

@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Upload, Paginate } from '../../metadata'
-import { offer } from '../../validators'
+import { offer, user } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
 export class ChannelOffer extends ApiClass {
@@ -377,3 +377,56 @@ export class ChannelPublicOfferVariant extends ApiClass {
 export class ChannelOfferUpload extends ApiClass {}
 
 export class ChannelOfferMetadataUpload extends ApiClass {}
+
+
+export class ChannelOfferEvent extends ApiClass {
+  /**
+   * List Offer's events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: '/channels/:channel_uuid/offers/:offer_uuid/events',
+    validator: offer[ACTIONS.LIST_OFFER_EVENTS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List Offer's events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: '/channels/:channel_uuid/offers/:offer_uuid/events/:event_uuid',
+    // validator: offer[ACTIONS.GET_OFFER_EVENT]
+  })
+  @Paginate()
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Create Offer's event
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'POST',
+    route: '/channels/:channel_uuid/offers/:offer_uuid/events',
+    // validator: offer[COMMANDS.CREATE_EVENT]
+  })
+  create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}

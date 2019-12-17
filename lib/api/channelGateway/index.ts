@@ -132,28 +132,6 @@ export class ChannelGateway extends ApiClass {
   }
 
   /**
-* List gateway events
-* @param data
-* @param req
-* @param validated
-*/
-  @Action({ method: 'GET', route: '/channels/:channel_uuid/gateways/:gateway_uuid', validator: gateway[ACTIONS.LIST_GATEWAY_EVENTS] })
-  listEvents(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  /**
-* Create gateway event
-* @param data
-* @param req
-* @param validated
-*/
-  @Command({ method: 'POST', route: '/channels/:channel_uuid/gateways/:gateway_uuid', validator: gateway[EVENTS.GATEWAY_CREATED] })
-  createEvent(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  /**
 * Upload gateways
 * @param data
 * @param req
@@ -198,3 +176,32 @@ export class ChannelGateway extends ApiClass {
   }
 
 }
+
+
+export class ChannelGatewayAccount extends ApiClass {}
+export class ChannelGatewayAccountSource extends ApiClass {}
+export class ChannelGatewayEvent  extends ApiClass {
+  /**
+   * List gateway events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: '/channels/:channel_uuid/gateways/:gateway_uuid/events', validator: gateway[ACTIONS.LIST_GATEWAY_EVENTS] })
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Create gateway event
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({ method: 'POST', route: '/channels/:channel_uuid/gateways/:gateway_uuid/events', validator: gateway[EVENTS.GATEWAY_CREATED] })
+  create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+export class ChannelGatewayForm extends ApiClass {}
+export class ChannelGatewayReceiver extends ApiClass {}

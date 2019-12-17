@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Upload, Paginate } from '../../metadata'
-import { cart, collection, offer, user } from '../../validators'
+import { cart, collection, customer, offer, user } from '../../validators'
 import { ChannelAuth } from '../channelAuth'
 import { ACTIONS, COMMANDS } from '../../enums'
 
@@ -288,4 +288,71 @@ export class ChannelUser extends ApiClass {
     return this.request(req, data, validated)
   }
 
+}
+export class ChannelUserCustomer extends ApiClass {
+  //
+}
+
+export class ChannelUserEvent extends ApiClass {
+  /**
+   * List User's events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: '/channels/:channel_uuid/users/:user_uuid/events',
+    validator: user[ACTIONS.LIST_USER_EVENTS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List User's events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: '/channels/:channel_uuid/users/:user_uuid/events/:event_uuid',
+    // validator: user[ACTIONS.GET_USER_EVENT]
+  })
+  @Paginate()
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Create User's event
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'POST',
+    route: '/channels/:channel_uuid/users/:user_uuid/events',
+    // validator: user[COMMANDS.CREATE_EVENT]
+  })
+  create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+
+export class ChannelUserInvite extends ApiClass {
+  //
+}
+
+export class ChannelUserNotification extends ApiClass {
+  //
+}
+
+export class ChannelUserPassport extends ApiClass {
+  //
 }

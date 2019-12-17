@@ -2,6 +2,7 @@ import { ApiClass } from '../../ApiClass'
 import { Command, Action, Upload, Paginate } from '../../metadata'
 import { collection } from '../../validators/collection'
 import { COMMANDS, ACTIONS } from '../../enums'
+import { user } from '../../validators/user'
 
 export class ChannelCollection extends ApiClass {
   @Command({ method: 'POST', route: 'channels/:channel_uuid/collections', validator: collection[COMMANDS.CREATE_COLLECTION]})
@@ -730,6 +731,73 @@ export class ChannelCampaign extends ApiClass {
   @Action({ method: 'GET', route: 'channels/:channel_uuid/public/campaigns/handle/:handle/offers', validator: collection[ACTIONS.FIND_COLLECTIONS] })
   @Paginate()
   listPublicOffersByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+/**
+ * Channel Campaigns
+ */
+export class ChannelPublicCampaign extends ApiClass {
+  get = ChannelCampaign.prototype.getPublic
+  getByHandle = ChannelCampaign.prototype.getPublicByHandle
+  getParentByHandle = ChannelCampaign.prototype.getPublicParentByHandle
+  list = ChannelCampaign.prototype.listPublic
+  search = ChannelCampaign.prototype.searchPublic
+  listAncestorsByHandle = ChannelCampaign.prototype.listPublicAncestorsByHandle
+  listChildrenByHandle = ChannelCampaign.prototype.listPublicChildrenByHandle
+  listDescendantsByHandle = ChannelCampaign.prototype.listPublicDescendantsByHandle
+  listSiblingsByHandle = ChannelCampaign.prototype.listPublicSiblingsByHandle
+  listOffersByHandle = ChannelCampaign.prototype.listPublicOffersByHandle
+}
+
+export class ChannelCollectionEvent extends ApiClass {
+  /**
+   * List Collection's events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: '/channels/:channel_uuid/collections/:collection_uuid/events',
+    validator: collection[ACTIONS.LIST_COLLECTION_EVENTS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List Collection's events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: '/channels/:channel_uuid/collections/:collection_uuid/events/:event_uuid',
+    // validator: collection[ACTIONS.GET_COLLECTION_EVENT]
+  })
+  @Paginate()
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Create Collection's event
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'POST',
+    route: '/channels/:channel_uuid/collections/:collection_uuid/events',
+    // validator: collection[COMMANDS.CREATE_EVENT]
+  })
+  create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }

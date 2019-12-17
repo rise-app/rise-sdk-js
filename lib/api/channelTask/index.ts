@@ -233,3 +233,5 @@ export class ChannelTask extends ApiClass {
   //   return this.request(req, data, validated)
   // }
 }
+
+export class ChannelTaskItem extends ApiClass {}

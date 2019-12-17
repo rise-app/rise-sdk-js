@@ -3,48 +3,81 @@ export {
   ChannelEvent
 } from './channel'
 export { ChannelAuth } from './channelAuth'
-export { ChannelApplication } from './channelApplication'
+
+export {
+  ChannelApplication,
+  ChannelApplicationEndpoint,
+  ChannelApplicationEvent,
+  ChannelApplicationKey,
+  ChannelApplicationPrehook,
+  ChannelApplicationSocket,
+  ChannelApplicationTransformer,
+  ChannelApplicationWebhook
+} from './channelApplication'
+
 export { ChannelBillingModel } from './channelBillingModel'
+
 export {
   ChannelCart,
   ChannelCartItem
 } from './channelCart'
+
 export {
   ChannelCollection,
   ChannelCampaign,
-  ChannelCategory
+  ChannelCategory,
+  ChannelCollectionEvent,
+
+  ChannelPublicCampaign
 } from './channelCollection'
+
 export {
   ChannelCountry,
   ChannelCountryProvince
 } from './channelCountry'
+
 export {
   ChannelCustomer,
-  ChannelPublicCustomer,
   ChannelCustomerCampaign,
   ChannelCustomerCart,
+  ChannelCustomerEvent,
   ChannelCustomerFeed,
   ChannelCustomerOrder,
   ChannelCustomerGatewayAccount,
   ChannelCustomerGatewayAccountSource,
-  ChannelCustomerUser
+  ChannelCustomerUser,
+
+  ChannelPublicCustomer
 } from './channelCustomer'
+
 export {
   ChannelFeed,
   ChannelFeedItem
 } from './channelFeed'
+
 export {
   ChannelFulfillment,
   ChannelFulfillmentItem
 } from './channelFulfillment'
-export { ChannelGateway } from './channelGateway'
+
+export {
+  ChannelGateway,
+  ChannelGatewayEvent,
+  ChannelGatewayAccount,
+  ChannelGatewayAccountSource,
+  ChannelGatewayForm,
+  ChannelGatewayReceiver
+} from './channelGateway'
+
 export {
   ChannelOffer,
   ChannelOfferVariant,
+  ChannelOfferEvent,
 
   ChannelPublicOffer,
   ChannelPublicOfferVariant
 } from './channelOffer'
+
 export {
   ChannelOrder,
   ChannelOrderEvent,
@@ -54,12 +87,41 @@ export {
 } from './channelOrder'
 
 export { ChannelPermission } from './channelPermission'
+
 export {
   ChannelProduct,
-  ChannelProductVariant
+  ChannelProductEvent,
+  ChannelProductImage,
+  ChannelProductVariant,
+  ChannelProductVariantImage,
+  ChannelProductVendor
 } from './channelProduct'
+
+export { ChannelShipping } from './channelShipping'
+
 export { ChannelSubscription } from './channelSubscription'
-export { ChannelTask } from './channelTask'
+
+export {
+  ChannelTask,
+  ChannelTaskItem
+} from './channelTask'
+
 export { ChannelTransaction } from './channelTransaction'
-export { ChannelUser } from './channelUser'
-export { ChannelVendor } from './channelVendor'
+
+export { ChannelTax } from './channelTax'
+
+export {
+  ChannelUser,
+  ChannelUserCustomer,
+  ChannelUserEvent,
+  ChannelUserInvite,
+  ChannelUserNotification,
+  ChannelUserPassport,
+} from './channelUser'
+export {
+  ChannelVendor,
+  ChannelVendorEvent,
+  ChannelVendorFulfillmentService,
+  ChannelVendorInventory,
+  ChannelVendorProduct
+} from './channelVendor'

@@ -1,5 +1,5 @@
 import { ApiClass } from '../../ApiClass'
-import { Command, Action } from '../../metadata'
+import { Command, Action, Paginate } from '../../metadata'
 import { channel } from '../../validators'
 
 export class Channel extends ApiClass {
@@ -313,7 +313,11 @@ export class ChannelEvent extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/events/:event_uuid', validator: channel.get})
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/events/:event_uuid',
+    validator: channel.get
+  })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -324,7 +328,12 @@ export class ChannelEvent extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/events', validator: channel.list})
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/events',
+    validator: channel.list
+  })
+  @Paginate()
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }

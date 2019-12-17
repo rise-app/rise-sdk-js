@@ -505,7 +505,11 @@ export class ChannelCartItem extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid/items', validator: cart[ACTIONS.LIST_CART_ITEMS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/carts/:cart_uuid/items',
+    validator: cart[ACTIONS.LIST_CART_ITEMS]
+  })
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
