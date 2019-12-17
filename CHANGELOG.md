@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.36](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.34...v1.0.0-alpha.36) (2019-12-17)
+
+
+### Features
+
+* **offer:** adds offer earch ([7cb46db](https://github.com/rise-app/rise-sdk-js/commit/7cb46db))
+
 ## [1.0.0-alpha.34](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.33...v1.0.0-alpha.34) (2019-12-16)
 
 
