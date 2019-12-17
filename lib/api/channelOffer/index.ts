@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Upload, Paginate } from '../../metadata'
-import { collection, offer } from '../../validators'
+import { offer } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
 export class ChannelOffer extends ApiClass {
@@ -49,6 +49,41 @@ export class ChannelOffer extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * List All Offers from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/offers', validator: offer[ACTIONS.LIST_OFFERS] })
+  @Paginate()
+  listChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search All Offers from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/search/offers', validator: offer[ACTIONS.LIST_OFFERS] })
+  @Paginate()
+  searchChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get the Offer's Root Product
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/:offer_uuid/product', validator: offer[ACTIONS.GET_OFFER] })
+  getProduct(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/:offer_uuid/variants/:variant_uuid', validator: offer.get })
   // getVariant(data, req?, validated?) {
   //   return this.request(req, data, validated)
@@ -66,6 +101,43 @@ export class ChannelOffer extends ApiClass {
   //   return this.request(req, data, validated)
   // }
   listVariantsByHandle = ChannelOfferVariant.prototype.listByHandle
+
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns/collection_uuid',
+    validator: offer[ACTIONS.GET_OFFER]
+  })
+  getCampaign(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  listCampaigns(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns',
+    validator: offer[COMMANDS.ADD_OFFER_CAMPAIGN]
+  })
+  addCampaign(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns/:collection_uuid',
+    validator: offer[COMMANDS.REMOVE_OFFER_CAMPAIGN]
+  })
+  removeCampaign(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
 
   /**
    * Upload an Offer CSV to Given Channel
@@ -203,6 +275,26 @@ export class ChannelOffer extends ApiClass {
 
   listPublicVariantsByHandle = ChannelOfferVariant.prototype.listPublicByHandle
 
+
+  // TODO validator
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/campaigns',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  listPublicCampaigns(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/campaigns/:collection_uuid',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  getPublicCampaign(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
 }
 
 export class ChannelOfferVariant extends ApiClass {
@@ -270,6 +362,9 @@ export class ChannelPublicOffer extends ApiClass {
   getByHandle = ChannelOffer.prototype.getPublicByHandle
   list = ChannelOffer.prototype.listPublic
   search = ChannelOffer.prototype.searchPublic
+
+  getCampaign = ChannelOffer.prototype.getPublicCampaign
+  listCampaigns = ChannelOffer.prototype.listPublicCampaigns
 }
 
 export class ChannelPublicOfferVariant extends ApiClass {
@@ -277,3 +372,8 @@ export class ChannelPublicOfferVariant extends ApiClass {
   listVariants = ChannelOfferVariant.prototype.listPublic
   listVariantsByHandle = ChannelOfferVariant.prototype.listPublicByHandle
 }
+
+
+export class ChannelOfferUpload extends ApiClass {}
+
+export class ChannelOfferMetadataUpload extends ApiClass {}

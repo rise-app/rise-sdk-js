@@ -1,7 +1,8 @@
 import { ApiClass } from '../../ApiClass'
-import { Action, Command } from '../../metadata'
+import { Action, Command, Paginate } from '../../metadata'
 import { application } from '../../validators/application'
 import { ACTIONS, COMMANDS } from '../../enums'
+import { offer } from '../../validators/offer'
 
 export class ChannelApplication extends ApiClass {
   /**
@@ -50,6 +51,31 @@ export class ChannelApplication extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/search/applications', validator: application[ACTIONS.LIST_APPLICATIONS] })
   search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List All Applications from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/applications', validator: application[ACTIONS.LIST_APPLICATIONS] })
+  @Paginate()
+  listChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search All Applications from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/search/applications', validator: application[ACTIONS.LIST_APPLICATIONS] })
+  @Paginate()
+  searchChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

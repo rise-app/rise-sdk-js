@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
-import { Command, Action } from '../../metadata'
-import { cart } from '../../validators'
+import { Command, Action, Paginate } from '../../metadata'
+import { cart, order } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
 export class ChannelCart extends ApiClass {
@@ -509,4 +509,54 @@ export class ChannelCartItem extends ApiClass {
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
+
+  /**
+   * Search All Carts of a given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/search/carts',
+    validator: cart[ACTIONS.LIST_CARTS]
+  })
+  @Paginate()
+  search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List All Carts from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants/carts',
+    validator: cart[ACTIONS.LIST_CARTS]
+  })
+  @Paginate()
+  listChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search All Carts from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants/search/carts',
+    validator: cart[ACTIONS.LIST_CARTS]
+  })
+  @Paginate()
+  searchChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
 }

@@ -1,6 +1,7 @@
 import { ApiClass } from '../../ApiClass'
-import { Action, Command } from '../../metadata'
-import { country } from '../../validators/country'
+import { Action, Command, Paginate } from '../../metadata'
+import { country } from '../../validators'
+import { ACTIONS } from '../../enums'
 
 /**
  * ChannelCountry
@@ -36,6 +37,47 @@ export class ChannelCountry extends ApiClass {
 
   @Action({ method: 'GET', route: 'channels/:channel_uuid/countries', validator: country.list })
   list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * Search All Countries of a given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/search/countries',
+    validator: country[ACTIONS.LIST_COUNTRIES]
+  })
+  @Paginate()
+  search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List All Countries from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/countries', validator: country[ACTIONS.LIST_COUNTRIES] })
+  @Paginate()
+  listChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search All Countries from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/search/countries', validator: country[ACTIONS.LIST_COUNTRIES] })
+  @Paginate()
+  searchChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

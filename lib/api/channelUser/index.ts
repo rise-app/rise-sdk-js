@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Upload, Paginate } from '../../metadata'
-import { cart, collection, user } from '../../validators'
+import { cart, collection, offer, user } from '../../validators'
 import { ChannelAuth } from '../channelAuth'
 import { ACTIONS, COMMANDS } from '../../enums'
 
@@ -128,6 +128,31 @@ export class ChannelUser extends ApiClass {
   // TODO Validator
   @Action({ method: 'GET', route: 'channels/:channel_uuid/search/users', validator: user[ACTIONS.LIST_USERS] })
   search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * List All Users from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/users', validator: user[ACTIONS.LIST_USERS] })
+  @Paginate()
+  listChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search All Users from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/search/users', validator: user[ACTIONS.LIST_USERS] })
+  @Paginate()
+  searchChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

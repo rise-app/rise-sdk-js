@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Upload, Paginate } from '../../metadata'
-import { collection, product } from '../../validators'
+import { collection, offer, product } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
 export class ChannelProduct extends ApiClass {
@@ -44,8 +44,43 @@ export class ChannelProduct extends ApiClass {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/search/products', validator: product[ACTIONS.LIST_PRODUCTS] })
+  /**
+   * Search All Products
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/search/products',
+    validator: product[ACTIONS.LIST_PRODUCTS]
+  })
+  @Paginate()
   search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List All Products from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/products', validator: product[ACTIONS.LIST_PRODUCTS] })
+  @Paginate()
+  listChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search All Products from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/search/products', validator: product[ACTIONS.LIST_PRODUCTS] })
+  @Paginate()
+  searchChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

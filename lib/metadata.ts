@@ -96,7 +96,10 @@ export function Command({ method = 'POST', route = '', validator, globals }: {me
           })
       }
       else {
-        _method.apply(this, args)
+        return Promise.resolve()
+          .then(() => {
+            return _method.apply(this, args)
+          })
       }
     }
 
@@ -198,7 +201,10 @@ export function Action({method = 'GET', route = '', validator, globals }: {metho
           })
       }
       else {
-        return _method.apply(this, args)
+        return Promise.resolve()
+          .then(() => {
+            return _method.apply(this, args)
+          })
       }
     }
 

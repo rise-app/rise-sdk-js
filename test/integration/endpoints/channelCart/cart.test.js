@@ -318,12 +318,12 @@ describe('# RiSE Channel Cart API', () => {
         })
     })
 
-    it.skip('### Should add Shipping Line on a Cart', (done) => {
+    it('### Should add Shipping Line on a Cart', (done) => {
 
-      rise.channelCart.addShippingLine({
+      rise.channelCart.addShippingLine([{
         name: 'test',
         price: 100
-      }, {
+      }], {
         params: {
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid
@@ -338,12 +338,12 @@ describe('# RiSE Channel Cart API', () => {
           done(err)
         })
     })
-    it.skip('### Should remove Shipping Line on a Cart', (done) => {
+    it('### Should remove Shipping Line on a Cart', (done) => {
 
-      rise.channelCart.removeShippingLine({
+      rise.channelCart.removeShippingLine([{
         name: 'test',
         price: 100
-      }, {
+      }], {
         params: {
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid
@@ -380,12 +380,12 @@ describe('# RiSE Channel Cart API', () => {
     })
 
 
-    it.skip('### Should add Tax Line on a Cart', (done) => {
+    it('### Should add Tax Line on a Cart', (done) => {
 
-      rise.channelCart.addTaxLine({
+      rise.channelCart.addTaxLine([{
         name: 'test',
         price: 100
-      }, {
+      }], {
         params: {
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid
@@ -400,12 +400,12 @@ describe('# RiSE Channel Cart API', () => {
           done(err)
         })
     })
-    it.skip('### Should remove Tax Line on a Cart', (done) => {
+    it('### Should remove Tax Line on a Cart', (done) => {
 
-      rise.channelCart.removeTaxLine({
+      rise.channelCart.removeTaxLine([{
         name: 'test',
         price: 100
-      }, {
+      }], {
         params: {
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid
@@ -442,12 +442,12 @@ describe('# RiSE Channel Cart API', () => {
     })
 
 
-    it.skip('### Should add Override Line on a Cart', (done) => {
+    it('### Should add Override Line on a Cart', (done) => {
 
-      rise.channelCart.addOverrideLine({
+      rise.channelCart.addOverrideLine([{
         name: 'test',
         price: 100
-      }, {
+      }], {
         params: {
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid
@@ -462,12 +462,12 @@ describe('# RiSE Channel Cart API', () => {
           done(err)
         })
     })
-    it.skip('### Should remove Override Line on a Cart', (done) => {
+    it('### Should remove Override Line on a Cart', (done) => {
 
-      rise.channelCart.removeOverrideLine({
+      rise.channelCart.removeOverrideLine([{
         name: 'test',
         price: 100
-      }, {
+      }], {
         params: {
           channel_uuid: channel_uuid,
           cart_uuid: cart.cart_uuid

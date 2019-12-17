@@ -1,5 +1,5 @@
 import { ApiClass } from '../../ApiClass'
-import { Command, Action } from '../../metadata'
+import { Command, Action, Paginate } from '../../metadata'
 import { order } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
@@ -28,6 +28,46 @@ export class ChannelOrder extends ApiClass {
    */
   @Action({ method: 'GET', route: 'channels/:channel_uuid/orders', validator: order[ACTIONS.LIST_ORDERS] })
   list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search All Orders of a given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/search/orders',
+    validator: order[ACTIONS.LIST_ORDERS]
+  })
+  @Paginate()
+  search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List All Orders from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/orders', validator: order[ACTIONS.LIST_ORDERS] })
+  @Paginate()
+  listChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search All Orders from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/search/orders', validator: order[ACTIONS.LIST_ORDERS] })
+  @Paginate()
+  searchChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
