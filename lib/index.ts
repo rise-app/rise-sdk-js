@@ -185,7 +185,8 @@ export class RiSE {
 
     // Set the request middleware to default to request-promise-native if not supplied
     if (!config.request_timeout) {
-      config.request_timeout = 5000
+      // Default 30 second timeout
+      config.request_timeout = 30000
     }
 
     // Set the live mode parameter
@@ -574,6 +575,9 @@ export class RiSE {
 
     // If this request didn't pass pre validation
     if (validation instanceof Error) {
+      if ((this.config.sandbox || this.config.beta)) {
+        this.log.log(validation)
+      }
       const err = {
         'statusCode': '400',
         'isPreValidationError': true,

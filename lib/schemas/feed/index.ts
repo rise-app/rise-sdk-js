@@ -1,9 +1,9 @@
 import joi from 'joi'
-import { FEED_COMMANDS, FEED_ACTIONS } from '../../enums/feed'
+import { COMMANDS, ACTIONS } from '../../enums'
 
 export const channel_uuid = joi.string().uuid()
 export const feed_uuid = joi.string().guid()
-export const feedItem_uuid = joi.string().guid()
+export const item_uuid = joi.string().guid()
 
 
 export const feed = joi.object().keys({
@@ -15,62 +15,86 @@ export const feed = joi.object().keys({
 })
 
 export const commands = {
-  [FEED_COMMANDS.CREATE_FEED]: joi.object().keys({
-    channel_uuid: channel_uuid,
-    feed_uuid: feed_uuid.required(),
-  }).unknown(),
+  [COMMANDS.CREATE_FEED]: {
+    params: joi.object().keys({
+      channel_uuid: channel_uuid
+    }).unknown(),
+    body: joi.object().keys({
+    }).unknown()
+  },
 
-  [FEED_COMMANDS.UPDATE_FEED]: joi.object().keys({
-    channel_uuid: channel_uuid,
-    feed_uuid: feed_uuid.required(),
-  }).unknown(),
+  [COMMANDS.UPDATE_FEED]: {
+    params: joi.object().keys({
+      channel_uuid: channel_uuid,
+      feed_uuid: feed_uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({}).unknown()
+  },
 
-  [FEED_COMMANDS.CREATE_FEED_ITEM]: joi.object().keys({
-    channel_uuid: channel_uuid,
-    feed_uuid: feed_uuid.required(),
-  }).unknown(),
+  [COMMANDS.CREATE_FEED_ITEM]: {
+    params: joi.object().keys({
+      channel_uuid: channel_uuid,
+      feed_uuid: feed_uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({}).unknown()
+  },
 
-  [FEED_COMMANDS.UPDATE_FEED_ITEM]: joi.object().keys({
-    channel_uuid: channel_uuid,
-    feed_uuid: feed_uuid.required(),
-    feedItem_uuid: feedItem_uuid.required(),
-  }).unknown(),
+  [COMMANDS.UPDATE_FEED_ITEM]: {
+    params: joi.object().keys({
+      channel_uuid: channel_uuid,
+      feed_uuid: feed_uuid.required(),
+      item_uuid: item_uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({}).unknown()
+  },
 
-  [FEED_COMMANDS.DESTROY_FEED_ITEM]: joi.object().keys({
-    channel_uuid: channel_uuid,
-    feed_uuid: feed_uuid.required(),
-    feedItem_uuid: feedItem_uuid.required(),
-  }).unknown(),
+  [COMMANDS.DESTROY_FEED_ITEM]: {
+    params: joi.object().keys({
+      channel_uuid: channel_uuid,
+      feed_uuid: feed_uuid.required(),
+      item_uuid: item_uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({}).unknown()
+  },
 
-  [FEED_COMMANDS.MARK_FEED_ITEM]: joi.object().keys({
-    channel_uuid: channel_uuid,
-    feed_uuid: feed_uuid.required(),
-    feedItem_uuid: feedItem_uuid.required(),
-  }).unknown(),
+  [COMMANDS.MARK_FEED_ITEM]: {
+    params: joi.object().keys({
+      channel_uuid: channel_uuid,
+      feed_uuid: feed_uuid.required(),
+      item_uuid: item_uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({}).unknown()
+  },
 
 }
 
 export const actions = {
 
-  [FEED_ACTIONS.LIST_FEEDS]: joi.object().keys({
-    channel_uuid: channel_uuid
-  }).unknown(),
-  [FEED_ACTIONS.GET_FEED_PRIMARY]: joi.object().keys({
-    channel_uuid: channel_uuid
-  }).unknown(),
-  [FEED_ACTIONS.GET_FEED]: joi.object().keys({
-    channel_uuid: channel_uuid,
-    feed_uuid: feed_uuid.required(),
-  }).unknown(),
+  [ACTIONS.LIST_FEEDS]: {
+    params: joi.object().keys({
+      channel_uuid: channel_uuid.required()
+    }).unknown()
+  },
 
-  [FEED_ACTIONS.GET_FEED_ITEM]: joi.object().keys({
-    channel_uuid: channel_uuid,
-    feed_uuid: feed_uuid.required(),
-    item_uuid: feedItem_uuid.required()
-  }).unknown(),
+  [ACTIONS.GET_FEED]: {
+    params: joi.object().keys({
+      channel_uuid: channel_uuid.required(),
+      feed_uuid: feed_uuid.required(),
+    }).unknown()
+  },
 
-  [FEED_ACTIONS.LIST_FEED_ITEMS]: joi.object().keys({
-    channel_uuid: channel_uuid,
-    feed_uuid: feed_uuid.required()
-  }).unknown(),
+  [ACTIONS.GET_FEED_ITEM]: {
+    params: joi.object().keys({
+      channel_uuid: channel_uuid.required(),
+      feed_uuid: feed_uuid.required(),
+      item_uuid: item_uuid.required()
+    }).unknown()
+  },
+
+  [ACTIONS.LIST_FEED_ITEMS]: {
+    params: joi.object().keys({
+      channel_uuid: channel_uuid.required(),
+      feed_uuid: feed_uuid.required()
+    }).unknown()
+  },
 }

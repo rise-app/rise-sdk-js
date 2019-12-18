@@ -35,7 +35,7 @@ export class ChannelUser extends ApiClass {
   // }
   sessionChannel = ChannelAuth.prototype.sessionChannel
 
-  // @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/channels', validator: user[ACTIONS.GET_SESSION] })
+  // @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/sessionchannels', validator: user[ACTIONS.GET_SESSION] })
   // sessionChannels(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
@@ -303,7 +303,7 @@ export class ChannelUserEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/users/:user_uuid/events',
+    route: 'channels/:channel_uuid/users/:user_uuid/events',
     validator: user[ACTIONS.LIST_USER_EVENTS]
   })
   @Paginate()
@@ -320,7 +320,7 @@ export class ChannelUserEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/users/:user_uuid/events/:event_uuid',
+    route: 'channels/:channel_uuid/users/:user_uuid/events/:event_uuid',
     // validator: user[ACTIONS.GET_USER_EVENT]
   })
   @Paginate()
@@ -337,7 +337,7 @@ export class ChannelUserEvent extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'POST',
-    route: '/channels/:channel_uuid/users/:user_uuid/events',
+    route: 'channels/:channel_uuid/users/:user_uuid/events',
     // validator: user[COMMANDS.CREATE_EVENT]
   })
   create(data, req?, validated?) {

@@ -7,6 +7,7 @@ import * as collection from './collection'
 import * as channel from './channel'
 import * as country from './country'
 import * as customer from './customer'
+import * as feed from './feed'
 import * as fulfillment from './fulfillment'
 import * as gateway from './gateway'
 import * as offer from './offer'
@@ -26,6 +27,7 @@ export {
   channel,
   country,
   customer,
+  feed,
   fulfillment,
   gateway,
   offer,
