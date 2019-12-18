@@ -59,12 +59,46 @@ export const commands = {
     }).unknown()
   },
 
+
+  [COMMANDS.CREATE_PRODUCT_VARIANT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+      product_uuid: uuid.required(),
+    }).unknown()
+  },
+
   [COMMANDS.ADD_PRODUCT_VARIANT]: {
     params: joi.object().keys({
       channel_uuid: uuid.required(),
       product_uuid: uuid.required(),
     }).unknown(),
     body: joi.object().keys({
+    }).unknown()
+  },
+  [COMMANDS.ADD_PRODUCT_VARIANTS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      product_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+    }).unknown()
+  },
+
+  [COMMANDS.UPDATE_PRODUCT_VARIANT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      product_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+    }).unknown()
+  },
+
+  [COMMANDS.REMOVE_PRODUCT_VARIANT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      product_uuid: uuid.required(),
     }).unknown()
   },
 

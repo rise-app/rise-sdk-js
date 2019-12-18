@@ -9,42 +9,50 @@ export class ChannelOffer extends ApiClass {
    * PRIVATE ENDPOINTS
    **********************************/
 
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/offers', validator: offer[COMMANDS.CREATE_OFFER]})
+  @Command({method: 'POST', route: 'channels/:channel_uuid/offers', validator: offer[COMMANDS.CREATE_OFFER]})
   create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/offers/:offer_uuid', validator: offer[COMMANDS.UPDATE_OFFER] })
+  @Command({method: 'PUT', route: 'channels/:channel_uuid/offers/:offer_uuid', validator: offer[COMMANDS.UPDATE_OFFER]})
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/offers/:offer_uuid/publish', validator: offer[COMMANDS.PUBLISH_OFFER]})
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/publish',
+    validator: offer[COMMANDS.PUBLISH_OFFER]
+  })
   publish(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/offers/:offer_uuid/unpublish', validator: offer[COMMANDS.UNPUBLISH_OFFER]})
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/unpublish',
+    validator: offer[COMMANDS.UNPUBLISH_OFFER]
+  })
   unpublish(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/:offer_uuid', validator: offer[ACTIONS.GET_OFFER] })
+  @Action({method: 'GET', route: 'channels/:channel_uuid/offers/:offer_uuid', validator: offer[ACTIONS.GET_OFFER]})
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/handle/:handle', validator: offer[ACTIONS.FIND_OFFER] })
+  @Action({method: 'GET', route: 'channels/:channel_uuid/offers/handle/:handle', validator: offer[ACTIONS.FIND_OFFER]})
   getByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/offers', validator: offer[ACTIONS.LIST_OFFERS] })
+  @Action({method: 'GET', route: 'channels/:channel_uuid/offers', validator: offer[ACTIONS.LIST_OFFERS]})
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/search/offers', validator: offer[ACTIONS.LIST_OFFERS] })
+  @Action({method: 'GET', route: 'channels/:channel_uuid/search/offers', validator: offer[ACTIONS.LIST_OFFERS]})
   search(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -55,7 +63,7 @@ export class ChannelOffer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/offers', validator: offer[ACTIONS.LIST_OFFERS] })
+  @Action({method: 'GET', route: 'channels/:channel_uuid/descendants/offers', validator: offer[ACTIONS.LIST_OFFERS]})
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -67,7 +75,11 @@ export class ChannelOffer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/search/offers', validator: offer[ACTIONS.LIST_OFFERS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants/search/offers',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -79,7 +91,11 @@ export class ChannelOffer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/:offer_uuid/product', validator: offer[ACTIONS.GET_OFFER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/product',
+    validator: offer[ACTIONS.GET_OFFER]
+  })
   getProduct(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -145,7 +161,7 @@ export class ChannelOffer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/offers', validator: offer[COMMANDS.UPLOAD_OFFERS] })
+  @Command({method: 'POST', route: 'channels/:channel_uuid/uploads/offers', validator: offer[COMMANDS.UPLOAD_OFFERS]})
   @Upload()
   upload(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -157,7 +173,11 @@ export class ChannelOffer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/offers/:upload_uuid', validator: offer[COMMANDS.PROCESS_UPLOADED_OFFERS] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/uploads/offers/:upload_uuid',
+    validator: offer[COMMANDS.PROCESS_UPLOADED_OFFERS]
+  })
   processUpload(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -168,7 +188,11 @@ export class ChannelOffer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/offers/metadata', validator: offer[COMMANDS.UPLOAD_OFFER_METADATA] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/uploads/offers/metadata',
+    validator: offer[COMMANDS.UPLOAD_OFFER_METADATA]
+  })
   @Upload()
   uploadMetadata(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -180,7 +204,11 @@ export class ChannelOffer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/offers/metadata/:upload_uuid', validator: offer[COMMANDS.PROCESS_UPLOADED_OFFER_METADATA] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/uploads/offers/metadata/:upload_uuid',
+    validator: offer[COMMANDS.PROCESS_UPLOADED_OFFER_METADATA]
+  })
   processMetadataUpload(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -191,7 +219,11 @@ export class ChannelOffer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/offers/:upload_uuid', validator: offer[ACTIONS.GET_OFFER_UPLOAD_RESULT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/uploads/offers/:upload_uuid',
+    validator: offer[ACTIONS.GET_OFFER_UPLOAD_RESULT]
+  })
   getUpload(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -202,7 +234,11 @@ export class ChannelOffer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/offers', validator: offer[ACTIONS.LIST_OFFER_UPLOAD_RESULTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/uploads/offers',
+    validator: offer[ACTIONS.LIST_OFFER_UPLOAD_RESULTS]
+  })
   @Paginate()
   listUploads(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -214,7 +250,11 @@ export class ChannelOffer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/offers/metadata/:upload_uuid', validator: offer[ACTIONS.GET_OFFER_METADATA_UPLOAD_RESULT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/uploads/offers/metadata/:upload_uuid',
+    validator: offer[ACTIONS.GET_OFFER_METADATA_UPLOAD_RESULT]
+  })
   @Paginate()
   getMetadataUpload(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -226,7 +266,11 @@ export class ChannelOffer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/offers/metadata', validator: offer[ACTIONS.LIST_OFFER_METADATA_UPLOAD_RESULTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/uploads/offers/metadata',
+    validator: offer[ACTIONS.LIST_OFFER_METADATA_UPLOAD_RESULTS]
+  })
   @Paginate()
   listMetadataUploads(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -236,22 +280,34 @@ export class ChannelOffer extends ApiClass {
    * PUBLIC ENDPOINTS
    **********************************/
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/:offer_uuid', validator: offer[ACTIONS.GET_PUBLIC_OFFER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid',
+    validator: offer[ACTIONS.GET_PUBLIC_OFFER]
+  })
   getPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/handle/:handle', validator: offer[ACTIONS.FIND_PUBLIC_OFFER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/handle/:handle',
+    validator: offer[ACTIONS.FIND_PUBLIC_OFFER]
+  })
   getPublicByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers', validator: offer[ACTIONS.LIST_PUBLIC_OFFERS] })
+  @Action({method: 'GET', route: 'channels/:channel_uuid/public/offers', validator: offer[ACTIONS.LIST_PUBLIC_OFFERS]})
   listPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/search/offers', validator: offer[ACTIONS.LIST_PUBLIC_OFFERS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/search/offers',
+    validator: offer[ACTIONS.LIST_PUBLIC_OFFERS]
+  })
   searchPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -303,36 +359,65 @@ export class ChannelOfferVariant extends ApiClass {
    * PRIVATE ENDPOINTS
    **********************************/
 
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/offers/:offer_uuid/variants', validator: offer[COMMANDS.ADD_OFFER_VARIANT]})
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/variants',
+    validator: offer[COMMANDS.ADD_OFFER_VARIANT]
+  })
   add(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/offers/:offer_uuid/variants', validator: offer[COMMANDS.ADD_OFFER_VARIANTS]})
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/variants',
+    validator: offer[COMMANDS.ADD_OFFER_VARIANTS]
+  })
   bulkAdd(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/offers/:offer_uuid/variants/:variant_uuid', validator: offer[COMMANDS.UPDATE_OFFER_VARIANT]})
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/variants/:variant_uuid',
+    validator: offer[COMMANDS.UPDATE_OFFER_VARIANT]
+  })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/offers/:offer_uuid/variants/:variant_uuid', validator: offer[COMMANDS.REMOVE_OFFER_VARIANT]})
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/variants/:variant_uuid',
+    validator: offer[COMMANDS.REMOVE_OFFER_VARIANT]
+  })
   remove(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/:offer_uuid/variants/:variant_uuid', validator: offer[ACTIONS.GET_OFFER_VARIANT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/variants/:variant_uuid',
+    validator: offer[ACTIONS.GET_OFFER_VARIANT]
+  })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/:offer_uuid/variants', validator: offer[ACTIONS.LIST_OFFER_VARIANTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/variants',
+    validator: offer[ACTIONS.LIST_OFFER_VARIANTS]
+  })
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/offers/handle/:handle/variants', validator: offer[ACTIONS.FIND_OFFER_VARIANTS] })
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/handle/:handle/variants',
+    validator: offer[ACTIONS.FIND_OFFER_VARIANTS]
+  })
   listByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -341,17 +426,29 @@ export class ChannelOfferVariant extends ApiClass {
    * PUBLIC ENDPOINTS
    **********************************/
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/:offer_uuid/variants/:variant_uuid', validator: offer[ACTIONS.GET_PUBLIC_OFFER_VARIANT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/variants/:variant_uuid',
+    validator: offer[ACTIONS.GET_PUBLIC_OFFER_VARIANT]
+  })
   getPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/:offer_uuid/variants', validator: offer[ACTIONS.LIST_PUBLIC_OFFER_VARIANTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/variants',
+    validator: offer[ACTIONS.LIST_PUBLIC_OFFER_VARIANTS]
+  })
   listPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/handle/:handle/variants', validator: offer[ACTIONS.FIND_PUBLIC_OFFER_VARIANTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/handle/:handle/variants',
+    validator: offer[ACTIONS.FIND_PUBLIC_OFFER_VARIANTS]
+  })
   listPublicByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -374,9 +471,11 @@ export class ChannelPublicOfferVariant extends ApiClass {
 }
 
 
-export class ChannelOfferUpload extends ApiClass {}
+export class ChannelOfferUpload extends ApiClass {
+}
 
-export class ChannelOfferMetadataUpload extends ApiClass {}
+export class ChannelOfferMetadataUpload extends ApiClass {
+}
 
 
 export class ChannelOfferEvent extends ApiClass {

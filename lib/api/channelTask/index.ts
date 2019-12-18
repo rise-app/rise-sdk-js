@@ -4,12 +4,18 @@ import { task } from '../../validators/task'
 import { COMMANDS, ACTIONS } from '../../enums'
 
 export class ChannelTask extends ApiClass {
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/tasks', validator: task[COMMANDS.CREATE_TASK]})
+  @Command({
+    method: 'POST', route: 'channels/:channel_uuid/tasks',
+    validator: task[COMMANDS.CREATE_TASK]
+  })
   create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/tasks/:task_uuid', validator: task[COMMANDS.UPDATE_TASK] })
+  @Command({
+    method: 'PUT', route: 'channels/:channel_uuid/tasks/:task_uuid',
+    validator: task[COMMANDS.UPDATE_TASK]
+  })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -20,7 +26,11 @@ export class ChannelTask extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/tasks/:task_uuid', validator: task[ACTIONS.GET_TASK] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/tasks/:task_uuid',
+    validator: task[ACTIONS.GET_TASK]
+  })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -31,7 +41,11 @@ export class ChannelTask extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/tasks/handle/:handle', validator: task[ACTIONS.FIND_TASK] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/tasks/handle/:handle',
+    validator: task[ACTIONS.FIND_TASK]
+  })
   getByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -42,7 +56,11 @@ export class ChannelTask extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/tasks', validator: task[ACTIONS.LIST_TASKS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/tasks',
+    validator: task[ACTIONS.LIST_TASKS]
+  })
   @Paginate()
   list(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -54,7 +72,11 @@ export class ChannelTask extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/search/tasks', validator: task[ACTIONS.LIST_TASKS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/search/tasks',
+    validator: task[ACTIONS.LIST_TASKS]
+  })
   @Paginate()
   search(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -66,7 +88,11 @@ export class ChannelTask extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/tasks', validator: task[ACTIONS.LIST_TASKS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants/tasks',
+    validator: task[ACTIONS.LIST_TASKS]
+  })
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -78,7 +104,11 @@ export class ChannelTask extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/search/tasks', validator: task[ACTIONS.LIST_TASKS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants/search/tasks',
+    validator: task[ACTIONS.LIST_TASKS]
+  })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -90,7 +120,11 @@ export class ChannelTask extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/tasks/:task_uuid/parent', validator: task[ACTIONS.GET_TASK] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/tasks/:task_uuid/parent',
+    validator: task[ACTIONS.GET_TASK]
+  })
   getParent(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -101,40 +135,59 @@ export class ChannelTask extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/tasks/:task_uuid/ancestors', validator: task[ACTIONS.LIST_TASKS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/tasks/:task_uuid/ancestors',
+    validator: task[ACTIONS.LIST_TASKS]
+  })
   @Paginate()
   listAncestors(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * List a Given Channel's Task's Children Tasks
    * @param data
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/tasks/:task_uuid/children', validator: task[ACTIONS.LIST_TASKS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/tasks/:task_uuid/children',
+    validator: task[ACTIONS.LIST_TASKS]
+  })
   @Paginate()
   listChildren(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * List a Given Channel's Task's Descendant Tasks
    * @param data
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/tasks/:task_uuid/descendants', validator: task[ACTIONS.LIST_TASKS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/tasks/:task_uuid/descendants',
+    validator: task[ACTIONS.LIST_TASKS]
+  })
   @Paginate()
   listDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * List a Given Channel's Task's Siblings Tasks
    * @param data
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/tasks/:task_uuid/siblings', validator: task[ACTIONS.LIST_TASKS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/tasks/:task_uuid/siblings',
+    validator: task[ACTIONS.LIST_TASKS]
+  })
   @Paginate()
   listSiblings(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -234,4 +287,70 @@ export class ChannelTask extends ApiClass {
   // }
 }
 
-export class ChannelTaskItem extends ApiClass {}
+export class ChannelTaskItem extends ApiClass {
+
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/tasks/:task_uuid/items',
+    validator: task[COMMANDS.CREATE_TASK]
+  })
+  create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/tasks/:task_uuid/items/:item_uuid',
+    validator: task[COMMANDS.UPDATE_TASK]
+  })
+  update(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel's Task
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/tasks/:task_uuid/items/:item_uuid',
+    validator: task[ACTIONS.GET_TASK]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List All Tasks of a Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/tasks/:task_uuid/items',
+    validator: task[ACTIONS.LIST_TASKS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search Tasks for a Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/search/tasks/:task_uuid/items',
+    validator: task[ACTIONS.LIST_TASKS]
+  })
+  @Paginate()
+  search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}

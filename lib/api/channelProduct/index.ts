@@ -94,7 +94,11 @@ export class ChannelProduct extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/products', validator: product[ACTIONS.LIST_PRODUCTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants/products',
+    validator: product[ACTIONS.LIST_PRODUCTS]
+  })
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -106,7 +110,11 @@ export class ChannelProduct extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants/search/products', validator: product[ACTIONS.LIST_PRODUCTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants/search/products',
+    validator: product[ACTIONS.LIST_PRODUCTS]
+  })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -119,7 +127,11 @@ export class ChannelProduct extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/products/:product_uuid/offers', validator: product[ACTIONS.LIST_PRODUCTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/products/:product_uuid/offers',
+    validator: product[ACTIONS.LIST_PRODUCTS]
+  })
   listOffers(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -149,7 +161,11 @@ export class ChannelProduct extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/products', validator: product[COMMANDS.UPLOAD_PRODUCTS] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/uploads/products',
+    validator: product[COMMANDS.UPLOAD_PRODUCTS]
+  })
   @Upload()
   upload(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -161,7 +177,11 @@ export class ChannelProduct extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/products/:upload_uuid', validator: product[COMMANDS.PROCESS_UPLOADED_PRODUCTS] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/uploads/products/:upload_uuid',
+    validator: product[COMMANDS.PROCESS_UPLOADED_PRODUCTS]
+  })
   processUpload(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -172,7 +192,11 @@ export class ChannelProduct extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/products/metadata', validator: product[COMMANDS.UPLOAD_PRODUCT_METADATA] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/uploads/products/metadata',
+    validator: product[COMMANDS.UPLOAD_PRODUCT_METADATA]
+  })
   @Upload()
   uploadMetadata(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -184,7 +208,11 @@ export class ChannelProduct extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/uploads/products/metadata/:upload_uuid', validator: product[COMMANDS.PROCESS_UPLOADED_PRODUCT_METADATA] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/uploads/products/metadata/:upload_uuid',
+    validator: product[COMMANDS.PROCESS_UPLOADED_PRODUCT_METADATA]
+  })
   processMetadataUpload(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -195,7 +223,11 @@ export class ChannelProduct extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/products/:upload_uuid', validator: product[ACTIONS.GET_PRODUCT_UPLOAD_RESULT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/uploads/products/:upload_uuid',
+    validator: product[ACTIONS.GET_PRODUCT_UPLOAD_RESULT]
+  })
   getUpload(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -206,7 +238,11 @@ export class ChannelProduct extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/products', validator: product[ACTIONS.LIST_PRODUCT_UPLOAD_RESULTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/uploads/products',
+    validator: product[ACTIONS.LIST_PRODUCT_UPLOAD_RESULTS]
+  })
   @Paginate()
   listUploads(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -218,7 +254,11 @@ export class ChannelProduct extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/products/metadata/:upload_uuid', validator: product[ACTIONS.GET_PRODUCT_METADATA_UPLOAD_RESULT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/uploads/products/metadata/:upload_uuid',
+    validator: product[ACTIONS.GET_PRODUCT_METADATA_UPLOAD_RESULT]
+  })
   @Paginate()
   getMetadataUpload(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -230,7 +270,11 @@ export class ChannelProduct extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/products/metadata', validator: product[ACTIONS.LIST_PRODUCT_METADATA_UPLOAD_RESULTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/uploads/products/metadata',
+    validator: product[ACTIONS.LIST_PRODUCT_METADATA_UPLOAD_RESULTS]
+  })
   @Paginate()
   listMetadataUploads(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -240,22 +284,38 @@ export class ChannelProduct extends ApiClass {
    * PUBLIC ENDPOINTS
    **********************************/
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/products/:product_uuid', validator: product[ACTIONS.GET_PUBLIC_PRODUCT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/products/:product_uuid',
+    validator: product[ACTIONS.GET_PUBLIC_PRODUCT]
+  })
   getPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/products/handle/:handle', validator: product[ACTIONS.FIND_PUBLIC_PRODUCT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/products/handle/:handle',
+    validator: product[ACTIONS.FIND_PUBLIC_PRODUCT]
+  })
   getPublicByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/products', validator: product[ACTIONS.LIST_PUBLIC_PRODUCTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/products',
+    validator: product[ACTIONS.LIST_PUBLIC_PRODUCTS]
+  })
   listPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/search/products', validator: product[ACTIONS.LIST_PUBLIC_PRODUCTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/search/products',
+    validator: product[ACTIONS.LIST_PUBLIC_PRODUCTS]
+  })
   searchPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -287,36 +347,65 @@ export class ChannelProductVariant extends ApiClass {
    * PRIVATE ENDPOINTS
    **********************************/
 
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/products/:product_uuid/variants', validator: product[COMMANDS.ADD_PRODUCT_VARIANT]})
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/products/:product_uuid/variants',
+    validator: product[COMMANDS.ADD_PRODUCT_VARIANT]
+  })
   add(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/products/:product_uuid/variants', validator: product[COMMANDS.ADD_PRODUCT_VARIANTS]})
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/products/:product_uuid/variants',
+    validator: product[COMMANDS.ADD_PRODUCT_VARIANTS]
+  })
   bulkAdd(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/products/:product_uuid/variants/:variant_uuid', validator: product[COMMANDS.UPDATE_PRODUCT_VARIANT]})
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/products/:product_uuid/variants/:variant_uuid',
+    validator: product[COMMANDS.UPDATE_PRODUCT_VARIANT]
+  })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/products/:product_uuid/variants/:variant_uuid', validator: product[COMMANDS.REMOVE_PRODUCT_VARIANT]})
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/products/:product_uuid/variants/:variant_uuid',
+    validator: product[COMMANDS.REMOVE_PRODUCT_VARIANT]
+  })
   remove(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/products/:product_uuid/variants/:variant_uuid', validator: product[ACTIONS.GET_PRODUCT_VARIANT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/products/:product_uuid/variants/:variant_uuid',
+    validator: product[ACTIONS.GET_PRODUCT_VARIANT]
+  })
   getVariant(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/products/:product_uuid/variants', validator: product[ACTIONS.LIST_PRODUCT_VARIANTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/products/:product_uuid/variants',
+    validator: product[ACTIONS.LIST_PRODUCT_VARIANTS]
+  })
   listVariants(data, req?, validated?) {
     return this.request(req, data, validated)
   }
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/products/handle/:handle/variants', validator: product[ACTIONS.FIND_PRODUCT_VARIANTS] })
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/products/handle/:handle/variants',
+    validator: product[ACTIONS.FIND_PRODUCT_VARIANTS]
+  })
   listVariantsByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -325,17 +414,29 @@ export class ChannelProductVariant extends ApiClass {
    * PUBLIC ENDPOINTS
    **********************************/
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/products/:product_uuid/variants/:variant_uuid', validator: product[ACTIONS.GET_PUBLIC_PRODUCT_VARIANT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/products/:product_uuid/variants/:variant_uuid',
+    validator: product[ACTIONS.GET_PUBLIC_PRODUCT_VARIANT]
+  })
   getPublicVariant(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/products/:product_uuid/variants', validator: product[ACTIONS.LIST_PUBLIC_PRODUCT_VARIANTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/products/:product_uuid/variants',
+    validator: product[ACTIONS.LIST_PUBLIC_PRODUCT_VARIANTS]
+  })
   listPublicVariants(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/products/handle/:handle/variants', validator: product[ACTIONS.FIND_PUBLIC_PRODUCT_VARIANTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/products/handle/:handle/variants',
+    validator: product[ACTIONS.FIND_PUBLIC_PRODUCT_VARIANTS]
+  })
   listPublicVariantsByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -406,6 +507,7 @@ export class ChannelProductImage extends ApiClass {
     return this.request(req, data, validated)
   }
 }
+
 export class ChannelProductVariantImage extends ApiClass {
   /**********************************
    * PRIVATE ENDPOINTS
@@ -482,6 +584,7 @@ export class ChannelProductVendor extends ApiClass {
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   // TODO validators
   @Action({
     method: 'GET',

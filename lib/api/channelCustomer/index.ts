@@ -14,7 +14,10 @@ export class ChannelCustomer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/customers', validator: customer[COMMANDS.CREATE_CUSTOMER] })
+  @Command({
+    method: 'POST', route: 'channels/:channel_uuid/customers',
+    validator: customer[COMMANDS.CREATE_CUSTOMER]
+  })
   create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -25,7 +28,11 @@ export class ChannelCustomer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/customers/:customer_uuid', validator: customer[COMMANDS.UPDATE_CUSTOMER] })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/customers/:customer_uuid',
+    validator: customer[COMMANDS.UPDATE_CUSTOMER]
+  })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -36,7 +43,11 @@ export class ChannelCustomer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/customers/:customer_uuid', validator: customer[ACTIONS.GET_CUSTOMER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/customers/:customer_uuid',
+    validator: customer[ACTIONS.GET_CUSTOMER]
+  })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -47,7 +58,7 @@ export class ChannelCustomer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/customers', validator: customer[ACTIONS.LIST_CUSTOMERS] })
+  @Action({method: 'GET', route: 'channels/:channel_uuid/customers', validator: customer[ACTIONS.LIST_CUSTOMERS]})
   @Paginate()
   list(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -274,7 +285,11 @@ export class ChannelCustomer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/customers', validator: customer[ACTIONS.LIST_CUSTOMER_UPLOAD_RESULTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/uploads/customers',
+    validator: customer[ACTIONS.LIST_CUSTOMER_UPLOAD_RESULTS]
+  })
   @Paginate()
   listUploads(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -286,7 +301,11 @@ export class ChannelCustomer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/customers/metadata/:upload_uuid', validator: customer[ACTIONS.GET_CUSTOMER_METADATA_UPLOAD_RESULT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/uploads/customers/metadata/:upload_uuid',
+    validator: customer[ACTIONS.GET_CUSTOMER_METADATA_UPLOAD_RESULT]
+  })
   @Paginate()
   getMetadataUpload(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -298,7 +317,11 @@ export class ChannelCustomer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/uploads/customers/metadata', validator: customer[ACTIONS.LIST_CUSTOMER_METADATA_UPLOAD_RESULTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/uploads/customers/metadata',
+    validator: customer[ACTIONS.LIST_CUSTOMER_METADATA_UPLOAD_RESULTS]
+  })
   @Paginate()
   listMetadataUploads(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -315,7 +338,11 @@ export class ChannelCustomer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/customers/:customer_uuid', validator: customer[ACTIONS.GET_PUBLIC_CUSTOMER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/customers/:customer_uuid',
+    validator: customer[ACTIONS.GET_PUBLIC_CUSTOMER]
+  })
   getPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -326,7 +353,11 @@ export class ChannelCustomer extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/public/customers/handle/:handle', validator: customer[ACTIONS.FIND_PUBLIC_CUSTOMER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/customers/handle/:handle',
+    validator: customer[ACTIONS.FIND_PUBLIC_CUSTOMER]
+  })
   getPublicByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -341,9 +372,11 @@ export class ChannelPublicCustomer extends ApiClass {
   // list = ChannelCustomer.prototype.listPublic
 }
 
-export class ChannelCustomerCampaign extends ApiClass {}
+export class ChannelCustomerCampaign extends ApiClass {
+}
 
-export class ChannelCustomerCart extends ApiClass {}
+export class ChannelCustomerCart extends ApiClass {
+}
 
 export class ChannelCustomerEvent extends ApiClass {
   /**
@@ -397,12 +430,17 @@ export class ChannelCustomerEvent extends ApiClass {
   }
 }
 
-export class ChannelCustomerFeed extends ApiClass {}
+export class ChannelCustomerFeed extends ApiClass {
+}
 
-export class ChannelCustomerOrder extends ApiClass {}
+export class ChannelCustomerOrder extends ApiClass {
+}
 
-export class ChannelCustomerGatewayAccount extends ApiClass {}
+export class ChannelCustomerGatewayAccount extends ApiClass {
+}
 
-export class ChannelCustomerGatewayAccountSource extends ApiClass {}
+export class ChannelCustomerGatewayAccountSource extends ApiClass {
+}
 
-export class ChannelCustomerUser extends ApiClass {}
+export class ChannelCustomerUser extends ApiClass {
+}
