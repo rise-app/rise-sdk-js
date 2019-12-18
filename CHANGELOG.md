@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.39](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.38...v1.0.0-alpha.39) (2019-12-18)
+
+
+### Bug Fixes
+
+* **feed:** fixes bad validators ([f5e4858](https://github.com/rise-app/rise-sdk-js/commit/f5e4858))
+
 ## [1.0.0-alpha.38](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.37...v1.0.0-alpha.38) (2019-12-18)
 
 
