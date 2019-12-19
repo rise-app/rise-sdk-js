@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.40](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.39...v1.0.0-alpha.40) (2019-12-19)
+
+
+### Features
+
+* adds fulfillment services ([9779134](https://github.com/rise-app/rise-sdk-js/commit/9779134))
+
 ## [1.0.0-alpha.39](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.38...v1.0.0-alpha.39) (2019-12-18)
 
 
