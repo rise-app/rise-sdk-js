@@ -103,6 +103,9 @@ export class RiSE {
   public channelFulfillment: api.ChannelFulfillment
   public channelFulfillmentItem: api.ChannelFulfillmentItem
 
+  public channelFulfillmentService: api.ChannelFulfillmentService
+  public channelFulfillmentServiceEvent: api.ChannelFulfillmentServiceEvent
+
   public channelGateway: api.ChannelGateway
   public channelGatewayAccount: api.ChannelGatewayAccount
   public channelGatewayAccountSource: api.ChannelGatewayAccountSource
@@ -288,6 +291,9 @@ export class RiSE {
 
     this.channelFulfillment = new api.ChannelFulfillment(this, this.globals)
     this.channelFulfillmentItem = new api.ChannelFulfillmentItem(this, this.globals)
+
+    this.channelFulfillmentService = new api.ChannelFulfillmentService(this, this.globals)
+    this.channelFulfillmentServiceEvent = new api.ChannelFulfillmentServiceEvent(this, this.globals)
 
     this.channelGateway = new api.ChannelGateway(this, this.globals)
     this.channelGatewayAccount = new api.ChannelGatewayAccount(this, this.globals)

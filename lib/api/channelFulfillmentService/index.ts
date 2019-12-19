@@ -1,87 +1,25 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Paginate } from '../../metadata'
-import { gateway } from '../../validators'
+import { fulfillment_service } from '../../validators'
 import { ACTIONS, COMMANDS, EVENTS } from '../../enums'
 
-export class ChannelGateway extends ApiClass {
+export class ChannelFulfillmentService extends ApiClass {
 
 
   /***********************************
-   * Gateway
+   * Service
    ***********************************/
 
   /**
-   * Get a Gateway by ID
+   * List Channel's services
    * @param data
    * @param req
    * @param validated
    */
   @Action({
     method: 'GET',
-    route: 'channels/:channel_uuid/gateways/:gateway_uuid',
-    validator: gateway[ACTIONS.GET_GATEWAY]
-  })
-  get(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  /**
-   * List gateways
-   * @param data
-   * @param req
-   * @param validated
-   */
-  @Action({
-    method: 'GET',
-    route: 'channels/:channel_uuid/gateways',
-    validator: gateway[ACTIONS.LIST_GATEWAYS]
-  })
-  @Paginate()
-  list(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  /**
-   * List descendants gateways
-   * @param data
-   * @param req
-   * @param validated
-   */
-  @Action({
-    method: 'GET',
-    route: 'channels/:channel_uuid/descendants/gateways',
-    validator: gateway[ACTIONS.LIST_GATEWAYS]
-  })
-  @Paginate()
-  listDescendants(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  /**
-   * Search Gateways
-   * @param data
-   * @param req
-   * @param validated
-   */
-  @Action({
-    method: 'GET',
-    route: 'channels/:channel_uuid/search/gateways',
-    validator: gateway[ACTIONS.LIST_GATEWAYS]
-  })
-  search(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  /**
-   * List Channel's gateways
-   * @param data
-   * @param req
-   * @param validated
-   */
-  @Action({
-    method: 'GET',
-    route: 'channels/gateways',
-    validator: gateway[ACTIONS.LIST_GATEWAYS]
+    route: 'channels/fulfillment_services',
+    validator: fulfillment_service[ACTIONS.LIST_FULFILLMENT_SERVICES]
   })
   @Paginate()
   listAll(data, req?, validated?) {
@@ -89,15 +27,78 @@ export class ChannelGateway extends ApiClass {
   }
 
   /**
-   * List Channel's Public gateways
+   * Get a Service by ID
    * @param data
    * @param req
    * @param validated
    */
   @Action({
     method: 'GET',
-    route: 'channels/:channel_uuid/public/gateways',
-    validator: gateway[ACTIONS.LIST_GATEWAYS]
+    route: 'channels/:channel_uuid/fulfillment_services/:service_uuid',
+    validator: fulfillment_service[ACTIONS.GET_FULFILLMENT_SERVICE]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List services
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/fulfillment_services',
+    validator: fulfillment_service[ACTIONS.LIST_FULFILLMENT_SERVICES]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List descendants services
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants/fulfillment_services',
+    validator: fulfillment_service[ACTIONS.LIST_FULFILLMENT_SERVICES]
+  })
+  @Paginate()
+  listDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Search Services
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/search/fulfillment_services',
+    validator: fulfillment_service[ACTIONS.LIST_FULFILLMENT_SERVICES]
+  })
+  @Paginate()
+  search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List Channel's Public services
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/fulfillment_services',
+    validator: fulfillment_service[ACTIONS.LIST_FULFILLMENT_SERVICES]
   })
   @Paginate()
   listPublic(data, req?, validated?) {
@@ -105,75 +106,75 @@ export class ChannelGateway extends ApiClass {
   }
 
   /**
-   * Create a Gateway
+   * Create a Service
    * @param data
    * @param req
    * @param validated
    */
   @Command({
     method: 'POST',
-    route: 'channels/:channel_uuid/gateways',
-    validator: gateway[COMMANDS.CREATE_GATEWAY]
+    route: 'channels/:channel_uuid/fulfillment_services',
+    validator: fulfillment_service[COMMANDS.CREATE_FULFILLMENT_SERVICE]
   })
   create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
   /**
-   * Update a Gateway
+   * Update a Service
    * @param data
    * @param req
    * @param validated
    */
   @Command({
     method: 'PUT',
-    route: 'channels/:channel_uuid/gateways/:gateway_uuid',
-    validator: gateway[COMMANDS.UPDATE_GATEWAY]
+    route: 'channels/:channel_uuid/fulfillment_services/:service_uuid',
+    validator: fulfillment_service[COMMANDS.UPDATE_FULFILLMENT_SERVICE]
   })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
   /**
-   * Publish a Gateway
+   * Publish a Service
    * @param data
    * @param req
    * @param validated
    */
   @Command({
     method: 'PUT',
-    route: 'channels/:channel_uuid/gateways/:gateway_uuid/publish',
-    validator: gateway[COMMANDS.PUBLISH_GATEWAY]
+    route: 'channels/:channel_uuid/fulfillment_services/:service_uuid/publish',
+    validator: fulfillment_service[COMMANDS.PUBLISH_FULFILLMENT_SERVICE]
   })
   publish(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
   /**
-   * Unpublish a Gateway
+   * Unpublish a Service
    * @param data
    * @param req
    * @param validated
    */
   @Command({
     method: 'PUT',
-    route: 'channels/:channel_uuid/gateways/:gateway_uuid/unpublish',
-    validator: gateway[COMMANDS.UNPUBLISH_GATEWAY]
+    route: 'channels/:channel_uuid/fulfillment_services/:service_uuid/unpublish',
+    validator: fulfillment_service[COMMANDS.UNPUBLISH_FULFILLMENT_SERVICE]
   })
   unpublish(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
   /**
-   * Upload gateways
+   * Upload services
    * @param data
    * @param req
    * @param validated
    */
   @Command({
     method: 'POST',
-    route: 'channels/:channel_uuid/uploads/gateways',
-    validator: gateway[COMMANDS.UPLOAD_GATEWAYS]
+    route: 'channels/:channel_uuid/uploads/fulfillment_services',
+    validator: fulfillment_service[COMMANDS.UPLOAD_FULFILLMENT_SERVICES]
   })
   upload(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -187,39 +188,38 @@ export class ChannelGateway extends ApiClass {
    */
   @Action({
     method: 'GET',
-    route: 'channels/:channel_uuid/uploads/gateways',
-    validator: gateway[ACTIONS.LIST_GATEWAY_UPLOADS]
+    route: 'channels/:channel_uuid/uploads/fulfillment_services',
+    validator: fulfillment_service[ACTIONS.LIST_FULFILLMENT_SERVICE_UPLOADS]
   })
-  @Paginate()
   listUploadResults(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
   /**
-   * Process uploaded gateways
+   * Process uploaded services
    * @param data
    * @param req
    * @param validated
    */
   @Command({
     method: 'POST',
-    route: 'channels/:channel_uuid/uploads/gateways/:upload_uuid',
-    validator: gateway[COMMANDS.PROCESS_UPLOADED_GATEWAYS]
+    route: 'channels/:channel_uuid/uploads/fulfillment_services/:upload_uuid',
+    validator: fulfillment_service[COMMANDS.PROCESS_UPLOADED_FULFILLMENT_SERVICES]
   })
   processUpload(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
   /**
-   * Get gateway upload
+   * Get service upload
    * @param data
    * @param req
    * @param validated
    */
   @Command({
     method: 'POST',
-    route: 'channels/:channel_uuid/uploads/gateways/:upload_uuid',
-    validator: gateway[ACTIONS.GET_GATEWAY_UPLOAD]
+    route: 'channels/:channel_uuid/uploads/fulfillment_services/:upload_uuid',
+    validator: fulfillment_service[ACTIONS.GET_FULFILLMENT_SERVICE_UPLOAD]
   })
   getUpload(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -227,24 +227,17 @@ export class ChannelGateway extends ApiClass {
 
 }
 
-
-export class ChannelGatewayAccount extends ApiClass {
-}
-
-export class ChannelGatewayAccountSource extends ApiClass {
-}
-
-export class ChannelGatewayEvent extends ApiClass {
+export class ChannelFulfillmentServiceEvent extends ApiClass {
   /**
-   * List gateway events
+   * List service events
    * @param data
    * @param req
    * @param validated
    */
   @Action({
     method: 'GET',
-    route: 'channels/:channel_uuid/gateways/:gateway_uuid/events',
-    validator: gateway[ACTIONS.LIST_GATEWAY_EVENTS]
+    route: 'channels/:channel_uuid/fulfillment_services/:service_uuid/events',
+    validator: fulfillment_service[ACTIONS.LIST_FULFILLMENT_SERVICE_EVENTS]
   })
   @Paginate()
   list(data, req?, validated?) {
@@ -252,23 +245,17 @@ export class ChannelGatewayEvent extends ApiClass {
   }
 
   /**
-   * Create gateway event
+   * Create service event
    * @param data
    * @param req
    * @param validated
    */
   @Command({
     method: 'POST',
-    route: 'channels/:channel_uuid/gateways/:gateway_uuid/events',
-    validator: gateway[EVENTS.GATEWAY_CREATED]
+    route: 'channels/:channel_uuid/fulfillment_services/:service_uuid/events',
+    // validator: fulfillment_service[EVENTS.FULFILLMENT_SERVICE_CREATED]
   })
   create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
-}
-
-export class ChannelGatewayForm extends ApiClass {
-}
-
-export class ChannelGatewayReceiver extends ApiClass {
 }

@@ -36,27 +36,21 @@ export const gateway = {
 
   // Actions
   [ACTIONS.GET_GATEWAY]: {
-    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY].params),
-    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY].body),
+    params: (data) => Utils.joiPromise(data, gatewaySchema.actions[ACTIONS.GET_GATEWAY].params)
   },
   [ACTIONS.GET_GATEWAY_UPLOAD]: {
-    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY_UPLOAD].params),
-    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY_UPLOAD].body),
+    params: (data) => Utils.joiPromise(data, gatewaySchema.actions[ACTIONS.GET_GATEWAY_UPLOAD].params)
   },
   [ACTIONS.LIST_GATEWAYS]: {
-    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAYS].params),
-    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAYS].body),
+    params: (data) => Utils.joiPromise(data, gatewaySchema.actions[ACTIONS.LIST_GATEWAYS].params)
   },
   [ACTIONS.LIST_GATEWAY_EVENTS]: {
-    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAY_EVENTS].params),
-    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAY_EVENTS].body),
+    params: (data) => Utils.joiPromise(data, gatewaySchema.actions[ACTIONS.LIST_GATEWAY_EVENTS].params)
   },
   [ACTIONS.LIST_GATEWAY_UPLOADS]: {
-    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAY_UPLOADS].params),
-    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.LIST_GATEWAY_UPLOADS].body),
+    params: (data) => Utils.joiPromise(data, gatewaySchema.actions[ACTIONS.LIST_GATEWAY_UPLOADS].params)
   },
   [ACTIONS.GET_GATEWAY_PRIMARY]: {
-    params: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY_PRIMARY].params),
-    body: (data) => Utils.joiPromise(data, gatewaySchema.commands[ACTIONS.GET_GATEWAY_PRIMARY].body),
+    params: (data) => Utils.joiPromise(data, gatewaySchema.actions[ACTIONS.GET_GATEWAY_PRIMARY].params)
   },
 }

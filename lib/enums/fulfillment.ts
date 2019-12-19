@@ -29,18 +29,7 @@ export const FULFILLMENT_ACTIONS = {
 
   'GET_FULFILLMENT_ITEM': 'channel.fulfillment.item.get',
   'LIST_FULFILLMENT_ITEMS': 'channel.fulfillment.item.list',
-  'LIST_FULFILLMENT_EVENTS': 'channel.fulfillment.event.list',
-
-  'GET_FULFILLMENT_SERVICE': 'channel.fulfillment_service.get',
-  'LIST_FULFILLMENT_SERVICES': 'channel.fulfillment_service.list',
-  'GET_FULFILLMENT_SERVICE_FULFILLMENT': 'channel.fulfillment_service.fulfillment.get',
-  'LIST_FULFILLMENT_SERVICE_FULFILLMENTS': 'channel.fulfillment_service.fulfillment.list',
-
-  'GET_FULFILLMENT_SERVICE_EVENT': 'channel.fulfillment_service.event.get',
-  'LIST_FULFILLMENT_SERVICE_EVENTS': 'channel.fulfillment_service.event.list',
-
-  'GET_FULFILLMENT_SERVICE_UPLOAD': 'channel.fulfillment_service.upload.get',
-  'LIST_FULFILLMENT_SERVICE_UPLOADS': 'channel.fulfillment_service.upload.list',
+  'LIST_FULFILLMENT_EVENTS': 'channel.fulfillment.event.list'
 }
 
 export const FULFILLMENT_EVENTS = {

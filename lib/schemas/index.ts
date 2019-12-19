@@ -9,6 +9,7 @@ import * as country from './country'
 import * as customer from './customer'
 import * as feed from './feed'
 import * as fulfillment from './fulfillment'
+import * as fulfillment_service from './fulfillment_service'
 import * as gateway from './gateway'
 import * as offer from './offer'
 import * as order from './order'
@@ -29,6 +30,7 @@ export {
   customer,
   feed,
   fulfillment,
+  fulfillment_service,
   gateway,
   offer,
   order,

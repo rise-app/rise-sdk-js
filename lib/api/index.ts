@@ -61,6 +61,11 @@ export {
 } from './channelFulfillment'
 
 export {
+  ChannelFulfillmentService,
+  ChannelFulfillmentServiceEvent
+} from './channelFulfillmentService'
+
+export {
   ChannelGateway,
   ChannelGatewayEvent,
   ChannelGatewayAccount,
@@ -97,18 +102,26 @@ export {
   ChannelProductVendor
 } from './channelProduct'
 
-export { ChannelShipping } from './channelShipping'
+export {
+  ChannelShipping
+} from './channelShipping'
 
-export { ChannelSubscription } from './channelSubscription'
+export {
+  ChannelSubscription
+} from './channelSubscription'
 
 export {
   ChannelTask,
   ChannelTaskItem
 } from './channelTask'
 
-export { ChannelTransaction } from './channelTransaction'
+export {
+  ChannelTransaction
+} from './channelTransaction'
 
-export { ChannelTax } from './channelTax'
+export {
+  ChannelTax
+} from './channelTax'
 
 export {
   ChannelUser,

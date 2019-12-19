@@ -35,6 +35,8 @@
     "test:feed": "NODE_ENV=testing nyc mocha --opts test/mocha-feed.opts --exit",
     "test:build:fulfillment": "run-s pre-test test:fulfillment",
     "test:fulfillment": "NODE_ENV=testing nyc mocha --opts test/mocha-fulfillment.opts --exit",
+    "test:build:fulfillment_service": "run-s pre-test test:fulfillment_service",
+    "test:fulfillment_service": "NODE_ENV=testing nyc mocha --opts test/mocha-fulfillment_service.opts --exit",
     "test:build:gateway": "run-s pre-test test:gateway",
     "test:gateway": "NODE_ENV=testing nyc mocha --opts test/mocha-gateway.opts --exit",
     "test:build:offer": "run-s pre-test test:offer",

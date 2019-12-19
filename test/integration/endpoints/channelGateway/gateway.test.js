@@ -5,7 +5,7 @@ const assert = require('assert')
 
 describe('# RiSE Channel Gateway API', () => {
 
-  let rise, adminToken, adminSession, userToken, userSession, user, gateway, item, customer, offer
+  let rise, adminToken, adminSession, userToken, userSession, user, gateway
 
   before((done) => {
     rise = new RiSE({
@@ -97,31 +97,14 @@ describe('# RiSE Channel Gateway API', () => {
         })
     })
 
-    it.skip('### Should Get channel Gateway Primary', (done) => {
-
-      rise.channelGateway.getPrimary({
-        channel_uuid: channel_uuid,
-      })
-        .then(_res => {
-          assert.equal(_res.object, 'ChannelGateway')
-          assert.equal(_res.action, ACTIONS.GET_GATEWAY_PRIMARY)
-
-          gateway = _res.data
-
-          console.log('brk gateway', _res)
-
-          done()
-        })
-        .catch(err => {
-          done(err)
-        })
-    })
-
-    it.skip('### Should List Channel Gateways', (done) => {
+    it('### Should List Channel Gateways', (done) => {
 
       rise.channelGateway.list({
-        channel_uuid: channel_uuid
+
       }, {
+        params: {
+          channel_uuid
+        },
         query: {
           limit: 5
         }
@@ -145,12 +128,15 @@ describe('# RiSE Channel Gateway API', () => {
     it.skip('### Should Publish a Gateway', (done) => {
 
       rise.channelGateway.publish({
-        channel_uuid: channel_uuid,
-        gateway_uuid: gateway_uuid
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          gateway_uuid: gateway.gateway_uuid
+        }
       })
         .then(_res => {
           assert.equal(_res.list, 'ChannelGateway')
-          assert.equal(_res.action, COMMANDS.PUBLISH_GATEWAY)
+          // assert.equal(_res.event_type, COMMANDS.PUBLISH_GATEWAY)
 
           console.log('brk gateway', _res)
 
@@ -163,13 +149,15 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Unpublish a Gateway', (done) => {
 
-      rise.channelGateway.unpublish({
-        channel_uuid: channel_uuid,
-        gateway_uuid: gateway_uuid
+      rise.channelGateway.unpublish({}, {
+        params: {
+          channel_uuid: channel_uuid,
+          gateway_uuid: gateway.gateway_uuid
+        }
       })
         .then(_res => {
           assert.equal(_res.list, 'ChannelGateway')
-          assert.equal(_res.action, COMMANDS.UNPUBLISH_GATEWAY)
+          // assert.equal(_res.event_type, COMMANDS.UNPUBLISH_GATEWAY)
 
           console.log('brk gateway', _res)
 
@@ -182,9 +170,12 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should List Gateway Events', (done) => {
 
-      rise.channelGateway.listEvents({
-        channel_uuid: channel_uuid,
-        gateway_uuid: gateway_uuid
+      rise.channelGatewayEvent.list({
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          gateway_uuid: gateway.gateway_uuid
+        }
       })
         .then(_res => {
           assert.equal(_res.list, 'ChannelEvent')
@@ -201,13 +192,17 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Create a Gateway Event', (done) => {
 
-      rise.channelGateway.createEvent({
-        channel_uuid: channel_uuid,
-        gateway_uuid: gateway_uuid
+      rise.channelGatewayEvent.create({
+        message: 'Test Event'
+      }, {
+        params: {
+          channel_uuid: channel_uuid,
+          gateway_uuid: gateway.gateway_uuid
+        }
       })
         .then(_res => {
           assert.equal(_res.list, 'ChannelEvent')
-          assert.equal(_res.action, COMMANDS.CREATE_GATEWAY_EVENT)
+          // assert.equal(_res.event_type, COMMANDS.CREATE_GATEWAY_EVENT)
 
           console.log('brk gateway', _res)
 
@@ -222,11 +217,11 @@ describe('# RiSE Channel Gateway API', () => {
 
       rise.channelGateway.upload({
         channel_uuid: channel_uuid,
-        gateway_uuid: gateway_uuid
+        gateway_uuid: gateway.gateway_uuid
       })
         .then(_res => {
           assert.equal(_res.list, 'ChannelGateway')
-          assert.equal(_res.action, COMMANDS.UPLOAD_GATEWAYS)
+          // assert.equal(_res.event_type, COMMANDS.UPLOAD_GATEWAYS)
 
           console.log('brk gateway', _res)
 
@@ -239,9 +234,9 @@ describe('# RiSE Channel Gateway API', () => {
 
     it.skip('### Should Get Upload Results', (done) => {
 
-      rise.channelGateway.getUploadResults({
+      rise.channelGateway.listUploadResults({
         channel_uuid: channel_uuid,
-        gateway_uuid: gateway_uuid
+        gateway_uuid: gateway.gateway_uuid
       })
         .then(_res => {
           assert.equal(_res.list, 'ChannelGateway')
@@ -264,7 +259,7 @@ describe('# RiSE Channel Gateway API', () => {
       })
         .then(_res => {
           assert.equal(_res.list, 'ChannelGateway')
-          assert.equal(_res.action, COMMANDS.PROCESS_UPLOADED_GATEWAYS)
+          // assert.equal(_res.event_type, COMMANDS.PROCESS_UPLOADED_GATEWAYS)
 
           console.log('brk gateway', _res)
 
@@ -283,7 +278,7 @@ describe('# RiSE Channel Gateway API', () => {
       })
         .then(_res => {
           assert.equal(_res.list, 'ChannelGateway')
-          assert.equal(_res.action, COMMANDS.GET_GATEWAY_UPLOAD)
+          assert.equal(_res.action, ACTIONS.GET_GATEWAY_UPLOAD)
 
           console.log('brk gateway', _res)
 
@@ -296,9 +291,12 @@ describe('# RiSE Channel Gateway API', () => {
     it.skip('### Should Search Gateways', (done) => {
 
       rise.channelGateway.search({
-        channel_uuid: channel_uuid,
-        gateway_uuid: gateway_uuid
+
       }, {
+        params: {
+          channel_uuid: channel_uuid,
+          gateway_uuid: gateway.gateway_uuid
+        },
         query: {
           term: 'test'
         }
