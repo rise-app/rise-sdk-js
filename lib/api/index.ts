@@ -130,6 +130,8 @@ export {
   ChannelUserInvite,
   ChannelUserNotification,
   ChannelUserPassport,
+  ChannelUserPermission,
+  ChannelUserRole
 } from './channelUser'
 export {
   ChannelVendor,

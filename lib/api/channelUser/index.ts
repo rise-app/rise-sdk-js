@@ -3,6 +3,7 @@ import { Command, Action, Upload, Paginate } from '../../metadata'
 import { cart, collection, customer, offer, user } from '../../validators'
 import { ChannelAuth } from '../channelAuth'
 import { ACTIONS, COMMANDS } from '../../enums'
+import { permission } from '../../validators/permission'
 
 export class ChannelUser extends ApiClass {
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/token', validator: user[ACTIONS.GET_SESSION] })
@@ -323,7 +324,6 @@ export class ChannelUserEvent extends ApiClass {
     route: 'channels/:channel_uuid/users/:user_uuid/events/:event_uuid',
     // validator: user[ACTIONS.GET_USER_EVENT]
   })
-  @Paginate()
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -355,4 +355,125 @@ export class ChannelUserNotification extends ApiClass {
 
 export class ChannelUserPassport extends ApiClass {
   //
+  /**
+   * List User's Passports
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/users/:user_uuid/passports',
+    // validator: user[ACTIONS.LIST_USERS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get User Passport
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/users/:user_uuid/passports/:passport_uuid',
+    // validator: user[ACTIONS.GET_USER]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Create User Passport
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/users/:user_uuid/passports',
+    // validator: user[COMMANDS.CREATE_USER_PASSPORT]
+  })
+  create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+
+export class ChannelUserPermission extends ApiClass {
+  @Action({
+    method: 'GET',
+    route: '/channels/:channel_uuid/users/:user_uuid/permissions',
+    validator: permission[ACTIONS.LIST_USER_PERMISSIONS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+
+
+export class ChannelUserRole extends ApiClass {
+  @Action({
+    method: 'GET',
+    route: '/channels/:channel_uuid/users/:user_uuid/roles',
+    // validator: permission[ACTIONS.LIST_USER_ROLES]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List User's events
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/users/:user_uuid/roles/:role_name',
+    // validator: user[ACTIONS.GET_USER_ROLE]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add User Role
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/users/:user_uuid/roles/:role_name',
+    // validator: user[COMMANDS.ADD_USER_ROLE]
+  })
+  add(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Remove User Role
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/users/:user_uuid/roles/:role_name',
+    // validator: user[COMMANDS.REMOVE_USER_ROLE]
+  })
+  remove(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
 }

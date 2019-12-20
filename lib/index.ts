@@ -148,6 +148,8 @@ export class RiSE {
   public channelUserInvite: api.ChannelUserInvite
   public channelUserNotification: api.ChannelUserNotification
   public channelUserPassport: api.ChannelUserPassport
+  public channelUserPermission: api.ChannelUserPermission
+  public channelUserRole: api.ChannelUserRole
 
   public channelVendor: api.ChannelVendor
   public channelVendorEvent: api.ChannelVendorEvent
@@ -337,7 +339,9 @@ export class RiSE {
     this.channelUserEvent = new api.ChannelUserEvent(this, this.globals)
     this.channelUserInvite = new api.ChannelUserInvite(this, this.globals)
     this.channelUserNotification = new api.ChannelUserNotification(this, this.globals)
-    this.channelUserPassport = new api.ChannelUser(this, this.globals)
+    this.channelUserPassport = new api.ChannelUserPassport(this, this.globals)
+    this.channelUserPermission = new api.ChannelUserPermission(this, this.globals)
+    this.channelUserRole = new api.ChannelUserRole(this, this.globals)
 
     this.channelVendor = new api.ChannelVendor(this, this.globals)
     this.channelVendorEvent = new api.ChannelVendorEvent(this, this.globals)
