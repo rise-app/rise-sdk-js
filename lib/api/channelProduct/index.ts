@@ -140,19 +140,19 @@ export class ChannelProduct extends ApiClass {
   // getVariant(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
-  getVariant = ChannelProductVariant.prototype.getVariant
+  getVariant = ChannelProductVariant.prototype.get
 
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/products/:product_uuid/variants', validator: product.list })
   // listVariants(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
-  listVariants = ChannelProductVariant.prototype.listVariants
+  listVariants = ChannelProductVariant.prototype.list
 
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/products/handle/:handle/variants', validator: product.list })
   // listVariantsByHandle(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
-  listVariantsByHandle = ChannelProductVariant.prototype.listVariantsByHandle
+  listVariantsByHandle = ChannelProductVariant.prototype.listByHandle
 
 
   /**
@@ -324,20 +324,20 @@ export class ChannelProduct extends ApiClass {
   // getPublicVariant(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
-  getPublicVariant = ChannelProductVariant.prototype.getPublicVariant
+  getPublicVariant = ChannelProductVariant.prototype.getPublic
 
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/public/products/:product_uuid/variants', validator: product.list })
   // listPublicVariants(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
-  listPublicVariants = ChannelProductVariant.prototype.listPublicVariants
+  listPublicVariants = ChannelProductVariant.prototype.listPublic
 
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/public/products/handle/:handle/variants', validator: product.list })
   // listPublicVariantsByHandle(data, req?, validated?) {
   //   return this.request(req, data, validated)
   // }
 
-  listPublicVariantsByHandle = ChannelProductVariant.prototype.listPublicVariantsByHandle
+  listPublicVariantsByHandle = ChannelProductVariant.prototype.listPublicByHandle
 
 }
 
@@ -388,7 +388,7 @@ export class ChannelProductVariant extends ApiClass {
     route: 'channels/:channel_uuid/products/:product_uuid/variants/:variant_uuid',
     validator: product[ACTIONS.GET_PRODUCT_VARIANT]
   })
-  getVariant(data, req?, validated?) {
+  get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -397,7 +397,7 @@ export class ChannelProductVariant extends ApiClass {
     route: 'channels/:channel_uuid/products/:product_uuid/variants',
     validator: product[ACTIONS.LIST_PRODUCT_VARIANTS]
   })
-  listVariants(data, req?, validated?) {
+  list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -406,7 +406,7 @@ export class ChannelProductVariant extends ApiClass {
     route: 'channels/:channel_uuid/products/handle/:handle/variants',
     validator: product[ACTIONS.FIND_PRODUCT_VARIANTS]
   })
-  listVariantsByHandle(data, req?, validated?) {
+  listByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -419,7 +419,7 @@ export class ChannelProductVariant extends ApiClass {
     route: 'channels/:channel_uuid/public/products/:product_uuid/variants/:variant_uuid',
     validator: product[ACTIONS.GET_PUBLIC_PRODUCT_VARIANT]
   })
-  getPublicVariant(data, req?, validated?) {
+  getPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -428,7 +428,7 @@ export class ChannelProductVariant extends ApiClass {
     route: 'channels/:channel_uuid/public/products/:product_uuid/variants',
     validator: product[ACTIONS.LIST_PUBLIC_PRODUCT_VARIANTS]
   })
-  listPublicVariants(data, req?, validated?) {
+  listPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -437,7 +437,7 @@ export class ChannelProductVariant extends ApiClass {
     route: 'channels/:channel_uuid/public/products/handle/:handle/variants',
     validator: product[ACTIONS.FIND_PUBLIC_PRODUCT_VARIANTS]
   })
-  listPublicVariantsByHandle(data, req?, validated?) {
+  listPublicByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }
