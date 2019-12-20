@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.41](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.40...v1.0.0-alpha.41) (2019-12-20)
+
+
+### Bug Fixes
+
+* **product:** fixes product endpoints ([1cccaa3](https://github.com/rise-app/rise-sdk-js/commit/1cccaa3))
+
+
+### Features
+
+* user passports ([d54e372](https://github.com/rise-app/rise-sdk-js/commit/d54e372))
+
 ## [1.0.0-alpha.40](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.39...v1.0.0-alpha.40) (2019-12-19)
 
 
