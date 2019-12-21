@@ -408,7 +408,7 @@ export class ChannelUserPassport extends ApiClass {
 export class ChannelUserPermission extends ApiClass {
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/users/:user_uuid/permissions',
+    route: 'channels/:channel_uuid/users/:user_uuid/permissions',
     validator: permission[ACTIONS.LIST_USER_PERMISSIONS]
   })
   @Paginate()
@@ -421,7 +421,7 @@ export class ChannelUserPermission extends ApiClass {
 export class ChannelUserRole extends ApiClass {
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/users/:user_uuid/roles',
+    route: 'channels/:channel_uuid/users/:user_uuid/roles',
     // validator: permission[ACTIONS.LIST_USER_ROLES]
   })
   @Paginate()
