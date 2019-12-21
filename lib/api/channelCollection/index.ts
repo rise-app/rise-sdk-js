@@ -489,7 +489,7 @@ export class ChannelCategory extends ApiClass {
 
   @Action({
     method: 'GET',
-    route: 'channels/:channel_uuid/campaigns/:collection_uuid/products/:product_uuid',
+    route: 'channels/:channel_uuid/categories/:collection_uuid/products/:product_uuid',
     validator: collection[ACTIONS.GET_COLLECTION_PRODUCT]
   })
   getProduct(data, req?, validated?) {
@@ -498,7 +498,7 @@ export class ChannelCategory extends ApiClass {
 
   @Action({
     method: 'GET',
-    route: 'channels/:channel_uuid/campaigns/:collection_uuid/products',
+    route: 'channels/:channel_uuid/categories/:collection_uuid/products',
     validator: collection[ACTIONS.LIST_COLLECTION_PRODUCTS]
   })
   @Paginate()
