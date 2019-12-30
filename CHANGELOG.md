@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.43](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.42...v1.0.0-alpha.43) (2019-12-30)
+
+
+### Bug Fixes
+
+* **collections:** fix URL for listProducts ([#10](https://github.com/rise-app/rise-sdk-js/issues/10)) ([df44267](https://github.com/rise-app/rise-sdk-js/commit/df44267))
+
+
+### Features
+
+* **customer:** adds customer users, events, feeds, sub customers ([6876f15](https://github.com/rise-app/rise-sdk-js/commit/6876f15))
+
 ## [1.0.0-alpha.42](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.41...v1.0.0-alpha.42) (2019-12-21)
 
 
