@@ -14,6 +14,27 @@ export class ChannelCollection extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Add an existing Collection from one Channel to another
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/collections',
+    validator: collection[COMMANDS.ADD_COLLECTION]
+  })
+  add(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Update a Collection
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/collections/:collection_uuid',
@@ -157,6 +178,38 @@ export class ChannelCollection extends ApiClass {
   })
   @Paginate()
   listChildren(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add a Collection Child
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/children',
+    validator: collection[COMMANDS.ADD_COLLECTION_CHILD]
+  })
+  addChild(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  addChildren = this.addChild
+
+  /**
+   * Remove a Collection Child
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/children',
+    validator: collection[COMMANDS.ADD_COLLECTION_CHILD]
+  })
+  removeChild(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -336,6 +389,21 @@ export class ChannelCategory extends ApiClass {
   }
 
   /**
+   * Add an existing Category (Collection) from one Channel to another
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/collections',
+    validator: collection[COMMANDS.ADD_COLLECTION]
+  })
+  add(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
    * Update a Category (Collection)
    * @param data
    * @param req
@@ -452,6 +520,38 @@ export class ChannelCategory extends ApiClass {
   })
   @Paginate()
   listChildren(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add a Category (Collection) Child
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/categories/:collection_uuid/children',
+    validator: collection[COMMANDS.ADD_COLLECTION_CHILD]
+  })
+  addChild(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  addChildren = this.addChild
+
+  /**
+   * Remove a Category (Collection) Child
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/categories/:collection_uuid/children',
+    validator: collection[COMMANDS.ADD_COLLECTION_CHILD]
+  })
+  removeChild(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -624,6 +724,21 @@ export class ChannelCampaign extends ApiClass {
   }
 
   /**
+   * Add an existing Campaign (Collection) from one Channel to another
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/campaigns',
+    validator: collection[COMMANDS.ADD_COLLECTION]
+  })
+  add(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
    * Update a Campaign (Collection)
    * @param data
    * @param req
@@ -712,6 +827,38 @@ export class ChannelCampaign extends ApiClass {
   })
   @Paginate()
   listChildren(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add a Campaign (Collection) Child
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/campaigns/:collection_uuid/children',
+    validator: collection[COMMANDS.ADD_COLLECTION_CHILD]
+  })
+  addChild(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  addChildren = this.addChild
+
+  /**
+   * Remove a Campaign (Collection) Child
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/campaigns/:collection_uuid/children',
+    validator: collection[COMMANDS.ADD_COLLECTION_CHILD]
+  })
+  removeChild(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -1023,6 +1170,15 @@ export class ChannelCampaign extends ApiClass {
   }
 }
 
+
+/**
+ * Channel Campaign Offers
+ */
+export class ChannelCampaignOffer extends ApiClass {
+  get = ChannelCampaign.prototype.getOffer
+  list = ChannelCampaign.prototype.listOffers
+}
+
 /**
  * Channel Campaigns
  */
@@ -1037,6 +1193,14 @@ export class ChannelPublicCampaign extends ApiClass {
   listDescendantsByHandle = ChannelCampaign.prototype.listPublicDescendantsByHandle
   listSiblingsByHandle = ChannelCampaign.prototype.listPublicSiblingsByHandle
   listOffersByHandle = ChannelCampaign.prototype.listPublicOffersByHandle
+}
+
+/**
+ * Channel Public Campaign Offers
+ */
+export class ChannelPublicCampaignOffer extends ApiClass {
+  get = ChannelCampaign.prototype.getPublicOffer
+  list = ChannelCampaign.prototype.listPublicOffers
 }
 
 export class ChannelCollectionEvent extends ApiClass {

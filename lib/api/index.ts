@@ -26,10 +26,12 @@ export {
 export {
   ChannelCollection,
   ChannelCampaign,
+  ChannelCampaignOffer,
   ChannelCategory,
   ChannelCollectionEvent,
 
-  ChannelPublicCampaign
+  ChannelPublicCampaign,
+  ChannelPublicCampaignOffer
 } from './channelCollection'
 
 export {

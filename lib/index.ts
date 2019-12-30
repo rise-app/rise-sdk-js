@@ -83,6 +83,7 @@ export class RiSE {
   public channelCollection: api.ChannelCollection
   public channelCollectionEvent: api.ChannelCollectionEvent
   public channelCampaign: api.ChannelCampaign
+  public channelCampaignOffer: api.ChannelCampaignOffer
   public channelCategory: api.ChannelCategory
 
   public channelCountry: api.ChannelCountry
@@ -160,6 +161,7 @@ export class RiSE {
 
   // Public
   public channelPublicCampaign: api.ChannelPublicCampaign
+  public channelPublicCampaignOffer: api.ChannelPublicCampaignOffer
   public channelPublicCustomer: api.ChannelPublicCustomer
   public channelPublicOffer: api.ChannelPublicOffer
   public channelPublicOfferVariant: api.ChannelPublicOfferVariant
@@ -275,6 +277,7 @@ export class RiSE {
     this.channelCollection = new api.ChannelCollection(this, this.globals)
     this.channelCollectionEvent = new api.ChannelCollectionEvent(this, this.globals)
     this.channelCampaign = new api.ChannelCampaign(this, this.globals)
+    this.channelCampaignOffer = new api.ChannelCampaignOffer(this, this.globals)
     this.channelCategory = new api.ChannelCategory(this, this.globals)
 
     this.channelCountry = new api.ChannelCountry(this, this.globals)
@@ -353,6 +356,7 @@ export class RiSE {
 
     // Public endpoints
     this.channelPublicCampaign = new api.ChannelPublicCampaign(this, this.globals)
+    this.channelPublicCampaignOffer = new api.ChannelPublicCampaignOffer(this, this.globals)
     this.channelPublicCustomer = new api.ChannelPublicCustomer(this, this.globals)
     this.channelPublicOffer = new api.ChannelPublicOffer(this, this.globals)
     this.channelPublicOfferVariant = new api.ChannelPublicOfferVariant(this, this.globals)
