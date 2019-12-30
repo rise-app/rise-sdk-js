@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.45](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.44...v1.0.0-alpha.45) (2019-12-30)
+
+
+### Features
+
+* **collection:** adds add/remove children ([c7ad991](https://github.com/rise-app/rise-sdk-js/commit/c7ad991))
+
 ## [1.0.0-alpha.44](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.43...v1.0.0-alpha.44) (2019-12-30)
 
 
