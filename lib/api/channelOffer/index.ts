@@ -488,7 +488,7 @@ export class ChannelOfferEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/offers/:offer_uuid/events',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/events',
     validator: offer[ACTIONS.LIST_OFFER_EVENTS]
   })
   @Paginate()
@@ -505,7 +505,7 @@ export class ChannelOfferEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/offers/:offer_uuid/events/:event_uuid',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/events/:event_uuid',
     // validator: offer[ACTIONS.GET_OFFER_EVENT]
   })
   @Paginate()
@@ -522,7 +522,7 @@ export class ChannelOfferEvent extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'POST',
-    route: '/channels/:channel_uuid/offers/:offer_uuid/events',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/events',
     // validator: offer[COMMANDS.CREATE_EVENT]
   })
   create(data, req?, validated?) {

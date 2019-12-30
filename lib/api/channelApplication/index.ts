@@ -845,7 +845,7 @@ export class ChannelApplicationEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/applications/:application_uuid/events',
+    route: 'channels/:channel_uuid/applications/:application_uuid/events',
     validator: application[ACTIONS.LIST_APPLICATION_EVENTS]
   })
   @Paginate()
@@ -862,7 +862,7 @@ export class ChannelApplicationEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/applications/:application_uuid/events/:event_uuid',
+    route: 'channels/:channel_uuid/applications/:application_uuid/events/:event_uuid',
     // validator: application[ACTIONS.GET_APPLICATION_EVENT]
   })
   @Paginate()
@@ -879,7 +879,7 @@ export class ChannelApplicationEvent extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'POST',
-    route: '/channels/:channel_uuid/applications/:application_uuid/events',
+    route: 'channels/:channel_uuid/applications/:application_uuid/events',
     // validator: application[COMMANDS.CREATE_EVENT]
   })
   create(data, req?, validated?) {

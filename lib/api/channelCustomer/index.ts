@@ -468,7 +468,7 @@ export class ChannelCustomerEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/events',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/events',
     validator: customer[ACTIONS.LIST_CUSTOMER_EVENTS]
   })
   @Paginate()
@@ -485,7 +485,7 @@ export class ChannelCustomerEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/events/:event_uuid',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/events/:event_uuid',
     // validator: customer[ACTIONS.GET_CUSTOMER_EVENT]
   })
   @Paginate()
@@ -502,7 +502,7 @@ export class ChannelCustomerEvent extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'POST',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/events',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/events',
     // validator: customer[COMMANDS.CREATE_EVENT]
   })
   create(data, req?, validated?) {
@@ -520,7 +520,7 @@ export class ChannelCustomerFeed extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/feeds',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/feeds',
     // validator: customer[ACTIONS.LIST_CUSTOMER_FEEDS]
   })
   @Paginate()
@@ -537,7 +537,7 @@ export class ChannelCustomerFeed extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/feeds/:feed_uuid',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/feeds/:feed_uuid',
     // validator: customer[ACTIONS.GET_CUSTOMER_FEED]
   })
   @Paginate()
@@ -556,7 +556,7 @@ export class ChannelCustomerOrder extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/orders',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/orders',
     validator: customer[ACTIONS.LIST_CUSTOMER_ORDERS]
   })
   @Paginate()
@@ -573,7 +573,7 @@ export class ChannelCustomerOrder extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/orders/:order_uuid',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/orders/:order_uuid',
     // validator: customer[ACTIONS.GET_CUSTOMER_ORDER]
   })
   @Paginate()
@@ -592,7 +592,7 @@ export class ChannelCustomerGatewayAccount extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/accounts',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/accounts',
     validator: customer[ACTIONS.LIST_CUSTOMER_GATEWAY_ACCOUNTS]
   })
   @Paginate()
@@ -609,7 +609,7 @@ export class ChannelCustomerGatewayAccount extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid',
     validator: customer[ACTIONS.GET_CUSTOMER_GATEWAY_ACCOUNT]
   })
   @Paginate()
@@ -626,7 +626,7 @@ export class ChannelCustomerGatewayAccount extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'POST',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/accounts',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/accounts',
     // validator: customer[COMMANDS.CREATE_CUSTOMER_ACCOUNT]
   })
   create(data, req?, validated?) {
@@ -642,7 +642,7 @@ export class ChannelCustomerGatewayAccount extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'DELETE',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid',
     // validator: customer[COMMANDS.REMOVE_CUSTOMER_ACCOUNT]
   })
   remove(data, req?, validated?) {
@@ -661,7 +661,7 @@ export class ChannelCustomerGatewayAccountSource extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/sources',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/sources',
     validator: customer[ACTIONS.LIST_CUSTOMER_GATEWAY_ACCOUNT_SOURCES]
   })
   @Paginate()
@@ -678,7 +678,7 @@ export class ChannelCustomerGatewayAccountSource extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid/sources',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid/sources',
     validator: customer[ACTIONS.LIST_CUSTOMER_GATEWAY_ACCOUNT_SOURCES]
   })
   @Paginate()
@@ -695,7 +695,7 @@ export class ChannelCustomerGatewayAccountSource extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/sources/:source_uuid',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/sources/:source_uuid',
     validator: customer[ACTIONS.GET_CUSTOMER_GATEWAY_ACCOUNT_SOURCE]
   })
   @Paginate()
@@ -711,7 +711,7 @@ export class ChannelCustomerGatewayAccountSource extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid/sources/:source_uuid',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid/sources/:source_uuid',
     validator: customer[ACTIONS.GET_CUSTOMER_GATEWAY_ACCOUNT_SOURCE]
   })
   @Paginate()
@@ -728,7 +728,7 @@ export class ChannelCustomerGatewayAccountSource extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'POST',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid/sources',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid/sources',
     // validator: customer[COMMANDS.CREATE_CUSTOMER_SOURCE]
   })
   create(data, req?, validated?) {
@@ -744,7 +744,7 @@ export class ChannelCustomerGatewayAccountSource extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'DELETE',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid/sources/:source_uuid',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid/sources/:source_uuid',
     // validator: customer[COMMANDS.REMOVE_CUSTOMER_SOURCE]
   })
   remove(data, req?, validated?) {
@@ -762,7 +762,7 @@ export class ChannelCustomerUser extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/users',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/users',
     validator: customer[ACTIONS.LIST_CUSTOMER_USERS]
   })
   @Paginate()
@@ -779,7 +779,7 @@ export class ChannelCustomerUser extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/users/:user_uuid',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/users/:user_uuid',
     // validator: customer[ACTIONS.GET_CUSTOMER_USER]
   })
   @Paginate()
@@ -796,7 +796,7 @@ export class ChannelCustomerUser extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'POST',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/users',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/users',
     // validator: customer[COMMANDS.CREATE_CUSTOMER_USER]
   })
   create(data, req?, validated?) {
@@ -812,7 +812,7 @@ export class ChannelCustomerUser extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'PUT',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/users',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/users',
     // validator: customer[COMMANDS.ADD_CUSTOMER_USER]
   })
   add(data, req?, validated?) {
@@ -828,7 +828,7 @@ export class ChannelCustomerUser extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'DELETE',
-    route: '/channels/:channel_uuid/customers/:customer_uuid/users',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/users',
     // validator: customer[COMMANDS.REMOVE_CUSTOMER_USER]
   })
   remove(data, req?, validated?) {

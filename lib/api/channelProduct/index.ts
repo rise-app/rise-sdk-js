@@ -607,7 +607,7 @@ export class ChannelProductEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/products/:product_uuid/events',
+    route: 'channels/:channel_uuid/products/:product_uuid/events',
     validator: product[ACTIONS.LIST_PRODUCT_EVENTS]
   })
   @Paginate()
@@ -624,7 +624,7 @@ export class ChannelProductEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/products/:product_uuid/events/:event_uuid',
+    route: 'channels/:channel_uuid/products/:product_uuid/events/:event_uuid',
     // validator: product[ACTIONS.GET_PRODUCT_EVENT]
   })
   @Paginate()
@@ -641,7 +641,7 @@ export class ChannelProductEvent extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'POST',
-    route: '/channels/:channel_uuid/products/:product_uuid/events',
+    route: 'channels/:channel_uuid/products/:product_uuid/events',
     // validator: product[COMMANDS.CREATE_EVENT]
   })
   create(data, req?, validated?) {

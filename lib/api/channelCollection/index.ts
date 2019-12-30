@@ -1049,7 +1049,7 @@ export class ChannelCollectionEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/collections/:collection_uuid/events',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/events',
     validator: collection[ACTIONS.LIST_COLLECTION_EVENTS]
   })
   @Paginate()
@@ -1066,7 +1066,7 @@ export class ChannelCollectionEvent extends ApiClass {
   // TODO VALIDATOR
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/collections/:collection_uuid/events/:event_uuid',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/events/:event_uuid',
     // validator: collection[ACTIONS.GET_COLLECTION_EVENT]
   })
   @Paginate()
@@ -1083,7 +1083,7 @@ export class ChannelCollectionEvent extends ApiClass {
   // TODO VALIDATOR
   @Command({
     method: 'POST',
-    route: '/channels/:channel_uuid/collections/:collection_uuid/events',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/events',
     // validator: collection[COMMANDS.CREATE_EVENT]
   })
   create(data, req?, validated?) {

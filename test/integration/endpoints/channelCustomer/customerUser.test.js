@@ -26,4 +26,51 @@ describe('# RiSE Channel Customer User API', () => {
       })
       .catch(err => done(err))
   })
+
+  describe('Test Dependencies', () => {
+    it('## Should Create a Customer', (done) => {
+
+      rise.channelCustomer.create({
+        name_first: 'Hello',
+        name_last: 'World'
+      }, {
+        params: {
+          channel_uuid: channel_uuid
+        }
+      })
+        .then(_res => {
+          customer = _res.data
+          assert.equal(customer.name_first, 'Hello')
+          assert.equal(customer.name_last, 'World')
+
+          // console.log('brk customer', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+  })
+
+  describe('Test Methods', () => {
+    it('## Should List a Customer\'s Users', (done) => {
+
+      rise.channelCustomerUser.list({
+      }, {
+        params: {
+          channel_uuid,
+          customer_uuid: customer.customer_uuid
+        }
+      })
+        .then(_res => {
+          console.log('brk customer', _res)
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+  })
 })

@@ -64,6 +64,7 @@ export class RiSE {
   public channel: api.Channel
   public channelEvent: api.ChannelEvent
   public channelAuth: api.ChannelAuth
+  public channelPublic: api.ChannelPublic
 
   public channelApplication: api.ChannelApplication
   public channelApplicationEvent: api.ChannelApplicationEvent
@@ -255,6 +256,7 @@ export class RiSE {
     this.channelEvent = new api.ChannelEvent(this, this.globals)
 
     this.channelAuth = new api.ChannelAuth(this, this.globals)
+    this.channelPublic = new api.ChannelPublic(this, this.globals)
 
     this.channelApplication = new api.ChannelApplication(this, this.globals)
     this.channelApplicationEndpoint = new api.ChannelApplicationEndpoint(this, this.globals)
@@ -692,6 +694,10 @@ export class RiSE {
         return res = this.addPaginationToResponse(res, paginate)
       })
       .catch(err => {
+        // End the console logger
+        if ((this.config.sandbox || this.config.beta) && (this.log && this.log.timeEnd)) {
+          this.log.timeEnd(`RiSE req ${name}`)
+        }
         // TODO uniform errors into an array
         return Promise.reject(err)
       })

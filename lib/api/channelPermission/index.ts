@@ -7,7 +7,7 @@ export class ChannelPermission extends ApiClass {
 
   @Action({
     method: 'GET',
-    route: '/channels/:channel_uuid/roles/:role_name/permissions',
+    route: 'channels/:channel_uuid/roles/:role_name/permissions',
     validator: permission[ACTIONS.LIST_ROLE_PERMISSIONS]
   })
   listRolePermissions(data, req?, validated?) {

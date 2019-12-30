@@ -1,6 +1,7 @@
 export {
   Channel,
-  ChannelEvent
+  ChannelEvent,
+  ChannelPublic
 } from './channel'
 export { ChannelAuth } from './channelAuth'
 

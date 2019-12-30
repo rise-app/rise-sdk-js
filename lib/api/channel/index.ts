@@ -284,7 +284,7 @@ export class Channel extends ApiClass {
   //  * @param req
   //  * @param validated
   //  */
-  // @Action({ method: 'GET', route: '/channels/:channel_uuid/feed_primary', validator: feed[ACTIONS.GET_FEED_PRIMARY] })
+  // @Action({ method: 'GET', route: 'channels/:channel_uuid/feed_primary', validator: feed[ACTIONS.GET_FEED_PRIMARY] })
   // getFeedPrimary(data, req?, validated?) {
   //     return this.request(req, data, validated)
   // }
@@ -295,7 +295,7 @@ export class Channel extends ApiClass {
   //  * @param req
   //  * @param validated
   //  */
-  // @Command({ method: 'PUT', route: '/channels/:channel_uuid/feed_primary', validator: feed[COMMANDS.SET_CHANNEL_FEED_PRIMARY] })
+  // @Command({ method: 'PUT', route: 'channels/:channel_uuid/feed_primary', validator: feed[COMMANDS.SET_CHANNEL_FEED_PRIMARY] })
   // setFeedPrimary(data, req?, validated?) {
   //     return this.request(req, data, validated)
   // }
@@ -335,6 +335,23 @@ export class ChannelEvent extends ApiClass {
   })
   @Paginate()
   list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+
+export class ChannelPublic extends ApiClass {
+  /**
+   * Get Channel Event By UUID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public',
+    validator: channel.get
+  })
+  get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }
