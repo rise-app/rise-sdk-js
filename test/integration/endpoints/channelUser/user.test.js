@@ -366,7 +366,6 @@ describe('# RiSE Channel User API', () => {
     it('### Should Login a user', (done) => {
 
       rise.channelUser.login({
-        // channel_uuid: channel_uuid,
         identifier: username,
         password: password
       }, {

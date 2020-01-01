@@ -291,7 +291,86 @@ export class ChannelUser extends ApiClass {
 
 }
 export class ChannelUserCustomer extends ApiClass {
-  //
+  /**
+   * List User's customers
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/users/:user_uuid/customers',
+    // validator: user[ACTIONS.LIST_USER_CUSTOMERS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List User's Customers
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/users/:user_uuid/customers/:customer_uuid',
+    // validator: user[ACTIONS.GET_USER_CUSTOMER ]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Create a New Customer for User
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/users/:user_uuid/customers',
+    // validator: user[COMMANDS.CREATE_USER_CUSTOMER]
+  })
+  create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add an Existing Customer to a User
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/users/:user_uuid/customers',
+    // validator: user[COMMANDS.ADD_USER_CUSTOMER]
+  })
+  add(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Remove a Customer from a User
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/users/:user_uuid/customers/:customer_uuid',
+    // validator: user[COMMANDS.REMOVE_USER_CUSTOMER]
+  })
+  remove(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
 }
 
 export class ChannelUserEvent extends ApiClass {

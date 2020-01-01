@@ -418,4 +418,37 @@ export class ChannelVendorInventory extends ApiClass {
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
+  /**
+   * Upload a Vendor Inventory CSV to Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  upload = ChannelVendor.prototype.uploadInventory
+
+  /**
+   * Process a Given Channel's Vendor Inventory Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  processUpload = ChannelVendor.prototype.processInventoryUpload
+
+  /**
+   * Get a Given Channel's Vendor Inventory Upload Result
+   * @param data
+   * @param req
+   * @param validated
+   */
+  getUpload = ChannelVendor.prototype.getInventoryUpload
+
+  /**
+   * List a Given Channel's Vendor Inventory Upload Results
+   * @param data
+   * @param req
+   * @param validated
+   */
+  listUploads = ChannelVendor.prototype.listInventoryUploads
+
 }
