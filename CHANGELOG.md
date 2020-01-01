@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.46](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.45...v1.0.0-alpha.46) (2020-01-01)
+
+
+### Features
+
+* **user:** adds user customers endpoints ([1d7bf50](https://github.com/rise-app/rise-sdk-js/commit/1d7bf50))
+
 ## [1.0.0-alpha.45](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.44...v1.0.0-alpha.45) (2019-12-30)
 
 
