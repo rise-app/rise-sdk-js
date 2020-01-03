@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.47](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.46...v1.0.0-alpha.47) (2020-01-03)
+
+
+### Features
+
+* **collection:** adds addition/subtraction of items ([0412990](https://github.com/rise-app/rise-sdk-js/commit/0412990))
+
 ## [1.0.0-alpha.46](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.45...v1.0.0-alpha.46) (2020-01-01)
 
 
