@@ -26,9 +26,12 @@ export {
 export {
   ChannelCollection,
   ChannelCampaign,
+  ChannelCampaignCustomer,
   ChannelCampaignOffer,
   ChannelCategory,
+  ChannelCategoryProduct,
   ChannelCollectionEvent,
+  ChannelCollectionImage,
 
   ChannelPublicCampaign,
   ChannelPublicCampaignOffer

@@ -82,9 +82,12 @@ export class RiSE {
 
   public channelCollection: api.ChannelCollection
   public channelCollectionEvent: api.ChannelCollectionEvent
+  public channelCollectionImage: api.ChannelCollectionImage
   public channelCampaign: api.ChannelCampaign
+  public channelCampaignCustomer: api.ChannelCampaignCustomer
   public channelCampaignOffer: api.ChannelCampaignOffer
   public channelCategory: api.ChannelCategory
+  public channelCategoryProduct: api.ChannelCategoryProduct
 
   public channelCountry: api.ChannelCountry
   public channelCountryProvince: api.ChannelCountryProvince
@@ -276,9 +279,12 @@ export class RiSE {
 
     this.channelCollection = new api.ChannelCollection(this, this.globals)
     this.channelCollectionEvent = new api.ChannelCollectionEvent(this, this.globals)
+    this.channelCollectionImage = new api.ChannelCollectionImage(this, this.globals)
     this.channelCampaign = new api.ChannelCampaign(this, this.globals)
+    this.channelCampaignCustomer = new api.ChannelCampaignCustomer(this, this.globals)
     this.channelCampaignOffer = new api.ChannelCampaignOffer(this, this.globals)
     this.channelCategory = new api.ChannelCategory(this, this.globals)
+    this.channelCategoryProduct = new api.ChannelCategoryProduct(this, this.globals)
 
     this.channelCountry = new api.ChannelCountry(this, this.globals)
     this.channelCountryProvince = new api.ChannelCountryProvince(this, this.globals)

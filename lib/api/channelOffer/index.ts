@@ -465,9 +465,9 @@ export class ChannelPublicOffer extends ApiClass {
 }
 
 export class ChannelPublicOfferVariant extends ApiClass {
-  getVariant = ChannelOfferVariant.prototype.getPublic
-  listVariants = ChannelOfferVariant.prototype.listPublic
-  listVariantsByHandle = ChannelOfferVariant.prototype.listPublicByHandle
+  get = ChannelOfferVariant.prototype.getPublic
+  list = ChannelOfferVariant.prototype.listPublic
+  listByHandle = ChannelOfferVariant.prototype.listPublicByHandle
 }
 
 

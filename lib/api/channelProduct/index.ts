@@ -356,6 +356,7 @@ export class ChannelProductVariant extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  // TODO, this can likely be an alias of `add`
   @Command({
     method: 'POST',
     route: 'channels/:channel_uuid/products/:product_uuid/variants',

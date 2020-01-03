@@ -196,7 +196,7 @@ export class ChannelCollection extends ApiClass {
     return this.request(req, data, validated)
   }
 
-  addChildren = this.addChild
+  bulkAddChildren = this.addChild
 
   /**
    * Remove a Collection Child
@@ -538,7 +538,7 @@ export class ChannelCategory extends ApiClass {
     return this.request(req, data, validated)
   }
 
-  addChildren = this.addChild
+  bulkAddChildren = this.addChild
 
   /**
    * Remove a Category (Collection) Child
@@ -603,6 +603,41 @@ export class ChannelCategory extends ApiClass {
   })
   @Paginate()
   listProducts(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * Add Product to Category
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/categories/:collection_uuid/products',
+    // validator: collection[COMMANDS.CREATE_EVENT]
+  })
+  addProduct(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  bulkAddProducts = this.addProduct
+
+  /**
+   * Remove Product from Category
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/categories/:collection_uuid/products/:product_uuid',
+    // validator: collection[COMMANDS.CREATE_EVENT]
+  })
+  removeProduct(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -702,6 +737,17 @@ export class ChannelCategory extends ApiClass {
   listPublicProducts(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+}
+
+/**
+ * Channel Category Products
+ */
+export class ChannelCategoryProduct extends ApiClass {
+  get = ChannelCategory.prototype.getProduct
+  list = ChannelCategory.prototype.listProducts
+  add = ChannelCategory.prototype.addProduct
+  bulkAdd = ChannelCategory.prototype.bulkAddProducts
+  remove = ChannelCategory.prototype.removeProduct
 }
 
 /**
@@ -989,6 +1035,57 @@ export class ChannelCampaign extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Search Offers in a Campaign selected by handle
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/search/campaigns/handle/:handle/offers',
+    // validator: collection[ACTIONS.FIND_CAMPAIGN_OFFERS]
+  })
+  @Paginate()
+  searchOffersByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * Add Offer to Campaign
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/campaigns/:collection_uuid/offers',
+    // validator: collection[COMMANDS.CREATE_EVENT]
+  })
+  addOffer(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  bulkAddOffers = this.addOffer
+
+  /**
+   * Remove Offer from Campaign
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/campaigns/:collection_uuid/offers/:offer_uuid',
+    // validator: collection[COMMANDS.CREATE_EVENT]
+  })
+  removeOffer(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/campaigns/:collection_uuid/customers/:customer_uuid',
@@ -1007,6 +1104,42 @@ export class ChannelCampaign extends ApiClass {
   listCustomers(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
+  /**
+   * Add Customer to Campaign
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/campaigns/:collection_uuid/customers',
+    // validator: collection[COMMANDS.CREATE_EVENT]
+  })
+  addCustomer(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  bulkAddCustomers = this.addCustomer
+
+  /**
+   * Remove Customer from Campaign
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/campaigns/:collection_uuid/customers/:customer_uuid',
+    // validator: collection[COMMANDS.CREATE_EVENT]
+  })
+  removeCustomer(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
 
   /**********************************
    * PUBLIC ENDPOINTS
@@ -1168,6 +1301,34 @@ export class ChannelCampaign extends ApiClass {
   listPublicOffersByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
+  /**
+   * Search Public Campaign's Public Offers By Campaign Handle
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/search/campaigns/handle/:handle/offers',
+    validator: collection[ACTIONS.FIND_COLLECTIONS]
+  })
+  @Paginate()
+  searchPublicOffersByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+
+
+/**
+ * Channel Campaign Customers
+ */
+export class ChannelCampaignCustomer extends ApiClass {
+  get = ChannelCampaign.prototype.getCustomer
+  list = ChannelCampaign.prototype.listCustomers
+  add = ChannelCampaign.prototype.addCustomer
+  bulkAdd = ChannelCampaign.prototype.bulkAddCustomers
+  remove = ChannelCampaign.prototype.removeCustomer
 }
 
 
@@ -1177,6 +1338,9 @@ export class ChannelCampaign extends ApiClass {
 export class ChannelCampaignOffer extends ApiClass {
   get = ChannelCampaign.prototype.getOffer
   list = ChannelCampaign.prototype.listOffers
+  add = ChannelCampaign.prototype.addOffer
+  bulkAdd = ChannelCampaign.prototype.bulkAddOffers
+  remove = ChannelCampaign.prototype.removeOffer
 }
 
 /**
@@ -1193,6 +1357,7 @@ export class ChannelPublicCampaign extends ApiClass {
   listDescendantsByHandle = ChannelCampaign.prototype.listPublicDescendantsByHandle
   listSiblingsByHandle = ChannelCampaign.prototype.listPublicSiblingsByHandle
   listOffersByHandle = ChannelCampaign.prototype.listPublicOffersByHandle
+  searchOffersByHandle = ChannelCampaign.prototype.searchPublicOffersByHandle
 }
 
 /**
@@ -1251,6 +1416,91 @@ export class ChannelCollectionEvent extends ApiClass {
     // validator: collection[COMMANDS.CREATE_EVENT]
   })
   create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+
+
+export class ChannelCollectionImage extends ApiClass {
+  /**
+   * List Collection's images
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/images',
+    validator: collection[ACTIONS.LIST_COLLECTION_IMAGES]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List Collection's images
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/images/:image_uuid',
+    // validator: collection[ACTIONS.GET_COLLECTION_IMAGE]
+  })
+  @Paginate()
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Create Collection's image
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/images',
+    // validator: collection[COMMANDS.CREATE_COLLECTION_IMAGE]
+  })
+  create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Update Collection's image
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/images/:image_uuid',
+    // validator: collection[COMMANDS.UPDATE_COLLECTION_IMAGE]
+  })
+  update(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Remove Collection's image
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/images/:image_uuid',
+    // validator: collection[COMMANDS.CREATE_IMAGE]
+  })
+  remove(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }
