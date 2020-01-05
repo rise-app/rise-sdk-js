@@ -8,16 +8,34 @@ import { ACTIONS } from '../../enums'
  * @description
  */
 export class ChannelCountry extends ApiClass {
+  /**
+   * Add a Country to Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({method: 'POST', route: 'channels/:channel_uuid/countries', validator: country.add})
   add(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Update Country on Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({method: 'PUT', route: 'channels/:channel_uuid/countries/:country_code', validator: country.update})
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Publish a Country on Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
   // TODO validator
   @Command({
     method: 'PUT',
@@ -28,6 +46,12 @@ export class ChannelCountry extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Unpublish a Country on Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
   // TODO validator
   @Command({
     method: 'PUT',
@@ -38,11 +62,23 @@ export class ChannelCountry extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Get a Country on Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({method: 'GET', route: 'channels/:channel_uuid/countries/:country_code', validator: country.get})
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * List Countries on Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({method: 'GET', route: 'channels/:channel_uuid/countries', validator: country.list})
   list(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -101,11 +137,23 @@ export class ChannelCountry extends ApiClass {
    * PUBLIC ENDPOINTS
    **********************************/
 
+  /**
+   * Get a Published Country
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({method: 'GET', route: 'channels/:channel_uuid/public/countries/:country_code', validator: country.get})
   getPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * List Published Countries
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({method: 'GET', route: 'channels/:channel_uuid/public/countries', validator: country.list})
   listPublic(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -169,6 +217,12 @@ export class ChannelCountryProvince extends ApiClass {
    * PUBLIC ENDPOINTS
    **********************************/
 
+  /**
+   * Get Published Province by Selected Country
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/public/countries/:country_code/provinces/:province_code',
@@ -178,6 +232,12 @@ export class ChannelCountryProvince extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * List Published Provinces by Selected Country
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/public/countries/:country_code/provinces',
@@ -186,4 +246,15 @@ export class ChannelCountryProvince extends ApiClass {
   listPublic(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+}
+
+
+export class ChannelPublicCountry extends ApiClass {
+  get = ChannelCountry.prototype.getPublic
+  list = ChannelCountry.prototype.listPublic
+}
+
+export class ChannelPublicCountryProvince extends ApiClass {
+  get = ChannelCountryProvince.prototype.getPublic
+  list = ChannelCountryProvince.prototype.listPublic
 }

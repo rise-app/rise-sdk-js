@@ -165,6 +165,8 @@ export class RiSE {
   // Public
   public channelPublicCampaign: api.ChannelPublicCampaign
   public channelPublicCampaignOffer: api.ChannelPublicCampaignOffer
+  public channelPublicCountry: api.ChannelPublicCountry
+  public channelPublicCountryProvince: api.ChannelPublicCountryProvince
   public channelPublicCustomer: api.ChannelPublicCustomer
   public channelPublicOffer: api.ChannelPublicOffer
   public channelPublicOfferVariant: api.ChannelPublicOfferVariant
@@ -363,6 +365,8 @@ export class RiSE {
     // Public endpoints
     this.channelPublicCampaign = new api.ChannelPublicCampaign(this, this.globals)
     this.channelPublicCampaignOffer = new api.ChannelPublicCampaignOffer(this, this.globals)
+    this.channelPublicCountry = new api.ChannelPublicCountry(this, this.globals)
+    this.channelPublicCountryProvince = new api.ChannelPublicCountryProvince(this, this.globals)
     this.channelPublicCustomer = new api.ChannelPublicCustomer(this, this.globals)
     this.channelPublicOffer = new api.ChannelPublicOffer(this, this.globals)
     this.channelPublicOfferVariant = new api.ChannelPublicOfferVariant(this, this.globals)

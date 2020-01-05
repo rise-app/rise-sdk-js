@@ -39,7 +39,10 @@ export {
 
 export {
   ChannelCountry,
-  ChannelCountryProvince
+  ChannelCountryProvince,
+
+  ChannelPublicCountry,
+  ChannelPublicCountryProvince
 } from './channelCountry'
 
 export {

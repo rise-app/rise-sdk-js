@@ -746,7 +746,7 @@ export class ChannelCategoryProduct extends ApiClass {
   get = ChannelCategory.prototype.getProduct
   list = ChannelCategory.prototype.listProducts
   add = ChannelCategory.prototype.addProduct
-  bulkAdd = ChannelCategory.prototype.bulkAddProducts
+  bulkAdd = ChannelCategory.prototype.addProduct
   remove = ChannelCategory.prototype.removeProduct
 }
 
@@ -1327,7 +1327,7 @@ export class ChannelCampaignCustomer extends ApiClass {
   get = ChannelCampaign.prototype.getCustomer
   list = ChannelCampaign.prototype.listCustomers
   add = ChannelCampaign.prototype.addCustomer
-  bulkAdd = ChannelCampaign.prototype.bulkAddCustomers
+  bulkAdd = ChannelCampaign.prototype.addCustomer
   remove = ChannelCampaign.prototype.removeCustomer
 }
 
@@ -1339,7 +1339,7 @@ export class ChannelCampaignOffer extends ApiClass {
   get = ChannelCampaign.prototype.getOffer
   list = ChannelCampaign.prototype.listOffers
   add = ChannelCampaign.prototype.addOffer
-  bulkAdd = ChannelCampaign.prototype.bulkAddOffers
+  bulkAdd = ChannelCampaign.prototype.addOffer
   remove = ChannelCampaign.prototype.removeOffer
 }
 
