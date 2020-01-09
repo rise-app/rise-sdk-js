@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.50](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.49...v1.0.0-alpha.50) (2020-01-09)
+
+
+### Bug Fixes
+
+* **user:** fixes add user role endpoint ([81b7542](https://github.com/rise-app/rise-sdk-js/commit/81b7542))
+
 ## [1.0.0-alpha.49](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.48...v1.0.0-alpha.49) (2020-01-09)
 
 
