@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action } from '../../metadata'
-import { fulfillment } from '../../validators'
+import { fulfillment, order } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
 export class ChannelFulfillment extends ApiClass {
@@ -140,6 +140,38 @@ export class ChannelFulfillment extends ApiClass {
   // setFulfillmentPrimary(data, req?, validated?) {
   //     return this.request(req, data, validated)
   // }
+
+  /**
+   * Send Order Fulfillment
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO validator
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/fulfillments/:fulfillment_uuid/send',
+    // validator: order[COMMANDS.SEND_FULFILLMENT]
+  })
+  send(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Cancel Order Fulfillment
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO validator
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/fulfillments/:fulfillment_uuid/cancel',
+    // validator: order[COMMANDS.SEND_FULFILLMENT]
+  })
+  cancel(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
 
 
 }
