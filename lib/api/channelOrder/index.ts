@@ -1213,7 +1213,7 @@ export class ChannelOrderEvent extends ApiClass {
   // TODO validator
   @Action({
     method: 'GET',
-    route: 'channels/:channel_uuid/orders/:order_uuid/events/:event_uuid',
+    route: 'channels/:channel_uuid/orders/:order_uuid/events',
     validator: order[ACTIONS.LIST_ORDERS]
   })
   list(data, req?, validated?) {

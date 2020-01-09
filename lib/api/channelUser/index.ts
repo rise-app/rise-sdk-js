@@ -530,10 +530,10 @@ export class ChannelUserRole extends ApiClass {
    * @param req
    * @param validated
    */
-  // TODO VALIDATOR
+  // TODO VALIDATOR, TODO fix rise endpoint to be PUT
   @Command({
-    method: 'PUT',
-    route: 'channels/:channel_uuid/users/:user_uuid/roles/:role_name',
+    method: 'POST',
+    route: 'channels/:channel_uuid/users/:user_uuid/roles',
     // validator: user[COMMANDS.ADD_USER_ROLE]
   })
   add(data, req?, validated?) {
