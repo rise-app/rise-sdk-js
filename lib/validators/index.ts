@@ -2,6 +2,7 @@ export { core } from './core'
 export { auth } from './auth'
 
 export { application } from './application'
+export { billing_model } from './billing_model'
 export { cart } from './cart'
 export { collection } from './collection'
 export { channel } from './channel'

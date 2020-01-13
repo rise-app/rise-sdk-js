@@ -3,9 +3,9 @@ import EventEmitter from 'events'
 import { RiSE, RiSEConfig } from './index'
 import { regexdot } from '@fabrix/regexdot'
 
-import Primus from 'primus'
-  // , Socket
-  // , client
+// import Primus from 'primus'
+//   // , Socket
+//   // , client
 
 /**
  * Applications on RiSE are anything that accesses the API
@@ -39,6 +39,9 @@ export class ApplicationClass extends EventEmitter {
    * Configure the Primus Socket
    */
   configureConnection(options = {}) {
+    // We are requiring the PRIMUS library here, to make this SDK friendly to browsers
+    // This connection is never called on a browser, instead uses ApplicationBrowserClass
+    const Primus = require('primus')
     this.Socket = Primus.createSocket({
       transport: 'engine.io',
       ...options

@@ -1,5 +1,6 @@
 import EventEmitter from "events"
 import { RiSE, RiSEConfig } from './index'
+// import openSocket from 'socket.io-client'
 
 /**
  * Applications on RiSE are anything that accesses the API
