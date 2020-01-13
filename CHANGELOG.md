@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.51](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.50...v1.0.0-alpha.51) (2020-01-13)
+
+
+### Features
+
+* **billing:** adds billing models api starter ([0b2f0b6](https://github.com/rise-app/rise-sdk-js/commit/0b2f0b6))
+
 ## [1.0.0-alpha.50](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.49...v1.0.0-alpha.50) (2020-01-09)
 
 
