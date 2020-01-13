@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.52](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.51...v1.0.0-alpha.52) (2020-01-13)
+
+
+### Features
+
+* extracts sockets for more brower friendliness ([9dcdecf](https://github.com/rise-app/rise-sdk-js/commit/9dcdecf))
+
 ## [1.0.0-alpha.51](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.50...v1.0.0-alpha.51) (2020-01-13)
 
 
