@@ -6,7 +6,7 @@ import { RiSE, RiSEConfig } from './index'
  * Applications on RiSE are anything that accesses the API
  */
 export class ApplicationBrowserClass extends EventEmitter {
-  constructor(public rise: RiSE, public globals: RiSEConfig['globals']) {
+  constructor(public rise: RiSE, public globals: RiSEConfig['globals'], public socketLibrary?) {
     super()
 
     // Reference to the core class

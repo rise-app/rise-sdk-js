@@ -1,4 +1,6 @@
 const RiSE = require('../../../dist').RiSE
+const sockets = require('@rise/sdk-js-sockets').default
+
 const { url, adminPassword, adminIdentifier, channel_uuid, private_key, public_key } = require('../../fixtures/constants')
 
 const assert = require('assert')
@@ -14,7 +16,8 @@ describe('# RiSE Channel User API', () => {
         url: url,
         sandbox: true,
         public_key: public_key,
-        private_key: private_key
+        private_key: private_key,
+        sockets: sockets
       })
 
       rise.authenticateApiUser(

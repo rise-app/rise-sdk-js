@@ -4,8 +4,6 @@ import requestPromise from 'request-promise-native'
 import { EVENTS as _EVENTS, ACTIONS as _ACTIONS, COMMANDS as _COMMANDS } from './enums'
 import { ApplicationClass } from './ApplicationClass'
 import { ApplicationBrowserClass } from './ApplicationBrowserClass'
-import { isEmpty } from 'lodash'
-import { ApiClass } from './ApiClass'
 
 // Export the Enums for developer use
 export const COMMANDS = _COMMANDS
@@ -47,6 +45,7 @@ export interface RiSEConfig {
   request_timeout?: number,
   live_mode?: boolean,
   logger?: any,
+  sockets: any,
   globals?: {
     params?: {
       [key: string]: any
@@ -187,7 +186,8 @@ export class RiSE {
       sandbox: true,
       beta: false,
       production: false,
-      api_version: 1
+      api_version: 1,
+      sockets: null
     }
   ) {
 
@@ -373,13 +373,13 @@ export class RiSE {
 
     // Initialize the Application Connection
     // The SDK is being included in a browser application
-    if (typeof window === 'undefined') {
-      this.application = new ApplicationClass(this, this.globals)
-    }
-    // The SDK is being included in a Node.js application
-    else {
-      this.application = new ApplicationBrowserClass(this, this.globals)
-    }
+    // if (typeof window === 'undefined') {
+      this.application = new ApplicationClass(this, this.globals, config.sockets)
+    // }
+    // // The SDK is being included in a Node.js application
+    // else {
+    //   this.application = new ApplicationBrowserClass(this, this.globals, config.sockets)
+    // }
 
     return this
   }

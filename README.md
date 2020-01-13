@@ -34,7 +34,8 @@ An Event is a request listener that something has been modified eg, a user was c
 An Action is a request made that does not modify anything eg, retrieve a user.
 
 ### Getting started
-As an application
+#### Connecting As an application
+
 ```js
 // Create a new instance
 const rise = new RiSE({
@@ -57,6 +58,21 @@ rise.authenticateApiUser(
 })
 
 ```
+
+#### Connecting With Sockets
+
+```js
+import sockets from '@rise/sdk-js-sockets'
+// Create a new instance
+const rise = new RiSE({
+  sandbox: true,
+  public_key: <public_key>,
+  private_key: <private_key>,
+  sockets: sockets
+})
+
+```
+
 ## Setup
 
 # Documentation

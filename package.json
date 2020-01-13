@@ -75,16 +75,14 @@
   ],
   "dependencies": {
     "@fabrix/regexdot": "^1.0.1",
-    "engine.io": "^3.4.0",
-    "engine.io-client": "^3.4.0",
     "joi": "^14.3.1",
-    "primus": "^7.3.3",
     "qs": "^6.9.1",
     "reflect-metadata": "^0.1.13",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
   },
   "devDependencies": {
+    "@rise/sdk-js-sockets": "^1.0.0-alpha.51",
     "@types/node": "~12.7.8",
     "documentation": "^12.1.2",
     "mocha": "^6",

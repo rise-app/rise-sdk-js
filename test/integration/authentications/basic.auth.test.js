@@ -1,4 +1,6 @@
 const { RiSE, EVENTS, ACTIONS } = require('../../../dist')
+const sockets = require('@rise/sdk-js-sockets').default
+
 const { url, adminPassword, adminIdentifier, channel_uuid, appIdentifier, private_key, public_key } = require('../../fixtures/constants')
 
 const assert = require('assert')
@@ -12,7 +14,8 @@ describe('# RiSE Token Authentication API', () => {
       url: url,
       sandbox: true,
       public_key: public_key,
-      private_key: private_key
+      private_key: private_key,
+      sockets: sockets
     })
 
     const basic = Buffer.from(`${adminIdentifier}:${adminPassword}`).toString('base64')

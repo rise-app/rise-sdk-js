@@ -3,10 +3,6 @@ import EventEmitter from 'events'
 import { RiSE, RiSEConfig } from './index'
 import { regexdot } from '@fabrix/regexdot'
 
-// import Primus from 'primus'
-//   // , Socket
-//   // , client
-
 /**
  * Applications on RiSE are anything that accesses the API
  */
@@ -21,7 +17,7 @@ export class ApplicationClass extends EventEmitter {
   private _handlers = new Map()
   private _patterns = new Set(['connected', 'disconnected', 'error'])
 
-  constructor(public rise: RiSE, public globals: RiSEConfig['globals']) {
+  constructor(public rise: RiSE, public globals: RiSEConfig['globals'], public socketLibrary?) {
     super()
 
     // Reference to the core class
@@ -39,14 +35,15 @@ export class ApplicationClass extends EventEmitter {
    * Configure the Primus Socket
    */
   configureConnection(options = {}) {
-    // We are requiring the PRIMUS library here, to make this SDK friendly to browsers
-    // This connection is never called on a browser, instead uses ApplicationBrowserClass
-    const Primus = require('primus')
-    this.Socket = Primus.createSocket({
-      transport: 'engine.io',
-      ...options
-    })
-    return this.Socket
+    // We are requiring the PRIMUS library here, to make this SDK friendly to browsers any "socket library that has a createSocket property can be used"
+    if (this.socketLibrary) {
+      this.Socket = this.socketLibrary.createSocket({
+        transport: 'engine.io',
+        ...options
+      })
+      return this.Socket
+    }
+    return null
   }
 
   /**
