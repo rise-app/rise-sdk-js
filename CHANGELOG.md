@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.53](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.52...v1.0.0-alpha.53) (2020-01-17)
+
+
+### Features
+
+* **offer:** adds public endpoints x_sells ([43cf1de](https://github.com/rise-app/rise-sdk-js/commit/43cf1de))
+* **offer:** adds x-sell endpoints ([294f640](https://github.com/rise-app/rise-sdk-js/commit/294f640))
+
 ## [1.0.0-alpha.52](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.51...v1.0.0-alpha.52) (2020-01-13)
 
 
