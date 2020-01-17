@@ -133,6 +133,7 @@ export class ChannelOffer extends ApiClass {
     route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns',
     validator: offer[ACTIONS.LIST_OFFERS]
   })
+  @Paginate()
   listCampaigns(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -171,6 +172,7 @@ export class ChannelOffer extends ApiClass {
     route: 'channels/:channel_uuid/offers/:offer_uuid/up_sells',
     validator: offer[ACTIONS.LIST_OFFERS]
   })
+  @Paginate()
   listUpSells(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -209,6 +211,7 @@ export class ChannelOffer extends ApiClass {
     route: 'channels/:channel_uuid/offers/:offer_uuid/cross_sells',
     validator: offer[ACTIONS.LIST_OFFERS]
   })
+  @Paginate()
   listCrossSells(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -246,9 +249,12 @@ export class ChannelOffer extends ApiClass {
     route: 'channels/:channel_uuid/offers/:offer_uuid/down_sells',
     validator: offer[ACTIONS.LIST_OFFERS]
   })
+  @Paginate()
   listDownSells(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
+
 
   @Command({
     method: 'PUT',
@@ -425,6 +431,65 @@ export class ChannelOffer extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/up_sells/:offer_uuid',
+    validator: offer[ACTIONS.GET_OFFER]
+  })
+  getPublicUpSell(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/up_sells',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  @Paginate()
+  listPublicUpSells(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/cross_sells/:offer_uuid',
+    validator: offer[ACTIONS.GET_OFFER]
+  })
+  getPublicCrossSell(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/cross_sells',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  @Paginate()
+  listPublicCrossSells(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/down_sells/:offer_uuid',
+    validator: offer[ACTIONS.GET_OFFER]
+  })
+  getPublicDownSell(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/down_sells',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  @Paginate()
+  listPublicDownSells(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/public/offers/:offer_uuid/variants/:variant_uuid', validator: offer.get })
   // getPublicVariant(data, req?, validated?) {
   //   return this.request(req, data, validated)
@@ -575,6 +640,13 @@ export class ChannelPublicOffer extends ApiClass {
 
   getCampaign = ChannelOffer.prototype.getPublicCampaign
   listCampaigns = ChannelOffer.prototype.listPublicCampaigns
+
+  getUpSell = ChannelOffer.prototype.getPublicUpSell
+  listUpSell = ChannelOffer.prototype.listPublicUpSells
+  getCrossSell = ChannelOffer.prototype.getPublicCrossSell
+  listCrossSell = ChannelOffer.prototype.listPublicCrossSells
+  getDownSell = ChannelOffer.prototype.getPublicDownSell
+  listDownSell = ChannelOffer.prototype.listPublicDownSells
 }
 
 export class ChannelPublicOfferVariant extends ApiClass {
@@ -585,9 +657,18 @@ export class ChannelPublicOfferVariant extends ApiClass {
 
 
 export class ChannelOfferUpload extends ApiClass {
+  upload = ChannelOffer.prototype.upload
+  process = ChannelOffer.prototype.processUpload
+  get = ChannelOffer.prototype.getUpload
+  list = ChannelOffer.prototype.listUploads
+
 }
 
 export class ChannelOfferMetadataUpload extends ApiClass {
+  upload = ChannelOffer.prototype.uploadMetadata
+  process = ChannelOffer.prototype.processMetadataUpload
+  get = ChannelOffer.prototype.getMetadataUpload
+  list = ChannelOffer.prototype.listMetadataUploads
 }
 
 

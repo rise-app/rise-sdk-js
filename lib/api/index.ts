@@ -87,6 +87,8 @@ export {
   ChannelOffer,
   ChannelOfferVariant,
   ChannelOfferEvent,
+  ChannelOfferUpload,
+  ChannelOfferMetadataUpload,
 
   ChannelPublicOffer,
   ChannelPublicOfferVariant
