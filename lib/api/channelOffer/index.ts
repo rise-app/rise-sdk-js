@@ -121,7 +121,7 @@ export class ChannelOffer extends ApiClass {
 
   @Action({
     method: 'GET',
-    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns/collection_uuid',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns/:collection_uuid',
     validator: offer[ACTIONS.GET_OFFER]
   })
   getCampaign(data, req?, validated?) {
@@ -152,6 +152,119 @@ export class ChannelOffer extends ApiClass {
     validator: offer[COMMANDS.REMOVE_OFFER_CAMPAIGN]
   })
   removeCampaign(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/up_sells/:offer_uuid',
+    validator: offer[ACTIONS.GET_OFFER]
+  })
+  getUpSell(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/up_sells',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  listUpSells(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/up_sells',
+    validator: offer[COMMANDS.ADD_OFFER_UP_SELL]
+  })
+  addUpSell(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/up_sells/:offer_uuid',
+    validator: offer[COMMANDS.REMOVE_OFFER_UP_SELL]
+  })
+  removeUpSell(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/cross_sells/:offer_uuid',
+    validator: offer[ACTIONS.GET_OFFER]
+  })
+  getCrossSell(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/cross_sells',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  listCrossSells(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/cross_sells',
+    validator: offer[COMMANDS.ADD_OFFER_CROSS_SELL]
+  })
+  addCrossSell(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/cross_sells/:offer_uuid',
+    validator: offer[COMMANDS.REMOVE_OFFER_CROSS_SELL]
+  })
+  removeCrossSell(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/down_sells/:offer_uuid',
+    validator: offer[ACTIONS.GET_OFFER]
+  })
+  getDownSell(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/down_sells',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  listDownSells(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/down_sells',
+    validator: offer[COMMANDS.ADD_OFFER_DOWN_SELL]
+  })
+  addDownSell(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/down_sells/:offer_uuid',
+    validator: offer[COMMANDS.REMOVE_OFFER_DOWN_SELL]
+  })
+  removeDownSell(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
