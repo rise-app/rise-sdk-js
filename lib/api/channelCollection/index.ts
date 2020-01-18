@@ -891,7 +891,7 @@ export class ChannelCampaign extends ApiClass {
     return this.request(req, data, validated)
   }
 
-  addChildren = this.addChild
+  bulkAddChildren = this.addChild
 
   /**
    * Remove a Campaign (Collection) Child

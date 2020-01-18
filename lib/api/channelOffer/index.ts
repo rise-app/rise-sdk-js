@@ -186,6 +186,8 @@ export class ChannelOffer extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  bulkAddUpSells = this.addUpSell
+
   @Command({
     method: 'DELETE',
     route: 'channels/:channel_uuid/offers/:offer_uuid/up_sells/:offer_uuid',
@@ -224,6 +226,7 @@ export class ChannelOffer extends ApiClass {
   addCrossSell(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+  bulkAddCrossSells = this.addCrossSell
 
   @Command({
     method: 'DELETE',
@@ -264,6 +267,8 @@ export class ChannelOffer extends ApiClass {
   addDownSell(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
+  bulkAddDownSells = this.addDownSell
 
   @Command({
     method: 'DELETE',
@@ -449,6 +454,15 @@ export class ChannelOffer extends ApiClass {
   listPublicUpSells(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/handle/:handle/up_sells',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  @Paginate()
+  listPublicUpSellsByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
 
   @Action({
     method: 'GET',
@@ -469,6 +483,16 @@ export class ChannelOffer extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/handle/:handle/cross_sells',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  @Paginate()
+  listPublicCrossSellsByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
 
   @Action({
     method: 'GET',
@@ -486,6 +510,16 @@ export class ChannelOffer extends ApiClass {
   })
   @Paginate()
   listPublicDownSells(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/handle/:handle/down_sells',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  @Paginate()
+  listPublicDownSellsByHandle(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
