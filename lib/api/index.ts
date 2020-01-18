@@ -149,5 +149,6 @@ export {
   ChannelVendorEvent,
   ChannelVendorFulfillmentService,
   ChannelVendorInventory,
-  ChannelVendorProduct
+  ChannelVendorProduct,
+  ChannelVendorProductVariant
 } from './channelVendor'

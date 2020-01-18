@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Paginate, Upload } from '../../metadata'
-import { collection, customer } from '../../validators'
+import { customer } from '../../validators'
 import { ACTIONS, COMMANDS, EVENTS } from '../../enums'
 
 export class ChannelCustomer extends ApiClass {
@@ -404,6 +404,34 @@ export class ChannelCustomer extends ApiClass {
   })
   @Paginate()
   listMetadataUploads(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/campaigns',
+    validator: customer[ACTIONS.LIST_CUSTOMER_CAMPAIGNS]
+  })
+  @Paginate()
+  listCampaigns(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/campaigns',
+    validator: customer[COMMANDS.ADD_CUSTOMER_CAMPAIGN]
+  })
+  addCampaign(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/campaigns/:collection_uuid',
+    validator: customer[COMMANDS.REMOVE_CUSTOMER_CAMPAIGN]
+  })
+  removeCampaign(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

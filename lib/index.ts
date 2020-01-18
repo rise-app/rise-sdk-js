@@ -160,6 +160,7 @@ export class RiSE {
   public channelVendorFulfillmentService: api.ChannelVendorFulfillmentService
   public channelVendorInventory: api.ChannelVendorInventory
   public channelVendorProduct: api.ChannelVendorProduct
+  public channelVendorProductVariant: api.ChannelVendorProductVariant
 
   // Public
   public channelPublicCampaign: api.ChannelPublicCampaign
@@ -361,6 +362,7 @@ export class RiSE {
     this.channelVendorFulfillmentService = new api.ChannelVendorFulfillmentService(this, this.globals)
     this.channelVendorInventory = new api.ChannelVendorInventory(this, this.globals)
     this.channelVendorProduct = new api.ChannelVendorProduct(this, this.globals)
+    this.channelVendorProductVariant = new api.ChannelVendorProductVariant(this, this.globals)
 
     // Public endpoints
     this.channelPublicCampaign = new api.ChannelPublicCampaign(this, this.globals)

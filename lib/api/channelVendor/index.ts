@@ -290,23 +290,25 @@ export class ChannelVendorEvent extends ApiClass {
 export class ChannelVendorFulfillmentService extends ApiClass {
 
 }
+
 export class ChannelVendorProduct extends ApiClass {
 
   // TODO VALIDATORS
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/products',
-    // validator: vendor[COMMANDS.CREATE_VENDOR]
+    validator: vendor[COMMANDS.ADD_VENDOR_PRODUCT]
   })
   add(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+  bulkAdd = this.add
 
   // TODO VALIDATORS
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/products/:product_uuid',
-    validator: vendor[COMMANDS.UPDATE_VENDOR]
+    validator: vendor[COMMANDS.UPDATE_VENDOR_PRODUCT]
   })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -316,7 +318,7 @@ export class ChannelVendorProduct extends ApiClass {
   @Command({
     method: 'DELETE',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/products/:product_uuid',
-    validator: vendor[COMMANDS.UPDATE_VENDOR]
+    validator: vendor[COMMANDS.REMOVE_VENDOR_PRODUCT]
   })
   remove(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -332,7 +334,7 @@ export class ChannelVendorProduct extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/products/:product_uuid',
-    validator: vendor[ACTIONS.GET_VENDOR]
+    validator: vendor[ACTIONS.GET_VENDOR_PRODUCT]
   })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -348,13 +350,84 @@ export class ChannelVendorProduct extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/products',
-    validator: vendor[ACTIONS.LIST_VENDORS]
+    validator: vendor[ACTIONS.LIST_VENDOR_PRODUCTS]
   })
   @Paginate()
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }
+
+
+export class ChannelVendorProductVariant extends ApiClass {
+
+  // TODO VALIDATORS
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/vendors/:vendor_uuid/products/:product_uuid/variants',
+    validator: vendor[COMMANDS.ADD_VENDOR_PRODUCT_VARIANT]
+  })
+  add(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  bulkAdd = this.add
+
+  // TODO VALIDATORS
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/vendors/:vendor_uuid/products/:product_uuid/variants/:variant_uuid',
+    validator: vendor[COMMANDS.UPDATE_VENDOR_PRODUCT_VARIANT]
+  })
+  update(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  // TODO VALIDATORS
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/vendors/:vendor_uuid/products/:product_uuid/variants/:variant_uuid',
+    validator: vendor[COMMANDS.REMOVE_VENDOR_PRODUCT_VARIANT]
+  })
+  remove(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel's Vendor's Products Product Variant
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATORS
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/vendors/:vendor_uuid/products/:product_uuid/variants/:variant_uuid',
+    validator: vendor[ACTIONS.GET_VENDOR_PRODUCT_VARIANT]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List All Vendor's Product Product Inventories of a Given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATORS
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/vendors/:vendor_uuid/products/:product_uuid/variants',
+    validator: vendor[ACTIONS.LIST_VENDOR_PRODUCT_VARIANTS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+
+
+
 export class ChannelVendorInventory extends ApiClass {
   // TODO VALIDATORS
   @Command({
@@ -365,12 +438,13 @@ export class ChannelVendorInventory extends ApiClass {
   add(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+  bulkAdd = this.add
 
   // TODO VALIDATORS
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/inventory/:variant_uuid',
-    validator: vendor[COMMANDS.UPDATE_VENDOR]
+    validator: vendor[COMMANDS.UPDATE_VENDOR_PRODUCT_VARIANT]
   })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -380,7 +454,7 @@ export class ChannelVendorInventory extends ApiClass {
   @Command({
     method: 'DELETE',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/inventory/:variant_uuid',
-    validator: vendor[COMMANDS.UPDATE_VENDOR]
+    validator: vendor[COMMANDS.REMOVE_VENDOR_PRODUCT_VARIANT]
   })
   remove(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -396,7 +470,7 @@ export class ChannelVendorInventory extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/inventory/:variant_uuid',
-    validator: vendor[ACTIONS.GET_VENDOR]
+    validator: vendor[ACTIONS.GET_VENDOR_PRODUCT_VARIANT]
   })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -412,7 +486,7 @@ export class ChannelVendorInventory extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/inventory',
-    validator: vendor[ACTIONS.LIST_VENDORS]
+    validator: vendor[ACTIONS.LIST_VENDOR_PRODUCT_VARIANTS]
   })
   @Paginate()
   list(data, req?, validated?) {
