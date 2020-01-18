@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.54](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.53...v1.0.0-alpha.54) (2020-01-18)
+
+
+### Bug Fixes
+
+* fixes endpoints for add campaigns ([f239759](https://github.com/rise-app/rise-sdk-js/commit/f239759))
+
 ## [1.0.0-alpha.53](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.52...v1.0.0-alpha.53) (2020-01-17)
 
 
