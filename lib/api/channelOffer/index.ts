@@ -676,11 +676,11 @@ export class ChannelPublicOffer extends ApiClass {
   listCampaigns = ChannelOffer.prototype.listPublicCampaigns
 
   getUpSell = ChannelOffer.prototype.getPublicUpSell
-  listUpSell = ChannelOffer.prototype.listPublicUpSells
+  listUpSells = ChannelOffer.prototype.listPublicUpSells
   getCrossSell = ChannelOffer.prototype.getPublicCrossSell
-  listCrossSell = ChannelOffer.prototype.listPublicCrossSells
+  listCrossSells = ChannelOffer.prototype.listPublicCrossSells
   getDownSell = ChannelOffer.prototype.getPublicDownSell
-  listDownSell = ChannelOffer.prototype.listPublicDownSells
+  listDownSells = ChannelOffer.prototype.listPublicDownSells
 }
 
 export class ChannelPublicOfferVariant extends ApiClass {

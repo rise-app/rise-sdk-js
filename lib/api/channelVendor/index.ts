@@ -433,7 +433,7 @@ export class ChannelVendorInventory extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/inventory',
-    // validator: vendor[COMMANDS.CREATE_VENDOR]
+    validator: vendor[COMMANDS.ADD_VENDOR_PRODUCT_VARIANT]
   })
   add(data, req?, validated?) {
     return this.request(req, data, validated)
