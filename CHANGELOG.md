@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.56](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.55...v1.0.0-alpha.56) (2020-01-20)
+
+
+### Bug Fixes
+
+* **offer:** fixes names for x-sells ([1a30042](https://github.com/rise-app/rise-sdk-js/commit/1a30042))
+
 ## [1.0.0-alpha.55](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.54...v1.0.0-alpha.55) (2020-01-18)
 
 
