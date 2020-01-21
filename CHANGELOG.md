@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.57](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.56...v1.0.0-alpha.57) (2020-01-21)
+
+
+### Features
+
+* adds image primaries and ip forwarding starter ([3d4c115](https://github.com/rise-app/rise-sdk-js/commit/3d4c115))
+
 ## [1.0.0-alpha.56](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.55...v1.0.0-alpha.56) (2020-01-20)
 
 
