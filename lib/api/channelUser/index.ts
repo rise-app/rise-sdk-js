@@ -97,6 +97,22 @@ export class ChannelUser extends ApiClass {
   }
 
   /**
+   * Set an User's Primary Image
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO validator
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/users/:user_uuid/image_primary',
+    // validator: user[COMMANDS.SET_USER_PRIMARY_IMAGE]
+  })
+  setPrimaryImage(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
    * Get a User by ID
    * @param data
    * @param req
@@ -129,6 +145,22 @@ export class ChannelUser extends ApiClass {
   // TODO Validator
   @Action({ method: 'GET', route: 'channels/:channel_uuid/search/users', validator: user[ACTIONS.LIST_USERS] })
   search(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get an User's Primary Image by User ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO Validator
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/users/:user_uuid/image_primary',
+    // validator: user[ACTIONS.GET_USER_PRIMARY_IMAGE]
+  })
+  getPrimaryImage(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -433,7 +465,6 @@ export class ChannelUserNotification extends ApiClass {
 }
 
 export class ChannelUserPassport extends ApiClass {
-  //
   /**
    * List User's Passports
    * @param data
@@ -480,6 +511,55 @@ export class ChannelUserPassport extends ApiClass {
     // validator: user[COMMANDS.CREATE_USER_PASSPORT]
   })
   create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * Add User's Passport
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/users/:user_uuid/passports',
+    // validator: user[COMMANDS.CREATE_USER_PASSPORT]
+  })
+  add(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Remove User's Passport
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/users/:user_uuid/passports/:passport_uuid',
+    // validator: user[COMMANDS.REMOVE_USER_PASSPORT]
+  })
+  remove(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Reset User's Passport
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/users/:user_uuid/passports/:passport_uuid/reset',
+    // validator: user[COMMANDS.CREATE_USER_PASSPORT]
+  })
+  reset(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }

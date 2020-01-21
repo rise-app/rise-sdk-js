@@ -384,6 +384,22 @@ export class ChannelProductVariant extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Set an Product's Primary Image
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO validator
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/products/:product_uuid/image_primary',
+    // validator: product[COMMANDS.SET_PRODUCT_PRIMARY_IMAGE]
+  })
+  setPrimaryImage(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/products/:product_uuid/variants/:variant_uuid',
@@ -408,6 +424,22 @@ export class ChannelProductVariant extends ApiClass {
     validator: product[ACTIONS.FIND_PRODUCT_VARIANTS]
   })
   listByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get an Product's Primary Image by Product ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO Validator
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/products/:product_uuid/image_primary',
+    // validator: product[ACTIONS.GET_PRODUCT_PRIMARY_IMAGE]
+  })
+  getPrimaryImage(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

@@ -168,6 +168,9 @@ export class RiSE {
   public channelPublicCountry: api.ChannelPublicCountry
   public channelPublicCountryProvince: api.ChannelPublicCountryProvince
   public channelPublicCustomer: api.ChannelPublicCustomer
+  public channelPublicFulfillmentService: api.ChannelPublicFulfillmentService
+  public channelPublicGateway: api.ChannelPublicGateway
+  public channelPublicGatewayForm: api.ChannelPublicGatewayForm
   public channelPublicOffer: api.ChannelPublicOffer
   public channelPublicOfferVariant: api.ChannelPublicOfferVariant
 
@@ -370,6 +373,9 @@ export class RiSE {
     this.channelPublicCountry = new api.ChannelPublicCountry(this, this.globals)
     this.channelPublicCountryProvince = new api.ChannelPublicCountryProvince(this, this.globals)
     this.channelPublicCustomer = new api.ChannelPublicCustomer(this, this.globals)
+    this.channelPublicFulfillmentService = new api.ChannelPublicFulfillmentService(this, this.globals)
+    this.channelPublicGateway = new api.ChannelPublicGateway(this, this.globals)
+    this.channelPublicGatewayForm = new api.ChannelPublicGatewayForm(this, this.globals)
     this.channelPublicOffer = new api.ChannelPublicOffer(this, this.globals)
     this.channelPublicOfferVariant = new api.ChannelPublicOfferVariant(this, this.globals)
 
@@ -478,8 +484,8 @@ export class RiSE {
       || this.config.beta
         ? 'https://api.beta.rise.store'
         : this.config.sandbox
-            ? 'https://api.sandbox.rise.store'
-            : 'https://api.rise.store'
+          ? 'https://api.sandbox.rise.store'
+          : 'https://api.rise.store'
   }
 
   /**
@@ -593,6 +599,18 @@ export class RiSE {
   }
 
   /**
+   * If this request is proxied through another application set the origin IP
+   * @param req
+   */
+  ifProxySetIp(req) {
+    const agent: {[key: string]: any} = {}
+    if (typeof req.ip !== 'undefined') {
+      req.headers['X-Forwarded-For'] = req.ip
+    }
+    return req
+  }
+
+  /**
    * Perform a request.
    * @name request
    * @param req
@@ -690,6 +708,9 @@ export class RiSE {
     if (__req.session || this.session) {
       _req.headers['Session'] = __req.session || this.session
     }
+
+    // If this is a pass through request, let's set the headers
+    this.ifProxySetIp(_req)
 
     // If this is a browser based request, let's set the headers
     this.ifBrowserSetAgent(_req)

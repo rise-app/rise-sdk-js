@@ -71,7 +71,9 @@ export {
 
 export {
   ChannelFulfillmentService,
-  ChannelFulfillmentServiceEvent
+  ChannelFulfillmentServiceEvent,
+
+  ChannelPublicFulfillmentService
 } from './channelFulfillmentService'
 
 export {
@@ -80,7 +82,10 @@ export {
   ChannelGatewayAccount,
   ChannelGatewayAccountSource,
   ChannelGatewayForm,
-  ChannelGatewayReceiver
+  ChannelGatewayReceiver,
+
+  ChannelPublicGateway,
+  ChannelPublicGatewayForm
 } from './channelGateway'
 
 export {

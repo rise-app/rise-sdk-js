@@ -37,6 +37,38 @@ export class ChannelCustomer extends ApiClass {
   }
 
   /**
+   * Set an Customer's Primary Image
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO validator
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/image_primary',
+    // validator: customer[COMMANDS.SET_CUSTOMER_PRIMARY_IMAGE]
+  })
+  setPrimaryImage(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get an Customer's Primary Image by Customer ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO Validator
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/image_primary',
+    // validator: customer[ACTIONS.GET_CUSTOMER_PRIMARY_IMAGE]
+  })
+  getPrimaryImage(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
    * Get a Channel Customer
    * @param data
    * @param req

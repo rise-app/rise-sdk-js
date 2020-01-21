@@ -16,6 +16,22 @@ export class ChannelVendor extends ApiClass {
   }
 
   /**
+   * Set an Vendor's Primary Image
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO validator
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/vendors/:vendor_uuid/image_primary',
+    // validator: vendor[COMMANDS.SET_VENDOR_PRIMARY_IMAGE]
+  })
+  setPrimaryImage(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
    * Get a Given Channel's Vendor
    * @param data
    * @param req
@@ -138,6 +154,22 @@ export class ChannelVendor extends ApiClass {
   @Action({ method: 'GET', route: 'channels/:channel_uuid/vendors/:vendor_uuid/siblings', validator: vendor[ACTIONS.LIST_VENDORS] })
   @Paginate()
   listSiblings(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get an Vendor's Primary Image by Vendor ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO Validator
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/vendors/:vendor_uuid/image_primary',
+    // validator: vendor[ACTIONS.GET_VENDOR_PRIMARY_IMAGE]
+  })
+  getPrimaryImage(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

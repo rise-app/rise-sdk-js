@@ -227,6 +227,9 @@ export class ChannelGateway extends ApiClass {
 
 }
 
+export class ChannelPublicGateway extends ApiClass {
+  list = ChannelGateway.prototype.listPublic
+}
 
 export class ChannelGatewayAccount extends ApiClass {
 }
@@ -269,6 +272,10 @@ export class ChannelGatewayEvent extends ApiClass {
 
 export class ChannelGatewayForm extends ApiClass {
 }
+
+export class ChannelPublicGatewayForm extends ApiClass {
+}
+
 
 export class ChannelGatewayReceiver extends ApiClass {
 }

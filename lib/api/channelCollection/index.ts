@@ -45,6 +45,22 @@ export class ChannelCollection extends ApiClass {
   }
 
   /**
+   * Set an Collection's Primary Image
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO validator
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/image_primary',
+    // validator: collection[COMMANDS.SET_COLLECTION_PRIMARY_IMAGE]
+  })
+  setPrimaryImage(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
    * Get a Given Channel's Collection
    * @param data
    * @param req
@@ -71,6 +87,22 @@ export class ChannelCollection extends ApiClass {
     validator: collection[ACTIONS.FIND_COLLECTION]
   })
   getByHandle(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get an Collection's Primary Image by Collection ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO Validator
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/collections/:collection_uuid/image_primary',
+    // validator: collection[ACTIONS.GET_COLLECTION_PRIMARY_IMAGE]
+  })
+  getPrimaryImage(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -1398,7 +1430,6 @@ export class ChannelCollectionEvent extends ApiClass {
     route: 'channels/:channel_uuid/collections/:collection_uuid/events/:event_uuid',
     // validator: collection[ACTIONS.GET_COLLECTION_EVENT]
   })
-  @Paginate()
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }

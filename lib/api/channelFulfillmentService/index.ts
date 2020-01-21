@@ -227,6 +227,10 @@ export class ChannelFulfillmentService extends ApiClass {
 
 }
 
+export class ChannelPublicFulfillmentService extends ApiClass {
+  list = ChannelFulfillmentService.prototype.listPublic
+}
+
 export class ChannelFulfillmentServiceEvent extends ApiClass {
   /**
    * List service events
