@@ -118,8 +118,12 @@ export class RiSE {
   public channelGatewayReceiver: api.ChannelGatewayReceiver
 
   public channelOffer: api.ChannelOffer
+  public channelOfferCampaign: api.ChannelOfferCampaign
   public channelOfferEvent: api.ChannelOfferEvent
+  public channelOfferImage: api.ChannelOfferImage
   public channelOfferVariant: api.ChannelOfferVariant
+  public channelOfferUpload: api.ChannelOfferUpload
+  public channelOfferMetadataUpload: api.ChannelOfferMetadataUpload
 
   public channelOrder: api.ChannelOrder
   public channelOrderEvent: api.ChannelOrderEvent
@@ -322,8 +326,12 @@ export class RiSE {
     this.channelGatewayReceiver = new api.ChannelGatewayReceiver(this, this.globals)
 
     this.channelOffer = new api.ChannelOffer(this, this.globals)
+    this.channelOfferCampaign = new api.ChannelOfferCampaign(this, this.globals)
     this.channelOfferEvent = new api.ChannelOfferEvent(this, this.globals)
+    this.channelOfferImage = new api.ChannelOfferImage(this, this.globals)
     this.channelOfferVariant = new api.ChannelOfferVariant(this, this.globals)
+    this.channelOfferUpload = new api.ChannelOfferUpload(this, this.globals)
+    this.channelOfferMetadataUpload = new api.ChannelOfferMetadataUpload(this, this.globals)
 
     this.channelOrder = new api.ChannelOrder(this, this.globals)
     this.channelOrderEvent = new api.ChannelOrderEvent(this, this.globals)
@@ -589,7 +597,6 @@ export class RiSE {
    * @param req
    */
   ifBrowserSetAgent(req) {
-    const agent: {[key: string]: any} = {}
     if (typeof window !== 'undefined') {
       if (window.navigator && !req.headers['User-Agent']) {
         req.headers['User-Agent'] = window.navigator.userAgent
@@ -603,8 +610,7 @@ export class RiSE {
    * @param req
    */
   ifProxySetIp(req) {
-    const agent: {[key: string]: any} = {}
-    if (typeof req.ip !== 'undefined') {
+    if (typeof req.ip !== 'undefined' && !req.headers['X-Forwarded-For']) {
       req.headers['X-Forwarded-For'] = req.ip
     }
     return req
@@ -617,7 +623,7 @@ export class RiSE {
    * @param {*} body as json
    * @param validation
    */
-  request(req, body: {[key: string]: any} = {}, validation: any = null): Promise<RiSEResponse> {
+  async request(req, body: {[key: string]: any} = {}, validation: any = null): Promise<RiSEResponse> {
 
     // If this request didn't pass pre validation
     if (validation instanceof Error) {

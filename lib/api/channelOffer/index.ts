@@ -229,68 +229,7 @@ export class ChannelOffer extends ApiClass {
   listVariantsByHandle = ChannelOfferVariant.prototype.listByHandle
 
 
-  /**
-   * Get the Campaign an Offer is associated too by Offer and Collection ID
-   * @param data
-   * @param req
-   * @param validated
-   */
-  @Action({
-    method: 'GET',
-    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns/:collection_uuid',
-    validator: offer[ACTIONS.GET_OFFER]
-  })
-  getCampaign(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
 
-  /**
-   * List the Campaigns an Offer is associated to by Offer ID
-   * @param data
-   * @param req
-   * @param validated
-   */
-  @Action({
-    method: 'GET',
-    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns',
-    validator: offer[ACTIONS.LIST_OFFERS]
-  })
-  @Paginate()
-  listCampaigns(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  /**
-   * Add an Offer to a Campaign
-   * @param data
-   * @param req
-   * @param validated
-   */
-  @Command({
-    method: 'PUT',
-    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns',
-    validator: offer[COMMANDS.ADD_OFFER_CAMPAIGN]
-  })
-  addCampaign(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  bulkAddCampaigns = this.addCampaign
-
-  /**
-   * Remove an Offer from a Campaign
-   * @param data
-   * @param req
-   * @param validated
-   */
-  @Command({
-    method: 'DELETE',
-    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns/:collection_uuid',
-    validator: offer[COMMANDS.REMOVE_OFFER_CAMPAIGN]
-  })
-  removeCampaign(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
 
 
   /**
@@ -632,6 +571,14 @@ export class ChannelOffer extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  getCampaign = ChannelOfferCampaign.prototype.get
+  listCampaigns = ChannelOfferCampaign.prototype.list
+  getPublicCampaign = ChannelOfferCampaign.prototype.getPublic
+  listPublicCampaigns = ChannelOfferCampaign.prototype.listPublic
+  addCampaign = ChannelOfferCampaign.prototype.add
+  bulkAddCampaigns = ChannelOfferCampaign.prototype.add
+  removeCampaign = ChannelOfferCampaign.prototype.remove
+
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/public/offers/:offer_uuid/up_sells/:offer_uuid',
@@ -739,26 +686,6 @@ export class ChannelOffer extends ApiClass {
   // }
 
   listPublicVariantsByHandle = ChannelOfferVariant.prototype.listPublicByHandle
-
-
-  // TODO validator
-  @Action({
-    method: 'GET',
-    route: 'channels/:channel_uuid/public/offers/:offer_uuid/campaigns',
-    validator: offer[ACTIONS.LIST_OFFERS]
-  })
-  listPublicCampaigns(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  @Action({
-    method: 'GET',
-    route: 'channels/:channel_uuid/public/offers/:offer_uuid/campaigns/:collection_uuid',
-    validator: offer[ACTIONS.LIST_OFFERS]
-  })
-  getPublicCampaign(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
 
 }
 
@@ -894,6 +821,92 @@ export class ChannelOfferVariant extends ApiClass {
     return this.request(req, data, validated)
   }
 }
+export class ChannelOfferCampaign extends ApiClass {
+  /**
+   * Get the Campaign an Offer is associated too by Offer and Collection ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns/:collection_uuid',
+    validator: offer[ACTIONS.GET_OFFER]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List the Campaigns an Offer is associated to by Offer ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  // TODO validator
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/campaigns',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  listPublic(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/public/offers/:offer_uuid/campaigns/:collection_uuid',
+    validator: offer[ACTIONS.LIST_OFFERS]
+  })
+  getPublic(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add an Offer to a Campaign
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns',
+    validator: offer[COMMANDS.ADD_OFFER_CAMPAIGN]
+  })
+  add(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Bulk Add Offer Campaigns
+   */
+  bulkAdd = this.add
+
+  /**
+   * Remove an Offer from a Campaign
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/campaigns/:collection_uuid',
+    validator: offer[COMMANDS.REMOVE_OFFER_CAMPAIGN]
+  })
+  remove(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
 
 export class ChannelPublicOffer extends ApiClass {
   get = ChannelOffer.prototype.getPublic
@@ -901,8 +914,8 @@ export class ChannelPublicOffer extends ApiClass {
   list = ChannelOffer.prototype.listPublic
   search = ChannelOffer.prototype.searchPublic
 
-  getCampaign = ChannelOffer.prototype.getPublicCampaign
-  listCampaigns = ChannelOffer.prototype.listPublicCampaigns
+  getCampaign = ChannelOfferCampaign.prototype.getPublic
+  listCampaigns = ChannelOfferCampaign.prototype.listPublic
 
   getUpSell = ChannelOffer.prototype.getPublicUpSell
   listUpSells = ChannelOffer.prototype.listPublicUpSells
@@ -983,6 +996,80 @@ export class ChannelOfferEvent extends ApiClass {
     // validator: offer[COMMANDS.CREATE_EVENT]
   })
   create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+
+
+export class ChannelOfferImage extends ApiClass {
+  /**
+   * List Offer's images
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/images',
+    // validator: offer[ACTIONS.LIST_OFFER_IMAGES]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List Offer's images
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/images/:image_uuid',
+    // validator: offer[ACTIONS.GET_OFFER_IMAGE]
+  })
+  @Paginate()
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add Offer's image
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/images',
+    // validator: offer[COMMANDS.CREATE_IMAGE]
+  })
+  add(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Add Multiple Offer Images
+   */
+  bulkAdd = this.add
+
+  /**
+   * Remove Offer's image
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/offers/:offer_uuid/images/:image_uuid',
+    // validator: offer[COMMANDS.CREATE_IMAGE]
+  })
+  remove(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 }

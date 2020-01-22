@@ -91,7 +91,9 @@ export {
 export {
   ChannelOffer,
   ChannelOfferVariant,
+  ChannelOfferCampaign,
   ChannelOfferEvent,
+  ChannelOfferImage,
   ChannelOfferUpload,
   ChannelOfferMetadataUpload,
 
