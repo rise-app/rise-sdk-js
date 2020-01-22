@@ -439,34 +439,11 @@ export class ChannelCustomer extends ApiClass {
     return this.request(req, data, validated)
   }
 
-  @Action({
-    method: 'GET',
-    route: 'channels/:channel_uuid/customers/:customer_uuid/campaigns',
-    validator: customer[ACTIONS.LIST_CUSTOMER_CAMPAIGNS]
-  })
-  @Paginate()
-  listCampaigns(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  @Command({
-    method: 'PUT',
-    route: 'channels/:channel_uuid/customers/:customer_uuid/campaigns',
-    validator: customer[COMMANDS.ADD_CUSTOMER_CAMPAIGN]
-  })
-  addCampaign(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  @Command({
-    method: 'DELETE',
-    route: 'channels/:channel_uuid/customers/:customer_uuid/campaigns/:collection_uuid',
-    validator: customer[COMMANDS.REMOVE_CUSTOMER_CAMPAIGN]
-  })
-  removeCampaign(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
+  getCampaign = ChannelCustomerCampaign.prototype.get
+  listCampaigns = ChannelCustomerCampaign.prototype.list
+  addCampaign = ChannelCustomerCampaign.prototype.add
+  bulkAddCampaigns = ChannelCustomerCampaign.prototype.add
+  removeCampaign = ChannelCustomerCampaign.prototype.remove
 
   /**********************************
    * PUBLIC
@@ -513,9 +490,48 @@ export class ChannelPublicCustomer extends ApiClass {
 }
 
 export class ChannelCustomerCampaign extends ApiClass {
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/campaigns/:collection_uuid',
+    validator: customer[ACTIONS.GET_CUSTOMER_CAMPAIGN]
+  })
+  @Paginate()
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/campaigns',
+    validator: customer[ACTIONS.LIST_CUSTOMER_CAMPAIGNS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/campaigns',
+    validator: customer[COMMANDS.ADD_CUSTOMER_CAMPAIGN]
+  })
+  add(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/customers/:customer_uuid/campaigns/:collection_uuid',
+    validator: customer[COMMANDS.REMOVE_CUSTOMER_CAMPAIGN]
+  })
+  remove(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
 }
 
 export class ChannelCustomerCart extends ApiClass {
+  // list = ChannelCustomer.prototype.listCarts
 }
 
 export class ChannelCustomerEvent extends ApiClass {
