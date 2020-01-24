@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.60](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.59...v1.0.0-alpha.60) (2020-01-24)
+
+
+### Bug Fixes
+
+* **channel:** fixes channel validators ([25e8a5d](https://github.com/rise-app/rise-sdk-js/commit/25e8a5d))
+
 ## [1.0.0-alpha.59](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.58...v1.0.0-alpha.59) (2020-01-22)
 
 
