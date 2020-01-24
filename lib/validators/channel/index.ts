@@ -4,19 +4,27 @@ import { COMMANDS, ACTIONS } from '../../enums'
 
 
 export const channel = {
-  'create': (data) => Utils.joiPromise(data, channelSchema.create),
-  'update': (data) => Utils.joiPromise(data, channelSchema.update),
-  'get': { params: (data) => Utils.joiPromise(data, channelSchema.get) },
-  'list': (data) => Utils.joiPromise(data, channelSchema.list),
+
+  // Commands
+  [COMMANDS.CREATE]: {
+    params: (data) => Utils.joiPromise(data, channelSchema.commands[COMMANDS.CREATE].params),
+    body: (data) => Utils.joiPromise(data, channelSchema.commands[COMMANDS.CREATE].body)
+  },
+  [COMMANDS.UPDATE]: {
+    params: (data) => Utils.joiPromise(data, channelSchema.commands[COMMANDS.UPDATE].params),
+    body: (data) => Utils.joiPromise(data, channelSchema.commands[COMMANDS.UPDATE].body)
+  },
 
   /**
-   * Get Feed
+   * Get Channel
    * @param data
    * @param req
    * @param validated
    */
   [ACTIONS.GET]: {
-    params: (data) => Utils.joiPromise(data, channelSchema.commands[ACTIONS.GET].params),
-    body: (data) => Utils.joiPromise(data, channelSchema.commands[ACTIONS.GET].body),
+    params: (data) => Utils.joiPromise(data, channelSchema.actions[ACTIONS.GET].params)
+  },
+  [ACTIONS.LIST]: {
+    params: (data) => Utils.joiPromise(data, channelSchema.actions[ACTIONS.LIST].params)
   },
 }

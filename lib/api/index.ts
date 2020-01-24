@@ -16,6 +16,10 @@ export {
   ChannelApplicationWebhook
 } from './channelApplication'
 
+export {
+  ChannelAnalytic
+} from './channelAnalytic'
+
 export { ChannelBillingModel } from './channelBillingModel'
 
 export {

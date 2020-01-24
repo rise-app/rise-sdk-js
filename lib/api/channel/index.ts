@@ -1,6 +1,8 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Paginate } from '../../metadata'
 import { channel } from '../../validators'
+import { ACTIONS, COMMANDS } from '../../enums'
+
 
 export class Channel extends ApiClass {
   /**
@@ -9,7 +11,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/channels', validator: channel.create })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/channels',
+    validator: channel[COMMANDS.CREATE]
+  })
   create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -20,7 +26,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid', validator: channel.update })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid',
+    validator: channel[COMMANDS.UPDATE]
+  })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -31,7 +41,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid', validator: channel.get})
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid',
+    validator: channel[ACTIONS.GET]
+  })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -42,7 +56,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels', validator: channel.list })
+  @Action({
+    method: 'GET',
+    route: 'channels',
+    validator: channel[ACTIONS.LIST]
+  })
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -53,27 +71,41 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/parent', validator: channel.get})
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/parent',
+    validator: channel[ACTIONS.GET]
+  })
   getParent(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * List a Given Channel's Descendant Channels
    * @param data
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/descendants', validator: channel.list })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants',
+    validator: channel[ACTIONS.LIST]
+  })
   listDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * List a Given Channel's Children Channels
    * @param data
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/children', validator: channel.list })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/children',
+    validator: channel[ACTIONS.LIST]
+  })
   listChildren(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -84,7 +116,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/siblings', validator: channel.list })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/siblings',
+    validator: channel[ACTIONS.LIST]
+  })
   listSiblings(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -95,7 +131,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/ancestors', validator: channel.list })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/ancestors',
+    validator: channel[ACTIONS.LIST]
+  })
   listAncestors(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -106,7 +146,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/address_nexus', validator: channel.get })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/address_nexus',
+    validator: channel[ACTIONS.GET]
+  })
   getAddressNexus(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -117,7 +161,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/address_nexus', validator: channel.update })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/address_nexus',
+    validator: channel[COMMANDS.UPDATE]
+  })
   setAddressNexus(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -128,7 +176,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/customer_primary', validator: channel.get })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/customer_primary',
+    validator: channel[ACTIONS.GET]
+  })
   getPrimaryCustomer(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -139,7 +191,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/customer_primary', validator: channel.update })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/customer_primary',
+    validator: channel[COMMANDS.UPDATE]
+  })
   setPrimaryCustomer(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -150,7 +206,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/vendor_primary', validator: channel.get })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/vendor_primary',
+    validator: channel[ACTIONS.GET]
+  })
   getPrimaryVendor(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -161,7 +221,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/vendor_primary', validator: channel.update })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/vendor_primary',
+    validator: channel[COMMANDS.UPDATE]
+  })
   setPrimaryVendor(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -172,7 +236,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/gateway_primary', validator: channel.get })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/gateway_primary',
+    validator: channel[ACTIONS.GET]
+  })
   getPrimaryGateway(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -183,7 +251,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/gateway_primary', validator: channel.update })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/gateway_primary',
+    validator: channel[COMMANDS.UPDATE]
+  })
   setPrimaryGateway(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -194,7 +266,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/fulfillment_service_primary', validator: channel.get })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/fulfillment_service_primary',
+    validator: channel[ACTIONS.GET]
+  })
   getPrimaryFulfillmentService(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -205,7 +281,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/fulfillment_service_primary', validator: channel.update })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/fulfillment_service_primary',
+    validator: channel[COMMANDS.UPDATE]
+  })
   setPrimaryFulfillmentService(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -217,7 +297,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/feed_primary', validator: channel.get })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/feed_primary',
+    validator: channel[ACTIONS.GET]
+  })
   getPrimaryFeed(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -228,7 +312,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/feed_primary', validator: channel.update })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/feed_primary',
+    validator: channel[COMMANDS.UPDATE]
+  })
   setPrimaryFeed(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -239,7 +327,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/rules_shipping', validator: channel.list })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/rules_shipping',
+    validator: channel[ACTIONS.LIST]
+  })
   listShippingRules(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -250,7 +342,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/rules_shipping/:rule_uuid', validator: channel.get })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/rules_shipping/:rule_uuid',
+    validator: channel[ACTIONS.GET]
+  })
   getShippingRule(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -261,7 +357,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/rules_taxes', validator: channel.list })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/rules_taxes',
+    validator: channel[ACTIONS.LIST]
+  })
   listTaxRules(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -272,7 +372,11 @@ export class Channel extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/rules_taxes/:rule_uuid', validator: channel.get })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/rules_taxes/:rule_uuid',
+    validator: channel[ACTIONS.GET]
+  })
   getTaxRule(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -303,6 +407,8 @@ export class Channel extends ApiClass {
   getEvent = ChannelEvent.prototype.get
 
   listEvents = ChannelEvent.prototype.list
+
+
 }
 
 
@@ -313,10 +419,11 @@ export class ChannelEvent extends ApiClass {
    * @param req
    * @param validated
    */
+  // TODO validator
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/events/:event_uuid',
-    validator: channel.get
+    validator: channel[ACTIONS.GET]
   })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -328,10 +435,11 @@ export class ChannelEvent extends ApiClass {
    * @param req
    * @param validated
    */
+  // TODO validator
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/events',
-    validator: channel.list
+    validator: channel[ACTIONS.LIST]
   })
   @Paginate()
   list(data, req?, validated?) {
@@ -346,10 +454,11 @@ export class ChannelPublic extends ApiClass {
    * @param req
    * @param validated
    */
+  // TODO validator
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/public',
-    validator: channel.get
+    validator: channel[ACTIONS.GET]
   })
   get(data, req?, validated?) {
     return this.request(req, data, validated)

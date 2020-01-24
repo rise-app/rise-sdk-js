@@ -10,7 +10,11 @@ export class ChannelApplication extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/applications/subscribe', validator: application[ACTIONS.SUBSCRIBE_APPLICATION] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/applications/subscribe',
+    validator: application[ACTIONS.SUBSCRIBE_APPLICATION]
+  })
   subscribe(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -46,6 +50,7 @@ export class ChannelApplication extends ApiClass {
     route: 'channels/:channel_uuid/applications',
     validator: application[ACTIONS.LIST_APPLICATIONS]
   })
+  @Paginate()
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -61,6 +66,7 @@ export class ChannelApplication extends ApiClass {
     route: 'channels/:channel_uuid/search/applications',
     validator: application[ACTIONS.LIST_APPLICATIONS]
   })
+  @Paginate()
   search(data, req?, validated?) {
     return this.request(req, data, validated)
   }

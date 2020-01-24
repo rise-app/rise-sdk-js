@@ -74,6 +74,8 @@ export class RiSE {
   public channelApplicationTransformer: api.ChannelApplicationTransformer
   public channelApplicationWebhook: api.ChannelApplicationWebhook
 
+  public channelAnalytic: api.ChannelAnalytic
+
   public channelBillingModel: api.ChannelBillingModel
 
   public channelCart: api.ChannelCart
@@ -281,6 +283,8 @@ export class RiSE {
     this.channelApplicationSocket = new api.ChannelApplicationSocket(this, this.globals)
     this.channelApplicationTransformer = new api.ChannelApplicationTransformer(this, this.globals)
     this.channelApplicationWebhook = new api.ChannelApplicationWebhook(this, this.globals)
+
+    this.channelAnalytic = new api.ChannelAnalytic(this, this.globals)
 
     this.channelBillingModel = new api.ChannelBillingModel(this, this.globals)
 

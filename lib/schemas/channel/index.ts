@@ -1,4 +1,5 @@
 import joi from 'joi'
+import { ACTIONS, COMMANDS } from '../../enums'
 const uuid = joi.string().guid()
 
 export const channel = joi.object().keys({
@@ -8,23 +9,33 @@ export const channel = joi.object().keys({
   // published: joi.boolean()
 })
 
-export const commands = {}
+export const commands = {
+  [COMMANDS.CREATE]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown(),
+    body: joi.object().keys({
+    }).unknown()
+  },
+  [COMMANDS.UPDATE]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown(),
+    body: joi.object().keys({
+    }).unknown()
+  },
+}
 
-export const actions = {}
+export const actions = {
+  [ACTIONS.GET]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown()
+  },
 
-export const create = joi.object().keys({
-  channel_uuid: uuid.required()
-}).unknown()
-
-export const update = joi.object().keys({
-  channel_uuid: uuid.required(),
-}).unknown()
-
-
-export const get = joi.object().keys({
-  channel_uuid: uuid.required()
-}).unknown()
-
-export const list = joi.object().keys({
-  // channel_uuid: uuid
-}).unknown()
+  [ACTIONS.LIST]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required()
+    }).unknown()
+  },
+}
