@@ -80,6 +80,8 @@ export class ApplicationClass extends EventEmitter {
       this.handler({ pattern: 'error', msg })
     })
 
+    this.rise.emit('api:connected')
+
     return this.client
   }
 
@@ -149,6 +151,6 @@ export class ApplicationClass extends EventEmitter {
 
   handler(event) {
     console.log('brk handler', event)
-    // this.emit(event.pattern, event)
+    this.emit(event.pattern, event)
   }
 }

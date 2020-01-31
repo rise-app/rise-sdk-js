@@ -308,8 +308,43 @@ describe('# RiSE Channel Channel API', () => {
         // channel_uuid: channel_uuid
       })
         .then(_res => {
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+  })
+
+  describe('# RiSE Channel Mock Tests', () => {
+
+    it('### Set Primary Fulfillment Service', (done) => {
+      rise.mock = true
+      rise.channel.setPrimaryFulfillmentService({
+        service_uuid: '000000000000000000000000000',
+      })
+        .then(_res => {
+          console.log('BRK MOCK', _res)
+          // assert.equal(_res.list, 'Channel')
+
+          done()
+        })
+        .catch(err => {
+          done(err)
+        })
+    })
+    it('### (MOCK) Get Primary Fulfillment Service', (done) => {
+      rise.mock = true
+
+      rise.channel.getPrimaryFulfillmentService({
+        // channel_uuid: channel_uuid
+      })
+        .then(_res => {
           // console.log('BRK', _res)
           // assert.equal(_res.list, 'Channel')
+          console.log('BRK MOCK', _res)
 
           done()
         })

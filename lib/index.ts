@@ -4,6 +4,10 @@ import requestPromise from 'request-promise-native'
 import { EVENTS as _EVENTS, ACTIONS as _ACTIONS, COMMANDS as _COMMANDS } from './enums'
 import { ApplicationClass } from './ApplicationClass'
 import { ApplicationBrowserClass } from './ApplicationBrowserClass'
+import { EventEmitter } from 'events'
+import { get } from 'lodash'
+import { makeMockReq, makeMockRes } from './mock'
+
 
 // Export the Enums for developer use
 export const COMMANDS = _COMMANDS
@@ -53,11 +57,12 @@ export interface RiSEConfig {
     query?: {
       [key: string]: any
     }
-  }
+  },
+  mock: boolean
 }
 
 // Export the Core RiSE class
-export class RiSE {
+export class RiSE extends EventEmitter {
 
   // APIs
   public channel: api.Channel
@@ -197,10 +202,17 @@ export class RiSE {
       beta: false,
       production: false,
       api_version: 1,
-      sockets: null
+      sockets: null,
+      mock: false
     }
   ) {
+    // Call the super of the event emitter
+    super()
 
+    // If configured as mock mode, then set mock to true
+    // if (config.mock) {
+    //   config.mock = true
+    // }
     // Set the request middleware to default to request-promise-native if not supplied
     if (!config.request_middleware) {
       config.request_middleware = requestPromise
@@ -483,6 +495,35 @@ export class RiSE {
     this.config.request_middleware = val
   }
 
+
+  get mock() {
+    return this.config.mock
+  }
+
+  set mock(value: boolean) {
+    this.config.mock = value
+    return
+  }
+
+  /**
+   * Make a Mock request
+   * @param _req
+   * @param req
+   * @private
+   */
+  private _mockRequest(_req, req) {
+    const func = get(api.mock, req.name)
+
+    return new Promise((resolve, reject) => {
+      if (func) {
+        return resolve(func(req))
+      }
+      const [__req, _res] = [makeMockReq(req), makeMockRes({req: req})]
+      //
+      return resolve(_res)
+    })
+  }
+
   get _request_timeout() {
     return this.config.request_timeout
   }
@@ -514,6 +555,15 @@ export class RiSE {
         this.cart = body.data.ChannelCart
         this.token = body.token
         this.session = body.session
+
+        // Emit that the application is authenticated
+        this.emit('api:authenticated', {
+          user: this.user,
+          cart: this.cart,
+          token: this.token,
+          session: this.session
+        })
+
         return body
       })
   }
@@ -730,8 +780,17 @@ export class RiSE {
       this.log.time(`RiSE req ${name}`)
     }
 
-    // Make the request and return a Promise
-    return this._request(_req)
+    return Promise.resolve()
+      .then(() => {
+
+        if (!this.mock) {
+          // Make the request and return a Promise
+          return this._request(_req)
+        }
+        else {
+          return this._mockRequest(_req, req)
+        }
+      })
       .then((res) => {
         // End the console logger
         if ((this.config.sandbox || this.config.beta) && (this.log && this.log.timeEnd)) {

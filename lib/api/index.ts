@@ -163,3 +163,7 @@ export {
   ChannelVendorProduct,
   ChannelVendorProductVariant
 } from './channelVendor'
+
+// MOCK
+import * as mock from './mock'
+export { mock }
