@@ -8,7 +8,7 @@ export const commands = {
       channel_uuid: uuid.required(),
     }).unknown(),
     body: joi.object().keys({
-      product_uuid: uuid.required(),
+      product_uuid: uuid,
     }).unknown()
   },
 
