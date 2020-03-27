@@ -1,4 +1,4 @@
-import joi from 'joi'
+import joi from '@hapi/joi'
 const uuid = joi.string().guid()
 
 import { COMMANDS, ACTIONS } from '../../enums'
@@ -37,6 +37,14 @@ export const commands = {
   },
 
   [COMMANDS.UPDATE_SESSION_USER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+    }).unknown()
+  },
+
+  [COMMANDS.CHANGE_SESSION_CART]: {
     params: joi.object().keys({
       channel_uuid: uuid.required(),
     }).unknown(),
@@ -94,6 +102,13 @@ export const commands = {
     }).unknown()
   },
 
+  [COMMANDS.CHANGE_SESSION_CUSTOMER]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+    }).unknown()
+  },
   [COMMANDS.UPDATE_SESSION_CUSTOMER]: {
     params: joi.object().keys({
       channel_uuid: uuid.required(),

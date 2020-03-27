@@ -3,13 +3,12 @@ import { Command, Action, Paginate } from '../../metadata'
 import { gateway } from '../../validators'
 import { ACTIONS, COMMANDS, EVENTS } from '../../enums'
 
+
+/***********************************
+ * Gateway
+ ***********************************/
+
 export class ChannelGateway extends ApiClass {
-
-
-  /***********************************
-   * Gateway
-   ***********************************/
-
   /**
    * Get a Gateway by ID
    * @param data
@@ -232,9 +231,139 @@ export class ChannelPublicGateway extends ApiClass {
 }
 
 export class ChannelGatewayAccount extends ApiClass {
+
+  /**
+   * Create a Gateway Account
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO Validator
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/accounts',
+    validator: gateway[COMMANDS.CREATE_GATEWAY]
+  })
+  create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Update a Gateway Account
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO Validator
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/accounts/:account_uuid',
+    validator: gateway[COMMANDS.UPDATE_GATEWAY]
+  })
+  update(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Gateway Account by ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/accounts/:accounts_uuid',
+    validator: gateway[ACTIONS.GET_GATEWAY]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List Gateway's Accounts
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/accounts',
+    validator: gateway[ACTIONS.LIST_GATEWAYS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
 }
 
 export class ChannelGatewayAccountSource extends ApiClass {
+  /**
+   * Create a Gateway Account Source
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO Validator
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/accounts/:account_uuid/sources',
+    validator: gateway[COMMANDS.CREATE_GATEWAY]
+  })
+  create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Update a Gateway Account Source
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO Validator
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/accounts/:account_uuid/sources/:source_uuid',
+    validator: gateway[COMMANDS.UPDATE_GATEWAY]
+  })
+  update(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+
+  /**
+   * Get a Gateway's Account's Source by ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/accounts/:accounts_uuid/sources/:source_uuid',
+    validator: gateway[ACTIONS.GET_GATEWAY]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List Gateway's Account's Sources
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/accounts/:account_uuid/sources',
+    validator: gateway[ACTIONS.LIST_GATEWAYS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
 }
 
 export class ChannelGatewayEvent extends ApiClass {
@@ -273,9 +402,76 @@ export class ChannelGatewayEvent extends ApiClass {
 export class ChannelGatewayForm extends ApiClass {
 }
 
+
+export class ChannelGatewayReceiver extends ApiClass {
+  /**
+   * Create a Gateway Receiver
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO Validator
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/receivers',
+    validator: gateway[COMMANDS.CREATE_GATEWAY]
+  })
+  create(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Update a Gateway Receiver
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO Validator
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/receivers/:receiver_uuid',
+    validator: gateway[COMMANDS.UPDATE_GATEWAY]
+  })
+  update(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+  /**
+   * Get a Gateway Receiver by ID
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/receivers/:receivers_uuid',
+    validator: gateway[ACTIONS.GET_GATEWAY]
+  })
+  get(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * List Gateway's Receivers
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/gateways/:gateway_uuid/receivers',
+    validator: gateway[ACTIONS.LIST_GATEWAYS]
+  })
+  @Paginate()
+  list(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+}
+
+/**********************************
+ * PUBLIC ENDPOINTS
+ **********************************/
 export class ChannelPublicGatewayForm extends ApiClass {
 }
 
-
-export class ChannelGatewayReceiver extends ApiClass {
-}

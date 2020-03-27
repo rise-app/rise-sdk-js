@@ -35,6 +35,7 @@ An Action is a request made that does not modify anything eg, retrieve a user.
 
 ### Getting started
 #### Connecting As an application
+You can connect your applicatoin on the backend by authenticating it and then updating your application state with the token/session provided. This is useful when you are doing some grunt work.
 
 ```js
 // Create a new instance
@@ -44,15 +45,39 @@ const rise = new RiSE({
   private_key: <private_key>
 })
 
+// Store the state specific token and session
+let applicationToken, applicationSession
+
 // Authenticate for later requests by the API
 rise.authenticateApiUser(
   <channel_uuid>,
-  <adminIdentifier>,
-  <adminPassword>
+  <applicationIdentifier>,
+  <applicationPassword>
 )
   .then(res => {
-    <adminToken> = res.token
-    adminSession = res.session
+    applicationToken = res.token
+    applicationSession = res.session
+  })
+  .catch(err => console.log)
+})
+
+```
+
+#### Connecting for one request
+Unlike connecting with an application, you should probably forward your user's information to make the request. This is better for analytics and allows for information to be specific for the user requesting information.
+
+```js
+const rise = new RiSE({
+  sandbox: true,
+  public_key: <public_key>
+})
+
+rise.<endpoint>.<method>({}, {
+  session: <session>,
+  token: <token>
+})
+  .then(res => {
+
   })
   .catch(err => console.log)
 })
@@ -60,6 +85,7 @@ rise.authenticateApiUser(
 ```
 
 #### Connecting With Sockets
+RiSE also let's you do everything through 2-way sockets either in a browser or your node.js application.
 
 ```js
 import sockets from '@rise/sdk-js-sockets'
@@ -78,7 +104,47 @@ const rise = new RiSE({
 # Documentation
 A quick start documentation, see the full documentation here.
 
-## ChannelUser
+## Responses
+Every response from RiSE will include certain properties:
+
+`data` : <Object> An array of objects or an object
+
+Occasionally, the responses will also include:
+
+`token`: <String> the JWT token to use on the next request
+`session`: <String> an optional session uuid to use on the next request if no token was provided.
+`url` : <String> the canonical endpoint to retrieve the obejct or list again
+`urls` : <String[]> the canonical endpoints to retrieve the objects again
+`populated`: <Object> an object of properties that were expanded in the response
+
+If the Request was a command, the response will be an event and will also include:
+
+`event_type`: <String> the event name that was generated from the command.
+
+If the Request was an action, the response will also include:
+
+`action`: <String> the action performed
+
+If the Request was for a single object, the response will include:
+
+`object`: <String> the type of the object in the data attribute
+
+If the Request was for multiple objects, the response will include:
+
+`includes`: <String[]> the types of the object in the data attribute
+
+If the Request was for a list of like objects, the response will include:
+
+`list`: <String> the type of like objects in the data attribute 
+`limit`: <Number> the number of potential objects in the data attribute
+`offset`: <Number> the number from 0 of the total objects in a list
+`total`: <Number> total amount of objects that meets the query criteria
+`query`: <Object> calculated query
+`sort`: <Object> describing how the list is sorted
+
+If this is slightly confusing, don't worry, as each response will always have a `data` property with what you'd typically expect, the other properties are syntactical sugar to be more pragmatic with the responses.
+
+## Example of using ChannelUser
 
 ### Commands
 
@@ -92,9 +158,55 @@ rise.channelUser.create({
     name_last: 'Last',
     username: 'uniqueusername',
     email: 'unique_email@example.com'
-}, {})
+}, {
+// If you used the authenticateApiUser endpoint, then you don't need to specifiy the token or session, since that will be added to the request automatically.
+  token: <token>,
+  session: <session>, // if you have an auth token, session isn't required, as that is built into the token
+})
   .then((_res) => {
      user = _res.data
+    // _res.event_type
+    // _res.object
+    // _res.url
+    // ? _res.session
+    // ? _res.token
+  })
+  .catch((err) => {
+    // Handle Error
+  })
+```
+
+Alternatively, you can pass parameters, query, body, and headers.
+
+```js
+let user
+rise.channelUser.create({
+  name_first: 'First',
+  name_last: 'Last',
+  username: 'uniqueusername', // RiSE will generate one if this is blank
+  email: 'unique_email@example.com' // Required for every user
+}, {
+  token: <token>,
+  session: <session>,
+  params: {
+    channel_uuid: <channel_uuid>,
+  },
+  query: {
+    attributes: ['user_uuid', 'username', 'roles'],
+    populate: ['roles']
+  },
+  headers: {
+    'x-application-my-app-header': 'any header with an "x-application-*" can be used here and will be included in the header of requests made to 3rd party apps passed through RiSE eg. "x-application-my-app-header" will pass "my-app-header" to the third party.'
+  }
+})
+  .then((_res) => {
+     user = _res.data
+
+    // _res.event_type
+    // _res.object
+    // _res.url
+    // ? _res.session
+    // ? _res.token
   })
   .catch((err) => {
     // Handle Error
@@ -106,9 +218,38 @@ rise.channelUser.create({
 Get a User by ID
 ```js
 rise.channelUser.get({
+  channel_uuid: <channel_uuid>,
+  user_uuid: user.user_uuid
+}, {
+
+})
+.then((_res) => {
+  user = _res.data
+  
+  // If the session on RiSE changed, the it will be returned in the response
+  if (_res.session) {
+    session = _res.session
+  }
+  // If the token refreshed on RiSE changed, the it will be returned in the response
+  if (_res.token) {
+    token = _res.token
+  }
+
+})
+.catch((err) => {
+  // Handle Error
+})
+```
+
+alternatively, Get a User by ID using params
+```js
+rise.channelUser.get({}, {
+  token: <token>,
+  params: {
     channel_uuid: <channel_uuid>,
     user_uuid: user.user_uuid
-}, {})
+  }
+})
 .then((_res) => {
   user = _res.data
 })

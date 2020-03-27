@@ -1,4 +1,4 @@
-import joi from 'joi'
+import joi from '@hapi/joi'
 
 export const params = joi.object().keys({
 

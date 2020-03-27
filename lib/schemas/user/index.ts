@@ -1,4 +1,4 @@
-import joi from 'joi'
+import joi from '@hapi/joi'
 import { ACTIONS, COMMANDS } from '../../enums'
 
 const uuid = joi.string().guid()

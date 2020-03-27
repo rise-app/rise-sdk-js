@@ -10,7 +10,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/token', validator: auth[ACTIONS.GET_SESSION_USER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/token',
+    validator: auth[ACTIONS.GET_SESSION_USER]
+  })
   validateToken(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -21,7 +25,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session', validator: auth[ACTIONS.GET_SESSION_USER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session',
+    validator: auth[ACTIONS.GET_SESSION_USER]
+  })
   session(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -32,10 +40,30 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart', validator: auth[ACTIONS.GET_SESSION_CART] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/cart',
+    validator: auth[ACTIONS.GET_SESSION_CART]
+  })
   sessionCart(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
+  /**
+   * Change the Current Session's Cart to a different Cart that the Session's User can use
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/cart_current',
+    validator: auth[COMMANDS.CHANGE_SESSION_CART]
+  })
+  changeSessionCart(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
   /**
    * Update Current Session's Cart
    * @param data
@@ -43,10 +71,15 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart', validator: auth[COMMANDS.UPDATE_SESSION_CART] })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/cart',
+    validator: auth[COMMANDS.UPDATE_SESSION_CART]
+  })
   updateSessionCart(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * List Current Session's Cart's Items
    * @param data
@@ -54,7 +87,11 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/items', validator: auth[ACTIONS.LIST_SESSION_CART_ITEMS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/cart/items',
+    validator: auth[ACTIONS.LIST_SESSION_CART_ITEMS]
+  })
   sessionCartItems(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -65,7 +102,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/session/cart/items', validator: auth[COMMANDS.CREATE_SESSION_CART_ITEM] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/auth/session/cart/items',
+    validator: auth[COMMANDS.CREATE_SESSION_CART_ITEM]
+  })
   createSessionCartItems(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -76,7 +117,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/items/:item_uuid', validator: auth[ACTIONS.GET_SESSION_CART_ITEM] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/cart/items/:item_uuid',
+    validator: auth[ACTIONS.GET_SESSION_CART_ITEM]
+  })
   getSessionCartItem(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -87,7 +132,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/items/:item_uuid', validator: auth[COMMANDS.UPDATE_SESSION_CART_ITEM] })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/cart/items/:item_uuid',
+    validator: auth[COMMANDS.UPDATE_SESSION_CART_ITEM]
+  })
   updateSessionCartItem(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -98,7 +147,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'DELETE', route: 'channels/:channel_uuid/auth/session/cart/items/:item_uuid', validator: auth[COMMANDS.REMOVE_SESSION_CART_ITEM] })
+  @Command({
+    method: 'DELETE',
+    route: 'channels/:channel_uuid/auth/session/cart/items/:item_uuid',
+    validator: auth[COMMANDS.REMOVE_SESSION_CART_ITEM]
+  })
   removeSessionCartItem(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -110,7 +163,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/address_shipping', validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/cart/address_shipping',
+    validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING]
+  })
   sessionCartShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -123,7 +180,11 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/address_shipping', validator: auth[COMMANDS.SET_SESSION_CART_SHIPPING] })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/cart/address_shipping',
+    validator: auth[COMMANDS.SET_SESSION_CART_SHIPPING]
+  })
   setSessionCartShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -135,7 +196,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/address_billing', validator: auth[ACTIONS.GET_SESSION_CART_BILLING] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/cart/address_billing',
+    validator: auth[ACTIONS.GET_SESSION_CART_BILLING]
+  })
   sessionCartBilling(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -147,7 +212,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/address_billing', validator: auth[COMMANDS.SET_SESSION_CART_BILLING] })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/cart/address_billing',
+    validator: auth[COMMANDS.SET_SESSION_CART_BILLING]
+  })
   setSessionCartBilling(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -158,17 +227,26 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/cart/payment_details', validator: auth[ACTIONS.GET_SESSION_CART_PAYMENT] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/cart/payment_details',
+    validator: auth[ACTIONS.GET_SESSION_CART_PAYMENT]
+  })
   sessionCartPayment(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * Set Current Session's Cart's Payment Details
    * @param data
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/payment_details', validator: auth[COMMANDS.SET_SESSION_CART_PAYMENT] })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/cart/payment_details',
+    validator: auth[COMMANDS.SET_SESSION_CART_PAYMENT]
+  })
   setSessionCartPayment(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -180,7 +258,11 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/cart/checkout', validator: auth[COMMANDS.CHECKOUT_SESSION_CART] })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/cart/checkout',
+    validator: auth[COMMANDS.CHECKOUT_SESSION_CART]
+  })
   checkoutSessionCart(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -191,8 +273,27 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer', validator: auth[ACTIONS.GET_SESSION_CUSTOMER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/customer',
+    validator: auth[ACTIONS.GET_SESSION_CUSTOMER]
+  })
   sessionCustomer(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Change the Current Session's Customer to a different Customer that the Session's User is allowed to use
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/customer_current',
+    validator: auth[COMMANDS.CHANGE_SESSION_CUSTOMER]
+  })
+  changeSessionCustomer(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
@@ -202,7 +303,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/customer', validator: auth[COMMANDS.UPDATE_SESSION_CUSTOMER] })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/customer',
+    validator: auth[COMMANDS.UPDATE_SESSION_CUSTOMER]
+  })
   updateSessionCustomer(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -213,7 +318,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/address_shipping', validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/customer/address_shipping',
+    validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING]
+  })
   sessionCustomerShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -224,7 +333,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/customer/address_shipping', validator: auth[COMMANDS.SET_SESSION_CART_SHIPPING] })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/customer/address_shipping',
+    validator: auth[COMMANDS.SET_SESSION_CART_SHIPPING]
+  })
   setSessionCustomerShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -235,7 +348,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/address_billing', validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/customer/address_billing',
+    validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING]
+  })
   sessionCustomerBilling(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -246,7 +363,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/customer/address_billing', validator: auth[COMMANDS.SET_SESSION_CART_SHIPPING] })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/customer/address_billing',
+    validator: auth[COMMANDS.SET_SESSION_CART_SHIPPING]
+  })
   setSessionCustomerBilling(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -257,7 +378,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/carts', validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_CARTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/customer/carts',
+    validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_CARTS]
+  })
   sessionCustomerCarts(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -268,7 +393,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/feeds', validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_FEEDS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/customer/feeds',
+    validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_FEEDS]
+  })
   sessionCustomerFeeds(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -279,7 +408,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/accounts', validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_ACCOUNTS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/customer/accounts',
+    validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_ACCOUNTS]
+  })
   sessionCustomerGatewayAccounts(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -290,17 +423,26 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/sources', validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_SOURCES] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/customer/sources',
+    validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_SOURCES]
+  })
   sessionCustomerGatewaySources(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
   /**
    * List Current Session's Customer's Previous Orders
    * @param data
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/orders', validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_ORDERS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/customer/orders',
+    validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_ORDERS]
+  })
   sessionCustomerOrders(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -311,7 +453,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/orders/:order_uuid', validator: auth[ACTIONS.GET_SESSION_CUSTOMER_ORDER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/customer/orders/:order_uuid',
+    validator: auth[ACTIONS.GET_SESSION_CUSTOMER_ORDER]
+  })
   getSessionCustomerOrder(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -322,7 +468,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/orders/:order_uuid/items', validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_ORDER_ITEMS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/customer/orders/:order_uuid/items',
+    validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_ORDER_ITEMS]
+  })
   listSessionCustomerOrderItems(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -334,7 +484,11 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/customer/users', validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_USERS] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/customer/users',
+    validator: auth[ACTIONS.LIST_SESSION_CUSTOMER_USERS]
+  })
   sessionCustomerUsers(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -346,7 +500,11 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/channel', validator: user[ACTIONS.GET_USER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/channel',
+    validator: user[ACTIONS.GET_USER]
+  })
   sessionChannel(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -358,7 +516,11 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/channels', validator: user[ACTIONS.GET_USER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/channels',
+    validator: user[ACTIONS.GET_USER]
+  })
   sessionChannels(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -370,7 +532,11 @@ export class ChannelAuth extends ApiClass {
    * @param validated
    */
   // TODO VALIDATOR
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/roles', validator: auth[ACTIONS.LIST_SESSION_ROLES] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/roles',
+    validator: auth[ACTIONS.LIST_SESSION_ROLES]
+  })
   sessionRoles(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -381,7 +547,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/user', validator: auth[ACTIONS.GET_SESSION_USER] })
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/auth/session/user',
+    validator: auth[ACTIONS.GET_SESSION_USER]
+  })
   sessionUser(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -392,7 +562,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/local/register', validator: auth[COMMANDS.REGISTER_USER] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/auth/local/register',
+    validator: auth[COMMANDS.REGISTER_USER]
+  })
   register(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -403,7 +577,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/local', validator: auth[COMMANDS.LOGIN_USER] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/auth/local',
+    validator: auth[COMMANDS.LOGIN_USER]
+  })
   login(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -414,7 +592,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/logout', validator: auth[COMMANDS.LOGOUT_USER] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/auth/logout',
+    validator: auth[COMMANDS.LOGOUT_USER]
+  })
   logout(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -425,7 +607,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/recover', validator: auth[COMMANDS.SET_RECOVERY]})
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/auth/recover',
+    validator: auth[COMMANDS.SET_RECOVERY]
+  })
   setRecovery(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -436,7 +622,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'POST', route: 'channels/:channel_uuid/auth/local/recover', validator: auth[COMMANDS.RECOVER] })
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/auth/local/recover',
+    validator: auth[COMMANDS.RECOVER]
+  })
   recover(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -447,7 +637,11 @@ export class ChannelAuth extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({ method: 'PUT', route: 'channels/:channel_uuid/auth/session/user', validator: auth[COMMANDS.UPDATE_SESSION_USER] })
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/auth/session/user',
+    validator: auth[COMMANDS.UPDATE_SESSION_USER]
+  })
   updateSessionUser(data, req?, validated?) {
     return this.request(req, data, validated)
   }

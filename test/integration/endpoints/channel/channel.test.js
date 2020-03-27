@@ -323,7 +323,7 @@ describe('# RiSE Channel Channel API', () => {
     it('### Set Primary Fulfillment Service', (done) => {
       rise.mock = true
       rise.channel.setPrimaryFulfillmentService({
-        service_uuid: '000000000000000000000000000',
+        service_uuid: '00000000-0000-0000-0000-000000000000',
       })
         .then(_res => {
           console.log('BRK MOCK', _res)
