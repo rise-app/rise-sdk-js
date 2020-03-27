@@ -26,6 +26,7 @@ export const AUTH_ACTIONS = {
 export const AUTH_COMMANDS = {
   'CHECKOUT_SESSION_CART': 'checkout.channel.session.cart',
   'UPDATE_SESSION_CART': 'update.channel.session.cart',
+  'CHANGE_SESSION_CART': 'change.channel.session.cart',
   'SET_SESSION_CART_BILLING': 'set.channel.session.cart.address_billing',
   'SET_SESSION_CART_SHIPPING': 'set.channel.session.cart.address_shipping',
   'SET_SESSION_CART_PAYMENT': 'set.channel.session.cart.payment_details',
@@ -34,6 +35,7 @@ export const AUTH_COMMANDS = {
   'REMOVE_SESSION_CART_ITEM': 'remove.channel.session.cart.item',
 
   'UPDATE_SESSION_CUSTOMER': 'update.channel.session.customer',
+  'CHANGE_SESSION_CUSTOMER': 'change.channel.session.customer',
   'SET_SESSION_CUSTOMER_BILLING': 'srt.channel.session.customer.address_billing',
   'SET_SESSION_CUSTOMER_SHIPPING': 'srt.channel.session.customer.address_shipping',
 

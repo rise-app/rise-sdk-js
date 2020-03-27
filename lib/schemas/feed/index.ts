@@ -1,4 +1,4 @@
-import joi from 'joi'
+import joi from '@hapi/joi'
 import { COMMANDS, ACTIONS } from '../../enums'
 
 export const channel_uuid = joi.string().uuid()

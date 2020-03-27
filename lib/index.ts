@@ -22,7 +22,9 @@ export interface RiSEResponse {
   includes?: any
   list?: string
   object?: string
+  objects?: string[]
   data?: {[key: string]: any} | any[]
+  annotations?: {[key: string]: any} | any[]
   url?: string
   urls?: {[key: string]: any} | any[]
   offset?: number
@@ -193,8 +195,17 @@ export class RiSE extends EventEmitter {
 
   public globals: RiSEConfig['globals'] = {}
 
+  // Credentials
   public _cart
+  public _customer
   public _user
+
+  private _isApplicationAuthentication = false
+
+  // Middleware
+  private _middleware = new Map()
+  // Afterware
+  private _afterware = new Map()
 
   constructor(
     private config: RiSEConfig = {
@@ -475,6 +486,16 @@ export class RiSE extends EventEmitter {
   }
 
   /**
+   * API CUSTOMER WHO LOGGED IN, Customer
+   */
+  get customer() {
+    return this._customer
+  }
+  set customer(val) {
+    this._customer = val
+  }
+
+  /**
    * API USER WHO LOGGED IN, Cart
    */
   get cart() {
@@ -551,21 +572,77 @@ export class RiSE extends EventEmitter {
       password: password || this.config.password
     })
       .then((body: {[key: string]: any} = {}) => {
-        this.user = body.data.ChannelUser
-        this.cart = body.data.ChannelCart
-        this.token = body.token
-        this.session = body.session
 
-        // Emit that the application is authenticated
-        this.emit('api:authenticated', {
-          user: this.user,
-          cart: this.cart,
-          token: this.token,
-          session: this.session
+        this._isApplicationAuthentication = true
+
+        this.setApiUserCredentials({
+          user: body.data.ChannelUser,
+          cart: body.data.ChannelCart,
+          customer: body.data.ChannelCustomer,
+          token: body.token,
+          session: body.session
         })
 
         return body
       })
+  }
+
+  setApiUserCredentials({user, cart, customer, token, session}: { user?, cart?, customer?, token?, session?}) {
+
+    if (user) {
+      this.user = user
+    }
+    if (cart) {
+      this.cart = cart
+    }
+    if (customer) {
+      this.customer = customer
+    }
+    if (token) {
+      this.token = token
+    }
+    if (session) {
+      this.session = session
+    }
+
+    // Emit that the application is authenticated
+    this.emit('api:credentials', this.getApiUserCredentials())
+
+    return {
+      is_application_authentication: this._isApplicationAuthentication,
+      user: this.user,
+      cart: this.cart,
+      customer: this.customer,
+      token: this.token,
+      session: this.session
+    }
+  }
+
+  /**
+   * Get the Api User's Credentials that are being used for each request
+   */
+  getApiUserCredentials() {
+    return {
+      is_application_authentication: this._isApplicationAuthentication,
+      user: this.user,
+      cart: this.cart,
+      customer: this.customer,
+      token: this.token,
+      session: this.session
+    }
+  }
+
+  /**
+   * Take a RiSE response object and parse out the token and session
+   * if they are refreshed
+   * @param res
+   */
+  setRefreshCredentials(res) {
+    if (this._isApplicationAuthentication) {
+      const { token, session } = res
+      this.setApiUserCredentials({token, session})
+    }
+    return this.getApiUserCredentials()
   }
 
   /**
@@ -577,8 +654,7 @@ export class RiSE extends EventEmitter {
   //     private_key: this.config.private_key
   //   })
   //     .then(body => {
-  //       this.token = body.token
-  //       this.session = body.session
+  //       this.setApiUserCredentials(body)
   //       return body
   //     })
   // }
@@ -590,22 +666,6 @@ export class RiSE extends EventEmitter {
    */
   serializeQuery(obj, prefix?) {
     return qs.stringify(obj)
-    // let str = [], p
-    //
-    // for (p in obj) {
-    //   if (obj.hasOwnProperty(p)) {
-    //
-    //     const k = prefix
-    //       ? prefix + '[' + p + ']'
-    //       : p
-    //     const v = obj[p]
-    //
-    //     str.push((v !== null && typeof v === 'object')
-    //       ? this.serializeQuery(v, k)
-    //       : encodeURIComponent(k) + '=' + encodeURIComponent(v))
-    //   }
-    // }
-    // return str.join('&')
   }
 
   /**
@@ -625,7 +685,7 @@ export class RiSE extends EventEmitter {
     // The composed URL
     let url = `${this.requestUrl}/api/v${this.api_version}/${route[method]}`
     // Add a query if supplied
-    if (query) {
+    if (query && query !== '') {
       url = `${url}?${this.serializeQuery(query)}`
     }
     // returns object
@@ -634,23 +694,23 @@ export class RiSE extends EventEmitter {
 
   /**
    * If paginate is available on the Action, then add pagination utility functions to the response
-   * @param response
+   * @param res
    * @param paginate
-   * @returns response
+   * @returns res
    */
   // TODO
-  addPaginationToResponse(response, paginate = null) {
+  addPaginationToResponse(res, paginate = null) {
     if (paginate) {
       //
     }
-    return response
+    return res
   }
 
   /**
    * If this request is being made by a browser, then we should grab the agent if not set
    * @param req
    */
-  ifBrowserSetAgent(req) {
+  _ifBrowserSetAgent(req) {
     if (typeof window !== 'undefined') {
       if (window.navigator && !req.headers['User-Agent']) {
         req.headers['User-Agent'] = window.navigator.userAgent
@@ -663,11 +723,81 @@ export class RiSE extends EventEmitter {
    * If this request is proxied through another application set the origin IP
    * @param req
    */
-  ifProxySetIp(req) {
-    if (typeof req.ip !== 'undefined' && !req.headers['X-Forwarded-For']) {
-      req.headers['X-Forwarded-For'] = req.ip
+  _ifProxySetIp(req) {
+    if ((typeof req.ip !== 'undefined' || typeof req.client_ip !== 'undefined')
+      && !req.headers['X-Forwarded-For']
+    ) {
+      req.headers['X-Forwarded-For'] = req.ip || req.client_ip
     }
     return req
+  }
+
+  /**
+   * Log when start
+   * @param name
+   */
+  private _startLogTime(name) {
+    if ((this.config.sandbox || this.config.beta) && (this.log && this.log.time)) {
+      this.log.time(`RiSE req ${name}`)
+    }
+  }
+  /**
+   * Log when end
+   * @param name
+   */
+  private _endLogTime(name) {
+    if ((this.config.sandbox || this.config.beta) && (this.log && this.log.timeEnd)) {
+      this.log.timeEnd(`RiSE req ${name}`)
+    }
+  }
+
+
+  /**
+   * Set Middle or "After" ware
+   * @param middleware
+   * @param lifecycle
+   */
+  use(middleware, lifecycle = 'before'): Map<any, any> {
+    if (middleware && lifecycle === 'before') {
+      return this._middleware.set(this._middleware.size, middleware)
+    }
+    else if (middleware && lifecycle === 'after') {
+      return this._afterware.set(this._afterware.size, middleware)
+    }
+  }
+
+
+  private _runMiddleware(req) {
+    // Run before the request "middleware"
+    this._middleware.forEach((value, key, map) => {
+      //
+      try {
+        req = value(this, req)
+      }
+      catch (err) {
+        this.log.error(err)
+      }
+    })
+    return req
+  }
+
+
+  private _runAfterware(res) {
+    // Run after the response "afterware"
+    this._afterware.forEach((value, key, map) => {
+      //
+      try {
+        res = value(this, res)
+      }
+      catch (err) {
+        this.log.error(err)
+      }
+    })
+    return res
+  }
+
+  private _transformErrors(err) {
+    return err
   }
 
   /**
@@ -770,42 +900,62 @@ export class RiSE extends EventEmitter {
     }
 
     // If this is a pass through request, let's set the headers
-    this.ifProxySetIp(_req)
+    this._ifProxySetIp(_req)
 
     // If this is a browser based request, let's set the headers
-    this.ifBrowserSetAgent(_req)
+    this._ifBrowserSetAgent(_req)
 
     // If this is test request, start a timer for the request
-    if ((this.config.sandbox || this.config.beta) && (this.log && this.log.time)) {
-      this.log.time(`RiSE req ${name}`)
-    }
+    this._startLogTime(name)
 
     return Promise.resolve()
       .then(() => {
 
-        if (!this.mock) {
-          // Make the request and return a Promise
-          return this._request(_req)
+        if (this._middleware.size > 0) {
+          return this._runMiddleware(_req)
         }
         else {
-          return this._mockRequest(_req, req)
+          return _req
+        }
+      })
+      .then((___req) => {
+
+        if (!this.mock) {
+          // Make the request and return a Promise
+          return this._request(___req)
+        }
+        else {
+          return this._mockRequest(___req, req)
         }
       })
       .then((res) => {
         // End the console logger
-        if ((this.config.sandbox || this.config.beta) && (this.log && this.log.timeEnd)) {
-          this.log.timeEnd(`RiSE req ${name}`)
-        }
+        this._endLogTime(name)
+
+        // If this is an application request, then automatically reset
+        // credentials if they were in the response
+        this.setRefreshCredentials(res)
+
         // Add the pagination to response if appropriate for request
         return res = this.addPaginationToResponse(res, paginate)
       })
+      .then(res => {
+        if (this._afterware.size > 0) {
+          return this._runAfterware(_req)
+        }
+        else {
+          return res
+        }
+      })
+      .then(res => {
+        return res
+      })
       .catch(err => {
         // End the console logger
-        if ((this.config.sandbox || this.config.beta) && (this.log && this.log.timeEnd)) {
-          this.log.timeEnd(`RiSE req ${name}`)
-        }
+        this._endLogTime(name)
+
         // TODO uniform errors into an array
-        return Promise.reject(err)
+        return Promise.reject(this._transformErrors(err))
       })
   }
 }

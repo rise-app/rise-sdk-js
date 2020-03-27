@@ -1,27 +1,31 @@
-import joi from 'joi'
+import joi from '@hapi/joi'
 
 export const Utils = {
-  joiPromise: (data: any, schema: joi.ObjectSchema) => {
+  // This handles multiple versions of joi
+  joiPromise: (data: any, schema: joi.ObjectSchema, options = {}) => {
     return new Promise((resolve, reject) => {
-      joi.validate(data, schema, (err, value) => {
-        if (err) {
-          return reject(err)
+      if (schema.validate) {
+
+        const { value, error } = schema.validate(data, options)
+        if (error) {
+          return reject(error)
         }
         return resolve(value)
-      })
-    })
-  },
-
-  joiPromiseMap: (list: any, schema: joi.ObjectSchema) => {
-    return Promise.all(list.map(data => {
-      return new Promise((resolve, reject) => {
-        joi.validate(data, schema, (err, value) => {
+      }
+      else {
+        joi.validate(data, schema, options, (err, value) => {
           if (err) {
-            return reject(new TypeError(err))
+            return reject(err)
           }
           return resolve(value)
         })
-      })
+      }
+    })
+  },
+
+  joiPromiseMap: (list: any, schema: joi.ObjectSchema, options?) => {
+    return Promise.all(list.map(data => {
+      return Utils.joiPromise(data, schema, options)
     }))
   },
 }

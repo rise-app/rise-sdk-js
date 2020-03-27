@@ -21,6 +21,10 @@ export const auth = {
     body: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.UPDATE_SESSION_USER].body)
   },
 
+  [COMMANDS.CHANGE_SESSION_CART]: {
+    params: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.CHANGE_SESSION_CART].params),
+    body: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.CHANGE_SESSION_CART].body)
+  },
   [COMMANDS.UPDATE_SESSION_CART]: {
     params: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.UPDATE_SESSION_CART].params),
     body: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.UPDATE_SESSION_CART].body)
@@ -54,6 +58,10 @@ export const auth = {
     body: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.REMOVE_SESSION_CART_ITEM].body)
   },
 
+  [COMMANDS.CHANGE_SESSION_CUSTOMER]: {
+    params: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.CHANGE_SESSION_CUSTOMER].params),
+    body: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.CHANGE_SESSION_CUSTOMER].body)
+  },
   [COMMANDS.UPDATE_SESSION_CUSTOMER]: {
     params: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.UPDATE_SESSION_CUSTOMER].params),
     body: (data) => Utils.joiPromise(data, authSchema.commands[COMMANDS.UPDATE_SESSION_CUSTOMER].body)

@@ -1,4 +1,4 @@
-import joi from 'joi'
+import joi from '@hapi/joi'
 import { FULFILLMENT_COMMANDS, FULFILLMENT_ACTIONS } from '../../enums/fulfillment'
 
 export const channel_uuid = joi.string().uuid()
