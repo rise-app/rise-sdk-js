@@ -59,6 +59,16 @@ export const commands = {
     }).unknown()
   },
 
+  [COMMANDS.UPDATE_OFFER_VARIANT]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      offer_uuid: uuid.required(),
+      variant_uuid: uuid.required(),
+    }).unknown(),
+    body: joi.object().keys({
+    }).unknown()
+  },
+  
   [COMMANDS.ADD_OFFER_VARIANT]: {
     params: joi.object().keys({
       channel_uuid: uuid.required(),
@@ -67,8 +77,7 @@ export const commands = {
     body: joi.object().keys({
     }).unknown()
   },
-
-
+  
   [COMMANDS.UPLOAD_OFFERS]: {
     params: joi.object().keys({
       channel_uuid: uuid.required(),
