@@ -496,7 +496,6 @@ export class ChannelCustomerCampaign extends ApiClass {
     route: 'channels/:channel_uuid/customers/:customer_uuid/campaigns/:collection_uuid',
     validator: customer[ACTIONS.GET_CUSTOMER_CAMPAIGN]
   })
-  @Paginate()
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -564,7 +563,6 @@ export class ChannelCustomerEvent extends ApiClass {
     route: 'channels/:channel_uuid/customers/:customer_uuid/events/:event_uuid',
     // validator: customer[ACTIONS.GET_CUSTOMER_EVENT]
   })
-  @Paginate()
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -616,7 +614,6 @@ export class ChannelCustomerFeed extends ApiClass {
     route: 'channels/:channel_uuid/customers/:customer_uuid/feeds/:feed_uuid',
     // validator: customer[ACTIONS.GET_CUSTOMER_FEED]
   })
-  @Paginate()
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -652,7 +649,6 @@ export class ChannelCustomerOrder extends ApiClass {
     route: 'channels/:channel_uuid/customers/:customer_uuid/orders/:order_uuid',
     // validator: customer[ACTIONS.GET_CUSTOMER_ORDER]
   })
-  @Paginate()
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -688,7 +684,6 @@ export class ChannelCustomerGatewayAccount extends ApiClass {
     route: 'channels/:channel_uuid/customers/:customer_uuid/accounts/:account_uuid',
     validator: customer[ACTIONS.GET_CUSTOMER_GATEWAY_ACCOUNT]
   })
-  @Paginate()
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -774,7 +769,6 @@ export class ChannelCustomerGatewayAccountSource extends ApiClass {
     route: 'channels/:channel_uuid/customers/:customer_uuid/sources/:source_uuid',
     validator: customer[ACTIONS.GET_CUSTOMER_GATEWAY_ACCOUNT_SOURCE]
   })
-  @Paginate()
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -858,7 +852,6 @@ export class ChannelCustomerUser extends ApiClass {
     route: 'channels/:channel_uuid/customers/:customer_uuid/users/:user_uuid',
     // validator: customer[ACTIONS.GET_CUSTOMER_USER]
   })
-  @Paginate()
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
