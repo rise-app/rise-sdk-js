@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.61](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.60...v1.0.0-alpha.61) (2020-04-10)
+
+
+### Bug Fixes
+
+* **customerGatewayAccount:** don't paginate `get`s ([#12](https://github.com/rise-app/rise-sdk-js/issues/12)) ([e7ce722](https://github.com/rise-app/rise-sdk-js/commit/e7ce722))
+* **offers:** add validator for UDPATE_OFFER_VARIANT ([#15](https://github.com/rise-app/rise-sdk-js/issues/15)) ([3718c02](https://github.com/rise-app/rise-sdk-js/commit/3718c02))
+
+
+### Features
+
+* starts mock api, this will be moved to pact server at a later date. ([16a59db](https://github.com/rise-app/rise-sdk-js/commit/16a59db))
+* updates hapi ([b6a4171](https://github.com/rise-app/rise-sdk-js/commit/b6a4171))
+* updates readme ([e81c245](https://github.com/rise-app/rise-sdk-js/commit/e81c245))
+
 ## [1.0.0-alpha.60](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.59...v1.0.0-alpha.60) (2020-01-24)
 
 
