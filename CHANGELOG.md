@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.62](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.61...v1.0.0-alpha.62) (2020-04-15)
+
+
+### Features
+
+* adds vendor addresses and fulfillment service addresses ([d266708](https://github.com/rise-app/rise-sdk-js/commit/d266708)), closes [#14](https://github.com/rise-app/rise-sdk-js/issues/14)
+
 ## [1.0.0-alpha.61](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.60...v1.0.0-alpha.61) (2020-04-10)
 
 
