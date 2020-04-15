@@ -2,6 +2,7 @@ import joi from '@hapi/joi'
 const uuid = joi.string().guid()
 
 import { COMMANDS, ACTIONS } from '../../enums'
+import { address } from '../customer'
 
 
 export const fulfillment_service = {
@@ -49,6 +50,26 @@ export const commands = {
     }).unknown()
   },
 
+  [COMMANDS.SET_FULFILLMENT_SERVICE_RETURNS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      fulfillment_service_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...address,
+    }).unknown()
+  },
+
+  [COMMANDS.SET_FULFILLMENT_SERVICE_SHIPPING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      fulfillment_service_uuid: uuid.required(),
+    }),
+    body: joi.object().keys({
+      ...address
+    }).unknown()
+  },
+
   [COMMANDS.UPLOAD_FULFILLMENT_SERVICES]: {
     params: joi.object().keys({
       channel_uuid: uuid.required(),
@@ -83,6 +104,19 @@ export const actions = {
     })
   },
 
+  [ACTIONS.GET_FULFILLMENT_SERVICE_SHIPPING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      fulfillment_service_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.GET_FULFILLMENT_SERVICE_RETURNS]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      fulfillment_service_uuid: uuid.required(),
+    }).unknown()
+  },
+
   [ACTIONS.LIST_FULFILLMENT_SERVICE_EVENTS]: {
     params: joi.object().keys({
       channel_uuid: uuid.required(),
@@ -95,6 +129,4 @@ export const actions = {
       channel_uuid: uuid.required()
     })
   },
-
-
 }

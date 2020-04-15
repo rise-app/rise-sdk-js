@@ -53,6 +53,9 @@ export interface RiSEConfig {
   logger?: any,
   sockets: any,
   globals?: {
+    headers?: {
+      [key: string]: any
+    },
     params?: {
       [key: string]: any
     },
@@ -733,6 +736,29 @@ export class RiSE extends EventEmitter {
   }
 
   /**
+   * If this request is proxied through another application set the origin Referer
+   * @param req
+   */
+  _ifProxySetRefer(req) {
+    if (
+      typeof document !== 'undefined'
+    ) {
+      if (document.referrer) {
+        req.headers['X-APPLICATION-REFER'] = document.referrer
+      }
+    }
+    else if (
+      req.headers['Refer']
+      || req.headers['Referrer']
+      || req.headers['Referer']
+    ) {
+      req.headers['X-APPLICATION-REFER'] = req.headers['Refer'] || req.headers['Referrer'] || req.headers['Referer']
+    }
+
+    return req
+  }
+
+  /**
    * Log when start
    * @param name
    */
@@ -901,6 +927,7 @@ export class RiSE extends EventEmitter {
 
     // If this is a pass through request, let's set the headers
     this._ifProxySetIp(_req)
+    this._ifProxySetRefer(_req)
 
     // If this is a browser based request, let's set the headers
     this._ifBrowserSetAgent(_req)

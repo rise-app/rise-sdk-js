@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Paginate } from '../../metadata'
-import { fulfillment_service } from '../../validators'
+import { customer, fulfillment_service } from '../../validators'
 import { ACTIONS, COMMANDS, EVENTS } from '../../enums'
 
 export class ChannelFulfillmentService extends ApiClass {
@@ -162,6 +162,66 @@ export class ChannelFulfillmentService extends ApiClass {
     validator: fulfillment_service[COMMANDS.UNPUBLISH_FULFILLMENT_SERVICE]
   })
   unpublish(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Set a Channel Fulfillment_service's Returns Address
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/fulfillment_services/:fulfillment_service_uuid/address_returns',
+    validator: fulfillment_service[COMMANDS.SET_FULFILLMENT_SERVICE_RETURNS]
+  })
+  setAddressReturns(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Channel Fulfillment_service's Returns Address
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/fulfillment_services/:fulfillment_service_uuid/address_returns',
+    validator: fulfillment_service[ACTIONS.GET_FULFILLMENT_SERVICE_RETURNS]
+  })
+  getAddressReturns(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Set a Channel Fulfillment_service's Shipping Address
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/fulfillment_services/:fulfillment_service_uuid/address_shipping',
+    validator: fulfillment_service[COMMANDS.SET_FULFILLMENT_SERVICE_SHIPPING]
+  })
+  setAddressShipping(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Channel Fulfillment_service's Shipping Address
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/fulfillment_services/:fulfillment_service_uuid/address_shipping',
+    validator: fulfillment_service[ACTIONS.GET_FULFILLMENT_SERVICE_SHIPPING]
+  })
+  getAddressShipping(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

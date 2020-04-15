@@ -6,7 +6,7 @@
 version: 2
 
 defaults: &defaults
-  working_directory: ~/nmi
+  working_directory: ~/rise
   docker:
     - image: circleci/node:12.4.0
 
@@ -42,16 +42,16 @@ jobs:
       - store_test_results:
           path: test-results.xml
       - persist_to_workspace:
-          root: ~/nmi
+          root: ~/rise
           paths: .
   deploy:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/nmi
+          at: ~/rise
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/nmi/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/rise/.npmrc
       - run:
           name: Publish package
           command: npm publish

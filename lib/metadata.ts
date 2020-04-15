@@ -22,7 +22,7 @@ export function Command({ method = 'POST', route = '', validator, globals }: {me
     descriptor.value = function (...args: any[]) {
 
       const name = target.constructor.name
-      const { params, query } = Object.getPrototypeOf(target).globals
+      const { headers, params, query } = Object.getPrototypeOf(target).globals
 
       // Copy the string so that it can be modified
       let _route = route.slice(0, route.length)
@@ -30,9 +30,10 @@ export function Command({ method = 'POST', route = '', validator, globals }: {me
       // The data object passed to the method is always the first argument
       const data = args[0]
       const req = args[1] || {}
-      const globals = args[3] = { globals: { params, query }}
+      const globals = args[3] = { globals: { headers, params, query }}
 
       req.name = `${String(name)}.${String(propertyKey)}`
+      req.headers = {...(headers|| {}), ...(req.headers || {})}
       req.params = {...(params || {}), ...(req.params || {})}
       req.query = {...(query || {}), ...(req.query || {})}
       req.body = data
@@ -127,7 +128,7 @@ export function Action({method = 'GET', route = '', validator, globals }: {metho
     descriptor.value = function (...args: any[]) {
 
       const name = target.constructor.name
-      const { params, query } = Object.getPrototypeOf(target).globals
+      const { headers, params, query } = Object.getPrototypeOf(target).globals
 
       // Copy the string so that it can be modified
       let _route = route.slice(0, route.length)
@@ -135,9 +136,10 @@ export function Action({method = 'GET', route = '', validator, globals }: {metho
       // The data object passed to the method is always the first argument
       const data = args[0]
       const req = args[1] || {}
-      const globals = args[3] = { globals: { params, query }}
+      const globals = args[3] = { globals: { params, query, headers }}
 
       req.name = `${String(name)}.${String(propertyKey)}`
+      req.headers = {...(headers|| {}), ...(req.headers || {})}
       req.params = {...(params || {}), ...(req.params || {})}
       req.query = {...(query || {}), ...(req.query || {})}
       req.body = data

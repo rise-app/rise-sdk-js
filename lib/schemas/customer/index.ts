@@ -126,6 +126,19 @@ export const actions = {
     }).unknown()
   },
 
+  [ACTIONS.GET_CUSTOMER_SHIPPING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      customer_uuid: uuid.required(),
+    }).unknown()
+  },
+  [ACTIONS.GET_CUSTOMER_BILLING]: {
+    params: joi.object().keys({
+      channel_uuid: uuid.required(),
+      customer_uuid: uuid.required(),
+    }).unknown()
+  },
+
   [ACTIONS.GET_PUBLIC_CUSTOMER]: {
     params: joi.object().keys({
       channel_uuid: uuid.required(),
