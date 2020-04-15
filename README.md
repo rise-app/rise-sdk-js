@@ -112,9 +112,13 @@ Every response from RiSE will include certain properties:
 Occasionally, the responses will also include:
 
 `token`: <String> the JWT token to use on the next request
+
 `session`: <String> an optional session uuid to use on the next request if no token was provided.
+
 `url` : <String> the canonical endpoint to retrieve the obejct or list again
+
 `urls` : <String[]> the canonical endpoints to retrieve the objects again
+
 `populated`: <Object> an object of properties that were expanded in the response
 
 If the Request was a command, the response will be an event and will also include:
@@ -136,10 +140,15 @@ If the Request was for multiple objects, the response will include:
 If the Request was for a list of like objects, the response will include:
 
 `list`: <String> the type of like objects in the data attribute 
+
 `limit`: <Number> the number of potential objects in the data attribute
+
 `offset`: <Number> the number from 0 of the total objects in a list
+
 `total`: <Number> total amount of objects that meets the query criteria
+
 `query`: <Object> calculated query
+
 `sort`: <Object> describing how the list is sorted
 
 If this is slightly confusing, don't worry, as each response will always have a `data` property with what you'd typically expect, the other properties are syntactical sugar to be more pragmatic with the responses.

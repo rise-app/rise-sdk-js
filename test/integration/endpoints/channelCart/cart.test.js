@@ -627,7 +627,7 @@ describe('# RiSE Channel Cart API', () => {
           [
             {
               offer_uuid: offer.offer_uuid,
-              variant_uuid: offer.variant_default_uuid,
+              // variant_uuid: offer.variant_default_uuid,
               quantity: 1,
               notes: 'Who you gonna call?'
             }
