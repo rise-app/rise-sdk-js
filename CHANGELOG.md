@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.63](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.62...v1.0.0-alpha.63) (2020-06-11)
+
+
+### Bug Fixes
+
+* fixes cart test ([28e38c8](https://github.com/rise-app/rise-sdk-js/commit/28e38c8))
+
+
+### Features
+
+* fixes URL ([81b26c2](https://github.com/rise-app/rise-sdk-js/commit/81b26c2))
+
 ## [1.0.0-alpha.62](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.61...v1.0.0-alpha.62) (2020-04-15)
 
 
