@@ -37,7 +37,9 @@ describe('# RiSE Channel User API', () => {
     it('### Should validate token with req params', (done) => {
 
       rise.channelUser.validateToken({
-        // channel_uuid: channel_uuid
+      }, {
+        // session: adminSession,
+        // token: adminToken
       })
         .then(_res => {
           assert.equal(_res.session, adminSession)
@@ -53,6 +55,7 @@ describe('# RiSE Channel User API', () => {
     it('### Should validate token with current session', (done) => {
 
       const rise2 = new RiSE({
+        url: url,
         sandbox: true,
         public_key: public_key,
         private_key: private_key,
@@ -63,9 +66,8 @@ describe('# RiSE Channel User API', () => {
         }
       })
 
-      rise2.channelUser.validateToken({
-        channel_uuid: channel_uuid
-      }, {
+      console.log('BRK HERE', adminSession, adminToken)
+      rise2.channelUser.validateToken({}, {
         session: adminSession,
         token: adminToken
       })
@@ -83,7 +85,7 @@ describe('# RiSE Channel User API', () => {
 
     it('### Should Create a User', (done) => {
 
-      const username = `sdkjstest${Math.floor((Math.random() * 100) + 1)}`
+      const username = `sdkjstest${Math.floor((Math.random() * 100) + 1)}${Math.floor((Math.random() * 100) + 1)}`
 
       rise.channelUser.create({
         // channel_uuid: channel_uuid,
@@ -169,6 +171,7 @@ describe('# RiSE Channel User API', () => {
 
     before(() => {
       rise = new RiSE({
+        url: url,
         sandbox: true,
         public_key: public_key,
         private_key: private_key,

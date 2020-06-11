@@ -4,16 +4,30 @@ import { task } from '../../validators/task'
 import { COMMANDS, ACTIONS } from '../../enums'
 
 export class ChannelTask extends ApiClass {
+  /**
+   * Create Channel Task
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({
-    method: 'POST', route: 'channels/:channel_uuid/tasks',
+    method: 'POST',
+    route: 'channels/:channel_uuid/tasks',
     validator: task[COMMANDS.CREATE_TASK]
   })
   create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Update a Channel Task by ID
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({
-    method: 'PUT', route: 'channels/:channel_uuid/tasks/:task_uuid',
+    method: 'PUT',
+    route: 'channels/:channel_uuid/tasks/:task_uuid',
     validator: task[COMMANDS.UPDATE_TASK]
   })
   update(data, req?, validated?) {
@@ -21,7 +35,7 @@ export class ChannelTask extends ApiClass {
   }
 
   /**
-   * Get a Given Channel's Task
+   * Get a Given Channel Task by ID
    * @param data
    * @param req
    * @param validated
@@ -36,7 +50,7 @@ export class ChannelTask extends ApiClass {
   }
 
   /**
-   * Get a Channel's Task by Task Handle
+   * Get a Channel Task by Task Handle
    * @param data
    * @param req
    * @param validated
@@ -289,6 +303,12 @@ export class ChannelTask extends ApiClass {
 
 export class ChannelTaskItem extends ApiClass {
 
+  /**
+   * Create Task Item by Task ID
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({
     method: 'POST',
     route: 'channels/:channel_uuid/tasks/:task_uuid/items',
@@ -298,6 +318,12 @@ export class ChannelTaskItem extends ApiClass {
     return this.request(req, data, validated)
   }
 
+  /**
+   * Update Task Item by ID
+   * @param data
+   * @param req
+   * @param validated
+   */
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/tasks/:task_uuid/items/:item_uuid',

@@ -557,16 +557,25 @@ export class RiSE extends EventEmitter {
    * Sandbox or live
    */
   get requestUrl() {
-    return this.config.url
-      || this.config.beta
+    // If a URL is explicitly set, use it
+    // This is useful for the Pact servers, feature development, and Enterprise customers with RiSE stand alone.
+    if (this.config.url) {
+      return this.config.url
+    }
+    else {
+      // If beta use beta
+      return this.config.beta
         ? 'https://api.beta.rise.store'
+        // Otherwise if sandbox, use sandbox
         : this.config.sandbox
           ? 'https://api.sandbox.rise.store'
+          // If not Beta or Sandbox, use production
           : 'https://api.rise.store'
+    }
   }
 
   /**
-   *
+   * Authenticates an API user for automatic session and token updates
    */
   authenticateApiUser(channel_uuid, identifier?, password?) {
     return this.channelAuth.login({
@@ -590,7 +599,48 @@ export class RiSE extends EventEmitter {
       })
   }
 
-  setApiUserCredentials({user, cart, customer, token, session}: { user?, cart?, customer?, token?, session?}) {
+  /**
+   * Unauthenticate API user
+   * @param channel_uuid
+   */
+  unauthenticateApiUser(channel_uuid) {
+    return this.channelAuth.logout({}, {
+      session: this.session,
+      token: this.token,
+      params: {
+        channel_uuid: channel_uuid
+      }
+    })
+      .then((body: {[key: string]: any} = {}) => {
+
+        this.user = null
+        this.customer = null
+        this.cart = null
+        this.token = null
+        // keeps the session id intact
+
+        this.emit('api:credentials', this.getApiUserCredentials())
+
+        return body
+      })
+  }
+
+  /**
+   * Sets the API user credentials
+   * @param user
+   * @param cart
+   * @param customer
+   * @param token
+   * @param session
+   */
+  setApiUserCredentials({user, cart, customer, token, session}: { user?, cart?, customer?, token?, session?}): {
+    is_application_authentication: boolean,
+    user: any,
+    cart: any,
+    customer: any,
+    token: string,
+    session: string
+  } {
 
     if (user) {
       this.user = user
@@ -624,7 +674,14 @@ export class RiSE extends EventEmitter {
   /**
    * Get the Api User's Credentials that are being used for each request
    */
-  getApiUserCredentials() {
+  getApiUserCredentials(): {
+    is_application_authentication: boolean,
+    user: any,
+    cart: any,
+    customer: any,
+    token: string,
+    session: string
+  } {
     return {
       is_application_authentication: this._isApplicationAuthentication,
       user: this.user,
@@ -688,7 +745,11 @@ export class RiSE extends EventEmitter {
     // The composed URL
     let url = `${this.requestUrl}/api/v${this.api_version}/${route[method]}`
     // Add a query if supplied
-    if (query && query !== '') {
+    if (
+      query
+      && query !== ''
+      && typeof query !== 'undefined'
+    ) {
       url = `${url}?${this.serializeQuery(query)}`
     }
     // returns object
@@ -727,7 +788,10 @@ export class RiSE extends EventEmitter {
    * @param req
    */
   _ifProxySetIp(req) {
-    if ((typeof req.ip !== 'undefined' || typeof req.client_ip !== 'undefined')
+    if ((
+        typeof req.ip !== 'undefined'
+        || typeof req.client_ip !== 'undefined'
+      )
       && !req.headers['X-Forwarded-For']
     ) {
       req.headers['X-Forwarded-For'] = req.ip || req.client_ip
@@ -777,6 +841,25 @@ export class RiSE extends EventEmitter {
     }
   }
 
+  private _getApplicationX(url?: string): {[key: string]: any} {
+    const headers = {}
+
+    // If global application-x keys were set
+    if (this.globals['x-application']) {
+      const keys = Object.keys(this.globals['x-application'])
+      keys.forEach(k => {
+        const value = this.globals['x-application'][k]
+        const key = `x-application-${k
+          .replace('x-application', '')
+          .replace('x-application-', '')
+        }`.toUpperCase()
+        headers[key] = value
+      })
+    }
+    // TODO, if configured to use x-application for certain endpoints
+    return headers
+  }
+
 
   /**
    * Set Middle or "After" ware
@@ -822,8 +905,9 @@ export class RiSE extends EventEmitter {
     return res
   }
 
-  private _transformErrors(err) {
-    return err
+  private _transformErrors(err): {[key: string]: any} {
+    const raw = JSON.parse(JSON.stringify(err))
+    return raw
   }
 
   /**
@@ -894,7 +978,8 @@ export class RiSE extends EventEmitter {
     } = {
       // ...__req,
       headers: {
-        ...__req.headers
+        ...__req.headers,
+        ...this._getApplicationX(url)
       },
       method: method,
       url: url,

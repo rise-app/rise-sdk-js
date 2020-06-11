@@ -90,9 +90,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should validate token', (done) => {
 
-        rise.channelAuth.validateToken({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.validateToken({}, {
           token: userToken,
           session: userSession
         })
@@ -109,9 +107,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session', (done) => {
 
-        rise.channelAuth.session({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.session({}, {
           token: userToken,
           session: userSession
         })
@@ -125,9 +121,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session user', (done) => {
 
-        rise.channelAuth.sessionUser({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionUser({}, {
           token: userToken,
           session: userSession
         })
@@ -142,7 +136,6 @@ describe('# RiSE Channel Auth API', () => {
       it.skip('### Should update user session user', (done) => {
 
         rise.channelAuth.updateSessionUser({
-          // channel_uuid: channel_uuid
           name_first: 'testFirst',
           name_last: 'testLast'
         }, {
@@ -160,9 +153,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session cart (Current)', (done) => {
 
-        rise.channelAuth.sessionCart({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionCart({}, {
           token: userToken,
           session: userSession
         })
@@ -177,7 +168,6 @@ describe('# RiSE Channel Auth API', () => {
       it('### Should update user session cart (Current)', (done) => {
 
         rise.channelAuth.updateSessionCart({
-          // channel_uuid: channel_uuid
           title: 'My Special Session Cart'
         }, {
           token: userToken,
@@ -217,7 +207,6 @@ describe('# RiSE Channel Auth API', () => {
       it('### Should get user session cart billing address (Current)', (done) => {
 
         rise.channelAuth.sessionCartBilling({
-          // channel_uuid: channel_uuid
         }, {
           token: userToken,
           session: userSession
@@ -272,7 +261,6 @@ describe('# RiSE Channel Auth API', () => {
       it.skip('### Should set user session cart payment details (Current)', (done) => {
 
         rise.channelAuth.setSessionCartPayment({
-          // channel_uuid: channel_uuid
         }, {
           token: userToken,
           session: userSession
@@ -288,7 +276,6 @@ describe('# RiSE Channel Auth API', () => {
       it('### Should get user session cart payment details (Current)', (done) => {
 
         rise.channelAuth.sessionCartPayment({
-          // channel_uuid: channel_uuid
         }, {
           token: userToken,
           session: userSession
@@ -346,9 +333,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session cart\'s item (Current)', (done) => {
 
-        rise.channelAuth.getSessionCartItem({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.getSessionCartItem({}, {
           token: userToken,
           session: userSession,
           params: {
@@ -356,7 +341,6 @@ describe('# RiSE Channel Auth API', () => {
           }
         })
           .then(_res => {
-            console.log('brk _res', _res)
             assert.ok(_res.data)
             assert.equal(_res.object, 'ChannelCartItem')
             assert.equal(_res.action, ACTIONS.GET_SESSION_CART_ITEM)
@@ -369,9 +353,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should remove user session cart\'s item (Current)', (done) => {
 
-        rise.channelAuth.removeSessionCartItem({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.removeSessionCartItem({}, {
           token: userToken,
           session: userSession,
           params: {
@@ -388,9 +370,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should list user session cart\'s items (Current)', (done) => {
 
-        rise.channelAuth.sessionCartItems({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionCartItems({}, {
           token: userToken,
           session: userSession
         })
@@ -409,9 +389,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it.skip('### Should checkout user session cart (Current)', (done) => {
 
-        rise.channelAuth.checkoutSessionCart({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.checkoutSessionCart({}, {
           token: userToken,
           session: userSession
         })
@@ -426,9 +404,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session customer (Current)', (done) => {
 
-        rise.channelAuth.sessionCustomer({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionCustomer({}, {
           token: userToken,
           session: userSession
         })
@@ -443,7 +419,6 @@ describe('# RiSE Channel Auth API', () => {
       it('### Should update user session customer (Current)', (done) => {
 
         rise.channelAuth.updateSessionCustomer({
-          // channel_uuid: channel_uuid
           name_display: 'Lookie Loo'
         }, {
           token: userToken,
@@ -482,9 +457,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session customer billing address (Current)', (done) => {
 
-        rise.channelAuth.sessionCustomerBilling({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionCustomerBilling({}, {
           token: userToken,
           session: userSession
         })
@@ -521,9 +494,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session customer shipping address (Current)', (done) => {
 
-        rise.channelAuth.sessionCustomerShipping({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionCustomerShipping({}, {
           token: userToken,
           session: userSession
         })
@@ -537,13 +508,12 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session customer\'s orders (Current)', (done) => {
 
-        rise.channelAuth.sessionCustomerOrders({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionCustomerOrders({}, {
           token: userToken,
           session: userSession
         })
           .then(_res => {
+            // order_uuid = _res.body.data[0].order_uuid
             done()
           })
           .catch(err => {
@@ -553,9 +523,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it.skip('### Should get user session customer\'s order (Current)', (done) => {
 
-        rise.channelAuth.getSessionCustomerOrder({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.getSessionCustomerOrder({}, {
           token: userToken,
           session: userSession,
           params: {
@@ -572,9 +540,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it.skip('### Should list user session customer\'s order\'s items (Current)', (done) => {
 
-        rise.channelAuth.listSessionCustomerOrderItems({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.listSessionCustomerOrderItems({}, {
           token: userToken,
           session: userSession,
           params: {
@@ -591,9 +557,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session customer\'s users (Current)', (done) => {
 
-        rise.channelAuth.sessionCustomerUsers({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionCustomerUsers({}, {
           token: userToken,
           session: userSession
         })
@@ -605,11 +569,9 @@ describe('# RiSE Channel Auth API', () => {
           })
       })
 
-      it.skip('### Should get user session customer\'s carts (Current)', (done) => {
+      it('### Should get user session customer\'s carts (Current)', (done) => {
 
-        rise.channelAuth.sessionCustomerCarts({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionCustomerCarts({}, {
           token: userToken,
           session: userSession
         })
@@ -623,9 +585,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it.skip('### Should get user session customer\'s feeds (Current)', (done) => {
 
-        rise.channelAuth.sessionCustomerFeeds({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionCustomerFeeds({}, {
           token: userToken,
           session: userSession
         })
@@ -639,9 +599,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session customer\'s accounts (Current)', (done) => {
 
-        rise.channelAuth.sessionCustomerGatewayAccounts({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionCustomerGatewayAccounts({}, {
           token: userToken,
           session: userSession
         })
@@ -655,9 +613,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session customer\'s sources (Current)', (done) => {
 
-        rise.channelAuth.sessionCustomerGatewaySources({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionCustomerGatewaySources({}, {
           token: userToken,
           session: userSession
         })
@@ -671,9 +627,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session roles', (done) => {
 
-        rise.channelAuth.sessionRoles({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionRoles({}, {
           token: userToken,
           session: userSession
         })
@@ -687,9 +641,7 @@ describe('# RiSE Channel Auth API', () => {
 
       it('### Should get user session channel (Current)', (done) => {
 
-        rise.channelAuth.sessionChannel({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionChannel({}, {
           token: userToken,
           session: userSession
         })
@@ -704,9 +656,7 @@ describe('# RiSE Channel Auth API', () => {
       it('### Should get user session channels (All Channels)', (done) => {
 
         // TODO test pagination
-        rise.channelAuth.sessionChannels({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionChannels({}, {
           token: userToken,
           session: userSession
         })
@@ -721,9 +671,7 @@ describe('# RiSE Channel Auth API', () => {
       it('### Should get user session channels (Admin/Manager Channels)', (done) => {
 
         // TODO test pagination
-        rise.channelAuth.sessionChannels({
-          // channel_uuid: channel_uuid
-        }, {
+        rise.channelAuth.sessionChannels({}, {
           token: userToken,
           session: userSession,
           query: {

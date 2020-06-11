@@ -9,6 +9,7 @@ describe('# RiSE Channel Customer User API', () => {
 
   before((done) => {
     rise = new RiSE({
+      url: url,
       sandbox: true,
       public_key: public_key,
       private_key: private_key
