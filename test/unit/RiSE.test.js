@@ -1,5 +1,5 @@
 const RiSE = require('../../dist').RiSE
-import { url } from '../fixtures/constants'
+const { url } = require('../fixtures/constants')
 
 describe('RiSE API', () => {
   it('should instantiate', () => {
