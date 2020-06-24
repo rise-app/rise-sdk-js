@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Action, Command } from '../../metadata'
-import { permission } from '../../validators/permission'
+import { permission } from '../../validators'
 import { ACTIONS } from '../../enums'
 
 export class ChannelPermission extends ApiClass {

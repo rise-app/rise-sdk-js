@@ -1,8 +1,7 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Upload, Paginate } from '../../metadata'
-import { collection } from '../../validators/collection'
+import { collection, user } from '../../validators'
 import { COMMANDS, ACTIONS } from '../../enums'
-import { user } from '../../validators/user'
 
 export class ChannelCollection extends ApiClass {
   @Command({

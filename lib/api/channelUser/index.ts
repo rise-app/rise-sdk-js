@@ -1,9 +1,8 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Upload, Paginate } from '../../metadata'
-import { cart, collection, customer, offer, user } from '../../validators'
+import { cart, collection, customer, offer, user, permission } from '../../validators'
 import { ChannelAuth } from '../channelAuth'
 import { ACTIONS, COMMANDS } from '../../enums'
-import { permission } from '../../validators/permission'
 
 export class ChannelUser extends ApiClass {
   // @Action({ method: 'GET', route: 'channels/:channel_uuid/auth/session/token', validator: user[ACTIONS.GET_SESSION] })

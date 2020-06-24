@@ -1,20 +1,22 @@
-export { core } from './core'
-export { auth } from './auth'
-
-export { application } from './application'
-export { billing_model } from './billing_model'
-export { cart } from './cart'
-export { collection } from './collection'
-export { channel } from './channel'
-export { country } from './country'
-export { customer } from './customer'
-export { feed } from './feed'
-export { fulfillment } from './fulfillment'
-export { fulfillment_service } from './fulfillment_service'
-export { gateway } from './gateway'
-export { offer } from './offer'
-export { order } from './order'
-export { product } from './product'
-export { task } from './task'
-export { user } from './user'
-export { vendor } from './vendor'
+export {
+  core,
+  auth,
+  application,
+  billing_model,
+  cart,
+  collection,
+  channel,
+  country,
+  customer,
+  feed,
+  fulfillment,
+  fulfillment_service,
+  gateway,
+  offer,
+  order,
+  permission,
+  product,
+  task,
+  user,
+  vendor
+} from '@rise/rise-validators/dist/validators'

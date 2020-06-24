@@ -106,7 +106,7 @@ export class ChannelOrder extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/orders/:order_uuid/address_billing',
-    validator: order[COMMANDS.SET_ORDER_BILLING]
+    validator: order[COMMANDS.SET_ORDER_BILLING_ADDRESS]
   })
   setAddressBilling(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -136,7 +136,7 @@ export class ChannelOrder extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/orders/:order_uuid/address_shipping',
-    validator: order[COMMANDS.SET_ORDER_SHIPPING]
+    validator: order[COMMANDS.SET_ORDER_SHIPPING_ADDRESS]
   })
   setAddressShipping(data, req?, validated?) {
     return this.request(req, data, validated)
