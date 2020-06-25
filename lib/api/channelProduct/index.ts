@@ -296,7 +296,7 @@ export class ChannelProduct extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/public/products/handle/:handle',
-    validator: product[ACTIONS.FIND_PUBLIC_PRODUCT]
+    // validator: product[ACTIONS.FIND_PUBLIC_PRODUCT]
   })
   getPublicByHandle(data, req?, validated?) {
     return this.request(req, data, validated)

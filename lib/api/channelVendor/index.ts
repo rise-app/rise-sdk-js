@@ -1,9 +1,7 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Upload, Paginate } from '../../metadata'
-import { vendor } from '../../validators/vendor'
+import { vendor } from '../../validators'
 import { COMMANDS, ACTIONS } from '../../enums'
-import { user } from '../../validators/user'
-import { customer } from '../../validators/customer'
 
 export class ChannelVendor extends ApiClass {
   /**
@@ -231,7 +229,7 @@ export class ChannelVendor extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/address_billing',
-    validator: vendor[COMMANDS.SET_VENDOR_BILLING]
+    validator: vendor[COMMANDS.SET_VENDOR_BILLING_ADDRESS]
   })
   setAddressBilling(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -246,7 +244,7 @@ export class ChannelVendor extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/address_billing',
-    validator: vendor[ACTIONS.GET_VENDOR_BILLING]
+    validator: vendor[ACTIONS.GET_VENDOR_BILLING_ADDRESS]
   })
   getAddressBilling(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -261,7 +259,7 @@ export class ChannelVendor extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/address_shipping',
-    validator: vendor[COMMANDS.SET_VENDOR_SHIPPING]
+    validator: vendor[COMMANDS.SET_VENDOR_SHIPPING_ADDRESS]
   })
   setAddressShipping(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -276,7 +274,7 @@ export class ChannelVendor extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/vendors/:vendor_uuid/address_shipping',
-    validator: vendor[ACTIONS.GET_VENDOR_SHIPPING]
+    validator: vendor[ACTIONS.GET_VENDOR_SHIPPING_ADDRESS]
   })
   getAddressShipping(data, req?, validated?) {
     return this.request(req, data, validated)

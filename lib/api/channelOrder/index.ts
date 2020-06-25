@@ -106,7 +106,7 @@ export class ChannelOrder extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/orders/:order_uuid/address_billing',
-    validator: order[COMMANDS.SET_ORDER_BILLING]
+    validator: order[COMMANDS.SET_ORDER_BILLING_ADDRESS]
   })
   setAddressBilling(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -121,7 +121,7 @@ export class ChannelOrder extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/orders/:order_uuid/address_billing',
-    validator: order[ACTIONS.GET_ORDER_BILLING]
+    validator: order[ACTIONS.GET_ORDER_BILLING_ADDRESS]
   })
   getAddressBilling(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -136,7 +136,7 @@ export class ChannelOrder extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/orders/:order_uuid/address_shipping',
-    validator: order[COMMANDS.SET_ORDER_SHIPPING]
+    validator: order[COMMANDS.SET_ORDER_SHIPPING_ADDRESS]
   })
   setAddressShipping(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -151,7 +151,7 @@ export class ChannelOrder extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/orders/:order_uuid/address_shipping',
-    validator: order[ACTIONS.GET_ORDER_SHIPPING]
+    validator: order[ACTIONS.GET_ORDER_SHIPPING_ADDRESS]
   })
   getAddressShipping(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -196,7 +196,7 @@ export class ChannelOrder extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/orders/:order_uuid/payment_details',
-    validator: order[COMMANDS.SET_ORDER_PAYMENT]
+    validator: order[COMMANDS.SET_ORDER_PAYMENT_DETAILS]
   })
   setPaymentDetails(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -226,7 +226,7 @@ export class ChannelOrder extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/orders/:order_uuid/fulfillment_details',
-    validator: order[COMMANDS.SET_ORDER_FULFILLMENT]
+    validator: order[COMMANDS.SET_ORDER_FULFILLMENT_DETAILS]
   })
   setFulfillmentDetails(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -695,7 +695,7 @@ export class ChannelOrderItem extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/payment_details',
-    validator: order[COMMANDS.SET_ORDER_ITEM_PAYMENT]
+    validator: order[COMMANDS.SET_ORDER_ITEM_PAYMENT_DETAILS]
   })
   setPaymentDetails(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -725,7 +725,7 @@ export class ChannelOrderItem extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/orders/:order_uuid/items/:item_uuid/fulfillment_details',
-    validator: order[COMMANDS.SET_ORDER_ITEM_FULFILLMENT]
+    validator: order[COMMANDS.SET_ORDER_ITEM_FULFILLMENT_DETAILS]
   })
   setFulfillmentDetails(data, req?, validated?) {
     return this.request(req, data, validated)

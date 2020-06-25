@@ -166,7 +166,7 @@ export class ChannelAuth extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/auth/session/cart/address_shipping',
-    validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING]
+    validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING_ADDRESS]
   })
   sessionCartShipping(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -183,7 +183,7 @@ export class ChannelAuth extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/auth/session/cart/address_shipping',
-    validator: auth[COMMANDS.SET_SESSION_CART_SHIPPING]
+    validator: auth[COMMANDS.SET_SESSION_CART_SHIPPING_ADDRESS]
   })
   setSessionCartShipping(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -199,7 +199,7 @@ export class ChannelAuth extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/auth/session/cart/address_billing',
-    validator: auth[ACTIONS.GET_SESSION_CART_BILLING]
+    validator: auth[ACTIONS.GET_SESSION_CART_BILLING_ADDRESS]
   })
   sessionCartBilling(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -215,7 +215,7 @@ export class ChannelAuth extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/auth/session/cart/address_billing',
-    validator: auth[COMMANDS.SET_SESSION_CART_BILLING]
+    validator: auth[COMMANDS.SET_SESSION_CART_BILLING_ADDRESS]
   })
   setSessionCartBilling(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -230,7 +230,7 @@ export class ChannelAuth extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/auth/session/cart/payment_details',
-    validator: auth[ACTIONS.GET_SESSION_CART_PAYMENT]
+    validator: auth[ACTIONS.GET_SESSION_CART_PAYMENT_DETAILS]
   })
   sessionCartPayment(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -245,7 +245,7 @@ export class ChannelAuth extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/auth/session/cart/payment_details',
-    validator: auth[COMMANDS.SET_SESSION_CART_PAYMENT]
+    validator: auth[COMMANDS.SET_SESSION_CART_PAYMENT_DETAILS]
   })
   setSessionCartPayment(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -321,7 +321,7 @@ export class ChannelAuth extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/auth/session/customer/address_shipping',
-    validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING]
+    validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING_ADDRESS]
   })
   sessionCustomerShipping(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -336,7 +336,7 @@ export class ChannelAuth extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/auth/session/customer/address_shipping',
-    validator: auth[COMMANDS.SET_SESSION_CART_SHIPPING]
+    validator: auth[COMMANDS.SET_SESSION_CART_SHIPPING_ADDRESS]
   })
   setSessionCustomerShipping(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -351,7 +351,7 @@ export class ChannelAuth extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/auth/session/customer/address_billing',
-    validator: auth[ACTIONS.GET_SESSION_CART_SHIPPING]
+    validator: auth[ACTIONS.GET_SESSION_CART_BILLING_ADDRESS]
   })
   sessionCustomerBilling(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -366,7 +366,7 @@ export class ChannelAuth extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/auth/session/customer/address_billing',
-    validator: auth[COMMANDS.SET_SESSION_CART_SHIPPING]
+    validator: auth[COMMANDS.SET_SESSION_CART_BILLING_ADDRESS]
   })
   setSessionCustomerBilling(data, req?, validated?) {
     return this.request(req, data, validated)

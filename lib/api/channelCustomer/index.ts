@@ -233,7 +233,7 @@ export class ChannelCustomer extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/customers/:customer_uuid/address_billing',
-    validator: customer[COMMANDS.SET_CUSTOMER_BILLING]
+    validator: customer[COMMANDS.SET_CUSTOMER_BILLING_ADDRESS]
   })
   setAddressBilling(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -248,7 +248,7 @@ export class ChannelCustomer extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/customers/:customer_uuid/address_billing',
-    validator: customer[ACTIONS.GET_CUSTOMER_BILLING]
+    validator: customer[ACTIONS.GET_CUSTOMER_BILLING_ADDRESS]
   })
   getAddressBilling(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -263,7 +263,7 @@ export class ChannelCustomer extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/customers/:customer_uuid/address_shipping',
-    validator: customer[COMMANDS.SET_CUSTOMER_SHIPPING]
+    validator: customer[COMMANDS.SET_CUSTOMER_SHIPPING_ADDRESS]
   })
   setAddressShipping(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -278,7 +278,7 @@ export class ChannelCustomer extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/customers/:customer_uuid/address_shipping',
-    validator: customer[ACTIONS.GET_CUSTOMER_SHIPPING]
+    validator: customer[ACTIONS.GET_CUSTOMER_SHIPPING_ADDRESS]
   })
   getAddressShipping(data, req?, validated?) {
     return this.request(req, data, validated)

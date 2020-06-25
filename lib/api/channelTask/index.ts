@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Upload, Paginate } from '../../metadata'
-import { task } from '../../validators/task'
+import { task } from '../../validators'
 import { COMMANDS, ACTIONS } from '../../enums'
 
 export class ChannelTask extends ApiClass {

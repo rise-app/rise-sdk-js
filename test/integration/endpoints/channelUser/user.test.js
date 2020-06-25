@@ -191,7 +191,7 @@ describe('# RiSE Channel User API', () => {
         channel_uuid: channel_uuid,
         username: username,
         password: password
-      })
+      }, {})
         .then(_res => {
           userSession = _res.session
           userToken = _res.token

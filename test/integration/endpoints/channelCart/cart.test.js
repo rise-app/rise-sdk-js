@@ -152,7 +152,7 @@ describe('# RiSE Channel Cart API', () => {
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCart.address_billing')
-          // assert.equal(_res.event_type, EVENTS.CART_ADDRESS_BILLING_SET)
+          // assert.equal(_res.event_type, EVENTS.CART_BILLING_ADDRESS_SET)
           console.log('brk res address', _res)
           done()
         })
@@ -169,7 +169,7 @@ describe('# RiSE Channel Cart API', () => {
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCart.address_billing')
-          assert.equal(_res.action, ACTIONS.GET_CART_BILLING)
+          assert.equal(_res.action, ACTIONS.GET_CART_BILLING_ADDRESS)
           done()
         })
         .catch(err => {
@@ -193,7 +193,7 @@ describe('# RiSE Channel Cart API', () => {
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCart.address_shipping')
-          // assert.equal(_res.event_type, EVENTS.CART_ADDRESS_SHIPPING_SET)
+          // assert.equal(_res.event_type, EVENTS.CART_SHIPPING_ADDRESS_SET)
           console.log('brk res address', _res)
           done()
         })
@@ -210,7 +210,7 @@ describe('# RiSE Channel Cart API', () => {
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCart.address_shipping')
-          assert.equal(_res.action, ACTIONS.GET_CART_SHIPPING)
+          assert.equal(_res.action, ACTIONS.GET_CART_SHIPPING_ADDRESS)
           done()
         })
         .catch(err => {
@@ -260,7 +260,7 @@ describe('# RiSE Channel Cart API', () => {
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCart.fulfillment_details')
-          // assert.equal(_res.event_type, EVENTS.CART_FULFILLMENT_SET)
+          // assert.equal(_res.event_type, EVENTS.CART_FULFILLMENT_DETAILS_SET)
           done()
         })
         .catch(err => {
