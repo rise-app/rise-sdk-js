@@ -88,7 +88,7 @@ describe('# RiSE Channel Customer API', () => {
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCustomer.address_billing')
-          // assert.equal(_res.event_type, EVENTS.CUSTOMER_ADDRESS_BILLING_SET)
+          // assert.equal(_res.event_type, EVENTS.CUSTOMER_BILLING_ADDRESS_SET)
           console.log('brk res address', _res)
           done()
         })
@@ -105,7 +105,7 @@ describe('# RiSE Channel Customer API', () => {
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCustomer.address_billing')
-          assert.equal(_res.action, ACTIONS.GET_CUSTOMER_BILLING)
+          assert.equal(_res.action, ACTIONS.GET_CUSTOMER_BILLING_ADDRESS)
           done()
         })
         .catch(err => {
@@ -129,7 +129,7 @@ describe('# RiSE Channel Customer API', () => {
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCustomer.address_shipping')
-          // assert.equal(_res.event_type, EVENTS.CUSTOMER_ADDRESS_SHIPPING_SET)
+          // assert.equal(_res.event_type, EVENTS.CUSTOMER_SHIPPING_ADDRESS_SET)
           console.log('brk res address', _res)
           done()
         })
@@ -146,7 +146,7 @@ describe('# RiSE Channel Customer API', () => {
       })
         .then(_res => {
           assert.equal(_res.object, 'ChannelCustomer.address_shipping')
-          assert.equal(_res.action, ACTIONS.GET_CUSTOMER_SHIPPING)
+          assert.equal(_res.action, ACTIONS.GET_CUSTOMER_SHIPPING_ADDRESS)
           done()
         })
         .catch(err => {
