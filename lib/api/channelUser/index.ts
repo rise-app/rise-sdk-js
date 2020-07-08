@@ -524,7 +524,7 @@ export class ChannelUserPassport extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/users/:user_uuid/passports',
-    // validator: user[COMMANDS.CREATE_USER_PASSPORT]
+    validator: user[COMMANDS.CREATE_USER_PASSPORT]
   })
   add(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -538,13 +538,29 @@ export class ChannelUserPassport extends ApiClass {
    */
   // TODO VALIDATOR
   @Command({
-    method: 'PUT',
+    method: 'DELETE',
     route: 'channels/:channel_uuid/users/:user_uuid/passports/:passport_uuid',
-    // validator: user[COMMANDS.REMOVE_USER_PASSPORT]
+    validator: user[COMMANDS.REMOVE_USER_PASSPORT]
   })
   remove(data, req?, validated?) {
     return this.request(req, data, validated)
   }
+
+  /**
+   * Update User's Passport
+   * @param data
+   * @param req
+   * @param validated
+   */
+  // TODO VALIDATOR
+  // @Command({
+  //   method: 'PUT',
+  //   route: 'channels/:channel_uuid/users/:user_uuid/passports/:passport_uuid',
+  //   // validator: user[COMMANDS.RESET_USER_PASSPORT]
+  // })
+  // update(data, req?, validated?) {
+  //   return this.request(req, data, validated)
+  // }
 
   /**
    * Reset User's Passport
@@ -556,7 +572,7 @@ export class ChannelUserPassport extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/users/:user_uuid/passports/:passport_uuid/reset',
-    // validator: user[COMMANDS.CREATE_USER_PASSPORT]
+    // validator: user[COMMANDS.RESET_USER_PASSPORT]
   })
   reset(data, req?, validated?) {
     return this.request(req, data, validated)

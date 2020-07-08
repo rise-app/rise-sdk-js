@@ -16,6 +16,7 @@ export {
   order,
   permission,
   product,
+  subscription,
   task,
   user,
   vendor

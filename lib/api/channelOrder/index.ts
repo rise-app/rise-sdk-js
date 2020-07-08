@@ -15,7 +15,11 @@ export class ChannelOrder extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({method: 'GET', route: 'channels/:channel_uuid/orders/:order_uuid', validator: order[ACTIONS.GET_ORDER]})
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/orders/:order_uuid',
+    validator: order[ACTIONS.GET_ORDER]
+  })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -26,7 +30,11 @@ export class ChannelOrder extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({method: 'GET', route: 'channels/:channel_uuid/orders', validator: order[ACTIONS.LIST_ORDERS]})
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/orders',
+    validator: order[ACTIONS.LIST_ORDERS]
+  })
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -53,7 +61,11 @@ export class ChannelOrder extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({method: 'GET', route: 'channels/:channel_uuid/descendants/orders', validator: order[ACTIONS.LIST_ORDERS]})
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants/orders',
+    validator: order[ACTIONS.LIST_ORDERS]
+  })
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -81,7 +93,11 @@ export class ChannelOrder extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({method: 'POST', route: 'channels/:channel_uuid/orders', validator: order[COMMANDS.CREATE_ORDER]})
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/orders',
+    validator: order[COMMANDS.CREATE_ORDER]
+  })
   create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -92,7 +108,11 @@ export class ChannelOrder extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({method: 'PUT', route: 'channels/:channel_uuid/orders/:order_uuid', validator: order[COMMANDS.UPDATE_ORDER]})
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/orders/:order_uuid',
+    validator: order[COMMANDS.UPDATE_ORDER]
+  })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -1094,7 +1114,7 @@ export class ChannelOrderFulfillment extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/orders/:order_uuid/fulfillments/:fulfillment_uuid',
-    validator: order[ACTIONS.GET_ORDER]
+    validator: order[ACTIONS.GET_ORDER_FULFILLMENT]
   })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -1110,7 +1130,7 @@ export class ChannelOrderFulfillment extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/orders/:order_uuid/fulfillments',
-    validator: order[ACTIONS.LIST_ORDERS]
+    validator: order[ACTIONS.LIST_ORDER_FULFILLMENTS]
   })
   list(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -1125,7 +1145,7 @@ export class ChannelOrderFulfillment extends ApiClass {
    */
   // TODO validator
   @Command({
-    method: 'PUT',
+    method: 'POST',
     route: 'channels/:channel_uuid/orders/:order_uuid/fulfillments',
     // validator: order[COMMANDS.CREATE_ORDER_FULFILLMENT]
   })

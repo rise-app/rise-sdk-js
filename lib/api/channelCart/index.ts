@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Paginate } from '../../metadata'
-import { cart, order } from '../../validators'
+import { cart } from '../../validators'
 import { ACTIONS, COMMANDS } from '../../enums'
 
 export class ChannelCart extends ApiClass {
@@ -14,7 +14,11 @@ export class ChannelCart extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({method: 'GET', route: 'channels/:channel_uuid/carts/:cart_uuid', validator: cart[ACTIONS.GET_CART]})
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/carts/:cart_uuid',
+    validator: cart[ACTIONS.GET_CART]
+  })
   get(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -25,7 +29,11 @@ export class ChannelCart extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({method: 'GET', route: 'channels/:channel_uuid/carts', validator: cart[ACTIONS.LIST_CARTS]})
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/carts',
+    validator: cart[ACTIONS.LIST_CARTS]
+  })
   list(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -36,7 +44,11 @@ export class ChannelCart extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({method: 'POST', route: 'channels/:channel_uuid/carts', validator: cart[COMMANDS.CREATE_CART]})
+  @Command({
+    method: 'POST',
+    route: 'channels/:channel_uuid/carts',
+    validator: cart[COMMANDS.CREATE_CART]
+  })
   create(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -47,7 +59,11 @@ export class ChannelCart extends ApiClass {
    * @param req
    * @param validated
    */
-  @Command({method: 'PUT', route: 'channels/:channel_uuid/carts/:cart_uuid', validator: cart[COMMANDS.UPDATE_CART]})
+  @Command({
+    method: 'PUT',
+    route: 'channels/:channel_uuid/carts/:cart_uuid',
+    validator: cart[COMMANDS.UPDATE_CART]
+  })
   update(data, req?, validated?) {
     return this.request(req, data, validated)
   }
@@ -681,7 +697,7 @@ export class ChannelCartItem extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/search/carts',
-    validator: cart[ACTIONS.LIST_CARTS]
+    validator: cart[ACTIONS.FIND_CARTS]
   })
   @Paginate()
   search(data, req?, validated?) {
@@ -713,7 +729,7 @@ export class ChannelCartItem extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/search/carts',
-    validator: cart[ACTIONS.LIST_CARTS]
+    validator: cart[ACTIONS.FIND_CARTS]
   })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {

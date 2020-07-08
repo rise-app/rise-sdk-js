@@ -6,6 +6,8 @@ import { regexdot } from '@fabrix/regexdot'
 /**
  * Applications on RiSE are anything that accesses the API
  */
+// TODO convert pattern to enum for emitter utility
+//
 export class ApplicationClass extends EventEmitter {
 
   private Socket

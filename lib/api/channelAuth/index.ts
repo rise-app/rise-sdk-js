@@ -503,7 +503,7 @@ export class ChannelAuth extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/auth/session/channel',
-    validator: user[ACTIONS.GET_USER]
+    validator: user[ACTIONS.GET_SESSION_CHANNEL]
   })
   sessionChannel(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -519,7 +519,7 @@ export class ChannelAuth extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/auth/session/channels',
-    validator: user[ACTIONS.GET_USER]
+    validator: user[ACTIONS.LIST_SESSION_CHANNELS]
   })
   sessionChannels(data, req?, validated?) {
     return this.request(req, data, validated)
