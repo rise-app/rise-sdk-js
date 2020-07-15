@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.64](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.63...v1.0.0-alpha.64) (2020-07-15)
+
+
+### Bug Fixes
+
+* fixes [#11](https://github.com/rise-app/rise-sdk-js/issues/11) ([0fabf78](https://github.com/rise-app/rise-sdk-js/commit/0fabf78))
+* fixes import on test ([e1cfb36](https://github.com/rise-app/rise-sdk-js/commit/e1cfb36))
+
+
+### Features
+
+* adds rise utilities ([#16](https://github.com/rise-app/rise-sdk-js/issues/16)) ([8f38879](https://github.com/rise-app/rise-sdk-js/commit/8f38879))
+* updates fulfillment, validators, adds uitlity tests ([0509a41](https://github.com/rise-app/rise-sdk-js/commit/0509a41))
+
 ## [1.0.0-alpha.63](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.62...v1.0.0-alpha.63) (2020-06-11)
 
 
