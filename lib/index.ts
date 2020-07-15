@@ -245,24 +245,27 @@ export class RiSE extends EventEmitter {
 
     // Set the default env
     if (config.url) {
-      this.config.sandbox = false
+      this.config.sandbox = true
       this.config.beta = false
       this.config.production = false
       this.config.live_mode = typeof config.live_mode !== 'undefined' ? config.live_mode : false
     }
     else if (config.sandbox) {
+      this.config.sandbox = true
       this.config.beta = false
       this.config.production = false
       this.config.live_mode = typeof config.live_mode !== 'undefined' ? config.live_mode : false
     }
     else if (config.beta) {
       this.config.sandbox = false
+      this.config.beta = true
       this.config.production = false
       this.config.live_mode = typeof config.live_mode !== 'undefined' ? config.live_mode : false
     }
     else if (config.production) {
       this.config.sandbox = false
       this.config.beta = false
+      this.config.production = true
       this.config.live_mode = typeof config.live_mode !== 'undefined' ? config.live_mode : true
     }
 
@@ -575,6 +578,33 @@ export class RiSE extends EventEmitter {
   }
 
   /**
+   * The Api versioning
+   */
+  get requestUri () {
+    return `api/v${this.api_version}`
+  }
+
+  /**
+   * The consturcted RiSE endpoint
+   */
+  get riseUrl () {
+    return `${this.requestUrl}/${this.requestUri}`
+  }
+
+  /**
+   * Get the expected mode for this API instance
+   */
+  get riseMode () {
+    return this.config.sandbox
+      ? 'sandbox'
+      : this.config.beta
+        ? 'beta'
+        : this.config.production
+          ? 'production'
+          : 'unknown'
+  }
+
+  /**
    * Authenticates an API user for automatic session and token updates
    */
   authenticateApiUser(channel_uuid, identifier?, password?) {
@@ -743,7 +773,7 @@ export class RiSE extends EventEmitter {
     // The Request method
     const method = Object.keys(route)[0]
     // The composed URL
-    let url = `${this.requestUrl}/api/v${this.api_version}/${route[method]}`
+    let url = `${this.riseUrl}/${route[method]}`
     // Add a query if supplied
     if (
       query

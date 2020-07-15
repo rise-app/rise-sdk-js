@@ -1,12 +1,13 @@
 {
   "name": "@rise/sdk-js",
-  "version": "1.0.0-alpha.63",
+  "version": "1.0.0-alpha.64",
   "description": "Node SDK for RiSE",
   "author": {
     "name": "scott-wyatt",
     "email": "scott@rise.store",
     "url": "https://rise.store"
   },
+  "license": "GPLv3",
   "scripts": {
     "release": "standard-version",
     "build": "tsc -p ./lib/tsconfig.release.json",
@@ -15,6 +16,10 @@
     "watch": "tsc -w -p ./lib/tsconfig.release.json",
     "pre-test": "run-s clean lint build",
     "test": "npm run clean && npm run lint && npm run build && nyc mocha",
+    "test:build:unit": "run-s pre-test test:unit",
+    "test:unit": "NODE_ENV=testing nyc mocha --opts test/mocha-unit.opts --exit",
+    "test:build:integration": "run-s pre-test test:integration",
+    "test:integration": "NODE_ENV=testing nyc mocha --opts test/mocha-integration.opts --exit",
     "test:build:application": "run-s pre-test test:application",
     "test:application": "NODE_ENV=testing nyc mocha --opts test/mocha-application.opts --exit",
     "test:build:auth": "run-s pre-test test:auth",
@@ -76,8 +81,8 @@
   "dependencies": {
     "@fabrix/regexdot": "^1.0.1",
     "@hapi/joi": "^15.1.1",
-    "@rise/rise-validators": "^1.0.0-alpha.14",
-    "@rise/rise-values": "^1.0.0-alpha.9",
+    "@rise/rise-validators": "^1.0.0-alpha.20",
+    "@rise/rise-values": "^1.0.0-alpha.15",
     "qs": "^6.9.1",
     "reflect-metadata": "^0.1.13",
     "request": "^2.88.0",

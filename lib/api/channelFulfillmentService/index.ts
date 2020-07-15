@@ -1,6 +1,6 @@
 import { ApiClass } from '../../ApiClass'
 import { Command, Action, Paginate } from '../../metadata'
-import { customer, fulfillment_service } from '../../validators'
+import { customer, fulfillment as fulfillment_service } from '../../validators'
 import { ACTIONS, COMMANDS, EVENTS } from '../../enums'
 
 export class ChannelFulfillmentService extends ApiClass {
@@ -317,7 +317,7 @@ export class ChannelFulfillmentServiceEvent extends ApiClass {
   @Command({
     method: 'POST',
     route: 'channels/:channel_uuid/fulfillment_services/:service_uuid/events',
-    // validator: fulfillment_service[EVENTS.FULFILLMENT_SERVICE_CREATED]
+    // validator: fulfillment_service[COMMANDS.CREATE_FULFILLMENT_SERVICE_EVENT]
   })
   create(data, req?, validated?) {
     return this.request(req, data, validated)

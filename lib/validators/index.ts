@@ -1,6 +1,7 @@
 export {
   core,
   auth,
+
   application,
   billing_model,
   cart,
@@ -10,7 +11,6 @@ export {
   customer,
   feed,
   fulfillment,
-  fulfillment_service,
   gateway,
   offer,
   order,

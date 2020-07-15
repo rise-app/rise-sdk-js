@@ -62,9 +62,10 @@ describe('# RiSE Channel Offer API', () => {
 
   it('### Should List Channel Offers', (done) => {
 
-    rise.channelOffer.list({
-      channel_uuid: channel_uuid
-    }, {
+    rise.channelOffer.list({}, {
+      params: {
+        channel_uuid: channel_uuid
+      },
       query: {
         limit: 5
       }
@@ -86,9 +87,10 @@ describe('# RiSE Channel Offer API', () => {
 
   it('### Should List Channel Offers with nested where query', (done) => {
 
-    rise.channelOffer.list({
-      channel_uuid: channel_uuid
-    }, {
+    rise.channelOffer.list({}, {
+      params: {
+        channel_uuid: channel_uuid
+      },
       query: {
         limit: 1,
         where: {
@@ -111,9 +113,10 @@ describe('# RiSE Channel Offer API', () => {
 
   it('### Should Search Channel Offers', (done) => {
 
-    rise.channelOffer.search({
-      channel_uuid: channel_uuid
-    }, {
+    rise.channelOffer.search({}, {
+      params: {
+        channel_uuid: channel_uuid
+      },
       query: {
         term: 'testing',
         limit: 5
@@ -132,9 +135,11 @@ describe('# RiSE Channel Offer API', () => {
 
   it('### Should Get a Channel Offer', (done) => {
 
-    rise.channelOffer.get({
-      channel_uuid: channel_uuid,
-      offer_uuid: offer.offer_uuid
+    rise.channelOffer.get({}, {
+      params: {
+        channel_uuid: channel_uuid,
+        offer_uuid: offer.offer_uuid
+      }
     })
       .then(_res => {
         offer = _res.data
@@ -151,8 +156,11 @@ describe('# RiSE Channel Offer API', () => {
   it('### Should Get a Channel Offer By Handle', (done) => {
 
     rise.channelOffer.getByHandle({
-      channel_uuid: channel_uuid,
-      handle: offer.handle
+    }, {
+      params: {
+        channel_uuid: channel_uuid,
+        handle: offer.handle
+      }
     })
       .then(_res => {
         offer = _res.data
@@ -169,9 +177,11 @@ describe('# RiSE Channel Offer API', () => {
 
   it('### Should List a Channel Offer\'s Variants', (done) => {
 
-    rise.channelOffer.listVariants({
-      channel_uuid: channel_uuid,
-      offer_uuid: offer.offer_uuid
+    rise.channelOffer.listVariants({}, {
+      params: {
+        channel_uuid: channel_uuid,
+        offer_uuid: offer.offer_uuid
+      }
     })
       .then(_res => {
         variant = _res.data[0]
@@ -187,9 +197,11 @@ describe('# RiSE Channel Offer API', () => {
 
   it('### Should List a Channel Offer\'s Variants by Offer Handle', (done) => {
 
-    rise.channelOffer.listVariantsByHandle({
-      channel_uuid: channel_uuid,
-      handle: offer.handle
+    rise.channelOffer.listVariantsByHandle({}, {
+      params: {
+        channel_uuid: channel_uuid,
+        handle: offer.handle
+      }
     })
       .then(_res => {
         // variant = _res.data[0]
@@ -206,9 +218,12 @@ describe('# RiSE Channel Offer API', () => {
   it('### Should Get a Channel Offer\'s Variant', (done) => {
 
     rise.channelOffer.getVariant({
-      channel_uuid: channel_uuid,
-      offer_uuid: offer.offer_uuid,
-      variant_uuid: variant.variant_uuid
+    }, {
+      params: {
+        channel_uuid: channel_uuid,
+        offer_uuid: offer.offer_uuid,
+        variant_uuid: variant.variant_uuid
+      }
     })
       .then(_res => {
         variant = _res.data
@@ -225,9 +240,10 @@ describe('# RiSE Channel Offer API', () => {
 
   it('### Should List Public Channel Offers', (done) => {
 
-    rise.channelOffer.listPublic({
-      channel_uuid: channel_uuid
-    }, {
+    rise.channelOffer.listPublic({}, {
+      params: {
+        channel_uuid: channel_uuid
+      },
       query: {
         limit: 5
       }
@@ -249,9 +265,10 @@ describe('# RiSE Channel Offer API', () => {
 
   it('### Should Search Public Channel Offers', (done) => {
 
-    rise.channelOffer.searchPublic({
-      channel_uuid: channel_uuid
-    }, {
+    rise.channelOffer.searchPublic({}, {
+      params: {
+        channel_uuid: channel_uuid
+      },
       query: {
         term: 'testing',
         limit: 5
@@ -271,8 +288,11 @@ describe('# RiSE Channel Offer API', () => {
   it('### Should Get a Public Channel Offer', (done) => {
 
     rise.channelOffer.getPublic({
-      channel_uuid: channel_uuid,
-      offer_uuid: offer.offer_uuid
+    }, {
+      params: {
+        channel_uuid: channel_uuid,
+        offer_uuid: offer.offer_uuid
+      }
     })
       .then(_res => {
         offer = _res.data
@@ -289,8 +309,11 @@ describe('# RiSE Channel Offer API', () => {
   it('### Should Get a Public Channel Offer By Handle', (done) => {
 
     rise.channelOffer.getPublicByHandle({
-      channel_uuid: channel_uuid,
-      handle: offer.handle
+    }, {
+      params: {
+        channel_uuid: channel_uuid,
+        handle: offer.handle
+      }
     })
       .then(_res => {
         offer = _res.data
@@ -308,8 +331,11 @@ describe('# RiSE Channel Offer API', () => {
   it('### Should List a Public Channel Offer\'s Variants', (done) => {
 
     rise.channelOffer.listPublicVariants({
-      channel_uuid: channel_uuid,
-      offer_uuid: offer.offer_uuid
+    }, {
+      params: {
+        channel_uuid: channel_uuid,
+        offer_uuid: offer.offer_uuid
+      }
     })
       .then(_res => {
         variant = _res.data[0]
@@ -325,9 +351,11 @@ describe('# RiSE Channel Offer API', () => {
 
   it('### Should List a Public Channel Offer\'s Variants by Offer Handle', (done) => {
 
-    rise.channelOffer.listPublicVariantsByHandle({
-      channel_uuid: channel_uuid,
-      handle: offer.handle
+    rise.channelOffer.listPublicVariantsByHandle({}, {
+      params: {
+        channel_uuid: channel_uuid,
+        handle: offer.handle
+      }
     })
       .then(_res => {
         variant = _res.data[0]
@@ -341,12 +369,15 @@ describe('# RiSE Channel Offer API', () => {
       })
   })
 
-  it.skip('### Should Get a Public Channel Offer\'s Variant', (done) => {
+  it('### Should Get a Public Channel Offer\'s Variant', (done) => {
 
     rise.channelOffer.getPublicVariant({
-      channel_uuid: channel_uuid,
-      offer_uuid: offer.offer_uuid,
-      variant_uuid: variant.variant_uuid
+    }, {
+      params: {
+        channel_uuid: channel_uuid,
+        offer_uuid: offer.offer_uuid,
+        variant_uuid: variant.variant_uuid
+      }
     })
       .then(_res => {
         variant = _res.data

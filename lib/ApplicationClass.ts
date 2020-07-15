@@ -7,7 +7,7 @@ import { regexdot } from '@fabrix/regexdot'
  * Applications on RiSE are anything that accesses the API
  */
 // TODO convert pattern to enum for emitter utility
-//
+// https://github.com/rise-app/rise-sdk-js/issues/17
 export class ApplicationClass extends EventEmitter {
 
   private Socket

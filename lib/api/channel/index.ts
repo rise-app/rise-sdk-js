@@ -209,6 +209,7 @@ export class Channel extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/vendor_primary',
+    // TODO
     validator: channel[ACTIONS.GET]
   })
   getPrimaryVendor(data, req?, validated?) {
@@ -224,6 +225,7 @@ export class Channel extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/vendor_primary',
+    // TODO
     validator: channel[COMMANDS.UPDATE]
   })
   setPrimaryVendor(data, req?, validated?) {
@@ -239,6 +241,7 @@ export class Channel extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/gateway_primary',
+    // TODO
     validator: channel[ACTIONS.GET]
   })
   getPrimaryGateway(data, req?, validated?) {
@@ -254,6 +257,7 @@ export class Channel extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/gateway_primary',
+    // TODO
     validator: channel[COMMANDS.UPDATE]
   })
   setPrimaryGateway(data, req?, validated?) {
@@ -269,6 +273,7 @@ export class Channel extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/fulfillment_service_primary',
+    // TODO
     validator: channel[ACTIONS.GET]
   })
   getPrimaryFulfillmentService(data, req?, validated?) {
@@ -284,6 +289,7 @@ export class Channel extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/fulfillment_service_primary',
+    // TODO
     validator: channel[COMMANDS.UPDATE]
   })
   setPrimaryFulfillmentService(data, req?, validated?) {
@@ -300,6 +306,7 @@ export class Channel extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/feed_primary',
+    // TODO
     validator: channel[ACTIONS.GET]
   })
   getPrimaryFeed(data, req?, validated?) {
@@ -315,6 +322,7 @@ export class Channel extends ApiClass {
   @Command({
     method: 'PUT',
     route: 'channels/:channel_uuid/feed_primary',
+    // TODO
     validator: channel[COMMANDS.UPDATE]
   })
   setPrimaryFeed(data, req?, validated?) {
@@ -330,6 +338,7 @@ export class Channel extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/rules_shipping',
+    // TODO
     validator: channel[ACTIONS.LIST]
   })
   listShippingRules(data, req?, validated?) {
@@ -345,6 +354,7 @@ export class Channel extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/rules_shipping/:rule_uuid',
+    // TODO
     validator: channel[ACTIONS.GET]
   })
   getShippingRule(data, req?, validated?) {
@@ -360,6 +370,7 @@ export class Channel extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/rules_taxes',
+    // TODO
     validator: channel[ACTIONS.LIST]
   })
   listTaxRules(data, req?, validated?) {
@@ -375,6 +386,7 @@ export class Channel extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/rules_taxes/:rule_uuid',
+    // TODO
     validator: channel[ACTIONS.GET]
   })
   getTaxRule(data, req?, validated?) {
@@ -388,7 +400,11 @@ export class Channel extends ApiClass {
   //  * @param req
   //  * @param validated
   //  */
-  // @Action({ method: 'GET', route: 'channels/:channel_uuid/feed_primary', validator: feed[ACTIONS.GET_FEED_PRIMARY] })
+  // @Action({
+  //   method: 'GET',
+  //   route: 'channels/:channel_uuid/feed_primary',
+  //   validator: channel[ACTIONS.GET_FEED_PRIMARY]
+  // })
   // getFeedPrimary(data, req?, validated?) {
   //     return this.request(req, data, validated)
   // }
@@ -399,7 +415,11 @@ export class Channel extends ApiClass {
   //  * @param req
   //  * @param validated
   //  */
-  // @Command({ method: 'PUT', route: 'channels/:channel_uuid/feed_primary', validator: feed[COMMANDS.SET_CHANNEL_FEED_PRIMARY] })
+  // @Command({
+  //   method: 'PUT',
+  //   route: 'channels/:channel_uuid/feed_primary',
+  //   validator: channel[COMMANDS.SET_CHANNEL_FEED_PRIMARY]
+  // })
   // setFeedPrimary(data, req?, validated?) {
   //     return this.request(req, data, validated)
   // }
@@ -407,7 +427,6 @@ export class Channel extends ApiClass {
   getEvent = ChannelEvent.prototype.get
 
   listEvents = ChannelEvent.prototype.list
-
 
 }
 
