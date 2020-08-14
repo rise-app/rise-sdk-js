@@ -162,7 +162,6 @@ Create a User
 ```js
 let user
 rise.channelUser.create({
-    channel_uuid: <channel_uuid>,
     name_first: 'First',
     name_last: 'Last',
     username: 'uniqueusername',
@@ -171,6 +170,9 @@ rise.channelUser.create({
 // If you used the authenticateApiUser endpoint, then you don't need to specifiy the token or session, since that will be added to the request automatically.
   token: <token>,
   session: <session>, // if you have an auth token, session isn't required, as that is built into the token
+  params: {
+    channel_uuid: <channel_uuid>
+  }
 })
   .then((_res) => {
      user = _res.data
@@ -226,32 +228,6 @@ rise.channelUser.create({
 
 Get a User by ID
 ```js
-rise.channelUser.get({
-  channel_uuid: <channel_uuid>,
-  user_uuid: user.user_uuid
-}, {
-
-})
-.then((_res) => {
-  user = _res.data
-  
-  // If the session on RiSE changed, the it will be returned in the response
-  if (_res.session) {
-    session = _res.session
-  }
-  // If the token refreshed on RiSE changed, the it will be returned in the response
-  if (_res.token) {
-    token = _res.token
-  }
-
-})
-.catch((err) => {
-  // Handle Error
-})
-```
-
-alternatively, Get a User by ID using params
-```js
 rise.channelUser.get({}, {
   token: <token>,
   params: {
@@ -267,18 +243,13 @@ rise.channelUser.get({}, {
 })
 ```
 
-# Notes
+##### Subscribing to Commands/Events via sockets
+Using one the RiSE Socket Libraries, you can connect to RiSE through this SDK and subscribe to Event types and Resources.
 
+## Documentation
+The documentation for this SDK is under development, however the source code is easy to reason around and is well commented.  Please see the src or tests for available actions.
 
-##### Subscribing to Commands/Events via webhooks
-RiSE commands/events have a lifecycle that mimics a SAGA pattern
-- dispatched
-- cancelled
-- committed
-
-When a command/event is dispatched, your subscription will receive data and be able to transform/act on that data. However, your application should not persist that information until the "committed" lifecycle event has been emitted.  At anytime after a command/event has been dispatched, you may also receive a "cancelled::<command|event>", in which case you should revert any changes you made as assumptions of the state of RiSE.  Once you've received a "committed::<event>" then it's safe to assume that RiSE will not attempt to cancel the command/event. If your application goes offline, or misses the "cancelled" or "committed" event, then your application should wait 1 minute and then retrieve the current state of what you were listening for.
- 
- 
+## Notes 
  
 ## Contributing
 
