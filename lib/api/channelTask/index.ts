@@ -105,7 +105,7 @@ export class ChannelTask extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/tasks',
-    validator: task[ACTIONS.LIST_TASKS]
+    validator: task[ACTIONS.LIST_DESCENDANTS_TASKS]
   })
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
@@ -121,10 +121,25 @@ export class ChannelTask extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/search/tasks',
-    validator: task[ACTIONS.LIST_TASKS]
+    validator: task[ACTIONS.FIND_DESCENDANTS_TASKS]
   })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
+   * Get a Given Channel's Task's Feed
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/tasks/:task_uuid/feed',
+    validator: task[ACTIONS.GET_TASK_FEED]
+  })
+  getFeed(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

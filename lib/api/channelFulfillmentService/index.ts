@@ -66,7 +66,7 @@ export class ChannelFulfillmentService extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/fulfillment_services',
-    validator: fulfillment_service[ACTIONS.LIST_FULFILLMENT_SERVICES]
+    validator: fulfillment_service[ACTIONS.LIST_DESCENDANTS_FULFILLMENT_SERVICES]
   })
   @Paginate()
   listDescendants(data, req?, validated?) {

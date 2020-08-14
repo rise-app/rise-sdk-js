@@ -81,7 +81,7 @@ export class ChannelApplication extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/applications',
-    validator: application[ACTIONS.LIST_APPLICATIONS]
+    validator: application[ACTIONS.LIST_DESCENDANTS_APPLICATIONS]
   })
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
@@ -97,7 +97,7 @@ export class ChannelApplication extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/search/applications',
-    validator: application[ACTIONS.LIST_APPLICATIONS]
+    validator: application[ACTIONS.LIST_DESCENDANTS_APPLICATIONS]
   })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {

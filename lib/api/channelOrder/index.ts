@@ -64,7 +64,7 @@ export class ChannelOrder extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/orders',
-    validator: order[ACTIONS.LIST_ORDERS]
+    validator: order[ACTIONS.LIST_DESCENDANTS_ORDERS]
   })
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
@@ -80,7 +80,7 @@ export class ChannelOrder extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/search/orders',
-    validator: order[ACTIONS.LIST_ORDERS]
+    validator: order[ACTIONS.FIND_DESCENDANTS_ORDERS]
   })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {

@@ -49,7 +49,7 @@ export class ChannelGateway extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/gateways',
-    validator: gateway[ACTIONS.LIST_GATEWAYS]
+    validator: gateway[ACTIONS.LIST_DESCENDANTS_GATEWAYS]
   })
   @Paginate()
   listDescendants(data, req?, validated?) {

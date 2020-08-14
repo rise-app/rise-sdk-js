@@ -39,6 +39,21 @@ export class ChannelCart extends ApiClass {
   }
 
   /**
+   * List All Carts from Descendants of given Channel
+   * @param data
+   * @param req
+   * @param validated
+   */
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants/carts',
+    validator: cart[ACTIONS.LIST_DESCENDANTS_CARTS]
+  })
+  listChannelDescendants(data, req?, validated?) {
+    return this.request(req, data, validated)
+  }
+
+  /**
    * Create a Cart
    * @param data
    * @param req
@@ -701,22 +716,6 @@ export class ChannelCartItem extends ApiClass {
   })
   @Paginate()
   search(data, req?, validated?) {
-    return this.request(req, data, validated)
-  }
-
-  /**
-   * List All Carts from Descendants of given Channel
-   * @param data
-   * @param req
-   * @param validated
-   */
-  @Action({
-    method: 'GET',
-    route: 'channels/:channel_uuid/descendants/carts',
-    validator: cart[ACTIONS.LIST_CARTS]
-  })
-  @Paginate()
-  listChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
   }
 

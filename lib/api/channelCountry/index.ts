@@ -110,7 +110,7 @@ export class ChannelCountry extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/countries',
-    validator: country[ACTIONS.LIST_COUNTRIES]
+    validator: country[ACTIONS.LIST_DESCENDANTS_COUNTRIES]
   })
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
@@ -126,7 +126,7 @@ export class ChannelCountry extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/search/countries',
-    validator: country[ACTIONS.LIST_COUNTRIES]
+    validator: country[ACTIONS.LIST_DESCENDANTS_COUNTRIES]
   })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {

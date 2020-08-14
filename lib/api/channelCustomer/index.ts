@@ -120,7 +120,7 @@ export class ChannelCustomer extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/customers',
-    validator: customer[ACTIONS.LIST_CUSTOMERS]
+    validator: customer[ACTIONS.LIST_DESCENDANTS_CUSTOMERS]
   })
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
@@ -136,7 +136,7 @@ export class ChannelCustomer extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/search/customers',
-    validator: customer[ACTIONS.LIST_CUSTOMERS]
+    validator: customer[ACTIONS.FIND_DESCENDANTS_CUSTOMERS]
   })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {

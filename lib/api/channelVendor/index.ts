@@ -118,7 +118,11 @@ export class ChannelVendor extends ApiClass {
    * @param req
    * @param validated
    */
-  @Action({method: 'GET', route: 'channels/:channel_uuid/descendants/vendors', validator: vendor[ACTIONS.LIST_VENDORS]})
+  @Action({
+    method: 'GET',
+    route: 'channels/:channel_uuid/descendants/vendors',
+    validator: vendor[ACTIONS.LIST_DESCENDANTS_VENDORS]
+  })
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
     return this.request(req, data, validated)
@@ -133,7 +137,7 @@ export class ChannelVendor extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/search/vendors',
-    validator: vendor[ACTIONS.LIST_VENDORS]
+    validator: vendor[ACTIONS.FIND_DESCENDANTS_VENDORS]
   })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {

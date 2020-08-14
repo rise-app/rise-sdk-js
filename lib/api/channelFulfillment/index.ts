@@ -47,7 +47,7 @@ export class ChannelFulfillment extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/fulfillments',
-    validator: fulfillment[ACTIONS.LIST_FULFILLMENTS]
+    validator: fulfillment[ACTIONS.LIST_DESCENDANTS_FULFILLMENTS]
   })
   listChannelDescendant(data, req?, validated?) {
     return this.request(req, data, validated)

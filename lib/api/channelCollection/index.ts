@@ -142,7 +142,7 @@ export class ChannelCollection extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/collections',
-    validator: collection[ACTIONS.LIST_COLLECTIONS]
+    validator: collection[ACTIONS.LIST_DESCENDANTS_COLLECTIONS]
   })
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
@@ -158,7 +158,7 @@ export class ChannelCollection extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/search/collections',
-    validator: collection[ACTIONS.LIST_COLLECTIONS]
+    validator: collection[ACTIONS.FIND_DESCENDANTS_COLLECTIONS]
   })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {

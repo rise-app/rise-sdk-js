@@ -50,7 +50,7 @@ export class ChannelFeed extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/feeds',
-    validator: feed[ACTIONS.LIST_FEEDS]
+    validator: feed[ACTIONS.LIST_DESCENDANTS_FEEDS]
   })
   listChannelDescendant(data, req?, validated?) {
     return this.request(req, data, validated)

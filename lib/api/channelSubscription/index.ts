@@ -743,7 +743,7 @@ export class ChannelSubscriptionItem extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/subscriptions',
-    validator: subscription[ACTIONS.LIST_SUBSCRIPTIONS]
+    validator: subscription[ACTIONS.LIST_DESCENDANTS_SUBSCRIPTIONS]
   })
   @Paginate()
   listChannelDescendants(data, req?, validated?) {
@@ -759,7 +759,7 @@ export class ChannelSubscriptionItem extends ApiClass {
   @Action({
     method: 'GET',
     route: 'channels/:channel_uuid/descendants/search/subscriptions',
-    validator: subscription[ACTIONS.FIND_SUBSCRIPTIONS]
+    validator: subscription[ACTIONS.FIND_DESCENDANTS_SUBSCRIPTIONS]
   })
   @Paginate()
   searchChannelDescendants(data, req?, validated?) {

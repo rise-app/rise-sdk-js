@@ -81,8 +81,8 @@
   "dependencies": {
     "@fabrix/regexdot": "^1.0.1",
     "@hapi/joi": "^15.1.1",
-    "@rise/rise-validators": "^1.0.0-alpha.20",
-    "@rise/rise-values": "^1.0.0-alpha.15",
+    "@rise/rise-validators": "^1.0.0-alpha.24",
+    "@rise/rise-values": "^1.0.0-alpha.17",
     "qs": "^6.9.4",
     "reflect-metadata": "^0.1.13",
     "request": "^2.88.2",

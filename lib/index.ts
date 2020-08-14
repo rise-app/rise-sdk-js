@@ -24,13 +24,16 @@ export interface RiSEResponse {
   object?: string
   objects?: string[]
   data?: {[key: string]: any} | any[]
+  aside?: {[key: string]: any} | any[]
   annotations?: {[key: string]: any} | any[]
   url?: string
   urls?: {[key: string]: any} | any[]
   offset?: number
   limit?:  number
   total?: number
-  sort?: any
+  sort?: any,
+  session?: string,
+  token?: string
 }
 
 // Export the RiSEConfig for developer use
@@ -51,7 +54,7 @@ export interface RiSEConfig {
   request_timeout?: number,
   live_mode?: boolean,
   logger?: any,
-  sockets: any,
+  sockets?: any,
   globals?: {
     headers?: {
       [key: string]: any
@@ -63,7 +66,7 @@ export interface RiSEConfig {
       [key: string]: any
     }
   },
-  mock: boolean
+  mock?: boolean
 }
 
 // Export the Core RiSE class
