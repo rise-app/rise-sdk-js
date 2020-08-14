@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.65](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.64...v1.0.0-alpha.65) (2020-08-14)
+
+
+### Features
+
+* add token and session to RiSE response ([8d998c7](https://github.com/rise-app/rise-sdk-js/commit/8d998c7af89127060c98b70eafa8a4b7f9415890))
+* update readme ([5e00353](https://github.com/rise-app/rise-sdk-js/commit/5e003538c817ce424a40f7641afd9b88ee1679d4))
+* updates deps ([0748068](https://github.com/rise-app/rise-sdk-js/commit/07480684eff8b083f91a112ff7faa09f19e4523f))
+
 ## [1.0.0-alpha.64](https://github.com/rise-app/rise-sdk-js/compare/v1.0.0-alpha.63...v1.0.0-alpha.64) (2020-07-15)
 
 
